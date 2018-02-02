@@ -20,6 +20,7 @@ namespace Luthier.Geometry
         }
 
         public void Add(Point2D p) => points.Add(p);
+        public void Add(IEnumerable<Point2D> p) => points.AddRange(p);
 
         public double MinX { get => points.Min(p => p.x); }
         public double MaxX { get => points.Max(p => p.x); }

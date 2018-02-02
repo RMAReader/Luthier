@@ -14,14 +14,14 @@ namespace Luthier.Model.MouseController
     {
         private readonly ApplicationDocumentModel model;
         private double selectionRadius;
-        public List<GraphicPolygon2D> selectedPolygons;
+        public List<IPolygon2D> selectedPolygons;
         
 
         public PolygonSelector(ApplicationDocumentModel model, double selectionRadius)
         {
             this.model = model;
             this.selectionRadius = selectionRadius;
-            selectedPolygons = new List<GraphicPolygon2D>();
+            selectedPolygons = new List<IPolygon2D>();
         }
 
 
@@ -38,7 +38,7 @@ namespace Luthier.Model.MouseController
 
         private void ToggleSelection(int x, int y)
         {
-            GraphicPolygon2D nearestPolygon = NearestPolygon(x, y);
+            IPolygon2D nearestPolygon = NearestPolygon(x, y);
             if (nearestPolygon != null)
             {
                 if (selectedPolygons.Contains(nearestPolygon) == false)
@@ -52,18 +52,18 @@ namespace Luthier.Model.MouseController
             }
         }
 
-        private GraphicPolygon2D NearestPolygon(int x, int y)
+        private IPolygon2D NearestPolygon(int x, int y)
         {
             PointF p = ViewMapper.TransformViewToModelCoordinates(new PointF(x, y));
             var range = (double)Math.Sqrt(selectionRadius * selectionRadius * ViewMapper.Scale * ViewMapper.Scale);
             var nearestObj = model.objects
-                .Where(o => o is GraphicPolygon2D)
+                .Where(o => o is IPolygon2D)
                 .Select(o => new { Distance = o.GetDistance(model, p.X, p.Y), Object = o })
                 .Where(o => o.Distance < range && (o.Object is GraphicPoint2D) == false)
                 .OrderBy(o => o.Distance)
                 .FirstOrDefault();
 
-            return (nearestObj == null) ? null : (GraphicPolygon2D)nearestObj.Object;
+            return (nearestObj == null) ? null : (IPolygon2D)nearestObj.Object;
 
         }
 

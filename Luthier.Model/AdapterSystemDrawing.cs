@@ -161,27 +161,6 @@ namespace Luthier.Model
             return result;
         }
 
-        //public IEnumerable<CompositePolygonData> GetCompositePoints()
-        //{
-        //    var result = new List<CompositePolygonData>();
-        //    foreach (GraphicCompositeRoundPolygon polygon in model.Objects().Values.Where(x => x is GraphicCompositeRoundPolygon))
-        //    {
-        //        List<Tuple<PointF,PointF>> junctions = new List<Tuple<PointF, PointF>>();
-                
-        //        foreach (var junction in polygon.Junctions)
-        //        {
-        //            GraphicPoint2D centre = (GraphicPoint2D)model.Objects()[junction.Centre];
-        //            GraphicPoint2D rad = (GraphicPoint2D)model.Objects()[junction.Radius];
-        //            junctions.Add(new Tuple<PointF, PointF>(new PointF(centre.X, centre.Y), new PointF(rad.X, rad.Y)));
-        //        }
-        //        result.Add(new CompositePolygonData()
-        //        {
-        //            Junctions = junctions,
-        //            Edges = junctions.Select(x => x.Item1).ToArray(),
-        //        });
-        //    }
-        //    return result;
-        //}
 
         public IEnumerable<IntersectionData> GetIntersections()
         {
@@ -204,53 +183,8 @@ namespace Luthier.Model
             var result = new List<PointF[]>();
             foreach (GraphicCompositePolygon polygon in model.Objects().Values.Where(x => x is GraphicCompositePolygon))
             {
-                var points = new List<PointF>();
-                foreach (var pointKeyPair in polygon.Junctions.EnumeratePairsClosed())
-                {
-                    GraphicIntersection left = (GraphicIntersection)model.Objects()[pointKeyPair.Item1];
-                    Point2D left_centre = ((GraphicPoint2D)model.Objects()[left.Centre]).ToPrimitive();
-                    var left_curve1 = (left.Object1 == null) ? null : ((GraphicBSplineCurve)model.Objects()[left.Object1]).ToPrimitive(model);
-                    var left_curve2 = (left.Object2 == null) ? null : ((GraphicBSplineCurve)model.Objects()[left.Object2]).ToPrimitive(model);
-                    var left_intersect = GetIntersection(left_curve1, left_curve2, left_centre, 0.001);
-
-                    GraphicIntersection right = (GraphicIntersection)model.Objects()[pointKeyPair.Item2];
-                    Point2D right_centre = ((GraphicPoint2D)model.Objects()[right.Centre]).ToPrimitive();
-                    var right_curve1 = (right.Object1 == null) ? null : ((GraphicBSplineCurve)model.Objects()[right.Object1]).ToPrimitive(model);
-                    var right_curve2 = (right.Object2 == null) ? null : ((GraphicBSplineCurve)model.Objects()[right.Object2]).ToPrimitive(model);
-                    var right_intersect = GetIntersection(right_curve1, right_curve2, right_centre, 0.001);
-
-                    if (left_intersect != null && right_intersect != null)
-                    {
-                        var s = new CurveSegment(left_intersect, left.Object1, left.Object2, right_intersect, right.Object1, right.Object2);
-
-                        if(s.curve != null)
-                        {
-                            points.AddRange(s.curve.ToLines(1000, s.from, s.to).Select(p => new PointF((float)p.x, (float)p.y)));
-                        }
-                        else
-                        {
-                            points.Add(new PointF((float)left_centre.x, (float)left_centre.y));
-                            points.Add(new PointF((float)right_centre.x, (float)right_centre.y));
-                        }
-                    }
-                    else if(left_intersect != null && right_intersect == null)
-                    {
-                        points.Add(new PointF((float)right_centre.x, (float)right_centre.y));
-                    }
-                    else if (left_intersect == null && right_intersect != null)
-                    {
-                        points.Add(new PointF((float)left_centre.x, (float)left_centre.y));
-                    }
-                    else
-                    {
-                        points.Add(new PointF((float)left_centre.x, (float)left_centre.y));
-                        points.Add(new PointF((float)right_centre.x, (float)right_centre.y));
-                    }
-                }
-
-                result.Add(points.ToArray());
+                result.Add(polygon.ToPolygon2D(model).GetPoints().Select(p => new PointF((float)p.x, (float)p.y)).ToArray());
             }
-
             return result;
         }
 
@@ -260,48 +194,7 @@ namespace Luthier.Model
     }
 
 
-    class CurveSegment
-    {
-        public Curve curve;
-        public double from;
-        public double to;
 
-        public CurveSegment(CurveIntersection left, UniqueKey left1, UniqueKey left2, CurveIntersection right, UniqueKey right1, UniqueKey right2)
-        {
-            if(left1 == right1)
-            {
-                curve = left.curve1;
-                //from = Math.Min(left.Parameter1, right.Parameter1);
-                //to = Math.Max(left.Parameter1, right.Parameter1);
-                from = left.Parameter1;
-                to =right.Parameter1;
-            }
-            else if (left1 == right2)
-            {
-                curve = left.curve1;
-                //from = Math.Min(left.Parameter1, right.Parameter2);
-                //to = Math.Max(left.Parameter1, right.Parameter2);
-                from = left.Parameter1;
-                to = right.Parameter2;
-            }
-            else if (left2 == right1)
-            {
-                curve = left.curve2;
-                //from = Math.Min(left.Parameter2, right.Parameter1);
-                //to = Math.Max(left.Parameter2, right.Parameter1);
-                from = left.Parameter2;
-                to = right.Parameter1;
-            }
-            else if (left2 == right2)
-            {
-                curve = left.curve2;
-                //from = Math.Min(left.Parameter2, right.Parameter2);
-                //to = Math.Max(left.Parameter2, right.Parameter2);
-                from = left.Parameter2;
-                to = right.Parameter2;
-            }
-        }
-    }
 
     
 }

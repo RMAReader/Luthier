@@ -37,7 +37,7 @@ namespace Luthier.Model.ToolPathCalculator
             List<Polygon2D> boundary = new List<Polygon2D>();
             foreach (var key in specification.BoundaryPolygonKey)
             {
-                var polygon = model.Objects()[key] as GraphicPolygon2D;
+                var polygon = model.Objects()[key] as IPolygon2D;
                 if (polygon != null)
                 {
                     boundary.Add(polygon.ToPolygon2D(model));

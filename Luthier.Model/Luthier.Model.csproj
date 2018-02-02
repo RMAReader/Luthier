@@ -65,6 +65,7 @@
     <Compile Include="GraphicObjects\GraphicObjectBase.cs" />
     <Compile Include="GraphicObjects\GraphicPoint2D.cs" />
     <Compile Include="GraphicObjects\GraphicPolygon2D.cs" />
+    <Compile Include="GraphicObjects\IPolygon2D.cs" />
     <Compile Include="IAdapterSystemDrawing.cs" />
     <Compile Include="IApplicationDocumentModel.cs" />
     <Compile Include="MouseController\IMouseControllerFactory.cs" />

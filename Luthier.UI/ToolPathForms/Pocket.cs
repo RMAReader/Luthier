@@ -49,7 +49,7 @@ namespace Luthier.UI.ToolPathForms
             comboBoxSpindleDirection.Items.Add(EnumSpindleState.OnCounterClockwise);
             //comboBoxSpindleDirection.DataBindings.Add("SelectedItem", presenter, "SpindleDirection", false, DataSourceUpdateMode.OnPropertyChanged);
 
-            listBox1.DataSource = presenter.BoundaryPolygonKey;
+            //listBox1.DataSource = presenter.BoundaryPolygonKey;
             listBox1.ValueMember = "Key";
             listBox1.DisplayMember = "Name";
         

@@ -11,7 +11,7 @@ namespace Luthier.Model.GraphicObjects
 {
     [Serializable]
     //[XmlRoot(ElementName = "GraphicPolygon2D", Namespace = Serializer<ApplicationDocumentModel>.StyleResearchNamespace)]
-    public class GraphicPolygon2D : GraphicLinkedLine2D
+    public class GraphicPolygon2D : GraphicLinkedLine2D, IPolygon2D
     {
         public GraphicPolygon2D() { pointsKeys = new List<UniqueKey>();  }
 
@@ -45,5 +45,8 @@ namespace Luthier.Model.GraphicObjects
         {
             return Key.GetHashCode();
         }
+
+        UniqueKey IPolygon2D.Key() => base.Key;
+        
     }
 }

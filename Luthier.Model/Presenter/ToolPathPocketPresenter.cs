@@ -36,7 +36,7 @@ namespace Luthier.Model.Presenter
         public EnumSpindleState SpindleState { get; set; }
         public int SpindleSpeed { get; set; }
         public int FeedRate { get; set; }
-        public List<GraphicPolygon2D> BoundaryPolygonKey { get; set; }
+        public List<IPolygon2D> BoundaryPolygonKey { get; set; }
 
         private List<BaseTool> availableTools = new CncToolRepository().GetAllTools();
         public List<BaseTool> AvailableTools { get => availableTools; }
@@ -65,7 +65,7 @@ namespace Luthier.Model.Presenter
             SpindleState = specification.SpindleState;
             FeedRate = specification.FeedRate;
             BoundaryPolygonKey = specification.BoundaryPolygonKey
-                                        .Select(x => model.Objects()[x] as GraphicPolygon2D)
+                                        .Select(x => model.Objects()[x] as IPolygon2D)
                                         .Where(x => x != null)
                                         .ToList();
 
@@ -83,7 +83,7 @@ namespace Luthier.Model.Presenter
             specification.SpindleSpeed = SpindleSpeed;
             specification.SpindleState = SpindleState;
             specification.FeedRate = FeedRate;
-            specification.BoundaryPolygonKey = BoundaryPolygonKey.Select(x => x.Key).ToList();
+            specification.BoundaryPolygonKey = BoundaryPolygonKey.Select(x => x.Key()).ToList();
         }
 
  
