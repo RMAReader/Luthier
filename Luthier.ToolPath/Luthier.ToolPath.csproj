@@ -63,11 +63,11 @@
     <Compile Include="ToolPath.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Toolpath.Core\Luthier.Core.csproj">
+    <ProjectReference Include="..\Luthier.Core\Luthier.Core.csproj">
       <Project>{917e595e-9d4e-4efb-a880-17004d5cdf4f}</Project>
       <Name>Luthier.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ToolPath.Geometry\Luthier.Geometry.csproj">
+    <ProjectReference Include="..\Luthier.Geometry\Luthier.Geometry.csproj">
       <Project>{14be8ed1-dada-4b1d-a4dc-43766fc15ed9}</Project>
       <Name>Luthier.Geometry</Name>
     </ProjectReference>

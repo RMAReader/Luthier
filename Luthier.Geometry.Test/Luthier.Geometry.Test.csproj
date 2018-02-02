@@ -57,7 +57,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ToolPath.Geometry\Luthier.Geometry.csproj">
+    <ProjectReference Include="..\Luthier.Geometry\Luthier.Geometry.csproj">
       <Project>{14be8ed1-dada-4b1d-a4dc-43766fc15ed9}</Project>
       <Name>Luthier.Geometry</Name>
     </ProjectReference>

@@ -70,7 +70,7 @@ namespace Luthier.Test
             sw.Restart();
 
             using (System.IO.StreamWriter file =
-            new System.IO.StreamWriter(@"C:\Users\Richard\Documents\Development\ToolPath\TestData\toolpath.txt"))
+            new System.IO.StreamWriter(@"C:\Users\Richard\Documents\Development\Luthier\TestData\toolpath.txt"))
             {
                 foreach (ICncOperation op in bigPath)
                 {

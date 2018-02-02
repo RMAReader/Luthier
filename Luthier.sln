@@ -1,25 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.14
+VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luthier.ToolPath", "ToolPath\Luthier.ToolPath.csproj", "{5E472423-E0EC-4F5E-84B3-04458EC67FF9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luthier.ToolPath", "Luthier.ToolPath\Luthier.ToolPath.csproj", "{5E472423-E0EC-4F5E-84B3-04458EC67FF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luthier.Test.ToolPath", "ToolPath.Test\Luthier.Test.ToolPath.csproj", "{752DCDDB-7217-4F93-B525-3CA1122A531E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luthier.ToolPath.Test", "Luthier.ToolPath.Test\Luthier.ToolPath.Test.csproj", "{752DCDDB-7217-4F93-B525-3CA1122A531E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luthier.Core", "Toolpath.Core\Luthier.Core.csproj", "{917E595E-9D4E-4EFB-A880-17004D5CDF4F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luthier.Core", "Luthier.Core\Luthier.Core.csproj", "{917E595E-9D4E-4EFB-A880-17004D5CDF4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luthier.Geometry", "ToolPath.Geometry\Luthier.Geometry.csproj", "{14BE8ED1-DADA-4B1D-A4DC-43766FC15ED9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luthier.Geometry", "Luthier.Geometry\Luthier.Geometry.csproj", "{14BE8ED1-DADA-4B1D-A4DC-43766FC15ED9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luthier.Test.Geometry", "ToolPath.Geometry.Test\Luthier.Test.Geometry.csproj", "{D74AD836-C3D9-4219-8049-7BB59082D744}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luthier.Geometry.Test", "Luthier.Geometry.Test\Luthier.Geometry.Test.csproj", "{D74AD836-C3D9-4219-8049-7BB59082D744}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luthier.Model", "ToolPath.Model\Luthier.Model.csproj", "{08871544-1177-4E77-9D67-AF6AAB83AA23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luthier.Model", "Luthier.Model\Luthier.Model.csproj", "{08871544-1177-4E77-9D67-AF6AAB83AA23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luthier.Test.Model", "ToolPath.Test.Model\Luthier.Test.Model.csproj", "{E473B10C-6317-4DBF-AC31-BFBDEA4C0BAD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luthier.Model.Test", "Luthier.Model.Test\Luthier.Model.Test.csproj", "{E473B10C-6317-4DBF-AC31-BFBDEA4C0BAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luthier.Direct3D", "ToolPath.Direct3D\Luthier.Direct3D.csproj", "{86D9713D-44B6-4290-808D-18DA54B70314}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luthier.Direct3D", "Luthier.Direct3D\Luthier.Direct3D.csproj", "{86D9713D-44B6-4290-808D-18DA54B70314}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luthier.UI", "ToolPath.UI\Luthier.UI.csproj", "{F581F2C1-C7AC-444A-B283-4B26F14F427E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luthier.UI", "Luthier.UI\Luthier.UI.csproj", "{F581F2C1-C7AC-444A-B283-4B26F14F427E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,5 +66,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8F12CF92-B0BE-4438-B325-706F217C4031}
 	EndGlobalSection
 EndGlobal

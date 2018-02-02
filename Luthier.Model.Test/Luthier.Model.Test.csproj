@@ -56,15 +56,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Toolpath.Core\Luthier.Core.csproj">
+    <ProjectReference Include="..\Luthier.Core\Luthier.Core.csproj">
       <Project>{917e595e-9d4e-4efb-a880-17004d5cdf4f}</Project>
       <Name>Luthier.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ToolPath.Model\Luthier.Model.csproj">
+    <ProjectReference Include="..\Luthier.Model\Luthier.Model.csproj">
       <Project>{08871544-1177-4e77-9d67-af6aab83aa23}</Project>
       <Name>Luthier.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ToolPath\Luthier.ToolPath.csproj">
+    <ProjectReference Include="..\Luthier.ToolPath\Luthier.ToolPath.csproj">
       <Project>{5e472423-e0ec-4f5e-84b3-04458ec67ff9}</Project>
       <Name>Luthier.ToolPath</Name>
     </ProjectReference>
