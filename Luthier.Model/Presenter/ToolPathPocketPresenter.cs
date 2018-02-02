@@ -37,6 +37,7 @@ namespace Luthier.Model.Presenter
         public int SpindleSpeed { get; set; }
         public int FeedRate { get; set; }
         public List<IPolygon2D> BoundaryPolygonKey { get; set; }
+        public int NumberOfPolygons { get => BoundaryPolygonKey.Count; }
 
         private List<BaseTool> availableTools = new CncToolRepository().GetAllTools();
         public List<BaseTool> AvailableTools { get => availableTools; }

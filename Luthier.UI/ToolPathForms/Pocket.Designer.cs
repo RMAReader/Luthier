@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.numericUpDownCutHeight = new System.Windows.Forms.NumericUpDown();
@@ -49,6 +48,7 @@
             this.numericUpDownStepLength = new System.Windows.Forms.NumericUpDown();
             this.pocketToolPathPresenterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.buttonSave = new System.Windows.Forms.Button();
+            this.NumberOfPolygons = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCutHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSafeHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSpindleSpeed)).BeginInit();
@@ -66,14 +66,6 @@
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Name";
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(152, 35);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 95);
-            this.listBox1.TabIndex = 1;
             // 
             // label2
             // 
@@ -263,12 +255,22 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
+            // NumberOfPolygons
+            // 
+            this.NumberOfPolygons.AutoSize = true;
+            this.NumberOfPolygons.Location = new System.Drawing.Point(152, 35);
+            this.NumberOfPolygons.Name = "NumberOfPolygons";
+            this.NumberOfPolygons.Size = new System.Drawing.Size(112, 13);
+            this.NumberOfPolygons.TabIndex = 19;
+            this.NumberOfPolygons.Text = "No Polygons Selected";
+            // 
             // Pocket
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(305, 452);
+            this.Controls.Add(this.NumberOfPolygons);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.numericUpDownStepLength);
             this.Controls.Add(this.label9);
@@ -286,7 +288,6 @@
             this.Controls.Add(this.numericUpDownCutHeight);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Pocket";
@@ -306,7 +307,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown numericUpDownCutHeight;
@@ -325,5 +325,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDownStepLength;
         private System.Windows.Forms.BindingSource pocketToolPathPresenterBindingSource;
         private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Label NumberOfPolygons;
     }
 }
