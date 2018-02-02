@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<GraphicModelStorage>
+  <Objects>
+    <anyType d3p1:type="GraphicPoint2DStorage" Key="Point2D1" X="0" Y="0" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
+    <anyType d3p1:type="GraphicPoint2DStorage" Key="Point2D2" X="0" Y="1" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
+    <anyType d3p1:type="GraphicPoint2DStorage" Key="Point2D3" X="1" Y="1" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
+    <anyType d3p1:type="GraphicImageStorage" Key="Image1" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <SourcePath>C:\SourcePath\Source.png</SourcePath>
+      <Points>
+        <string>Point2D1</string>
+        <string>Point2D2</string>
+        <string>Point2D3</string>
+      </Points>
+    </anyType>
+  </Objects>
+</GraphicModelStorage>

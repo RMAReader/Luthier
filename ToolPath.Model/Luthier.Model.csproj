@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{08871544-1177-4E77-9D67-AF6AAB83AA23}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Luthier.Model</RootNamespace>
+    <AssemblyName>Luthier.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdapterSystemDrawing.cs" />
+    <Compile Include="ApplicationDocumentModel.cs" />
+    <Compile Include="GraphicObjectFactory\BSplineFactory.cs" />
+    <Compile Include="GraphicObjectFactory\CompositePolygonFactory.cs" />
+    <Compile Include="GraphicObjectFactory\GraphicImageFactory.cs" />
+    <Compile Include="GraphicObjectFactory\ILinkedLine2DFactory.cs" />
+    <Compile Include="GraphicObjectFactory\IntersectionFactory.cs" />
+    <Compile Include="GraphicObjectFactory\IPolygon2DFactory.cs" />
+    <Compile Include="GraphicObjectFactory\IPoint2DFactory.cs" />
+    <Compile Include="GraphicObjectFactory\LengthGaugeFactory.cs" />
+    <Compile Include="GraphicObjectFactory\LinkedLine2DFactory.cs" />
+    <Compile Include="GraphicObjectFactory\Point2DFactory.cs" />
+    <Compile Include="GraphicObjectFactory\Polygon2DFactory.cs" />
+    <Compile Include="GraphicObjects\GraphicCompositePolygon.cs" />
+    <Compile Include="GraphicObjects\GraphicIntersection.cs" />
+    <Compile Include="GraphicObjects\GraphicModel.cs" />
+    <Compile Include="GraphicObjects\GraphicBSplineCurve.cs" />
+    <Compile Include="GraphicObjects\GraphicImage.cs" />
+    <Compile Include="GraphicObjects\GraphicLengthGauge.cs" />
+    <Compile Include="GraphicObjects\GraphicLinkedLine2D.cs" />
+    <Compile Include="GraphicObjects\GraphicObjectBase.cs" />
+    <Compile Include="GraphicObjects\GraphicPoint2D.cs" />
+    <Compile Include="GraphicObjects\GraphicPolygon2D.cs" />
+    <Compile Include="IAdapterSystemDrawing.cs" />
+    <Compile Include="IApplicationDocumentModel.cs" />
+    <Compile Include="MouseController\IMouseControllerFactory.cs" />
+    <Compile Include="MouseController\InsertBSplineCurve.cs" />
+    <Compile Include="MouseController\InsertCompositePolygon.cs" />
+    <Compile Include="MouseController\InsertCompositePolygonAuto.cs" />
+    <Compile Include="MouseController\InsertImage.cs" />
+    <Compile Include="MouseController\InsertImageGeneral.cs" />
+    <Compile Include="MouseController\InsertIntersectionAuto.cs" />
+    <Compile Include="MouseController\InsertIntersectionManual.cs" />
+    <Compile Include="MouseController\InsertLengthGauge.cs" />
+    <Compile Include="MouseController\InsertLinkedLine.cs" />
+    <Compile Include="MouseController\InsertPoint.cs" />
+    <Compile Include="MouseController\InsertPolygon.cs" />
+    <Compile Include="MouseController\IMouseController.cs" />
+    <Compile Include="MouseController\MouseControllerFactory.cs" />
+    <Compile Include="MouseController\PanAndZoom.cs" />
+    <Compile Include="MouseController\PanZoomMouseWheel.cs" />
+    <Compile Include="MouseController\PointSelector.cs" />
+    <Compile Include="MouseController\PolygonSelector.cs" />
+    <Compile Include="Presenter\Drawing2DPresenter.cs" />
+    <Compile Include="Presenter\GraphicObjectPresenter\IntersectionPresenter.cs" />
+    <Compile Include="Presenter\ToolPathManagerPresenter.cs" />
+    <Compile Include="Presenter\ViewMapper2D.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToolPathCalculator\PocketCalculator.cs" />
+    <Compile Include="ToolPathCalculator\ToolPathCalculatorBase.cs" />
+    <Compile Include="Presenter\ToolPathPocketPresenter.cs" />
+    <Compile Include="ToolPathSpecificationFactory\CurveSpecificationFactory.cs" />
+    <Compile Include="ToolPathSpecificationFactory\ICurveSpecificationFactory.cs" />
+    <Compile Include="ToolPathSpecificationFactory\IPocketSpecificationFactory.cs" />
+    <Compile Include="ToolPathSpecificationFactory\IToolPathFactory.cs" />
+    <Compile Include="ToolPathSpecificationFactory\PocketSpecificationFactory.cs" />
+    <Compile Include="ToolPathSpecificationFactory\ToolPathFactory.cs" />
+    <Compile Include="ToolPathSpecification\CommandBase.cs" />
+    <Compile Include="ToolPathSpecification\CurveSpecification.cs" />
+    <Compile Include="ToolPathSpecification\PocketSpecification.cs" />
+    <Compile Include="ToolPathSpecification\ToolPathSpecificationBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Toolpath.Core\Luthier.Core.csproj">
+      <Project>{917e595e-9d4e-4efb-a880-17004d5cdf4f}</Project>
+      <Name>Luthier.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToolPath.Geometry\Luthier.Geometry.csproj">
+      <Project>{14be8ed1-dada-4b1d-a4dc-43766fc15ed9}</Project>
+      <Name>Luthier.Geometry</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToolPath\Luthier.ToolPath.csproj">
+      <Project>{5e472423-e0ec-4f5e-84b3-04458ec67ff9}</Project>
+      <Name>Luthier.ToolPath</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

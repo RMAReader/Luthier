@@ -1,0 +1,348 @@
+<?xml version="1.0"?>
+<GraphicModel>
+  <Objects>
+    <GraphicObjectBase d3p1:type="GraphicBSplineCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="fe1b3656-7cc9-42c3-bfea-4bdfd4a8d243" />
+      <pointsKeys>
+        <UniqueKey data="73bc08db-0c45-45e7-826e-8c84cef77539" />
+        <UniqueKey data="87b11514-6944-4cf6-829f-00a855c78984" />
+        <UniqueKey data="f80fe2c9-3e5e-4fb0-ab4d-61fad7165930" />
+        <UniqueKey data="75220b55-f455-40c2-9a3c-baf4d61edeaa" />
+        <UniqueKey data="ab8f708a-da19-45ca-81d0-4be9d8f2102f" />
+        <UniqueKey data="fd76288d-9919-431a-9d42-2bf210f23689" />
+        <UniqueKey data="e3480faa-d63a-4cfb-a173-d41eddbfa984" />
+        <UniqueKey data="e83895f1-9b12-4419-9616-6389ffa65a50" />
+      </pointsKeys>
+      <knot>
+        <p>2</p>
+        <data>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+          <double>6</double>
+          <double>7</double>
+          <double>8</double>
+          <double>9</double>
+          <double>10</double>
+        </data>
+      </knot>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="302" Y="881" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="73bc08db-0c45-45e7-826e-8c84cef77539" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="284" Y="783" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="87b11514-6944-4cf6-829f-00a855c78984" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="284" Y="710" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="f80fe2c9-3e5e-4fb0-ab4d-61fad7165930" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="289" Y="576" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="75220b55-f455-40c2-9a3c-baf4d61edeaa" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="322" Y="440" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="ab8f708a-da19-45ca-81d0-4be9d8f2102f" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="381" Y="249" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="fd76288d-9919-431a-9d42-2bf210f23689" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="355" Y="154" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="e3480faa-d63a-4cfb-a173-d41eddbfa984" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="256" Y="59" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="e83895f1-9b12-4419-9616-6389ffa65a50" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicBSplineCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="b24aaf77-708c-4943-8ab9-582ae0ae3b20" />
+      <pointsKeys>
+        <UniqueKey data="3a44b265-705e-46be-9a2a-8a5888f61b2f" />
+        <UniqueKey data="960ae99e-c461-4694-87aa-23045150e4e8" />
+        <UniqueKey data="e51be8c4-64fc-4183-ba96-6759042899b7" />
+        <UniqueKey data="27ac47ba-9e20-4b19-8aef-3aef01632d52" />
+        <UniqueKey data="f7bd4a6e-c451-4801-878c-0dc9fcf019c7" />
+        <UniqueKey data="12caed80-ec3c-4e78-9f1b-c8f9802a4336" />
+        <UniqueKey data="bde7f835-4a82-44e8-b480-c4f349a4eea3" />
+        <UniqueKey data="afaca580-b2ce-4470-9039-b7d75f0f70b7" />
+      </pointsKeys>
+      <knot>
+        <p>2</p>
+        <data>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+          <double>6</double>
+          <double>7</double>
+          <double>8</double>
+          <double>9</double>
+          <double>10</double>
+        </data>
+      </knot>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="1261" Y="945" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="3a44b265-705e-46be-9a2a-8a5888f61b2f" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="1218" Y="843" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="960ae99e-c461-4694-87aa-23045150e4e8" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="1210" Y="732" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="e51be8c4-64fc-4183-ba96-6759042899b7" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="1219" Y="578" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="27ac47ba-9e20-4b19-8aef-3aef01632d52" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="1231" Y="495" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="f7bd4a6e-c451-4801-878c-0dc9fcf019c7" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="1254" Y="302" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="12caed80-ec3c-4e78-9f1b-c8f9802a4336" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="1274" Y="187" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="bde7f835-4a82-44e8-b480-c4f349a4eea3" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="1262" Y="98" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="afaca580-b2ce-4470-9039-b7d75f0f70b7" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicBSplineCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="6c65ee1d-31bc-40a1-b1bb-a57347117285" />
+      <pointsKeys>
+        <UniqueKey data="1322a169-b590-4603-b7b0-d1873b6e5e82" />
+        <UniqueKey data="0e528d5b-4649-420f-99d2-4087ab31a884" />
+        <UniqueKey data="80e7d36e-7094-4a1e-8abe-c8f032418398" />
+        <UniqueKey data="6ebf9888-e115-4daa-8a3a-2ea80a45b49c" />
+        <UniqueKey data="9aa1ce58-81b6-46e3-917e-33f2a3d63686" />
+        <UniqueKey data="fe1d638e-4888-4b66-95d1-619e3ed09b77" />
+        <UniqueKey data="2b816372-39ab-4c55-9994-7d770cb5463b" />
+        <UniqueKey data="a6a39a7c-b505-4895-ae90-499fada19448" />
+        <UniqueKey data="dc4a8bab-d5e6-4bb6-a769-b74cb1d03c84" />
+        <UniqueKey data="9f3d1927-66bc-48de-98bf-0b984fc24e3f" />
+      </pointsKeys>
+      <knot>
+        <p>2</p>
+        <data>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+          <double>6</double>
+          <double>7</double>
+          <double>8</double>
+          <double>9</double>
+          <double>10</double>
+          <double>11</double>
+          <double>12</double>
+        </data>
+      </knot>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="193" Y="182" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="1322a169-b590-4603-b7b0-d1873b6e5e82" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="277" Y="225" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="0e528d5b-4649-420f-99d2-4087ab31a884" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="317" Y="232" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="80e7d36e-7094-4a1e-8abe-c8f032418398" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="486" Y="243" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="6ebf9888-e115-4daa-8a3a-2ea80a45b49c" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="695" Y="244" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="9aa1ce58-81b6-46e3-917e-33f2a3d63686" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="918" Y="217" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="fe1d638e-4888-4b66-95d1-619e3ed09b77" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="1127" Y="229" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="2b816372-39ab-4c55-9994-7d770cb5463b" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="1281" Y="257" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="a6a39a7c-b505-4895-ae90-499fada19448" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="1407" Y="269" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="dc4a8bab-d5e6-4bb6-a769-b74cb1d03c84" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="1611" Y="272" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="9f3d1927-66bc-48de-98bf-0b984fc24e3f" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicBSplineCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="6bcb2cd8-0d3e-43e7-8c6e-ce32cdf8bee3" />
+      <pointsKeys>
+        <UniqueKey data="a9134a7e-0600-4044-966f-23f3f260c5a7" />
+        <UniqueKey data="b9a5c54e-e779-44c7-9bb1-2573da086811" />
+        <UniqueKey data="6ad59a4c-0472-40a6-bec6-6d95a833a4de" />
+        <UniqueKey data="4cc5269f-e6f0-4f00-a112-8b343fd00ed3" />
+        <UniqueKey data="f2db1c52-05f9-4f74-a499-4c6400efdf89" />
+        <UniqueKey data="3bbf916d-79b1-4c84-b91f-87fda98055aa" />
+        <UniqueKey data="bc99dcb8-62dc-45cf-b736-424a3c5e3615" />
+        <UniqueKey data="218298a1-22cd-48b4-87b5-580cc3f41dc1" />
+        <UniqueKey data="2896ea73-1e4c-4ef4-a318-f0ec9202a1f9" />
+        <UniqueKey data="19c7fbbc-c1fb-4794-8d69-2bff9da47428" />
+        <UniqueKey data="1f2714e6-2896-4f23-8cf1-76fdf995c232" />
+      </pointsKeys>
+      <knot>
+        <p>2</p>
+        <data>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+          <double>6</double>
+          <double>7</double>
+          <double>8</double>
+          <double>9</double>
+          <double>10</double>
+          <double>11</double>
+          <double>12</double>
+          <double>13</double>
+        </data>
+      </knot>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="60" Y="757" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="a9134a7e-0600-4044-966f-23f3f260c5a7" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="108" Y="716" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="b9a5c54e-e779-44c7-9bb1-2573da086811" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="233" Y="689" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="6ad59a4c-0472-40a6-bec6-6d95a833a4de" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="396" Y="691" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="4cc5269f-e6f0-4f00-a112-8b343fd00ed3" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="566" Y="709" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="f2db1c52-05f9-4f74-a499-4c6400efdf89" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="771" Y="733" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="3bbf916d-79b1-4c84-b91f-87fda98055aa" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="959" Y="732" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="bc99dcb8-62dc-45cf-b736-424a3c5e3615" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="1123" Y="760" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="218298a1-22cd-48b4-87b5-580cc3f41dc1" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="1285" Y="766" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="2896ea73-1e4c-4ef4-a318-f0ec9202a1f9" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="1427" Y="737" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="19c7fbbc-c1fb-4794-8d69-2bff9da47428" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="1613" Y="703" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="1f2714e6-2896-4f23-8cf1-76fdf995c232" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="373" Y="238" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="8afe84ff-d9ac-4f1f-a19a-5667bafeab76" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="373" Y="258" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="bd9591f9-cf46-4771-bf7e-2832c3cfe5d4" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicIntersection" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="8ac0ec2b-bbb9-4970-bc6a-f499b9b84841" />
+      <Centre data="8afe84ff-d9ac-4f1f-a19a-5667bafeab76" />
+      <Radius data="bd9591f9-cf46-4771-bf7e-2832c3cfe5d4" />
+      <Object1 data="6c65ee1d-31bc-40a1-b1bb-a57347117285" />
+      <Object2 data="fe1b3656-7cc9-42c3-bfea-4bdfd4a8d243" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="1263" Y="255" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="4daaad83-723e-4afb-acb3-405a99169ff5" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="1263" Y="275" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="74c034ad-6f6d-4ac5-8e76-dbb393aa01f7" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicIntersection" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="ef740db6-54c3-42ae-ad30-ba5e7787e0b5" />
+      <Centre data="4daaad83-723e-4afb-acb3-405a99169ff5" />
+      <Radius data="74c034ad-6f6d-4ac5-8e76-dbb393aa01f7" />
+      <Object1 data="b24aaf77-708c-4943-8ab9-582ae0ae3b20" />
+      <Object2 data="6c65ee1d-31bc-40a1-b1bb-a57347117285" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="1213" Y="765" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="ada15c3c-cb28-4a40-9001-8b19b534c370" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="1213" Y="785" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="59d948d7-4fed-48b5-a05d-23b3404dd4a3" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicIntersection" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="a1acf331-c4e8-45dd-ae96-aec600a1b28c" />
+      <Centre data="ada15c3c-cb28-4a40-9001-8b19b534c370" />
+      <Radius data="59d948d7-4fed-48b5-a05d-23b3404dd4a3" />
+      <Object1 data="b24aaf77-708c-4943-8ab9-582ae0ae3b20" />
+      <Object2 data="6bcb2cd8-0d3e-43e7-8c6e-ce32cdf8bee3" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="286" Y="693" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="5c4572f1-17f3-4492-8ed0-049da41bfed8" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="286" Y="713" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="c4cdbc31-82a8-475a-b89e-ab497f7cb868" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicIntersection" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="6e6c4340-70b8-4a81-a382-ca21acab28bc" />
+      <Centre data="5c4572f1-17f3-4492-8ed0-049da41bfed8" />
+      <Radius data="c4cdbc31-82a8-475a-b89e-ab497f7cb868" />
+      <Object1 data="6bcb2cd8-0d3e-43e7-8c6e-ce32cdf8bee3" />
+      <Object2 data="fe1b3656-7cc9-42c3-bfea-4bdfd4a8d243" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicCompositePolygon" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="ea558cd2-f47c-4b25-a473-d0af78e276fc" />
+      <Junctions>
+        <UniqueKey data="8ac0ec2b-bbb9-4970-bc6a-f499b9b84841" />
+        <UniqueKey data="ef740db6-54c3-42ae-ad30-ba5e7787e0b5" />
+        <UniqueKey data="a1acf331-c4e8-45dd-ae96-aec600a1b28c" />
+        <UniqueKey data="6e6c4340-70b8-4a81-a382-ca21acab28bc" />
+      </Junctions>
+    </GraphicObjectBase>
+  </Objects>
+</GraphicModel>

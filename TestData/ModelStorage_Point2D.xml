@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<GraphicModel>
+  <Objects>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" X="0" Y="0" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="b8a72516-32ab-45b4-9bba-c0feae110953" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+  </Objects>
+</GraphicModel>

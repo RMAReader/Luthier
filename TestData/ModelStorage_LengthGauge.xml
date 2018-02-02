@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<GraphicModelStorage>
+  <Objects>
+    <anyType d3p1:type="GraphicPoint2DStorage" Key="Point2D1" X="0" Y="0" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
+    <anyType d3p1:type="GraphicPoint2DStorage" Key="Point2D2" X="0" Y="1" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
+    <anyType d3p1:type="GraphicLengthGaugeStorage" Key="LengthGauge1" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <FromPoint>Point2D1</FromPoint>
+      <ToPoint>Point2D2</ToPoint>
+    </anyType>
+  </Objects>
+</GraphicModelStorage>

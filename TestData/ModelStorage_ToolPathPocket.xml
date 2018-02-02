@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<GraphicModelStorage>
+  <Objects>
+    <anyType d3p1:type="GraphicPoint2DStorage" Key="Point2D1" X="0" Y="0" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
+    <anyType d3p1:type="GraphicPoint2DStorage" Key="Point2D2" X="0" Y="1" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
+    <anyType d3p1:type="GraphicPoint2DStorage" Key="Point2D3" X="1" Y="1" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
+    <anyType d3p1:type="GraphicPolygon2DStorage" Key="Polygon1" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Points>
+        <string>Point2D1</string>
+        <string>Point2D2</string>
+        <string>Point2D3</string>
+      </Points>
+    </anyType>
+    <anyType d3p1:type="ToolPathPocketStorage" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key>ToolPathPocket1</Key>
+      <Name>ToolPathPocket1</Name>
+      <Description>ToolPathPocket1</Description>
+      <SafeHeight>100</SafeHeight>
+      <SpindleState>OnClockwise</SpindleState>
+      <SpindleSpeed>22000</SpindleSpeed>
+      <FeedRate>500</FeedRate>
+      <Tool d3p1:type="EndMill">
+        <Diameter>0</Diameter>
+      </Tool>
+      <BoundaryPolygonKey>
+        <string>Polygon1</string>
+      </BoundaryPolygonKey>
+      <CutHeight>50</CutHeight>
+      <StepLength>2</StepLength>
+    </anyType>
+  </Objects>
+</GraphicModelStorage>

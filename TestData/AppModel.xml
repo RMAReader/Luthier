@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<ApplicationDocumentModel xmlns="a">
+  <objects>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" x="1" y="2" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="a86ec0ad-bbc6-44d2-9f56-c2684e04e519" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" x="10" y="20" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="331fdb95-bcbc-4f2a-84ac-dae93bbf4a97" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" x="10" y="200" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="50fef8eb-3aa4-4a9d-b068-242f45f0deaf" />
+      <parentObjectKeys />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPolygon2D" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="3f10bb29-1215-4e85-95e4-5ddec5ddb629" />
+      <pointsKeys>
+        <UniqueKey data="224bfbe2-0862-42ff-89cc-79f8b6dd669d" />
+        <UniqueKey data="6c34e8b1-593f-4432-b59c-e91a469318e1" />
+        <UniqueKey data="90643f5d-4f53-42f7-9f3d-b08f60107b02" />
+      </pointsKeys>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" x="-1" y="0" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="224bfbe2-0862-42ff-89cc-79f8b6dd669d" />
+      <parentObjectKeys>
+        <UniqueKey data="3f10bb29-1215-4e85-95e4-5ddec5ddb629" />
+      </parentObjectKeys>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" x="0" y="0" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="6c34e8b1-593f-4432-b59c-e91a469318e1" />
+      <parentObjectKeys>
+        <UniqueKey data="3f10bb29-1215-4e85-95e4-5ddec5ddb629" />
+      </parentObjectKeys>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPoint2D" x="0" y="1" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="90643f5d-4f53-42f7-9f3d-b08f60107b02" />
+      <parentObjectKeys>
+        <UniqueKey data="3f10bb29-1215-4e85-95e4-5ddec5ddb629" />
+      </parentObjectKeys>
+    </GraphicObjectBase>
+  </objects>
+</ApplicationDocumentModel>
