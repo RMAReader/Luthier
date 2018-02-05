@@ -35,7 +35,8 @@ namespace Luthier.UI.ToolPathForms
         private void SetDataBindings()
         {
             textBox1.DataBindings.Add("Text", presenter, "Name", false, DataSourceUpdateMode.OnPropertyChanged);
-
+            NumberOfPolygons.DataBindings.Add("Text", presenter, "NumberOfPolygons", false, DataSourceUpdateMode.OnPropertyChanged);
+            
             numericUpDownCutHeight.DataBindings.Add("Value", presenter, "CutHeight", false, DataSourceUpdateMode.OnPropertyChanged);
             numericUpDownSafeHeight.DataBindings.Add("Value", presenter, "SafeHeight", false, DataSourceUpdateMode.OnPropertyChanged);
             numericUpDownSpindleSpeed.DataBindings.Add("Value", presenter, "SpindleSpeed", false, DataSourceUpdateMode.OnPropertyChanged);
@@ -47,12 +48,6 @@ namespace Luthier.UI.ToolPathForms
 
             comboBoxSpindleDirection.Items.Add(EnumSpindleState.OnClockwise);
             comboBoxSpindleDirection.Items.Add(EnumSpindleState.OnCounterClockwise);
-            //comboBoxSpindleDirection.DataBindings.Add("SelectedItem", presenter, "SpindleDirection", false, DataSourceUpdateMode.OnPropertyChanged);
-
-            //listBox1.DataSource = presenter.BoundaryPolygonKey;
-            listBox1.ValueMember = "Key";
-            listBox1.DisplayMember = "Name";
-        
         }
 
 

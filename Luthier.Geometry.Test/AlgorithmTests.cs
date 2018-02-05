@@ -93,5 +93,53 @@ namespace Luthier.Test.Geometry
             Assert.AreEqual(0, res.Point.x, 0.000001);
             Assert.AreEqual(1, res.Point.y, 0.000001);
         }
+
+        [TestMethod]
+        public void distance_to_nearest_contactTest1()
+        {
+            Point2D p1 = new Point2D(-1, 10);
+            Point2D p2 = new Point2D(1, 10);
+            Point2D direction = new Point2D(0, 1);
+            Point2D centre = new Point2D(0, 5);
+            double radius = 1.5;
+
+            Assert.AreEqual(3.5, Algorithm.distance_to_nearest_line_contact(radius, centre, direction, p1, p2));
+        }
+
+        [TestMethod]
+        public void distance_to_nearest_contactTest2()
+        {
+            Point2D p1 = new Point2D(0, 10);
+            Point2D p2 = new Point2D(10, 0);
+            Point2D direction = new Point2D(0, 1);
+            Point2D centre = new Point2D(0, 5);
+            double radius = 1.0;
+
+            Assert.AreEqual(5 - Math.Sqrt(2), (double)Algorithm.distance_to_nearest_line_contact(radius, centre, direction, p1, p2), 0.000001);
+        }
+
+        [TestMethod]
+        public void distance_to_nearest_contactTest3()
+        {
+            Point2D p1 = new Point2D(10, 0);
+            Point2D p2 = new Point2D(0, 10);
+            Point2D direction = new Point2D(0, 1);
+            Point2D centre = new Point2D(0, 5);
+            double radius = 1.0;
+
+            Assert.AreEqual(5 - Math.Sqrt(2), (double)Algorithm.distance_to_nearest_line_contact(radius, centre, direction, p1, p2), 0.000001);
+        }
+
+        [TestMethod]
+        public void distance_to_nearest_contactTest4()
+        {
+            Point2D p1 = new Point2D(-1, 5.9);
+            Point2D p2 = new Point2D(1, 6.0);
+            Point2D direction = new Point2D(0, 1);
+            Point2D centre = new Point2D(0, 5);
+            double radius = 1.0;
+
+            Assert.AreEqual(null, Algorithm.distance_to_nearest_line_contact(radius, centre, direction, p1, p2));
+        }
     }
 }
