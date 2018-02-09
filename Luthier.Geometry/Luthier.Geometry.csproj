@@ -52,6 +52,11 @@
     <Compile Include="Polygon2D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Luthier.Core\Luthier.Core.csproj">
+      <Project>{917e595e-9d4e-4efb-a880-17004d5cdf4f}</Project>
+      <Name>Luthier.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

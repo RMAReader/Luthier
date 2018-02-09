@@ -141,5 +141,162 @@ namespace Luthier.Test.Geometry
 
             Assert.AreEqual(null, Algorithm.distance_to_nearest_line_contact(radius, centre, direction, p1, p2));
         }
+
+        [TestMethod]
+        public void offset_path_test1_open()
+        {
+            var path = new List<Point2D>
+            {
+                new Point2D(-10, 0),
+                new Point2D(10, 0),
+                new Point2D(10, 10),
+                new Point2D(0, 20),
+                new Point2D(0, 30)
+            };
+
+            var expected = new List<Point2D>
+            {
+                new Point2D(-10, 1),
+                new Point2D(9, 1),
+                new Point2D(9, 9.585786437626906),
+                new Point2D(-1,19.5857864376269),
+                new Point2D(-1,30)
+            };
+
+            var actual = Algorithm.offset_path(path, 1, false, true);
+            AssertAreEqual(expected, actual, 0.000001);
+        }
+
+        [TestMethod]
+        public void offset_path_test2_open_deepCorners()
+        {
+            var path = new List<Point2D>
+            {
+                new Point2D(-10, 0),
+                new Point2D(10, 0),
+                new Point2D(10, 10),
+                new Point2D(0, 20),
+                new Point2D(0, 30)
+            };
+
+            var expected = new List<Point2D>
+            {
+                new Point2D(-10, 1),
+                new Point2D(9, 1),
+                new Point2D(9.29289321881345,0.707106781186547),
+                new Point2D(9, 1),
+                new Point2D(9,9.58578643762691),
+                new Point2D(9.07612046748871,9.61731656763491),
+                new Point2D(9,9.58578643762691),
+                new Point2D(-1,19.5857864376269),
+                new Point2D(-1,30)
+            };
+
+            var actual = Algorithm.offset_path(path, 1, true, true);
+            AssertAreEqual(expected, actual, 0.000001);
+        }
+
+        [TestMethod]
+        public void offset_path_test3_closed()
+        {
+            var path = new List<Point2D>
+            {
+                new Point2D(-10, 0),
+                new Point2D(10, 0),
+                new Point2D(10, 10),
+                new Point2D(0, 20),
+                new Point2D(0, 30)
+            };
+
+            var expected = new List<Point2D>
+            {
+                new Point2D(9, 1),
+                new Point2D(9, 9.585786437626906),
+                new Point2D(-1,19.5857864376269),
+                new Point2D(-1,23.8377223398316),
+                new Point2D(-8.61257411327721,1)
+            };
+
+            var actual = Algorithm.offset_path(path, 1, false, false);
+            AssertAreEqual(expected, actual, 0.000001);
+        }
+
+        [TestMethod]
+        public void offset_path_test4_closed_deepCorners()
+        {
+            var path = new List<Point2D>
+            {
+                new Point2D(-10, 0),
+                new Point2D(10, 0),
+                new Point2D(10, 10),
+                new Point2D(0, 20),
+                new Point2D(0, 30)
+            };
+
+            var expected = new List<Point2D>
+            {
+                new Point2D(9, 1),
+                new Point2D(9.29289321881345,0.707106781186547),
+                new Point2D(9, 1),
+                new Point2D(9,9.58578643762691),
+                new Point2D(9.07612046748871,9.61731656763491),
+                new Point2D(9,9.58578643762691),
+                new Point2D(-1,19.5857864376269),
+                new Point2D(-1,23.8377223398316),
+                new Point2D(-0.160182243006967,29.0129125423625),
+                new Point2D(-1,23.8377223398316),
+                new Point2D(-8.61257411327721,1),
+                new Point2D(-9.18875781482444,0.584710284663765),
+                new Point2D(-8.61257411327721,1)
+            };
+
+            var actual = Algorithm.offset_path(path, 1, true, false);
+            AssertAreEqual(expected, actual, 0.000001);
+        }
+
+
+        [TestMethod]
+        public void SplitPathRemoveOverLaps_test1()
+        {
+            var path = new List<Point2D>
+            {
+                new Point2D(-10, 0),
+                new Point2D(-0.1, 0),
+                new Point2D(0, 0.1),
+                new Point2D(0, 10),
+             };
+
+            var actual = Algorithm.offset_path(path, 1, false, false);
+            var splitPath = Algorithm.SplitPathRemoveOverLaps(actual);
+
+            var polygon = new Polygon2D(path);
+            var sign = Math.Sign(polygon.SignedArea());
+
+            var newPath = new List<Polygon2D>();
+            foreach(var split in splitPath)
+            {
+                var poly = new Polygon2D(split);
+                if (Math.Sign(poly.SignedArea()) == sign)
+                {
+                    newPath.Add(poly);
+                }
+            }
+        }
+
+
+
+        void AssertAreEqual(Point2D expected, Point2D actual, double precision)
+        {
+            Assert.AreEqual(expected.x, actual.x, precision);
+            Assert.AreEqual(expected.y, actual.y, precision);
+        }
+        void AssertAreEqual(List<Point2D> expected, List<Point2D> actual, double precision)
+        {
+            Assert.AreEqual(expected.Count, actual.Count);
+            for(int i = 0; i< expected.Count; i++)
+            {
+                AssertAreEqual(expected[i], actual[i], precision);
+            }
+        }
     }
 }

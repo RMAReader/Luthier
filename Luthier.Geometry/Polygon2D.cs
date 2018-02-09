@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Luthier.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -47,6 +48,66 @@ namespace Luthier.Geometry
         public double Distance(Point2D p) => points.Min(x => x.Distance(p));
 
         public List<Point2D> GetPoints() => points;
+
+        public Point2D Centre
+        {
+            get
+            {
+                var centre = new Point2D(0, 0);
+                points.Select(x => centre + x);
+                return centre / points.Count;
+            }
+        }
+
+        public List<Polygon2D> ToBoundaryForTool(Polygon2D polygon, double toolRadius)
+        {
+            var result = new List<Polygon2D>();
+
+            Point2D direction;
+            Point2D centre = polygon.Centre;
+
+            direction = (polygon.GetPoints()[0] - centre).ToNormalised();
+
+            double? distance = null;
+            foreach (var edge in polygon.GetPoints().EnumeratePairsOpen())
+            {
+                var d = Algorithm.distance_to_nearest_line_contact(toolRadius, centre, direction, edge.Item1, edge.Item2);
+                distance = (d != null && d < distance) ? d : distance;
+            }
+
+            if (distance != null) result.Add(new Polygon2D());
+
+
+            return result;
+        }
+
+        /*
+            The signed area can be used to determine whether points are clockwise or anti-clockwise - its sign indicates direction
+            https://stackoverflow.com/questions/1165647/how-to-determine-if-a-list-of-polygon-points-are-in-clockwise-order
+        */
+        public double SignedArea()
+        {
+            double sa = 0;
+            int j = 0;
+            for(int i = 0; i < points.Count; i++)
+            {
+                j = i + 1;
+                if (j == points.Count) j = 0;
+                sa += (points[j].x - points[i].x) * (points[j].y + points[i].y);
+            }
+            return sa / 2;
+        }
+
+
+        public void Reverse()
+        {
+            points.Reverse();
+        }
+
+        public void Translate(Point2D p)
+        {
+            for (int i = 0; i < points.Count; i++) points[i] += p;
+        }
 
     }
 }
