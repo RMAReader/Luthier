@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="AlgorithmTests.cs" />
     <Compile Include="BSplineAlgorithmTests.cs" />
+    <Compile Include="ClipperWrapperTests.cs" />
     <Compile Include="Polygon2DTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

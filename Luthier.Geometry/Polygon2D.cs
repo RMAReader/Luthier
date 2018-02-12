@@ -59,27 +59,7 @@ namespace Luthier.Geometry
             }
         }
 
-        public List<Polygon2D> ToBoundaryForTool(Polygon2D polygon, double toolRadius)
-        {
-            var result = new List<Polygon2D>();
 
-            Point2D direction;
-            Point2D centre = polygon.Centre;
-
-            direction = (polygon.GetPoints()[0] - centre).ToNormalised();
-
-            double? distance = null;
-            foreach (var edge in polygon.GetPoints().EnumeratePairsOpen())
-            {
-                var d = Algorithm.distance_to_nearest_line_contact(toolRadius, centre, direction, edge.Item1, edge.Item2);
-                distance = (d != null && d < distance) ? d : distance;
-            }
-
-            if (distance != null) result.Add(new Polygon2D());
-
-
-            return result;
-        }
 
         /*
             The signed area can be used to determine whether points are clockwise or anti-clockwise - its sign indicates direction
@@ -107,6 +87,11 @@ namespace Luthier.Geometry
         public void Translate(Point2D p)
         {
             for (int i = 0; i < points.Count; i++) points[i] += p;
+        }
+
+        public void RemoveRedundantPoints(double radius)
+        {
+            points = Algorithm.RemoveRedundantPointsClosed(points, radius);
         }
 
     }

@@ -40,27 +40,20 @@ namespace Luthier.Model.ToolPathCalculator
                 var polygon = model.Objects()[key] as IPolygon2D;
                 if (polygon != null)
                 {
-                    polygonList.Add(polygon.ToPolygon2D(model));
+                    var poly2D = polygon.ToPolygon2D(model);
+                    poly2D.RemoveRedundantPoints(0.01);
+                    polygonList.Add(poly2D);
                 }
             }
+            
 
             List<Polygon2D> boundary = new List<Polygon2D>();
             foreach (var polygon in polygonList)
             {
-                var actual = Algorithm.offset_path(polygon.GetPoints(), specification.Tool.Diameter * 0.5, false, false);
-                var splitPath = Algorithm.SplitPathRemoveOverLaps(actual);
-
-                var sign = Math.Sign(polygon.SignedArea());
-
-                foreach (var split in splitPath)
-                {
-                    var poly = new Polygon2D(split);
-                    if (Math.Sign(poly.SignedArea()) == sign)
-                    {
-                        boundary.Add(poly);
-                    }
-                }
+                boundary.AddRange(ClipperWrapper.OffsetPolygon(polygon, specification.Tool.Diameter * 0.5));
             }
+
+            foreach (var polygon in boundary) polygon.RemoveRedundantPoints(0.01);
 
             ScanLinePath2D scanLinePath = new ScanLinePath2D(boundary, specification.StepLength);
 
@@ -74,6 +67,21 @@ namespace Luthier.Model.ToolPathCalculator
                     path.MoveToPoint(point.x, point.y, specification.CutHeight, null);
                 }
 
+                path.MoveToPoint(null, null, specification.SafeHeight, null);
+            }
+
+
+            //cut out borders
+            foreach(var polygon in boundary)
+            {
+                path.MoveToPoint(null, null, specification.SafeHeight, null);
+                path.MoveToPoint(polygon.GetPoints().First().x, polygon.GetPoints().First().y, null, null);
+                path.MoveToPoint(polygon.GetPoints().First().x, polygon.GetPoints().First().y, specification.CutHeight, null);
+                foreach (var point in polygon.GetPoints())
+                {
+                    path.MoveToPoint(point.x, point.y, null, null);
+                }
+                path.MoveToPoint(polygon.GetPoints().First().x, polygon.GetPoints().First().y, null, null);
                 path.MoveToPoint(null, null, specification.SafeHeight, null);
             }
 
