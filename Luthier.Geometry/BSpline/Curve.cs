@@ -1,4 +1,5 @@
-﻿using System;
+﻿using g3;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,16 +7,33 @@ using System.Threading.Tasks;
 
 namespace Luthier.Geometry.BSpline
 {
+
+
+
     public class Curve
     {
-        public List<Point2D> points;
-        public Knot knot;
+
+
+        private List<Point2D> points;
+        private Knot knot;
 
         public Curve(List<Point2D> points, Knot knot)
         {
             this.points = points;
             this.knot = knot;
         }
+
+
+        public Point2D GetPoint(int IX)
+        {
+            return points[IX];
+        }
+        public double GetKnot(int IX)
+        {
+            return knot.data[IX];
+        }
+        public int GetDegree() => knot.p;
+        public int NumberOfPoints { get => points.Count; }
 
 
         public Point2D Evaluate(double t)

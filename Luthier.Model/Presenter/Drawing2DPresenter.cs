@@ -124,6 +124,18 @@ namespace Luthier.Model.Presenter
             }
         }
 
+
+        private Pen toolPathPen = new Pen(Color.HotPink) { Width = 1.0f, LineJoin = System.Drawing.Drawing2D.LineJoin.Round, };
+        private Pen ToolPathPen
+        {
+            get => toolPathPen;
+            set
+            {
+                if (toolPathPen != null) toolPathPen.Dispose();
+                toolPathPen = value;
+            }
+        }
+
         private Brush selectedPolygonBrush = new SolidBrush(Color.LightGreen);
         private Brush SelectedPolygonBrush
         {
@@ -241,6 +253,13 @@ namespace Luthier.Model.Presenter
                     var polygonPoints = polygon.ToPolygon2D(model).GetPoints().Select(p => new PointF((float)p.x, (float)p.y)).ToArray();
                     g.FillPolygon(selectedPolygonBrush, ViewMapper.TransformModelToViewCoordinates(polygonPoints));
                 }
+            }
+
+
+            //draw toolpaths
+            foreach (var path in drawingAdapter.GetToolPath())
+            {
+                if (path.Length > 1) g.DrawLines(ToolPathPen, ViewMapper.TransformModelToViewCoordinates(path));
             }
 
         }

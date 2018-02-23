@@ -10,13 +10,10 @@ namespace Luthier.Model.ToolPathSpecification
     [Serializable]
     public class ToolPathSpecificationBase : GraphicObjectBase
     {
-        //protected readonly IApplicationDocumentModel model;
+       
+        [XmlIgnore]
+        public ToolPath.ToolPath ToolPath { get; set; }
 
- 
-        //public ToolPathSpecificationBase(IApplicationDocumentModel model)
-        //{
-        //    this.model = model;
-        //}
 
         public virtual ToolPathCalculatorBase GetCalculator(IApplicationDocumentModel model) => new ToolPathCalculatorBase();
 

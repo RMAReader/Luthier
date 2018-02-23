@@ -27,6 +27,10 @@ namespace Luthier.CncOperation
             return string.Format("Move to point: x = {0}, y = {1}, z = {2}, feedRate = {3}", x,y,z,feedRate);
         }
 
+        public double? GetX() => x;
+        public double? GetY() => y;
+        public double? GetZ() => z;
+        public int? GetFeedRate() => feedRate;
 
         public override string accept(ICncOperationLanguageVisitor visitor)
         {

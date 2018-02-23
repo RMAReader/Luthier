@@ -77,11 +77,11 @@ namespace Luthier.Geometry
             {
 
                 var intersections = new List<Tuple<LineSegmentIntersection, int, int>>();
-                for (int i = 0; i < d1.points.Count() - 1; i++)
+                for (int i = 0; i < d1.NumberOfPoints - 1; i++)
                 {
-                    for (int j = 0; j < d2.points.Count() - 1; j++)
+                    for (int j = 0; j < d2.NumberOfPoints - 1; j++)
                     {
-                        var intersection = GetIntersection(d1.points[i], d1.points[i + 1], d2.points[j], d2.points[j + 1]);
+                        var intersection = GetIntersection(d1.GetPoint(i), d1.GetPoint(i + 1), d2.GetPoint(j), d2.GetPoint(j + 1));
                         if (intersection != null && intersection.LineSegmentsIntersect())
                         {
                             intersections.Add(new Tuple<LineSegmentIntersection, int, int>(intersection, i, j));
@@ -94,18 +94,18 @@ namespace Luthier.Geometry
                 foreach (var intersection in intersections)
                 {
                     double t1 = 0;
-                    for (int k = intersection.Item2; k < intersection.Item2 + d1.knot.p + 1; k++)
+                    for (int k = intersection.Item2; k < intersection.Item2 + d1.GetDegree() + 1; k++)
                     {
-                        t1 += intersection.Item1.Parameter1 * d1.knot.data[k] + (1 - intersection.Item1.Parameter1) * d1.knot.data[k + 1];
+                        t1 += intersection.Item1.Parameter1 * d1.GetKnot(k) + (1 - intersection.Item1.Parameter1) * d1.GetKnot(k + 1);
                     }
-                    knots1.Add(t1 / (d1.knot.p + 1));
+                    knots1.Add(t1 / (d1.GetDegree() + 1));
 
                     double t2 = 0;
-                    for (int k = intersection.Item3; k < intersection.Item3 + d2.knot.p + 1; k++)
+                    for (int k = intersection.Item3; k < intersection.Item3 + d2.GetDegree() + 1; k++)
                     {
-                        t2 += intersection.Item1.Parameter2 * d2.knot.data[k] + (1 - intersection.Item1.Parameter2) * d2.knot.data[k + 1];
+                        t2 += intersection.Item1.Parameter2 * d2.GetKnot(k) + (1 - intersection.Item1.Parameter2) * d2.GetKnot(k + 1);
                     }
-                    knots2.Add(t2 / (d2.knot.p + 1));
+                    knots2.Add(t2 / (d2.GetDegree() + 1));
                 }
 
                 d1.InsertKnots(knots1);
@@ -159,11 +159,11 @@ namespace Luthier.Geometry
             {
 
                 var intersections = new List<Tuple<LineSegmentIntersection,int,int>>();
-                for (int i = 0; i < d1.points.Count() - 1; i++)
+                for (int i = 0; i < d1.NumberOfPoints - 1; i++)
                 {
-                    for (int j = 0; j < d2.points.Count() - 1; j++)
+                    for (int j = 0; j < d2.NumberOfPoints - 1; j++)
                     {
-                        var intersection = GetIntersection(d1.points[i], d1.points[i + 1], d2.points[j], d2.points[j + 1]);
+                        var intersection = GetIntersection(d1.GetPoint(i), d1.GetPoint(i + 1), d2.GetPoint(j), d2.GetPoint(j + 1));
                         if (intersection != null && intersection.LineSegmentsIntersect())
                         {
                             intersections.Add(new Tuple<LineSegmentIntersection, int, int>(intersection,i,j));
@@ -176,18 +176,18 @@ namespace Luthier.Geometry
                 var closestIntersection = intersections.Select(x => new { x, distance = centre.Distance(x.Item1.Point) }).OrderBy(x => x.distance).First().x;
 
                 double t1 = 0;
-                for (int k = closestIntersection.Item2; k < closestIntersection.Item2 + d1.knot.p + 1; k++)
+                for (int k = closestIntersection.Item2; k < closestIntersection.Item2 + d1.GetDegree() + 1; k++)
                 {
-                    t1 += closestIntersection.Item1.Parameter1 * d1.knot.data[k] + (1 - closestIntersection.Item1.Parameter1) * d1.knot.data[k + 1];
+                    t1 += closestIntersection.Item1.Parameter1 * d1.GetKnot(k) + (1 - closestIntersection.Item1.Parameter1) * d1.GetKnot(k + 1);
                 }
-                t1 /= (d1.knot.p + 1);
+                t1 /= (d1.GetDegree() + 1);
 
                 double t2 = 0;
-                for (int k = closestIntersection.Item3; k < closestIntersection.Item3 + d2.knot.p + 1; k++)
+                for (int k = closestIntersection.Item3; k < closestIntersection.Item3 + d2.GetDegree() + 1; k++)
                 {
-                    t2 += closestIntersection.Item1.Parameter2 * d2.knot.data[k] + (1 - closestIntersection.Item1.Parameter2) * d2.knot.data[k + 1];
+                    t2 += closestIntersection.Item1.Parameter2 * d2.GetKnot(k) + (1 - closestIntersection.Item1.Parameter2) * d2.GetKnot(k + 1);
                 }
-                t2 /= (d2.knot.p + 1);
+                t2 /= (d2.GetDegree() + 1);
                 
 
                 d1.InsertKnots(new List<double> { t1 });

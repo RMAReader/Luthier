@@ -35,5 +35,23 @@ namespace Luthier.Geometry.Test
             var actual = ClipperWrapper.OffsetPolygon(polygon, -1);
             
         }
+
+
+        [TestMethod]
+        public void Test2_offsetPolygon()
+        {
+            var polygon = new Polygon2D(new List<Point2D>
+            {
+                new Point2D(0, 0),
+                new Point2D(10, 0),
+                new Point2D(10, 0.1),
+                new Point2D(20, 0.1),
+                new Point2D(20, 10),
+                new Point2D(0, 10)
+            });
+
+            var actual = ClipperWrapper.OffsetPolygon(polygon, -1);
+
+        }
     }
 }

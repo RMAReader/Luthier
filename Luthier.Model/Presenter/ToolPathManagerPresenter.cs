@@ -52,8 +52,8 @@ namespace Luthier.Model.Presenter
 
         public void CalculateToolPaths(ToolPathSpecificationBase spec)
         {
-            var path = spec.GetCalculator(model).Execute();
-            path.SavePathAsCncMachineCode(new CncOperationLanguageVisitorGCode(), @"C:\Users\Richard\Documents\Development\Luthier\TestData\toolpath.txt");
+            spec.ToolPath = spec.GetCalculator(model).Execute();
+            spec.ToolPath.SavePathAsCncMachineCode(new CncOperationLanguageVisitorGCode(), @"C:\Users\Richard\Documents\Development\Luthier\TestData\toolpath.txt");
         }
     }
 }

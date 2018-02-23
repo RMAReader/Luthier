@@ -1,8 +1,10 @@
-﻿using Luthier.Core;
+﻿using Luthier.CncOperation;
+using Luthier.Core;
 using Luthier.Geometry;
 using Luthier.Geometry.BSpline;
 using Luthier.Model.GraphicObjects;
 using Luthier.Model.MouseController;
+using Luthier.Model.ToolPathSpecification;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -188,8 +190,33 @@ namespace Luthier.Model
             return result;
         }
 
-        
-        
+        public IEnumerable<PointF[]> GetToolPath()
+        {
+            var result = new List<PointF[]>();
+            foreach (ToolPathSpecificationBase spec in model.Objects().Values.Where(x => x is ToolPathSpecificationBase))
+            {
+                if(spec.ToolPath != null)
+                {
+                    float currentX = 0;
+                    float currentY = 0;
+                    var currentPath = new List<PointF>();
+                    foreach (var op in spec.ToolPath)
+                    {
+                        var move = op as MoveToPoint;
+                        if (move != null)
+                        {
+                            currentX = (float)(move.GetX() ?? currentX);
+                            currentY = (float)(move.GetY() ?? currentY);
+                            currentPath.Add(new PointF(currentX, currentY));
+                        }
+                    }
+                    result.Add(currentPath.ToArray());
+                }
+            }
+            return result;
+        }
+
+
 
     }
 

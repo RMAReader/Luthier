@@ -21,6 +21,7 @@ namespace Luthier.Model
         IEnumerable<PointF[]> GetCompositePolygons();
         IEnumerable<ImageData> GetImages();
         IEnumerable<LengthGaugeData> GetLengthGauges();
+        IEnumerable<PointF[]> GetToolPath();
     }
 
 

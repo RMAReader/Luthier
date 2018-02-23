@@ -58,6 +58,10 @@
       <Project>{9b062971-a88e-4a3d-b3c9-12b78d15fa66}</Project>
       <Name>clipper_library</Name>
     </ProjectReference>
+    <ProjectReference Include="..\geometry3Sharp_library\geometry3Sharp.csproj">
+      <Project>{0c518dda-28fe-44ca-9ab0-f9773974f13a}</Project>
+      <Name>geometry3Sharp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Luthier.Core\Luthier.Core.csproj">
       <Project>{917e595e-9d4e-4efb-a880-17004d5cdf4f}</Project>
       <Name>Luthier.Core</Name>
