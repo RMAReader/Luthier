@@ -10,6 +10,7 @@ namespace Luthier.Model.MouseController
     {
         InsertLinkedLine InserLinekedLine();
         InsertBSplineCurve InsertBSplineCurv();
+        InsertSurface InsertSurface();
         InsertPoint InsertPoint();
         InsertPolygon InsertPolygon();
         InsertImage InsertImage();
@@ -20,6 +21,5 @@ namespace Luthier.Model.MouseController
         InsertCompositePolygonAuto InsertCompositePolygonAuto(int range);
         PointSelector PointSelector(int range);
         PolygonSelector PolygonSelector(int range);
-        //PanAndZoom PanAndZoom();
     }
 }

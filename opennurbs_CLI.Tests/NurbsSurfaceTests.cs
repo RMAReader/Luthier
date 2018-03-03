@@ -46,8 +46,13 @@ namespace opennurbs_CLI.Tests
             var degreeV = surface.Degree(1);
             var nCV1 = surface.CVCount;
 
-            surface.InsertKnot(0, 1.5, 1);
-            surface.InsertKnot(1, 1.5, 1);
+            int n = 100;
+            for (int i = 1; i < n; i++)
+            {
+                double t = ((double)i / n) * domainU.Min + (1 - (double)i / n) * domainU.Max;
+                surface.InsertKnot(0, t, 1);
+                surface.InsertKnot(1, t, 1);
+            }
 
             var p21 = surface.Evaluate(1.0,1.0, 1);
             var p22 = surface.Evaluate(1.2,1.2, 1);
@@ -72,6 +77,10 @@ namespace opennurbs_CLI.Tests
 
             Assert.AreEqual(p31[0], p11[0], 0.0000001);
             Assert.AreEqual(p31[1], p11[1], 0.0000001);
+
+
+            
+
         }
 
 

@@ -11,6 +11,7 @@ using Luthier.Model.MouseController;
 using Luthier.Model.ToolPathSpecification;
 using Luthier.Model.ToolPathSpecificationFactory;
 using Luthier.CncTool;
+using g3;
 
 namespace Luthier.Model
 {
@@ -109,7 +110,38 @@ namespace Luthier.Model
             return objects.GetHashCode();
         }
 
- 
+        public DMesh3 CreateMesh()
+        {
+            var vertices = new List<Vector3d>();
+            var indices = new List<int>();
+            foreach (GraphicNurbSurface surface in model.Objects.Where(x => x is GraphicNurbSurface))
+            {
+                var points2d = surface.cvArray.Select(x => (GraphicPoint2D)Objects()[x]);
+                var maxx = points2d.Max(p => p.X);
+                var maxy = points2d.Max(p => p.Y);
+                var minx = points2d.Min(p => p.X);
+                var miny = points2d.Min(p => p.Y);
+
+                foreach (var p in points2d)
+                {
+                    double u = (p.X - minx) / (maxx - minx);
+                    double v = (p.Y - miny) / (maxy - miny);
+                    vertices.Add(new Vector3d(p.X, p.Y, (u*u+v*v)*(maxx-minx)/5));
+                }
+                for (int i = 0; i < surface.cv_count0 - 1; i++)
+                {
+                    for (int j = 0; j < surface.cv_count1 - 1; j++)
+                    {
+                        int sw = i * surface.cv_count0 + j;
+                        int se = sw + 1;
+                        int nw = sw + surface.cv_count0;
+                        int ne = nw + 1;
+                        indices.AddRange(new int[] {sw,se,ne,ne,nw,sw });
+                    }
+                }
+            }
+            return DMesh3Builder.Build<Vector3d, int, int>(vertices, indices);
+        }
     }
 
 

@@ -13,11 +13,16 @@ namespace opennurbs_CLI
 	{
 	private:
 		ON_NurbsCurve * curve;
-		NurbsCurve(ON_NurbsCurve *source) { curve = source; }
+		//NurbsCurve(ON_NurbsCurve *source) { curve = source; }
+
 
 	public:
 		NurbsCurve(int dimension, ON_BOOL32 bIsRational, int order, int cv_count) { curve = ON_NurbsCurve::New(dimension, bIsRational, order, cv_count); }
-		
+		~NurbsCurve() 
+		{ 
+			delete curve; curve = 0; 
+		}
+
 		property int Dimension { int get() { return curve->Dimension(); }}
 		property int Degree { int get() { return curve->Degree(); }}
 		property int Order { int get() { return curve->Order(); }}
@@ -49,13 +54,17 @@ namespace opennurbs_CLI
 			ON_BOOL32 res = curve->GetCV(IX, ON::PointStyle(style), pinned_point);
 			return point;
 		}
-		bool SetKnot(int knot_index, double knot_value) { return curve->SetKnot(knot_index, knot_value); }
+		ON_BOOL32 SetKnot(int knot_index, double knot_value) { return curve->SetKnot(knot_index, knot_value); }
 		double GetKnot(int knot_index) { return curve->Knot(knot_index); }
+		int KnotMultiplicity(int knot_index) { return curve->KnotMultiplicity(knot_index); }
 		
-		
-		bool InsertKnot(double knot_value, int knot_multiplicity) { return curve->InsertKnot(knot_value, knot_multiplicity); }
-		bool IncreaseDegree(int desired_degree) { return curve->IncreaseDegree(desired_degree); }
+		ON_BOOL32 InsertKnot(double knot_value, int knot_multiplicity) { return curve->InsertKnot(knot_value, knot_multiplicity); }
+		ON_BOOL32 IncreaseDegree(int desired_degree) { return curve->IncreaseDegree(desired_degree); }
+		ON_BOOL32 ClampEnd(int end) { return curve->ClampEnd(end); }
 
+	
 	};
 
+
+	
 }

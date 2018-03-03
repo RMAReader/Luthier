@@ -1,6 +1,11 @@
 ﻿using Luthier.Model;
 using Luthier.Model.Presenter;
 using Luthier.UI.ToolPathForms;
+using SharpDX;
+using SharpDX.Direct3D11;
+using SharpDX.DXGI;
+using SharpDX.Windows;
+using SharpHelper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -97,6 +102,13 @@ namespace Luthier.UI
         {
             var DrawingForm2D = new DrawingForm2D(new Drawing2DPresenter(model));
             DrawingForm2D.Show();
+        }
+
+        private void dViewportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var viewport3DPresenter = new ViewPort3DPresenter(model);
+
+            viewport3DPresenter.ShowRenderForm();
         }
     }
 }

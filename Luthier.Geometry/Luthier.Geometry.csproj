@@ -44,11 +44,14 @@
     <Compile Include="BSpline\Algorithm.cs" />
     <Compile Include="BSpline\Curve.cs" />
     <Compile Include="BSpline\Knot.cs" />
+    <Compile Include="BSpline\NurbsSurface.cs" />
     <Compile Include="ClipperWrapper.cs" />
     <Compile Include="Intersection.cs" />
+    <Compile Include="Interval.cs" />
     <Compile Include="LineSegment1D.cs" />
     <Compile Include="LineSegment2D.cs" />
     <Compile Include="LinkedLine2D.cs" />
+    <Compile Include="MeshHelper.cs" />
     <Compile Include="Point2D.cs" />
     <Compile Include="Polygon2D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,6 +68,14 @@
     <ProjectReference Include="..\Luthier.Core\Luthier.Core.csproj">
       <Project>{917e595e-9d4e-4efb-a880-17004d5cdf4f}</Project>
       <Name>Luthier.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\opennurbs_CLI\opennurbs_CLI.vcxproj">
+      <Project>{7734d5a5-e085-4afa-aa7e-a4e633e934f2}</Project>
+      <Name>opennurbs_CLI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SharpHelper\SharpHelper.csproj">
+      <Project>{ea6f422e-3d4f-499f-a76f-3dc366489387}</Project>
+      <Name>SharpHelper</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

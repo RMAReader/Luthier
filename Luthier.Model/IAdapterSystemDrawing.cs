@@ -13,6 +13,7 @@ namespace Luthier.Model
     {
         IEnumerable<PointF[]> GetLinkedLine2DPoints();
         IEnumerable<PointF[]> GetCurveControlPoints();
+        IEnumerable<PointF[]> GetSurfaceControlPoints();
         IEnumerable<PointF[]> GetCurves();
         IEnumerable<PointF[]> GetPolygon2DPoints();
         IEnumerable<PointF[]> GetSelectedPolygon2DPoints(PolygonSelector selector);

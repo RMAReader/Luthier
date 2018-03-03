@@ -38,9 +38,10 @@
             this.newPolygonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newCompositeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newCompositePolygonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.measureLengthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newCompositePolygonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newSurfaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,6 +63,7 @@
             this.toolStripMenuItem2,
             this.newLinkedLineToolStripMenuItem,
             this.newCurveToolStripMenuItem,
+            this.newSurfaceToolStripMenuItem,
             this.newPolygonToolStripMenuItem,
             this.newImageToolStripMenuItem,
             this.newCompositeToolStripMenuItem,
@@ -122,6 +124,13 @@
             this.newCompositeToolStripMenuItem.Text = "New Intersection";
             this.newCompositeToolStripMenuItem.Click += new System.EventHandler(this.newIntersectionToolStripMenuItem_Click);
             // 
+            // newCompositePolygonToolStripMenuItem
+            // 
+            this.newCompositePolygonToolStripMenuItem.Name = "newCompositePolygonToolStripMenuItem";
+            this.newCompositePolygonToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.newCompositePolygonToolStripMenuItem.Text = "New Composite Polygon";
+            this.newCompositePolygonToolStripMenuItem.Click += new System.EventHandler(this.newCompositePolygonToolStripMenuItem_Click);
+            // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
@@ -134,12 +143,12 @@
             this.measureLengthToolStripMenuItem.Text = "Measure Length";
             this.measureLengthToolStripMenuItem.Click += new System.EventHandler(this.measureLengthToolStripMenuItem_Click);
             // 
-            // newCompositePolygonToolStripMenuItem
+            // newSurfaceToolStripMenuItem
             // 
-            this.newCompositePolygonToolStripMenuItem.Name = "newCompositePolygonToolStripMenuItem";
-            this.newCompositePolygonToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.newCompositePolygonToolStripMenuItem.Text = "New Composite Polygon";
-            this.newCompositePolygonToolStripMenuItem.Click += new System.EventHandler(this.newCompositePolygonToolStripMenuItem_Click);
+            this.newSurfaceToolStripMenuItem.Name = "newSurfaceToolStripMenuItem";
+            this.newSurfaceToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.newSurfaceToolStripMenuItem.Text = "New Surface";
+            this.newSurfaceToolStripMenuItem.Click += new System.EventHandler(this.newSurfaceToolStripMenuItem_Click);
             // 
             // DrawingForm2D
             // 
@@ -175,5 +184,6 @@
         private System.Windows.Forms.ToolStripMenuItem measureLengthToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newCompositeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newCompositePolygonToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newSurfaceToolStripMenuItem;
     }
 }

@@ -23,7 +23,8 @@ namespace opennurbs_CLI
 			int cv_count0,
 			int cv_count1
 		) { surface = ON_NurbsSurface::New(dimension, bIsRational, order0,order1, cv_count0, cv_count1); }
-	
+		~NurbsSurface() { delete surface; surface = 0; }
+
 		property int Dimension { int get() { return surface->Dimension(); }}
 		int Degree(int direction) { return surface->Degree(direction); }
 		int Order(int direction) { return surface->Order(direction); }
@@ -51,11 +52,11 @@ namespace opennurbs_CLI
 			ON_BOOL32 res = surface->GetCV(IU, IV, ON::PointStyle(style), pinned_point);
 			return point;
 		}
-		bool SetKnot(int direction, int IX, double knot_value) { return surface->SetKnot(direction, IX, knot_value); }
+		ON_BOOL32 SetKnot(int direction, int IX, double knot_value) { return surface->SetKnot(direction, IX, knot_value); }
 		double GetKnot(int direction, int IX) { return surface->Knot(direction, IX); }
 
-		bool InsertKnot(int direction, double knot_value, int knot_multiplicity) { return surface->InsertKnot(direction, knot_value, knot_multiplicity); }
-		bool IncreaseDegree(int direction, int desired_degree) { return surface->IncreaseDegree(direction, desired_degree); }
+		ON_BOOL32 InsertKnot(int direction, double knot_value, int knot_multiplicity) { return surface->InsertKnot(direction, knot_value, knot_multiplicity); }
+		ON_BOOL32 IncreaseDegree(int direction, int desired_degree) { return surface->IncreaseDegree(direction, desired_degree); }
 
 
 	};

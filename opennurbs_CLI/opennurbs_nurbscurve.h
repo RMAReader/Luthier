@@ -970,7 +970,7 @@ public:
   bool ZeroCVs(); // zeros control vertices and, if rational, sets weights to 1
 
   // Description:
-  //   Clamp end knots.  Does not modify control points.
+  //   Clamp end knots.  Updates locations of control points, locus of curve unchanged.
   // Parameters:
   //   end - [in] 0 = clamp start, 1 = clamp end, 2 = clamp start and end
   // Returns:

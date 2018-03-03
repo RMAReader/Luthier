@@ -18,6 +18,8 @@ namespace Luthier.Model.MouseController
 
         public InsertBSplineCurve InsertBSplineCurv() => new InsertBSplineCurve(model.BSplineFactory());
 
+        public InsertSurface InsertSurface() => new InsertSurface(model.BSplineFactory());
+
         public InsertPoint InsertPoint() => new InsertPoint(model.Point2DFactory());
         
         public InsertPolygon InsertPolygon() => new InsertPolygon(model.Polygon2DFactory());

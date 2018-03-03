@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using g3;
 using Luthier.Model.GraphicObjectFactory;
 using Luthier.Model.GraphicObjects;
 using Luthier.Model.MouseController;
@@ -21,10 +22,12 @@ namespace Luthier.Model
         LengthGaugeFactory LengthGaugeFactory();
         IntersectionFactory IntersectionFactory();
         CompositePolygonFactory CompositePolygonFactory();
+        IToolPathFactory ToolPathFactory();
 
         IAdapterSystemDrawing AdapterSystemDrawing();
         IMouseControllerFactory MouseControllerFactory();
-        IToolPathFactory ToolPathFactory();
+
+        DMesh3 CreateMesh();
 
         byte[] SerialiseToBytes();
         void DeserialiseFromBytes(byte[] bytes);

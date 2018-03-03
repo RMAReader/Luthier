@@ -53,6 +53,12 @@ namespace Luthier.UI
             this.Cursor = Cursors.Cross;
         }
 
+        private void newSurfaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            presenter.MouseController = presenter.GetModel().MouseControllerFactory().InsertSurface();
+            this.Cursor = Cursors.Cross;
+        }
+
         private void newPolygonToolStripMenuItem_Click(object sender, EventArgs e)
         {
             presenter.MouseController = presenter.GetModel().MouseControllerFactory().InsertPolygon();
@@ -113,5 +119,7 @@ namespace Luthier.UI
             presenter.MouseWheel(sender, e);
             this.Invalidate();
         }
+
+
     }
 }

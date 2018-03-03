@@ -140,6 +140,33 @@ namespace Luthier.Test.Model
             var model2 = Serializer<GraphicModel>.Deserialize(bytes);
         }
 
+
+        [TestMethod]
+        public void ModelSerialization_GraphicNurbsSurface()
+        {
+            var surface = new GraphicNurbSurface(2, false, 3, 3, 3, 3);
+            surface.cvArray = new UniqueKey[18];
+            for(int i = 0; i < 18; i++) surface.cvArray[i] = new UniqueKey();
+            surface.knotArray0 = new double[] {0,1,2,3};
+            surface.knotArray1 = new double[] {0,1,2,3};
+
+
+            var bytes = Serializer<GraphicNurbSurface>.Serialize(surface);
+
+            var surface2 = Serializer<GraphicNurbSurface>.Deserialize(bytes);
+            Assert.AreEqual(surface.Key, surface2.Key);
+            Assert.AreEqual(surface.order0, surface2.order0);
+
+            var model1 = new GraphicModel();
+            model1.Objects.Add(surface);
+
+            bytes = Serializer<GraphicModel>.Serialize(model1);
+
+            var model2 = Serializer<GraphicModel>.Deserialize(bytes);
+
+            Assert.AreEqual(model1.Objects[0].Key, model2.Objects[0].Key);
+        }
+
         [TestMethod]
         public void ModelSerialization_PocketSpecification()
         {

@@ -8,18 +8,84 @@ namespace opennurbs_CLI.Tests
     [TestClass]
     public class NurbsCurveTests
     {
-        [TestMethod]
-        public void TestMethod1()
-        {
-            int dummy = 1;
 
-            var curve = new opennurbs_CLI.NurbsCurve(2, 0, 3, 3);
+        /*
+         * returns 2nd degree curve with 3 points on unit square, uniform unclamped knot vector
+         */
+        private NurbsCurve GetSmallCurve()
+        {
+            var curve = new NurbsCurve(2, 0, 3, 3);
 
             curve.SetCV(0, 3, new double[] { 0, 0 });
             curve.SetCV(1, 3, new double[] { 1, 0 });
             curve.SetCV(2, 3, new double[] { 1, 1 });
 
             for (int i = 0; i < curve.KnotCount; i++) curve.SetKnot(i, i);
+
+            return curve;
+        }
+
+        private List<double[]> EvaluatePoints(NurbsCurve curve, double from, double to, int n)
+        {
+            var result = new List<double[]>();
+            for (int i = 0; i < n; i++)
+            {
+                double t = from * (1 - (double)i / (n - 1)) + to * (double)i / (n - 1);
+                result.Add(curve.Evaluate(t,1));
+            }
+            return result;
+        }
+        private List<double[]> ControlPoints(NurbsCurve curve)
+        {
+            var result = new List<double[]>();
+            for (int i = 0; i < curve.CVCount; i++)
+            {
+                result.Add(curve.GetCV(i,3));
+            }
+            return result;
+        }
+        private List<double> Knots(NurbsCurve curve)
+        {
+            var result = new List<double>();
+            for (int i = 0; i < curve.KnotCount; i++)
+            {
+                result.Add(curve.GetKnot(i));
+            }
+            return result;
+        }
+
+
+        [TestMethod]
+        public void ClampEndsTest()
+        {
+            var curve = GetSmallCurve();
+            var locus = EvaluatePoints(curve,curve.Domain.Min, curve.Domain.Max, 5);
+            var CVs = ControlPoints(curve);
+            var knots = Knots(curve);
+
+            curve.ClampEnd(0);
+
+            var locus2 = EvaluatePoints(curve, curve.Domain.Min, curve.Domain.Max, 5);
+            var CVs2 = ControlPoints(curve);
+            var knots2 = Knots(curve);
+
+            curve.ClampEnd(1);
+
+            var locus3 = EvaluatePoints(curve, curve.Domain.Min, curve.Domain.Max, 5);
+            var CVs3 = ControlPoints(curve);
+            var knots3 = Knots(curve);
+
+        }
+
+
+
+
+        [TestMethod]
+        public void TestMethod1()
+        {
+ 
+            var curve = GetSmallCurve();
+         
 
             var points = new List<double[]>();
             for (int i = 0; i < 3; i++)

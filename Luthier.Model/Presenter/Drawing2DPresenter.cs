@@ -256,6 +256,32 @@ namespace Luthier.Model.Presenter
             }
 
 
+            //draw surface
+            foreach(var controlNet in drawingAdapter.GetSurfaceControlPoints())
+            {
+                var net = ViewMapper.TransformModelToViewCoordinates(controlNet);
+                for (int i = 0; i < net.Length; i+=2)
+                {
+                    g.DrawLine(CurveControlPen, net[i], net[i+1]);
+                    g.DrawPolygon(CurveControlPen, new PointF[]
+                    {
+                        new PointF(net[i].X + 5, net[i].Y + 5),
+                        new PointF(net[i].X + 5, net[i].Y - 5),
+                        new PointF(net[i].X - 5, net[i].Y - 5),
+                        new PointF(net[i].X - 5, net[i].Y + 5),
+                    });
+                    g.DrawPolygon(CurveControlPen, new PointF[]
+                    {
+                        new PointF(net[i+1].X + 5, net[i+1].Y + 5),
+                        new PointF(net[i+1].X + 5, net[i+1].Y - 5),
+                        new PointF(net[i+1].X - 5, net[i+1].Y - 5),
+                        new PointF(net[i+1].X - 5, net[i+1].Y + 5),
+                    });
+                }
+            }
+                 
+
+
             //draw toolpaths
             foreach (var path in drawingAdapter.GetToolPath())
             {

@@ -64,6 +64,8 @@ namespace Luthier.Geometry.Test
                 Assert.AreEqual(points[i].x, p2[i].x, 0.000001);
                 Assert.AreEqual(points[i].y, p2[i].y, 0.000001);
             }
+            Assert.AreEqual(curve.Evaluate(2).x, p2[0].x, 0.000001);
+            Assert.AreEqual(curve.Evaluate(2).y, p2[0].y, 0.000001);
         }
 
 

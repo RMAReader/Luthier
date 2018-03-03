@@ -45,22 +45,30 @@ namespace Luthier.Direct3D
         private static void Main()
         {
 
-            var forms = new List<RenderForm>();
-            var resources = new List<D3DResource>();
-            for (int i = 1; i <= 200; i++)
-            {
-                var form = new RenderForm(string.Format("Form {0}", i));
-                form.Size = new System.Drawing.Size(1000,1000);
-                forms.Add(form);
-                resources.Add(new D3DResource(form));
-                
-            }
-            
-            RenderLoop.Run(new ApplicationContext(forms[0]), () =>
-                {
-                    resources.ForEach(x => x.RenderForm());
-                });
+            //var forms = new List<RenderForm>();
+            //var resources = new List<D3DResource>();
+            //for (int i = 1; i <= 2; i++)
+            //{
+            //    var form = new RenderForm(string.Format("Form {0}", i));
+            //    form.Size = new System.Drawing.Size(1000,1000);
+            //    forms.Add(form);
+            //    resources.Add(new D3DResource(form));
 
+            //}
+
+            //RenderLoop.Run(new ApplicationContext(forms[0]), () =>
+            //    {
+            //        resources.ForEach(x => x.RenderForm());
+            //    });
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            var form = new RenderForm(string.Format("MyForm"));
+            form.Size = new System.Drawing.Size(1000,1000);
+            var resource = new D3DResource(form);
+
+            Application.Run(form);
         }
     }
 }

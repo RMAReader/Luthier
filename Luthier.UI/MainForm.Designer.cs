@@ -36,6 +36,7 @@
             this.windowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sketchPadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dViewportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,7 +86,8 @@
             // 
             this.windowToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolPathToolStripMenuItem,
-            this.sketchPadToolStripMenuItem});
+            this.sketchPadToolStripMenuItem,
+            this.dViewportToolStripMenuItem});
             this.windowToolStripMenuItem.Name = "windowToolStripMenuItem";
             this.windowToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
             this.windowToolStripMenuItem.Text = "Window";
@@ -103,6 +105,13 @@
             this.sketchPadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.sketchPadToolStripMenuItem.Text = "SketchPad";
             this.sketchPadToolStripMenuItem.Click += new System.EventHandler(this.sketchPadToolStripMenuItem_Click);
+            // 
+            // dViewportToolStripMenuItem
+            // 
+            this.dViewportToolStripMenuItem.Name = "dViewportToolStripMenuItem";
+            this.dViewportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dViewportToolStripMenuItem.Text = "3D Viewport";
+            this.dViewportToolStripMenuItem.Click += new System.EventHandler(this.dViewportToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -130,5 +139,6 @@
         private System.Windows.Forms.ToolStripMenuItem windowToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolPathToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sketchPadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dViewportToolStripMenuItem;
     }
 }

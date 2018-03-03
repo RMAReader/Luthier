@@ -18,6 +18,7 @@ namespace Luthier.Model.GraphicObjects
     [XmlInclude(typeof(GraphicLengthGauge))]
     [XmlInclude(typeof(GraphicIntersection))]
     [XmlInclude(typeof(GraphicCompositePolygon))]
+    [XmlInclude(typeof(GraphicNurbSurface))]
     [XmlInclude(typeof(PocketSpecification))]
     [XmlInclude(typeof(EndMill))]
     [XmlInclude(typeof(BallNose))]

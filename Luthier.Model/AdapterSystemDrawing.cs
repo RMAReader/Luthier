@@ -217,11 +217,43 @@ namespace Luthier.Model
         }
 
 
+        public IEnumerable<PointF[]> GetSurfaceControlPoints()
+        {
+            var result = new List<PointF[]>();
+            foreach (GraphicNurbSurface surface in model.Objects().Values.Where(x => x is GraphicNurbSurface))
+            {
+                var net = new List<PointF>();
+                for (int i = 0; i < surface.cv_count0; i++)
+                {
+                    for (int j = 0; j < surface.cv_count1 - 1; j++)
+                    {
+                        var p1 = (GraphicPoint2D)model.Objects()[surface.GetCV(i, j)];
+                        var p2 = (GraphicPoint2D)model.Objects()[surface.GetCV(i, j + 1)];
+                        net.Add(new PointF((float)p1.X, (float)p1.Y));
+                        net.Add(new PointF((float)p2.X, (float)p2.Y));
+                    }
+                }
+                for (int i = 0; i < surface.cv_count0 - 1; i++)
+                {
+                    for (int j = 0; j < surface.cv_count1; j++)
+                    {
+                        var p1 = (GraphicPoint2D)model.Objects()[surface.GetCV(i, j)];
+                        var p2 = (GraphicPoint2D)model.Objects()[surface.GetCV(i + 1, j)];
+                        net.Add(new PointF((float)p1.X, (float)p1.Y));
+                        net.Add(new PointF((float)p2.X, (float)p2.Y));
+                    }
+                }
+                result.Add(net.ToArray());
+                //result.Add(surface.cvArray.Select(x => (GraphicPoint2D)model.Objects()[x]).Select(p => new PointF((float)p.X, (float)p.Y)).ToArray());
+            }
+            return result;
+        }
+
 
     }
 
 
 
 
-    
+
 }

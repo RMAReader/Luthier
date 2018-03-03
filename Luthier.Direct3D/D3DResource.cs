@@ -46,6 +46,11 @@ namespace Luthier.Direct3D
 
             clock = new System.Diagnostics.Stopwatch();
             clock.Start();
+
+            form.Paint += (sender, args) =>
+            {
+                RenderForm();
+            };
         }
 
 
