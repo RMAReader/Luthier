@@ -20,6 +20,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -42,7 +45,7 @@
   <ItemGroup>
     <Compile Include="Algorithm.cs" />
     <Compile Include="BSpline\Algorithm.cs" />
-    <Compile Include="BSpline\Curve.cs" />
+    <Compile Include="BSpline\NurbsCurve.cs" />
     <Compile Include="BSpline\Knot.cs" />
     <Compile Include="BSpline\NurbsSurface.cs" />
     <Compile Include="ClipperWrapper.cs" />

@@ -13,6 +13,7 @@ namespace Luthier.Model
 {
     public interface IApplicationDocumentModel
     {
+        GraphicModel Model { get; }
         Dictionary<UniqueKey, GraphicObjectBase> Objects();
         IPoint2DFactory Point2DFactory();
         IPolygon2DFactory Polygon2DFactory();
@@ -27,7 +28,7 @@ namespace Luthier.Model
         IAdapterSystemDrawing AdapterSystemDrawing();
         IMouseControllerFactory MouseControllerFactory();
 
-        DMesh3 CreateMesh();
+        void CreateMesh(List<Vector3d> vertices, List<Vector3d> normals, List<int> indices);
 
         byte[] SerialiseToBytes();
         void DeserialiseFromBytes(byte[] bytes);

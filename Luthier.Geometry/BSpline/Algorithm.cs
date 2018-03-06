@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -111,7 +112,7 @@ namespace Luthier.Geometry.BSpline
         //template<class Type>
 	    public static Point2D evaluate_curve(int p, List<double> knot, Point2D[] polygon, double t){
 		    if (t == knot[knot.Count - p - 1]) t -= t* 1e14;
-            int k = find_span(knot, t);
+            int k = Find_Knot_Span(knot, t);
             if (k < 0 || k >= knot.Count) return null;
 		    return evaluate_curve_deboor(p, k, p, knot, polygon, t);
         }
@@ -135,16 +136,106 @@ namespace Luthier.Geometry.BSpline
             return null;
         }
 
-      
 
 
+        /// <summary>
+        /// Evaluates 1D span of bspline curve.  
+        /// Using cvIX and cvStride allows curves/surfaces of any dimension to be evaluated by providing control vector data as one double[] datablock.
+        /// Using local working array declared on the stack is faster than using a recursive evaluation function.
+        /// </summary>
+        /// <param name="degree">Degree of bspline curve. (Order = Degree + 1).</param>
+        /// <param name="knotIX">Knot vector index for which knot[knotIX] <= t < knot[knotIX + 1]</param>
+        /// <param name="knot">Knot vector array</param>
+        /// <param name="cv">Control point array</param>
+        /// <param name="cvIX">Index such that control points cv[cvIX], cv[cvIX + cvStride] + ... + cv[cvIX + cvStride * degree] are required for evaluation at t</param>
+        /// <param name="cvStride">Stride such that control points cv[cvIX], cv[cvIX + cvStride] + ... + cv[cvIX + cvStride * degree] are required for evaluation at t</param>
+        /// <param name="t">Evaluation parameter</param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static unsafe double Evaluate_CurveSpan_Deboor(
+            int degree, 
+            int knotIX, 
+            ref double[] knot, 
+            ref double[] cv, 
+            int cvIX, 
+            int cvStride, 
+            double t)
+        {
+            //create working array on the stack
+            double* p = stackalloc double[degree + 1];
+            for (int i = 0; i < degree + 1; i++)
+            {
+                p[i] = cv[cvIX + i * cvStride];
+            }
+            return Evaluate_Span_Deboor_Compact(degree, knotIX, ref knot, p, t);
+        }
 
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static unsafe double Evaluate_SurfaceSpan_Deboor(
+            int orderU, 
+            int orderV, 
+            int knotIU, 
+            int knotIV, 
+            ref double[] knotU, 
+            ref double[] knotV, 
+            ref double[] cv, 
+            int cvIX, 
+            int cvStrideU, 
+            int cvStrideV, 
+            double u, 
+            double v)
+        {
+            //create working arrays on the stack
+            double* p = stackalloc double[orderV];
+            double* q = stackalloc double[orderU];
+
+            //evaluate V direction, creating new control points for U direction
+            for (int k = 0; k < orderV; k++ )
+            {
+                for (int i = 0; i < orderV; i++)
+                {
+                    p[i] = cv[cvIX + k * cvStrideU + i * cvStrideV];
+                }
+                q[k] = Evaluate_Span_Deboor_Compact(orderV - 1, knotIV, ref knotV, p, v);
+            }
+            return Evaluate_Span_Deboor_Compact(orderU - 1, knotIU, ref knotU, q, u);
+        }
+
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static unsafe double Evaluate_Span_Deboor_Compact(int degree, int knotIX, ref double[] knot, double* cv, double t)
+        {
+            double alpha;
+            for (int r = 1; r <= degree + 1; r++)
+            {
+                for (int j = degree; j > r - 1; j--)
+                {
+                    alpha = (t - knot[j + knotIX - degree]) / (knot[j + 1 + knotIX - r] - knot[j + knotIX - degree]);
+                    cv[j] = (1.0 - alpha) * cv[j - 1] + alpha * cv[j];
+                }
+            }
+            return cv[degree];
+        }
+
+
+        public static int Find_Knot_Span(int degree, double[] knot, double t)
+        {
+            int imin = degree - 1;
+            int imax = knot.Length - degree - 1;
+            if (knot[imin] > t) return imin;
+            if (knot[imax] <= t) return imax;
+            for (int i = imin; i <= imax; i++)
+            {
+                if (knot[i] <= t && t < knot[i + 1]) return i;
+            }
+            return -1;
+        }
 
         /*
         Oslo algorithm taken from Cohen et al.
         */
-        static int find_span(List<double> TAU, double Tj)
+        public static int Find_Knot_Span(List<double> TAU, double Tj)
         {
             for (int i = 0; i < TAU.Count - 1; i++)
             {
@@ -196,7 +287,7 @@ namespace Luthier.Geometry.BSpline
             List<Point2D> newControlPoints = new List<Point2D>(newKnot.Count - Order - 1);
             for (int j = 0; j < newKnot.Count - Order - 1; j++)
             {
-                MU = find_span(OriginalKnot, newKnot[j]);
+                MU = Find_Knot_Span(OriginalKnot, newKnot[j]);
                 newControlPoints.Add(olso_subdiv(OriginalControlPoints, Order + 1, OriginalKnot, newKnot, Order + 1, MU, j));
             }
             return newControlPoints;

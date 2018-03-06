@@ -28,5 +28,17 @@ namespace Luthier.Model.GraphicObjects
         public List<GraphicObjectBase> Objects { get; set; }
 
         public GraphicModel() => Objects = new List<GraphicObjectBase>();
+
+        public IEnumerable<IDraggable> GetDraggableObjects()
+        {
+            foreach (IDraggable o in Objects.Where(p => p is IDraggable)) yield return o;
+            foreach (GraphicNurbSurface s in Objects.Where(p => p is GraphicNurbSurface))
+            {
+                foreach (IDraggable o in s.GetDraggableObjects()) yield return o;
+            }
+        }
+
+        public bool HasChanged { get; set; }
+        
     }
 }

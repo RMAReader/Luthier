@@ -32,17 +32,17 @@ namespace Luthier.Model.GraphicObjectFactory
 
         public GraphicNurbSurface CreateSurface(int cv_count0, int cv_count1, double minx, double miny, double maxx, double maxy)
         {
-            var points = new List<UniqueKey>();
+            var points = new List<double>();
             for (int i = 0; i < cv_count0; i++)
             {
                 double x = (1 - (double)i / (cv_count0 - 1)) * minx + ((double)i / (cv_count0 - 1)) * maxx;
                 for (int j = 0; j < cv_count1; j++)
                 {
                     double y = (1 - (double)j / (cv_count1 - 1)) * miny + ((double)j / (cv_count1 - 1)) * maxy;
-                    points.Add(data.Point2DFactory().New(x, y).Key);
+                    points.AddRange(new double[] { x, y, 0 });
                 }
             }
-            var s = new GraphicNurbSurface(2, false, 3, 3, cv_count0, cv_count1);
+            var s = new GraphicNurbSurface(3, false, 3, 3, cv_count0, cv_count1);
             s.cvArray = points.ToArray();
 
             var knot0 = new List<double>();

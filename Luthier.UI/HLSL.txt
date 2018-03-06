@@ -1,18 +1,22 @@
 ﻿
 cbuffer data :register(b0)
 {
+	float4x4 world;
 	float4x4 worldViewProj;
+	float4 lightDirection;
 };
 
 struct VS_IN
 {
 	float4 position : POSITION;
+	float3 normal : NORMAL;
 	float4 color : COLOR;
 };
 
 struct PS_IN
 {
 	float4 position : SV_POSITION;
+	float3 normal : NORMAL;
 	float4 color : COLOR;
 };
 
@@ -21,6 +25,7 @@ PS_IN VS( VS_IN input)
 	PS_IN output = (PS_IN)0;
 
 	output.position = mul(worldViewProj,input.position);
+	output.normal=mul(world,input.normal);
 	output.color=input.color;
 
 	return output;
@@ -28,5 +33,6 @@ PS_IN VS( VS_IN input)
 
 float4 PS( PS_IN input ) : SV_Target
 {
-	return input.color;
+	//return input.color;
+	return saturate(-dot(normalize(input.normal),normalize(lightDirection)*0.3 + 0.7)*input.color);
 }

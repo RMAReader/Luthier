@@ -16,6 +16,8 @@ namespace Luthier.Model.Presenter
     {
         private readonly IApplicationDocumentModel model;
 
+        private bool modelChanged;
+
         public ViewPort3DPresenter(IApplicationDocumentModel model)
         {
             this.model = model;
@@ -39,8 +41,13 @@ namespace Luthier.Model.Presenter
             //Help to count Frame Per Seconds
             SharpFPS fpsCounter = new SharpFPS();
 
-            DMesh3 g3mesh = model.CreateMesh();
-            if (g3mesh.TriangleCount == 0)
+
+            var indices = new List<int>();
+            var vertices = new List<Vector3d>();
+            var normals = new List<Vector3d>();
+
+            model.CreateMesh(vertices, normals, indices);
+            if (vertices.Count == 0)
             {
                 form.Show();
             }
@@ -50,41 +57,51 @@ namespace Luthier.Model.Presenter
                 {
                     //device.SetWireframeRasterState();
 
-                    //Init Mesh
-                    var indices = g3mesh.Triangles().SelectMany(x => x.array).ToList();
-                    var vertices = g3mesh.Vertices().Select(v => new ColoredVertex(new Vector3((float)v.x, (float)v.y, (float)v.z), new Vector4(0, 1, 0, 0))).ToList();
-                    int nvertices = vertices.Count;
-
-                    //create reverse side mesh
-                    var indicesRev = g3mesh.Triangles().SelectMany(t => new int[] { t.a, t.c, t.b }).ToArray();
-                    var verticesRev = g3mesh.Vertices().Select(v => new ColoredVertex(new Vector3((float)v.x, (float)v.y, (float)v.z), new Vector4(1, 0, 0, 0)));
-
-                    indices.AddRange(indicesRev.Select(x => x + nvertices));
-                    vertices.AddRange(verticesRev);
-
-                    SharpMesh mesh = SharpMesh.Create<ColoredVertex>(device, vertices.ToArray(), indices.ToArray());
+                    SharpMesh mesh = null;
 
                     //Create Shader From File and Create Input Layout
                     SharpShader shader = new SharpShader(device, "../../HLSL.txt",
                         new SharpShaderDescription() { VertexShaderFunction = "VS", PixelShaderFunction = "PS" },
                         new InputElement[] {
                         new InputElement("POSITION", 0, Format.R32G32B32_Float, 0, 0),
-                        new InputElement("COLOR", 0, Format.R32G32B32A32_Float, 12, 0)
+                        new InputElement("NORMAL", 0, Format.R32G32B32_Float, 12, 0),
+                        new InputElement("COLOR", 0, Format.R32G32B32A32_Float, 24, 0)
                         });
 
                     //create constant buffer
-                    SharpDX.Direct3D11.Buffer buffer = shader.CreateBuffer<Matrix>();
+                    SharpDX.Direct3D11.Buffer buffer = shader.CreateBuffer<Data>();
 
                     fpsCounter.Reset();
+
+                    model.Model.HasChanged = true;
 
                     //main loop
                     RenderLoop.Run(form, () =>
                     {
                         //Resizing
                         if (device.MustResize)
+                        {
+                            device.Resize();
+                        }
+
+                        if (model.Model.HasChanged)
+                        {
+                            if (mesh != null) mesh.Dispose();
+
+                            model.CreateMesh(vertices, normals, indices);
+                            model.Model.HasChanged = false;
+                            
+                            //Init Mesh
+                            var Sharpvertices = new StaticColouredVertex[vertices.Count];
+                            for (int i = 0; i < vertices.Count; i++)
                             {
-                                device.Resize();
+                                Sharpvertices[i].Position = new Vector3((float)vertices[i].x, (float)vertices[i].y, (float)vertices[i].z);
+                                Sharpvertices[i].Normal = new Vector3((float)normals[i].x, (float)normals[i].y, (float)normals[i].z);
+                                Sharpvertices[i].Color = new Vector4(1, 0, 0, 0);
                             }
+                            mesh = SharpMesh.Create<StaticColouredVertex>(device, Sharpvertices, indices.ToArray());
+                        }
+
 
                         //apply states
                         device.UpdateAllStates();
@@ -94,19 +111,41 @@ namespace Luthier.Model.Presenter
 
                         //Set matrices
                         float ratio = (float)form.ClientRectangle.Width / (float)form.ClientRectangle.Height;
-                            Matrix projection = Matrix.PerspectiveFovLH(3.14F / 3.0F, ratio, 1, 10000);
-                            Matrix view = Matrix.LookAtLH(new Vector3(0, 0, 2000), new Vector3(), Vector3.UnitY);
-                            Matrix world = Matrix.RotationY(Environment.TickCount / 10000.0F);
-                            Matrix WVP = world * view * projection;
+                        Matrix projection = Matrix.PerspectiveFovLH(3.14F / 3.0F, ratio, 1, 10000);
+                        
+                        //set camera position and target
+                        Vector3 from = new Vector3(0, 0, -1000);
+                        Vector3 to = new Vector3(0, 0, 0);
+                        Matrix view = Matrix.LookAtLH(from, to, Vector3.UnitY);
 
-                        //update constant buffer
-                        device.UpdateData<Matrix>(buffer, WVP);
+                        Matrix world = Matrix.RotationY(Environment.TickCount / 1000.0F);
+                        Matrix WVP = world * view * projection;
 
-                        //pass constant buffer to shader
-                        device.DeviceContext.VertexShader.SetConstantBuffer(0, buffer);
+                        //light direction
+                        Vector3 lightDirection = new Vector3(0.25f, 0, 1);
+                        lightDirection.Normalize();
+
+
+                        Data sceneInformation = new Data()
+                        {
+                            world = world,
+                            worldViewProjection = world * view * projection,
+                            lightDirection = new Vector4(lightDirection, 1),
+                            //viewDirection = new Vector4(Vector3.Normalize(from - to), 1),
+                        };
+
 
                         //apply shader
                         shader.Apply();
+
+                        //update constant buffer
+                        device.UpdateData<Data>(buffer, sceneInformation);
+
+                        //pass constant buffer to shader
+                        device.DeviceContext.VertexShader.SetConstantBuffer(0, buffer);
+                        device.DeviceContext.PixelShader.SetConstantBuffer(0, buffer);
+
+
 
                         //draw mesh
                         mesh.Draw();
@@ -138,5 +177,11 @@ namespace Luthier.Model.Presenter
 
     }
 
-
+    struct Data
+    {
+        public Matrix world;
+        public Matrix worldViewProjection;
+        public Vector4 lightDirection;
+        //public Vector4 viewDirection;
+    }
 }

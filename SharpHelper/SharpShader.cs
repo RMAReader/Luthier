@@ -102,19 +102,19 @@ namespace SharpHelper
         {
             Device = device;
             // Compile Vertex and Pixel shaders
-            var vertexShaderByteCode = ShaderBytecode.CompileFromFile(filename, description.VertexShaderFunction, "vs_5_0");
+            var vertexShaderByteCode = ShaderBytecode.CompileFromFile(filename, description.VertexShaderFunction, "vs_5_0", ShaderFlags.Debug);
             VertexShader = new VertexShader(Device.Device, vertexShaderByteCode);
             
             //create pixel shader
             if (!string.IsNullOrEmpty(description.PixelShaderFunction))
             {
-                var pixelShaderByteCode = ShaderBytecode.CompileFromFile(filename, description.PixelShaderFunction, "ps_5_0");
+                var pixelShaderByteCode = ShaderBytecode.CompileFromFile(filename, description.PixelShaderFunction, "ps_5_0", ShaderFlags.Debug);
                 PixelShader = new PixelShader(Device.Device, pixelShaderByteCode);
             }
 
             if (!string.IsNullOrEmpty(description.GeometryShaderFunction))
             {
-                var geometryShaderByteCode = ShaderBytecode.CompileFromFile(filename, description.GeometryShaderFunction, "gs_5_0");
+                var geometryShaderByteCode = ShaderBytecode.CompileFromFile(filename, description.GeometryShaderFunction, "gs_5_0", ShaderFlags.Debug);
 
                 if (description.GeometrySO == null)
                     GeometryShader = new GeometryShader(Device.Device, geometryShaderByteCode);

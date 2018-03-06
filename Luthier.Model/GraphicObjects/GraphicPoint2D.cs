@@ -12,7 +12,7 @@ namespace Luthier.Model.GraphicObjects
     [Serializable]
     //[XmlRoot(ElementName = "GraphicPoint2D", Namespace = Serializer<GraphicPoint2D>.StyleResearchNamespace)]
     //[XmlType("GraphicPoint2D")]
-    public class GraphicPoint2D : GraphicObjectBase
+    public class GraphicPoint2D : GraphicObjectBase, IDraggable
     {
         [XmlAttribute()]
         public double X;
@@ -23,7 +23,9 @@ namespace Luthier.Model.GraphicObjects
 
         public GraphicPoint2D() { parentObjectKeys = new List<UniqueKey>(); }
         public GraphicPoint2D(double x, double y) { this.X = x; this.Y = y; parentObjectKeys = new List<UniqueKey>(); }
+
         public void Set(double x, double y) { this.X = x; this.Y = y; }
+        public double GetDistance(double x, double y) { return Math.Sqrt((X - x) * (X - x) + (Y - y) * (Y - y)); }
 
         public override bool Equals(object obj) 
         {
@@ -41,7 +43,7 @@ namespace Luthier.Model.GraphicObjects
 
         public override double GetDistance(ApplicationDocumentModel model, double x, double y)
         {
-            return (double) Math.Sqrt((X - x) * (X - x) + (Y - y) * (Y - y));
+            return GetDistance(x,y);
         }
 
 

@@ -2479,3 +2479,86 @@ Created Point2D(666,145). Key = d1567660-c161-460d-9d91-31c165c836ff
 Created Point2D(666,255). Key = f2cab1c1-3adc-4bf8-90b8-ed6eadd53c71
 Created Point2D(666,365). Key = 254c0e44-af0b-461c-a997-c20415507df0
 Created Point2D(666,475). Key = 597f227b-4b48-419a-8773-369d4c5aea52
+Created Point2D(91,400). Key = 8c054ada-b6d5-421e-93f6-4a2b99eca156
+Created Point2D(91,400). Key = 2b400503-a191-4199-aea8-0f55e8db2f75
+Created Point2D(6,241). Key = 7e572f17-9b56-42ed-8ad6-2471fc8d371c
+Created Point2D(109,203). Key = 124bc2b0-abb3-4d81-ac24-3c79170b05e0
+Created Point2D(238,278). Key = 183092c9-3df2-431b-973b-b458d6476d02
+Created Point2D(390,276). Key = c114fdeb-f076-4ac5-912e-e592e03885f0
+Created Point2D(304,96). Key = 233d4be7-37ac-48be-a0b7-50c77a2bcfad
+Created Point2D(514,73). Key = b6314150-a82d-4524-8a4a-a4995229e856
+Created Point2D(582,195). Key = 58152b92-b1ad-45f7-87b8-2339b70ed71e
+Created Point2D(32,223). Key = ecb071a3-37f1-490a-9381-d9ed0abdb81b
+Created Point2D(32,223). Key = f50a4155-a52b-44d5-bb51-93e8f63d7c69
+Created Point2D(38,136). Key = 5d0cb6cd-93b7-4ed1-98c3-3780aabea313
+Created Point2D(147,125). Key = aa5775e8-0917-45eb-a06e-045d6e9cb828
+Created Point2D(285,231). Key = 5e854c73-5bba-45dc-81b7-cbcea12d7925
+Created Point2D(394,151). Key = 357b2520-ee9d-4c58-b672-84a10861c6b5
+Created Point2D(64,334). Key = d6277de5-3fb9-4c1e-893a-051bfaa9f870
+Created Point2D(64,334). Key = caaa566d-4159-4d76-b198-70727298a4dd
+Created Point2D(60,245). Key = 277b7933-2ab5-4971-8ab6-682cfcb83d32
+Created Point2D(148,194). Key = a432575e-8fc9-40e0-ad65-a35f73b0dac2
+Created Point2D(304,218). Key = a979713b-6f1c-42a1-a832-39724a13c1cc
+Created Point2D(414,289). Key = 3ef909e8-350a-489d-8a9c-81d4378976ef
+Created Point2D(466,123). Key = 41a24efc-d6b8-43f1-bb06-ec6d814edaf3
+Created Point2D(612,113). Key = a5b9045c-4d15-40c5-a751-c6acba054c58
+Created Polygon2D. Key = 342f632a-d26f-451d-9a62-ebda0dbb253a
+Created Point2D(68,71). Key = b1d1179e-adaa-4570-a0cb-d06dca20d0d7
+Polygon2D.AppendPoint: Polygon2D.Key = 342f632a-d26f-451d-9a62-ebda0dbb253a, Point2D.Key = b1d1179e-adaa-4570-a0cb-d06dca20d0d7
+Created Point2D(68,71). Key = fc6bb71f-85af-426b-9fa0-e0bc3d730d60
+Polygon2D.AppendPoint: Polygon2D.Key = 342f632a-d26f-451d-9a62-ebda0dbb253a, Point2D.Key = fc6bb71f-85af-426b-9fa0-e0bc3d730d60
+Created Point2D(111,46). Key = e9de8cf8-ecaf-4714-8100-65df147f13eb
+Polygon2D.AppendPoint: Polygon2D.Key = 342f632a-d26f-451d-9a62-ebda0dbb253a, Point2D.Key = e9de8cf8-ecaf-4714-8100-65df147f13eb
+Created Point2D(288,87). Key = f4349b0f-d84c-48fd-8164-31b071841ddd
+Polygon2D.AppendPoint: Polygon2D.Key = 342f632a-d26f-451d-9a62-ebda0dbb253a, Point2D.Key = f4349b0f-d84c-48fd-8164-31b071841ddd
+Created Point2D(40,338). Key = 41628b72-8d21-42ce-9a0f-563dea2271ca
+Created Point2D(40,338). Key = 605817d3-33cb-4c3a-b829-9cb1e2997b8e
+Created Point2D(31,221). Key = 51b8a7da-1ef5-4395-a691-de4da5499932
+Created Point2D(79,105). Key = 90c98d7f-8841-4aba-b070-c2555ded6f2c
+Created Point2D(195,75). Key = 6ee851d3-6ed1-41eb-8035-3a29e2eb8eff
+Created Point2D(389,123). Key = f2aef8d5-4c90-4848-8e00-4b80ab6df731
+Created Point2D(511,231). Key = e515bddf-9cd3-402d-b6ff-a5e5118ab3ed
+Created Point2D(64,422). Key = 7b450f20-c5e1-4f0f-b976-20750131ee98
+Created Point2D(64,422). Key = 60e86191-4dd3-474b-a87b-024882a0688f
+Created Point2D(58,299). Key = a46c278b-7fc1-400b-9d5e-ebc08a6092d8
+Created Point2D(112,162). Key = 483fa906-a79e-433d-a7a1-d29a726ad7a2
+Created Point2D(242,99). Key = 334ab07c-147d-4a7d-8f88-0226ecca78df
+Created Point2D(423,101). Key = 0dfd4e32-ca6a-43a2-8c11-a3d87bb7f774
+Created Point2D(538,207). Key = 8ac12ed4-4367-46bf-9a0e-73f5ec74b580
+Created Point2D(586,279). Key = 6c0bcfdc-0765-4739-9225-63a904809937
+Created Point2D(29,435). Key = 0f9412ab-56f0-4655-a664-46b6ea07c13f
+Created Point2D(29,435). Key = 2dbed0e5-7fb9-456d-a747-482a6b1d11db
+Created Point2D(30,45). Key = 9e0c6451-d14a-4c2b-9493-78af7fea213f
+Created Point2D(42,63). Key = b694999e-2dc1-496f-acb1-aa63762bb116
+Created Point2D(42,63). Key = 43917fde-0477-434d-82bb-6a0e6cf3ec2d
+Created Point2D(619,437). Key = 820b23c5-0d37-4c0b-8396-44a74cee2f11
+Created Polygon2D. Key = 83aa3008-0cb3-4715-a458-734252ed8f5f
+Created Point2D(44,49). Key = 7194535b-9d18-4ce9-93b7-56ff209f75ab
+Polygon2D.AppendPoint: Polygon2D.Key = 83aa3008-0cb3-4715-a458-734252ed8f5f, Point2D.Key = 7194535b-9d18-4ce9-93b7-56ff209f75ab
+Created Point2D(44,49). Key = 248f4eea-2540-4197-9f0e-1a9418d7bdea
+Polygon2D.AppendPoint: Polygon2D.Key = 83aa3008-0cb3-4715-a458-734252ed8f5f, Point2D.Key = 248f4eea-2540-4197-9f0e-1a9418d7bdea
+Created Point2D(623,413). Key = b6078803-34bb-4cb4-a0a8-7b2e6e4942ae
+Polygon2D.AppendPoint: Polygon2D.Key = 83aa3008-0cb3-4715-a458-734252ed8f5f, Point2D.Key = b6078803-34bb-4cb4-a0a8-7b2e6e4942ae
+Created Polygon2D. Key = 178b1ac4-1ea2-4c81-977b-02d2d1be46ed
+Created Point2D(23,39). Key = dd9539ff-5c2a-4259-9e90-b59a75f647de
+Polygon2D.AppendPoint: Polygon2D.Key = 178b1ac4-1ea2-4c81-977b-02d2d1be46ed, Point2D.Key = dd9539ff-5c2a-4259-9e90-b59a75f647de
+Created Point2D(23,39). Key = c9217817-9fe3-43cd-b974-92234f8972af
+Polygon2D.AppendPoint: Polygon2D.Key = 178b1ac4-1ea2-4c81-977b-02d2d1be46ed, Point2D.Key = c9217817-9fe3-43cd-b974-92234f8972af
+Created Point2D(660,38). Key = 4e00c9c4-93cc-4218-b0fb-14bc433ba8b8
+Polygon2D.AppendPoint: Polygon2D.Key = 178b1ac4-1ea2-4c81-977b-02d2d1be46ed, Point2D.Key = 4e00c9c4-93cc-4218-b0fb-14bc433ba8b8
+Created Point2D(672,463). Key = c34e205d-b82b-4c6a-ba45-45e14ff0b674
+Polygon2D.AppendPoint: Polygon2D.Key = 178b1ac4-1ea2-4c81-977b-02d2d1be46ed, Point2D.Key = c34e205d-b82b-4c6a-ba45-45e14ff0b674
+Created Polygon2D. Key = 5112e9b7-4a36-4e06-9bfa-f6bfa8187011
+Created Point2D(293.127502441406,256.204620361328). Key = 2d19a78c-7523-4426-a9e2-edba34fe590b
+Polygon2D.AppendPoint: Polygon2D.Key = 5112e9b7-4a36-4e06-9bfa-f6bfa8187011, Point2D.Key = 2d19a78c-7523-4426-a9e2-edba34fe590b
+Created Point2D(293.127502441406,256.204620361328). Key = ba7ee0d1-f00b-4fdc-be6e-bcc326f32070
+Polygon2D.AppendPoint: Polygon2D.Key = 5112e9b7-4a36-4e06-9bfa-f6bfa8187011, Point2D.Key = ba7ee0d1-f00b-4fdc-be6e-bcc326f32070
+Created Polygon2D. Key = 60210333-ef03-4e5f-8b45-3840acfb8203
+Created Point2D(32,39). Key = 3855355e-ae8e-4ded-8b90-1637eae05ceb
+Polygon2D.AppendPoint: Polygon2D.Key = 60210333-ef03-4e5f-8b45-3840acfb8203, Point2D.Key = 3855355e-ae8e-4ded-8b90-1637eae05ceb
+Created Point2D(32,39). Key = 0f6fa455-eb18-40ae-ba55-43fa81f154e1
+Polygon2D.AppendPoint: Polygon2D.Key = 60210333-ef03-4e5f-8b45-3840acfb8203, Point2D.Key = 0f6fa455-eb18-40ae-ba55-43fa81f154e1
+Created Point2D(653,47). Key = 4d8ae0f7-1062-4934-9fad-95a37d721c52
+Polygon2D.AppendPoint: Polygon2D.Key = 60210333-ef03-4e5f-8b45-3840acfb8203, Point2D.Key = 4d8ae0f7-1062-4934-9fad-95a37d721c52
+Created Point2D(660,459). Key = f0600c09-1d8a-41fd-bb7a-981a00826e13
+Polygon2D.AppendPoint: Polygon2D.Key = 60210333-ef03-4e5f-8b45-3840acfb8203, Point2D.Key = f0600c09-1d8a-41fd-bb7a-981a00826e13

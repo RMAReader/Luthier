@@ -4,6 +4,7 @@
 #include "opennurbs_CLI_point.h"
 
 using namespace System;
+using namespace System::Runtime::InteropServices;
 
 namespace opennurbs_CLI
 {
@@ -38,6 +39,19 @@ namespace opennurbs_CLI
 			pin_ptr<double> pinned_output = &output[0];
 			ON_BOOL32 res = surface->Evaluate(u,v, nderiv, surface->CVSize(), pinned_output);
 			return output;
+			//int dim = surface->Dimension();
+
+			//double* cpp_output = new double[surface->CVSize()];
+			//ON_BOOL32 res = surface->Evaluate(u, v, nderiv, surface->CVSize(), cpp_output);
+			//
+			//array<double>^ output = gcnew array<double>(surface->CVSize());
+			//for (int i = 0; i < surface->CVSize(); i++)
+			//{
+			//	output[i] = cpp_output[i];
+			//}
+			////delete[] cpp_output;
+			//Marshal::FreeHGlobal(IntPtr(cpp_output));
+			//return output;
 		}
 	
 		ON_BOOL32 SetCV(int IU, int IV, int style, array<double>^ point)
@@ -58,7 +72,21 @@ namespace opennurbs_CLI
 		ON_BOOL32 InsertKnot(int direction, double knot_value, int knot_multiplicity) { return surface->InsertKnot(direction, knot_value, knot_multiplicity); }
 		ON_BOOL32 IncreaseDegree(int direction, int desired_degree) { return surface->IncreaseDegree(direction, desired_degree); }
 
-
+		array<double>^ EvNormal( // returns false if unable to evaluate
+			double u, double v   // evaluation parameters (s,t)
+		)
+		{
+			ON_3dVector normal;
+			ON_BOOL32 res = surface->EvNormal(u, v, normal);
+			array<double>^ point = gcnew array<double>(3);
+			if (res)
+			{
+				point[0] = normal[0];
+				point[1] = normal[1];
+				point[2] = normal[2];
+			}
+			return point;
+		}
 	};
 
 }

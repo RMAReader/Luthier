@@ -12,13 +12,13 @@ namespace Luthier.Geometry.BSpline
     public class Curve_opennurbs : IDisposable
     {
 
-        private NurbsCurve curve;
+        private opennurbs_CLI.NurbsCurve curve;
         //private List<Point2D> points;
         //private Knot knot;
 
         public Curve_opennurbs(List<Point2D> points, Knot knot)
         {
-            this.curve = new NurbsCurve(2, 0, knot.p + 1, points.Count);
+            this.curve = new opennurbs_CLI.NurbsCurve(2, 0, knot.p + 1, points.Count);
             for(int i=0; i < points.Count; i++)
             {
                 curve.SetCV(i, 3, new double[] { points[i].x, points[i].y });
@@ -154,14 +154,14 @@ namespace Luthier.Geometry.BSpline
 
     }
 
-    public class Curve
+    public class NurbsCurve
     {
 
 
         private List<Point2D> points;
         private Knot knot;
 
-        public Curve(List<Point2D> points, Knot knot)
+        public NurbsCurve(List<Point2D> points, Knot knot)
         {
             this.points = points;
             this.knot = knot;
@@ -245,9 +245,9 @@ namespace Luthier.Geometry.BSpline
         }
 
 
-        public Curve DeepCopy()
+        public NurbsCurve DeepCopy()
         {
-            return new Curve(new List<Point2D>(points), knot.DeepCopy());
+            return new NurbsCurve(new List<Point2D>(points), knot.DeepCopy());
         }
 
     }

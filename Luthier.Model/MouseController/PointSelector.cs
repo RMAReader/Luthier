@@ -13,13 +13,13 @@ namespace Luthier.Model.MouseController
     {
         private readonly IApplicationDocumentModel model;
         private double selectionRadius;
-        private List<GraphicPoint2D> selectedPoints;
+        private List<IDraggable> selectedPoints;
 
         public PointSelector(IApplicationDocumentModel model, double selectionRadius)
         {
             this.model = model;
             this.selectionRadius = selectionRadius;
-            selectedPoints = new List<GraphicPoint2D>();
+            selectedPoints = new List<IDraggable>();
         }
 
 
@@ -27,11 +27,11 @@ namespace Luthier.Model.MouseController
         public override void MouseLeftButtonDown(int x, int y)
         {
             double distance = float.MaxValue;
-            foreach (GraphicPoint2D point in model.Objects().Values.Where(p => p is GraphicPoint2D))
+            foreach (IDraggable point in model.Model.GetDraggableObjects())
             {
-                PointF p = ViewMapper.TransformModelToViewCoordinates(new PointF((float)point.X, (float)point.Y));
-                double d = (p.X - x) * (p.X - x) + (p.Y - y) * (p.Y - y);
-                if (d < selectionRadius * selectionRadius && d < distance)
+                PointF p = ViewMapper.TransformViewToModelCoordinates(new PointF(x, y));
+                double d = point.GetDistance(p.X, p.Y) * ViewMapper.Scale;
+                if (d < selectionRadius && d < distance)
                 {
                     selectedPoints.Clear();
                     selectedPoints.Add(point);
@@ -48,12 +48,14 @@ namespace Luthier.Model.MouseController
             foreach (var point in selectedPoints)
             {
                 point.Set(p.X, p.Y);
+                model.Model.HasChanged = true;
             }
         }
 
         public override void MouseLeftButtonUp(int x, int y)
         {
             selectedPoints.Clear();
+            model.Model.HasChanged = true;
         }
 
     }

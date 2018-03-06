@@ -80,7 +80,7 @@ namespace Luthier.Model.GraphicObjects
 
     class CurveSegment
     {
-        public Curve curve;
+        public NurbsCurve curve;
         public double from;
         public double to;
 

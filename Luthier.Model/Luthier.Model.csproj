@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -84,6 +85,7 @@
     <Compile Include="GraphicObjects\IPolygon2D.cs" />
     <Compile Include="IAdapterSystemDrawing.cs" />
     <Compile Include="IApplicationDocumentModel.cs" />
+    <Compile Include="GraphicObjects\IDraggable.cs" />
     <Compile Include="MouseController\IMouseControllerFactory.cs" />
     <Compile Include="MouseController\InsertBSplineCurve.cs" />
     <Compile Include="MouseController\InsertCompositePolygon.cs" />

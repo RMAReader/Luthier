@@ -38,7 +38,7 @@ namespace opennurbs_CLI.Tests
             var domainV = surface.Domain(1);
 
             var p11 = surface.Evaluate(1.0, 1.0, 1);
-            var p12 = surface.Evaluate(1.2, 1.2, 1);
+            var p12 = surface.Evaluate(1.2, 1.3, 1);
             var p13 = surface.Evaluate(1.5, 1.5, 1);
             var p14 = surface.Evaluate(1.9, 1.9, 1);
             var p15 = surface.Evaluate(2.0, 2.0, 1);

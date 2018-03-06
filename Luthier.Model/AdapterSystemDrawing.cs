@@ -68,7 +68,7 @@ namespace Luthier.Model
                     points.Add(new Point2D(point.X, point.Y));
                 }
 
-                var approxCurve = new Geometry.BSpline.Curve(points, curve.GetKnot()).ToLines(100);
+                var approxCurve = new Geometry.BSpline.NurbsCurve(points, curve.GetKnot()).ToLines(100);
 
                 result.Add(approxCurve.Select(p => new PointF((float)p.x, (float)p.y)).ToArray());
             }
@@ -227,20 +227,20 @@ namespace Luthier.Model
                 {
                     for (int j = 0; j < surface.cv_count1 - 1; j++)
                     {
-                        var p1 = (GraphicPoint2D)model.Objects()[surface.GetCV(i, j)];
-                        var p2 = (GraphicPoint2D)model.Objects()[surface.GetCV(i, j + 1)];
-                        net.Add(new PointF((float)p1.X, (float)p1.Y));
-                        net.Add(new PointF((float)p2.X, (float)p2.Y));
+                        var p1 = surface.GetCV(i, j);
+                        var p2 = surface.GetCV(i, j + 1);
+                        net.Add(new PointF((float)p1[0], (float)p1[1]));
+                        net.Add(new PointF((float)p2[0], (float)p2[1]));
                     }
                 }
                 for (int i = 0; i < surface.cv_count0 - 1; i++)
                 {
                     for (int j = 0; j < surface.cv_count1; j++)
                     {
-                        var p1 = (GraphicPoint2D)model.Objects()[surface.GetCV(i, j)];
-                        var p2 = (GraphicPoint2D)model.Objects()[surface.GetCV(i + 1, j)];
-                        net.Add(new PointF((float)p1.X, (float)p1.Y));
-                        net.Add(new PointF((float)p2.X, (float)p2.Y));
+                        var p1 = surface.GetCV(i, j);
+                        var p2 = surface.GetCV(i + 1, j);
+                        net.Add(new PointF((float)p1[0], (float)p1[1]));
+                        net.Add(new PointF((float)p2[0], (float)p2[1]));
                     }
                 }
                 result.Add(net.ToArray());

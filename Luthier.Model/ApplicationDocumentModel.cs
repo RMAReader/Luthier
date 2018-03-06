@@ -78,7 +78,7 @@ namespace Luthier.Model
 
         public IToolPathFactory ToolPathFactory() => toolPathFactory;
 
-
+        public GraphicModel Model { get => model; }
 
         public byte[] SerialiseToBytes()
         {
@@ -110,37 +110,63 @@ namespace Luthier.Model
             return objects.GetHashCode();
         }
 
-        public DMesh3 CreateMesh()
+        public void CreateMesh(List<Vector3d> vertices, List<Vector3d> normals, List<int> indices)
         {
-            var vertices = new List<Vector3d>();
-            var indices = new List<int>();
+ 
+            int nU = 10;
+            int nV = 10;
             foreach (GraphicNurbSurface surface in model.Objects.Where(x => x is GraphicNurbSurface))
             {
-                var points2d = surface.cvArray.Select(x => (GraphicPoint2D)Objects()[x]);
-                var maxx = points2d.Max(p => p.X);
-                var maxy = points2d.Max(p => p.Y);
-                var minx = points2d.Min(p => p.X);
-                var miny = points2d.Min(p => p.Y);
 
-                foreach (var p in points2d)
+                var prim = surface.ToPrimitive(this);
+
+                for(int i=0; i<prim.CVCount(0); i++)
                 {
-                    double u = (p.X - minx) / (maxx - minx);
-                    double v = (p.Y - miny) / (maxy - miny);
-                    vertices.Add(new Vector3d(p.X, p.Y, (u*u+v*v)*(maxx-minx)/5));
-                }
-                for (int i = 0; i < surface.cv_count0 - 1; i++)
-                {
-                    for (int j = 0; j < surface.cv_count1 - 1; j++)
+                    for (int j = 0; j < prim.CVCount(1); j++)
                     {
-                        int sw = i * surface.cv_count0 + j;
+                        var p = prim.GetCV(i, j);
+                        p[2] = (p[0] * p[0] + p[1] * p[1]) / 1000;
+                        prim.SetCV(i, j, p);
+                    }
+                }
+
+               // var points2d = new List<Vector3d>();
+                for (int i = 0; i < nU; i++)
+                {
+                    double u = (1 - (double)i / (nU)) * prim.Domain(0).Min + (double)i / (nU) * prim.Domain(0).Max;
+                    for (int j=0; j < nV; j++)
+                    {
+                        double v = (1 - (double)j / (nV)) * prim.Domain(1).Min + (double)j / (nV) * prim.Domain(1).Max;
+                        vertices.Add(new Vector3d(prim.Evaluate(u, v)));
+                        normals.Add(new Vector3d(prim.EvaluateNormal(u, v)));
+                    }
+                }
+
+                
+
+                //var maxx = points2d.Max(p => p.x);
+                //var maxy = points2d.Max(p => p.y);
+                //var minx = points2d.Min(p => p.x);
+                //var miny = points2d.Min(p => p.y);
+
+                //foreach (var p in points2d)
+                //{
+                //    double u = (p.x - minx) / (maxx - minx);
+                //    double v = (p.y - miny) / (maxy - miny);
+                //    vertices.Add(new Vector3d(p.x, p.y, (u*u+v*v)*(maxx-minx)/5));
+                //}
+                for (int i = 0; i < nU - 1; i++)
+                {
+                    for (int j = 0; j < nV - 1; j++)
+                    {
+                        int sw = i * nV + j;
                         int se = sw + 1;
-                        int nw = sw + surface.cv_count0;
+                        int nw = sw + nV;
                         int ne = nw + 1;
                         indices.AddRange(new int[] {sw,se,ne,ne,nw,sw });
                     }
                 }
             }
-            return DMesh3Builder.Build<Vector3d, int, int>(vertices, indices);
         }
     }
 

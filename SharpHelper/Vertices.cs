@@ -127,4 +127,29 @@ namespace SharpHelper
             Color = color;
         }
     }
+
+
+    /// <summary>
+    /// Static Coloured Vertex
+    /// </summary>
+    public struct StaticColouredVertex
+    {
+        /// <summary>
+        /// Position
+        /// </summary>
+        public Vector3 Position;
+
+        /// <summary>
+        /// Normal
+        /// </summary>
+        public Vector3 Normal;
+
+        /// <summary>
+        /// Color
+        /// </summary>
+        public Vector4 Color;
+
+        
+
+    }
 }

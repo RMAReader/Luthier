@@ -23,9 +23,9 @@ namespace Luthier.Geometry
         public class CurveIntersection
         {
             public double Parameter1;
-            public Curve curve1;
+            public NurbsCurve curve1;
             public double Parameter2;
-            public Curve curve2;
+            public NurbsCurve curve2;
             public Point2D Point;
         }
 
@@ -57,7 +57,7 @@ namespace Luthier.Geometry
         }
 
 
-        public static List<CurveIntersection> GetIntersectionList(Curve c1, Curve c2, double Error)
+        public static List<CurveIntersection> GetIntersectionList(NurbsCurve c1, NurbsCurve c2, double Error)
         {
 
             var result = new List<CurveIntersection>();
@@ -140,7 +140,7 @@ namespace Luthier.Geometry
 
 
 
-        public static CurveIntersection GetIntersection(Curve c1, Curve c2, Point2D centre, double Error)
+        public static CurveIntersection GetIntersection(NurbsCurve c1, NurbsCurve c2, Point2D centre, double Error)
         {
             if (c1 == null || c2 == null) return null;
 
