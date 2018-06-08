@@ -36,6 +36,7 @@
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.perspectiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.orthonormalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,7 +55,8 @@
             // sketchToolStripMenuItem
             // 
             this.sketchToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.curveToolStripMenuItem});
+            this.curveToolStripMenuItem,
+            this.toolStripMenuItem1});
             this.sketchToolStripMenuItem.Name = "sketchToolStripMenuItem";
             this.sketchToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.sketchToolStripMenuItem.Text = "Sketch";
@@ -62,7 +64,7 @@
             // curveToolStripMenuItem
             // 
             this.curveToolStripMenuItem.Name = "curveToolStripMenuItem";
-            this.curveToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.curveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.curveToolStripMenuItem.Text = "Curve";
             this.curveToolStripMenuItem.Click += new System.EventHandler(this.curveToolStripMenuItem_Click);
             // 
@@ -77,7 +79,7 @@
             // planeToolStripMenuItem
             // 
             this.planeToolStripMenuItem.Name = "planeToolStripMenuItem";
-            this.planeToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.planeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.planeToolStripMenuItem.Text = "Plane";
             this.planeToolStripMenuItem.Click += new System.EventHandler(this.planeToolStripMenuItem_Click);
             // 
@@ -103,6 +105,11 @@
             this.orthonormalToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.orthonormalToolStripMenuItem.Text = "Orthonormal";
             this.orthonormalToolStripMenuItem.Click += new System.EventHandler(this.orthonormalToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
             // 
             // RenderForm3d
             // 
@@ -130,5 +137,6 @@
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem perspectiveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem orthonormalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
     }
 }

@@ -105,17 +105,9 @@ namespace Luthier.Model.MouseController3D
         }
 
 
-        //TODO: update so can draw on any plane, rather than just XY plane
         private double[] CalculateIntersection(int screenX, int screenY)
         {
             _camera.ConvertFromScreenToWorld(screenX, screenY, out double[] from, out double[] to);
-
-            //var roundtripFrom = _camera.ConvertFromWorldToScreen(from);
-            //var roundtripTo = _camera.ConvertFromWorldToScreen(to);
-
-            //double propFrom = to[2] / (to[2] - from[2]);
-
-            //return new double[] { from[0] * propFrom + to[0] * (1 - propFrom), from[1] * propFrom + to[1] * (1 - propFrom), 0 };
 
             return _canvas.GetPointOfIntersectionWorld(from, to);
         }
