@@ -13,13 +13,13 @@ namespace Luthier.Model.MouseController
     {
         private readonly IApplicationDocumentModel model;
         private double selectionRadius;
-        private List<IDraggable> selectedPoints;
+        private List<IDraggable2d> selectedPoints;
 
         public PointSelector(IApplicationDocumentModel model, double selectionRadius)
         {
             this.model = model;
             this.selectionRadius = selectionRadius;
-            selectedPoints = new List<IDraggable>();
+            selectedPoints = new List<IDraggable2d>();
         }
 
 
@@ -27,7 +27,7 @@ namespace Luthier.Model.MouseController
         public override void MouseLeftButtonDown(int x, int y)
         {
             double distance = float.MaxValue;
-            foreach (IDraggable point in model.Model.GetDraggableObjects())
+            foreach (IDraggable2d point in model.Model.GetDraggableObjects2d())
             {
                 PointF p = ViewMapper.TransformViewToModelCoordinates(new PointF(x, y));
                 double d = point.GetDistance(p.X, p.Y) * ViewMapper.Scale;

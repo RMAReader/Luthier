@@ -72,6 +72,17 @@ namespace Luthier.Model.GraphicObjects
             return surface;
         }
 
+        public IEnumerable<IDraggable2d> GetDraggableObjects2d()
+        {
+            for (int i = 0; i < cv_count0; i++)
+            {
+                for (int j = 0; j < cv_count1; j++)
+                {
+                    yield return new DraggableSurfaceCV2d(this, i, j);
+                }
+            }
+        }
+
         public IEnumerable<IDraggable> GetDraggableObjects()
         {
             for (int i = 0; i < cv_count0; i++)
@@ -90,13 +101,13 @@ namespace Luthier.Model.GraphicObjects
     }
 
 
-    public class DraggableSurfaceCV : IDraggable
+    public class DraggableSurfaceCV2d : IDraggable2d
     {
         private GraphicNurbSurface surface;
         private int i;
         private int j;
 
-        public DraggableSurfaceCV(GraphicNurbSurface surface, int i, int j)
+        public DraggableSurfaceCV2d(GraphicNurbSurface surface, int i, int j)
         {
             this.surface = surface;
             this.i = i;
@@ -116,6 +127,26 @@ namespace Luthier.Model.GraphicObjects
             cv[0] = x;
             cv[1] = y;
             surface.SetCV(i, j, cv);
+        }
+    }
+
+    public class DraggableSurfaceCV : IDraggable
+    {
+        private GraphicNurbSurface surface;
+        private int i;
+        private int j;
+
+        public DraggableSurfaceCV(GraphicNurbSurface surface, int i, int j)
+        {
+            this.surface = surface;
+            this.i = i;
+            this.j = j;
+        }
+
+        public double[] Values
+        {
+            get => surface.GetCV(i, j);
+            set => surface.SetCV(i, j, value);
         }
     }
 }

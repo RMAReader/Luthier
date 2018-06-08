@@ -12,7 +12,7 @@ namespace Luthier.Model.GraphicObjects
     [Serializable]
     //[XmlRoot(ElementName = "GraphicPoint2D", Namespace = Serializer<GraphicPoint2D>.StyleResearchNamespace)]
     //[XmlType("GraphicPoint2D")]
-    public class GraphicPoint2D : GraphicObjectBase, IDraggable
+    public class GraphicPoint2D : GraphicObjectBase, IDraggable2d
     {
         [XmlAttribute()]
         public double X;

@@ -35,13 +35,13 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.newLinkedLineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newCurveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newSurfaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newPolygonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newCompositeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newCompositePolygonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.measureLengthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newSurfaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -103,6 +103,13 @@
             this.newCurveToolStripMenuItem.Text = "New Curve";
             this.newCurveToolStripMenuItem.Click += new System.EventHandler(this.newCurveToolStripMenuItem_Click);
             // 
+            // newSurfaceToolStripMenuItem
+            // 
+            this.newSurfaceToolStripMenuItem.Name = "newSurfaceToolStripMenuItem";
+            this.newSurfaceToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.newSurfaceToolStripMenuItem.Text = "New Surface";
+            this.newSurfaceToolStripMenuItem.Click += new System.EventHandler(this.newSurfaceToolStripMenuItem_Click);
+            // 
             // newPolygonToolStripMenuItem
             // 
             this.newPolygonToolStripMenuItem.Name = "newPolygonToolStripMenuItem";
@@ -143,13 +150,6 @@
             this.measureLengthToolStripMenuItem.Text = "Measure Length";
             this.measureLengthToolStripMenuItem.Click += new System.EventHandler(this.measureLengthToolStripMenuItem_Click);
             // 
-            // newSurfaceToolStripMenuItem
-            // 
-            this.newSurfaceToolStripMenuItem.Name = "newSurfaceToolStripMenuItem";
-            this.newSurfaceToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.newSurfaceToolStripMenuItem.Text = "New Surface";
-            this.newSurfaceToolStripMenuItem.Click += new System.EventHandler(this.newSurfaceToolStripMenuItem_Click);
-            // 
             // DrawingForm2D
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -160,6 +160,7 @@
             this.Name = "DrawingForm2D";
             this.Text = "DrawingForm2D";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.DrawingForm2D_Paint);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DrawingForm2D_KeyDown);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DrawingForm2D_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DrawingForm2D_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DrawingForm2D_MouseUp);

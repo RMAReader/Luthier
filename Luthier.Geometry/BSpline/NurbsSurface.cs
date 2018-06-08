@@ -41,7 +41,9 @@ namespace Luthier.Geometry.BSpline
             cvDataBlock = new double[cvSize * cvCount[0] * cvCount[1]];
         }
 
-
+        public int CVSize => cvSize;
+        public int Dimension => dimension;
+        
         public double[] Evaluate(double u, double v)
         {
             var result = new double[dimension];
@@ -127,7 +129,14 @@ namespace Luthier.Geometry.BSpline
         //public bool InsertKnot(int direction, double knot_value, int knot_multiplicity) { return Convert.ToBoolean(surface.InsertKnot(direction, knot_value, knot_multiplicity)); }
         //public bool IncreaseDegree(int direction, int desired_degree) { return Convert.ToBoolean(surface.IncreaseDegree(direction, desired_degree)); }
 
-
+        public NurbsSurface Copy()
+        {
+            var result = new NurbsSurface(dimension, isRational, order[0], order[1], cvCount[0], cvCount[1]);
+            Array.Copy(cvDataBlock, result.cvDataBlock, cvDataBlock.Length);
+            Array.Copy(knot[0], result.knot[0], knot[0].Length);
+            Array.Copy(knot[1], result.knot[1], knot[1].Length);
+            return result;
+        }
     }
 
 

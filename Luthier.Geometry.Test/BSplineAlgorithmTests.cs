@@ -325,5 +325,55 @@ namespace Luthier.Geometry.Test
 
 
         }
+
+
+        [TestMethod]
+        public void ArrayCopy_BufferCopy_Speed_Test()
+        {
+            int n = 200;
+            double[] data = new double[n];
+            for (int i = 0; i < n; i++) data[i] = n;
+
+
+            var sw = new System.Diagnostics.Stopwatch();
+            int r = 1000000;
+
+            sw.Restart();
+
+            sw.Restart();
+            for (int i=0; i<r; i++)
+            {
+                data[0] = i;
+                double[] copy = new double[n];
+                Array.Copy(data, copy, n);
+            }
+
+            long t1 = sw.ElapsedMilliseconds;
+            sw.Restart();
+ 
+
+            for (int i = 0; i < r; i++)
+            {
+                data[0] = i;
+                double[] copy = new double[n];
+                for (int j = 0; j < n; j++) copy[j] = data[j];
+            }
+
+            long t3 = sw.ElapsedMilliseconds;
+            sw.Restart();
+
+
+            for (int i = 0; i < r; i++)
+            {
+                data[0] = i;
+                double[] copy = new double[n];
+                Buffer.BlockCopy(data, 0, copy, 0, n * sizeof(double));
+            }
+
+            long t2 = sw.ElapsedMilliseconds;
+
+            File.WriteAllLines(@"C:\Users\Richard\Documents\Development\Luthier\TestResult.txt", new string[] { string.Format("t1 = {0}, t2 = {1}, t3 = {2}", t1, t2, t3) });
+
+        }
     }
 }

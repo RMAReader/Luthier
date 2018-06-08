@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SharpDX;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -89,6 +90,17 @@ namespace SharpHelper
             }
             return temp;
         }
-        
+
+
+      
+        public static double[] Mul(Matrix m, double[] v)
+        {
+            return new double[] {
+                m.M11 * v[0] + m.M21 * v[1] + m.M31 * v[2] + m.M41,
+                m.M12 * v[0] + m.M22 * v[1] + m.M32 * v[2] + m.M42,
+                m.M13 * v[0] + m.M23 * v[1] + m.M33 * v[2] + m.M43,
+                m.M14 * v[0] + m.M24 * v[1] + m.M34 * v[2] + m.M44};
+        }
+
     }
 }

@@ -120,6 +120,9 @@ namespace Luthier.UI
             this.Invalidate();
         }
 
+        private void DrawingForm2D_KeyDown(object sender, KeyEventArgs e)
+        {
 
+        }
     }
 }

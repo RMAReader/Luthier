@@ -232,6 +232,25 @@ namespace Luthier.Geometry.BSpline
             return -1;
         }
 
+        /// <summary>
+        /// Insert new knot at t.
+        /// </summary>
+        /// <param name="degree">degree of bspline curve</param>
+        /// <param name="knotIX">index of knot span containing t</param>
+        /// <param name="knot"></param>
+        /// <param name="cv"></param>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        public static double[] InsertKnot(int degree, int knotIX, ref double[] knot, ref double[] cv, int t)
+        {
+            var result = new double[cv.Length + 1];
+            int cvIX = knotIX - degree + 2;
+            int n = degree - 1;
+
+            return new double[1];
+        }
+
+
         /*
         Oslo algorithm taken from Cohen et al.
         */

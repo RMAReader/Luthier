@@ -110,27 +110,20 @@ namespace Luthier.Model
             return objects.GetHashCode();
         }
 
-        public void CreateMesh(List<Vector3d> vertices, List<Vector3d> normals, List<int> indices)
+        public void CreateMesh_NurbsSurface(List<Vector3d> vertices, List<Vector3d> normals, List<int> indices)
         {
- 
-            int nU = 10;
-            int nV = 10;
+            vertices.Clear();
+            normals.Clear();
+            indices.Clear();
+
+            int nU = 100;
+            int nV = 100;
             foreach (GraphicNurbSurface surface in model.Objects.Where(x => x is GraphicNurbSurface))
             {
 
                 var prim = surface.ToPrimitive(this);
 
-                for(int i=0; i<prim.CVCount(0); i++)
-                {
-                    for (int j = 0; j < prim.CVCount(1); j++)
-                    {
-                        var p = prim.GetCV(i, j);
-                        p[2] = (p[0] * p[0] + p[1] * p[1]) / 1000;
-                        prim.SetCV(i, j, p);
-                    }
-                }
-
-               // var points2d = new List<Vector3d>();
+                // var points2d = new List<Vector3d>();
                 for (int i = 0; i < nU; i++)
                 {
                     double u = (1 - (double)i / (nU)) * prim.Domain(0).Min + (double)i / (nU) * prim.Domain(0).Max;
@@ -142,19 +135,6 @@ namespace Luthier.Model
                     }
                 }
 
-                
-
-                //var maxx = points2d.Max(p => p.x);
-                //var maxy = points2d.Max(p => p.y);
-                //var minx = points2d.Min(p => p.x);
-                //var miny = points2d.Min(p => p.y);
-
-                //foreach (var p in points2d)
-                //{
-                //    double u = (p.x - minx) / (maxx - minx);
-                //    double v = (p.y - miny) / (maxy - miny);
-                //    vertices.Add(new Vector3d(p.x, p.y, (u*u+v*v)*(maxx-minx)/5));
-                //}
                 for (int i = 0; i < nU - 1; i++)
                 {
                     for (int j = 0; j < nV - 1; j++)
@@ -163,11 +143,95 @@ namespace Luthier.Model
                         int se = sw + 1;
                         int nw = sw + nV;
                         int ne = nw + 1;
-                        indices.AddRange(new int[] {sw,se,ne,ne,nw,sw });
+                        indices.AddRange(new int[] { sw, se, ne, ne, nw, sw });
+                        indices.AddRange(new int[] { sw, ne, se, ne, sw, nw });
                     }
                 }
             }
         }
+
+        public void CreateMesh_NurbsControl(List<Vector3d> vertices, List<Vector3d> normals, List<int> indices)
+        {
+            vertices.Clear();
+            normals.Clear();
+            indices.Clear();
+
+            foreach (GraphicNurbSurface surface in model.Objects.Where(x => x is GraphicNurbSurface))
+            {
+                var prim = surface.ToPrimitive(this);
+
+                for (int i = 0; i < prim.CVCount(0); i++)
+                {
+                    for (int j = 0; j < prim.CVCount(1); j++)
+                    {
+                        vertices.Add(new Vector3d(prim.GetCV(i, j)));
+                        normals.Add(new Vector3d(0, 0, 1));
+                    }
+                }
+
+                //vertical
+                for (int i = 0; i < prim.CVCount(0) - 1; i++)
+                {
+                    for (int j = 0; j < prim.CVCount(1); j++)
+                    {
+                        var from = i * prim.CVCount(1) + j;
+                        var to = from + prim.CVCount(1);
+                        indices.AddRange(new int[] { from ,to });
+                    }
+                }
+
+                //horizontal
+                for (int i = 0; i < prim.CVCount(0); i++)
+                {
+                    for (int j = 0; j < prim.CVCount(1) - 1; j++)
+                    {
+                        var from = i * prim.CVCount(1) + j;
+                        var to = from + 1;
+                        indices.AddRange(new int[] { from, to });
+                    }
+                }
+            }
+        }
+
+
+
+        public void CreateMesh_NurbsCurve(List<Vector3d> vertices, List<Vector3d> normals, List<int> indices)
+        {
+            vertices.Clear();
+            normals.Clear();
+            indices.Clear();
+
+            foreach (NurbsCurve curve in model.Objects.Where(x => x is NurbsCurve))
+            {
+                var startIndex = vertices.Count();
+                for (int i = 0; i < curve.NumberOfPoints; i++)
+                {
+                    vertices.Add(new Vector3d(curve.GetCV(i)));
+                    normals.Add(new Vector3d(0, 0, 1));
+                }
+                for (int i = startIndex; i < startIndex + curve.NumberOfPoints - 1; i++)
+                {
+                    indices.AddRange(new int[] { i, i + 1 });
+                }
+
+                if (curve.NumberOfPoints > 2)
+                {
+                    startIndex = vertices.Count();
+                    foreach (var v in curve.ToLines(1000))
+                    {
+                        vertices.Add(new Vector3d(v));
+                        normals.Add(new Vector3d(0, 0, 1));
+                    }
+                    for (int i = startIndex; i < startIndex + 1000; i++)
+                    {
+                        indices.AddRange(new int[] { i, i + 1 });
+                    }
+                }
+            }
+
+            
+        }
+
     }
 
 
