@@ -36,17 +36,49 @@ namespace Luthier.Model.GraphicObjects
             };
         }
 
+        public Plane GetParallelPlaneThroughPoint(double[] point)
+        {
+            return new Plane
+            {
+                _origin = point,
+                _unitU = this._unitU,
+                _unitV = this._unitV,
+                _normal = this._normal,
+            };
+        }
+
 
         public static Plane CreateRightHandedXY(double[] origin)
         {
             return new Plane
             {
-                _normal = new double[] { 0, 0, 1.0 },
                 _origin = origin,
                 _unitU = new double[] { 1.0, 0, 0 },
                 _unitV = new double[] { 0, 1.0, 0 },
+                _normal = new double[] { 0, 0, 1.0 },
             };
         }
+        public static Plane CreateRightHandedYZ(double[] origin)
+        {
+            return new Plane
+            {
+                _origin = origin,
+                _unitU = new double[] { 0, 1.0, 0 },
+                _unitV = new double[] { 0, 0, 1.0 },
+                _normal = new double[] { 1.0, 0, 0 },
+            };
+        }
+        public static Plane CreateRightHandedZX(double[] origin)
+        {
+            return new Plane
+            {
+                _origin = origin,
+                _unitU = new double[] { 0, 0, 1.0 },
+                _unitV = new double[] { 1.0, 0, 0 },
+                _normal = new double[] { 0, 1.0, 0 },
+            };
+        }
+
 
         public static Plane CreateRightHandedThroughPoints(double[] origin, double[] pu, double[] pv)
         {
@@ -60,10 +92,10 @@ namespace Luthier.Model.GraphicObjects
 
             return new Plane
             {
-                _normal = new double[] { 0, 0, 1.0 },
+                _normal = normal,
                 _origin = origin,
-                _unitU = new double[] { 1.0, 0, 0 },
-                _unitV = new double[] { 0, 1.0, 0 },
+                _unitU = unitU,
+                _unitV = unitV,
             };
         }
     }

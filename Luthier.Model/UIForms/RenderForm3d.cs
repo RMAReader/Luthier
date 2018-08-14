@@ -20,8 +20,13 @@ namespace Luthier.Model.UIForms
 
         public EventHandler DoCurveToolStripItem_Click;
         public EventHandler DoPlaneToolStripMenuItem_Click;
+        public EventHandler DoSurfaceToolStripMenuItem_Click;
         public EventHandler DoPerspectiveToolStripMenuItem_Click;
         public EventHandler DoOrthonormalToolStripMenuItem_Click;
+        public EventHandler DoDragParallelToXYPlaneToolStripMenuItem_Click;
+        public EventHandler DoDragParallelToYZPlaneToolStripMenuItem_Click;
+        public EventHandler DoDragParallelToZXPlaneToolStripMenuItem_Click;
+        public EventHandler DoDragNormalToPlaneToolStripMenuItem_Click;
 
         private void curveToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -41,6 +46,31 @@ namespace Luthier.Model.UIForms
         private void orthonormalToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DoOrthonormalToolStripMenuItem_Click(sender, e);
+        }
+
+        private void parallelToPlaneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DoDragParallelToXYPlaneToolStripMenuItem_Click(sender, e);
+        }
+
+        private void normalToPlaneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DoDragNormalToPlaneToolStripMenuItem_Click(sender, e);
+        }
+
+        private void surfaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DoSurfaceToolStripMenuItem_Click(sender, e);
+        }
+
+        private void dragParallelToYZPlaneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DoDragParallelToYZPlaneToolStripMenuItem_Click(sender, e);
+        }
+
+        private void dragParallelToZXPlaneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DoDragParallelToZXPlaneToolStripMenuItem_Click(sender, e);
         }
     }
 }

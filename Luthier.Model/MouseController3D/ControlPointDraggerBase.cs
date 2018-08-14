@@ -9,16 +9,18 @@ using Luthier.Model.Presenter;
 
 namespace Luthier.Model.MouseController3D
 {
-    public class ControlPointDragger : IMouseController3D
+    public class ControlPointDraggerBase : IMouseController3D
     {
-        private IApplicationDocumentModel _model;
-        private Camera _camera;
-        private double selectionRadius = 20;
-        private List<IDraggable> selectedPoints = new List<IDraggable>();
+        protected IApplicationDocumentModel _model;
+        protected Camera _camera;
+        protected double selectionRadius = 20;
+        protected List<IDraggable> selectedPoints = new List<IDraggable>();
 
-        private int startX;
-        private int startY;
-        private double[] startWorldPoint;
+        protected int startX;
+        protected int startY;
+        protected double[] startWorldPoint;
+
+        public Plane referencePlane { get; set; }
 
         public int X { get; private set; }
 
@@ -87,12 +89,7 @@ namespace Luthier.Model.MouseController3D
             {
                 case MouseButtons.Left:
 
-                    foreach (var point in selectedPoints)
-                    {
-                        var dz = startY - Y;
-                        point.Values = new double[]{ startWorldPoint[0], startWorldPoint[1], startWorldPoint[2] + dz};
-                        _model.Model.HasChanged = true;
-                    }
+                    OnMouseMoveLeftButtonDown();
                     break;
             }
         }
@@ -109,6 +106,6 @@ namespace Luthier.Model.MouseController3D
         }
 
 
-
+        protected virtual void OnMouseMoveLeftButtonDown() { }
     }
 }

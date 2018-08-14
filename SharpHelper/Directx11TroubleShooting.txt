@@ -1,0 +1,15 @@
+﻿Running on machine when Directx 11.0 is not supportd by Graphics card:
+
+1) the see what level of directx support is present, do the following:
+
+	- type dxdiag into Start -> search box, and launch
+	- the "System" tab shows the version of directx supported by the operating system
+	- the "Display" tab shows the feature level supported. E.g. DDI Version: 10.1 means directx 10.1 features are supported
+
+2) update the feature level in code so it is no greater than that supported by machine
+
+3) finally, it may be necessary to update directx settings on comupter:
+
+	- type dxcpl into Start -> search box, and launch
+	- add your .exe that uses directx to "scope" by adding its full path
+	- in "Device Settings", ensure "Force WARP" is checked.

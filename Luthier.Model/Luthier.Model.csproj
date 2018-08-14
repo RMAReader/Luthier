@@ -92,7 +92,9 @@
     <Compile Include="GraphicObjects\IDraggable.cs" />
     <Compile Include="KeyController3D\IKeyController3D.cs" />
     <Compile Include="KeyController3D\OrbitZoom.cs" />
-    <Compile Include="MouseController3D\ControlPointDragger.cs" />
+    <Compile Include="MouseController3D\ControlPointDraggerBase.cs" />
+    <Compile Include="MouseController3D\ControlPointDraggerNormalToPlane.cs" />
+    <Compile Include="MouseController3D\ControlPointDraggerParallelToPlane.cs" />
     <Compile Include="MouseController3D\IMouseController3D.cs" />
     <Compile Include="MouseController3D\SketchNurbsCurve.cs" />
     <Compile Include="MouseController3D\OrbitZoomMouseWheel.cs" />

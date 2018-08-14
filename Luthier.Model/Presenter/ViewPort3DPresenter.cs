@@ -57,13 +57,18 @@ namespace Luthier.Model.Presenter
             form = new RenderForm3d();
             form.Text = "3D Viewport";
 
-            SetMouseController(new ControlPointDragger());
+            SetMouseController(new ControlPointDraggerBase());
             SetKeyController(new OrbitZoom());
 
             form.DoCurveToolStripItem_Click = DoCurveToolStripItem;
             form.DoPlaneToolStripMenuItem_Click = DoPlaneToolStripMenuItem;
+            form.DoSurfaceToolStripMenuItem_Click = DoSurfaceToolStripMenuItem;
             form.DoOrthonormalToolStripMenuItem_Click = DoOrthonormalToolStripMenuItem_Click;
             form.DoPerspectiveToolStripMenuItem_Click = DoPerspectiveToolStripMenuItem_Click;
+            form.DoDragParallelToXYPlaneToolStripMenuItem_Click = DoDragParallelToXYPlaneToolStripMenuItem_Click;
+            form.DoDragParallelToYZPlaneToolStripMenuItem_Click = DoDragParallelToYZPlaneToolStripMenuItem_Click;
+            form.DoDragParallelToZXPlaneToolStripMenuItem_Click = DoDragParallelToZXPlaneToolStripMenuItem_Click;
+            form.DoDragNormalToPlaneToolStripMenuItem_Click = DoDragNormalToPlaneToolStripMenuItem_Click;
 
             _camera.ViewWidth = form.ClientSize.Width;
             _camera.ViewHeight = form.ClientSize.Height;
@@ -116,12 +121,46 @@ namespace Luthier.Model.Presenter
             SetMouseController(new SketchNurbsCurve());
         }
 
+        private void DoDragParallelToXYPlaneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var controller = new ControlPointDraggerParallelToPlane();
+            controller.referencePlane = GraphicObjects.Plane.CreateRightHandedXY(new double[3]);
+            SetMouseController(controller);
+        }
 
-        private void DoPlaneToolStripMenuItem(object sender, EventArgs e)
+        private void DoDragParallelToYZPlaneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var controller = new ControlPointDraggerParallelToPlane();
+            controller.referencePlane = GraphicObjects.Plane.CreateRightHandedYZ(new double[3]);
+            SetMouseController(controller);
+        }
+
+        private void DoDragParallelToZXPlaneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var controller = new ControlPointDraggerParallelToPlane();
+            controller.referencePlane = GraphicObjects.Plane.CreateRightHandedZX(new double[3]);
+            SetMouseController(controller);
+        }
+
+        private void DoDragNormalToPlaneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetMouseController(new ControlPointDraggerNormalToPlane());
+        }
+
+        private void DoSurfaceToolStripMenuItem(object sender, EventArgs e)
         {
             var factory = model.BSplineFactory();
             factory.CreateSurface(5, 5, -500, -500, 500, 500);
         }
+
+
+        private void DoPlaneToolStripMenuItem(object sender, EventArgs e)
+        {
+            var plane = GraphicObjects.Plane.CreateRightHandedXY(new double[] { 0, 0, -1000});
+            model.Model.Objects.Add(plane);
+        }
+
+
 
         private void DoPerspectiveToolStripMenuItem_Click(object sender, EventArgs e)
         {
