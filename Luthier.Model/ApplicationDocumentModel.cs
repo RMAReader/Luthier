@@ -33,7 +33,6 @@ namespace Luthier.Model
 
         
         public GraphicModel model;
-        public List<GraphicObjectBase> objects { get => model.Objects; set => model.Objects = value; }
 
 
         public ApplicationDocumentModel()
@@ -54,8 +53,6 @@ namespace Luthier.Model
         }
 
         /* Factory methods for creating graphic objects */
-        public Dictionary<UniqueKey, GraphicObjectBase> Objects() => objects.ToDictionary(x => x.Key);
-
         public IPoint2DFactory Point2DFactory() => point2DFactory;
 
         public IPolygon2DFactory Polygon2DFactory() => polygon2DFactory;
@@ -82,33 +79,34 @@ namespace Luthier.Model
 
         public byte[] SerialiseToBytes()
         {
-            return Luthier.Core.Serializer<GraphicModel>.Serialize(model);
+            return Serializer<GraphicModelStorage>.Serialize(model.GetStorage);
         }
 
         public void DeserialiseFromBytes(byte[] bytes)
         {
-            model = Luthier.Core.Serializer<GraphicModel>.Deserialize(bytes);
+            var storage = Serializer<GraphicModelStorage>.Deserialize(bytes);
+            model = new GraphicModel(storage);
         }
 
         public void New()
         {
-            objects = new List<GraphicObjectBase>();
+
         }
 
-        public override bool Equals(object obj)
-        {
-            if (obj is ApplicationDocumentModel == false) return false;
-            var m = (ApplicationDocumentModel)obj;
-            for (int i = 0; i < objects.Count; i++)
-            {
-                if (objects[i].Equals(m.objects[i]) == false) return false;
-            }
-            return true;
-        }
-        public override int GetHashCode()
-        {
-            return objects.GetHashCode();
-        }
+        //public override bool Equals(object obj)
+        //{
+        //    if (obj is ApplicationDocumentModel == false) return false;
+        //    var m = (ApplicationDocumentModel)obj;
+        //    for (int i = 0; i < objects.Count; i++)
+        //    {
+        //        if (objects[i].Equals(m.objects[i]) == false) return false;
+        //    }
+        //    return true;
+        //}
+        //public override int GetHashCode()
+        //{
+        //    return objects.GetHashCode();
+        //}
 
         public void CreateMesh_NurbsSurface(List<Vector3d> vertices, List<Vector3d> normals, List<int> indices)
         {
@@ -116,22 +114,22 @@ namespace Luthier.Model
             normals.Clear();
             indices.Clear();
 
-            int nU = 100;
-            int nV = 100;
-            foreach (GraphicNurbSurface surface in model.Objects.Where(x => x is GraphicNurbSurface))
+            int nU = 20;
+            int nV = 20;
+            foreach (GraphicNurbSurface surface in model.Where(x => x is GraphicNurbSurface))
             {
 
-                var prim = surface.ToPrimitive(this);
+               
 
                 // var points2d = new List<Vector3d>();
                 for (int i = 0; i < nU; i++)
                 {
-                    double u = (1 - (double)i / (nU)) * prim.Domain(0).Min + (double)i / (nU) * prim.Domain(0).Max;
+                    double u = (1 - (double)i / (nU)) * surface.Domain0().Min + (double)i / (nU) * surface.Domain0().Max;
                     for (int j=0; j < nV; j++)
                     {
-                        double v = (1 - (double)j / (nV)) * prim.Domain(1).Min + (double)j / (nV) * prim.Domain(1).Max;
-                        vertices.Add(new Vector3d(prim.Evaluate(u, v)));
-                        normals.Add(new Vector3d(prim.EvaluateNormal(u, v)));
+                        double v = (1 - (double)j / (nV)) * surface.Domain1().Min + (double)j / (nV) * surface.Domain1().Max;
+                        vertices.Add(new Vector3d(surface.Evaluate(u, v)));
+                        normals.Add(new Vector3d(surface.EvaluateNormal(u, v)));
                     }
                 }
 
@@ -156,36 +154,34 @@ namespace Luthier.Model
             normals.Clear();
             indices.Clear();
 
-            foreach (GraphicNurbSurface surface in model.Objects.Where(x => x is GraphicNurbSurface))
+            foreach (GraphicNurbSurface surface in model.Where(x => x is GraphicNurbSurface))
             {
-                var prim = surface.ToPrimitive(this);
-
-                for (int i = 0; i < prim.CVCount(0); i++)
+                for (int i = 0; i < surface.CvCount0; i++)
                 {
-                    for (int j = 0; j < prim.CVCount(1); j++)
+                    for (int j = 0; j < surface.CvCount1; j++)
                     {
-                        vertices.Add(new Vector3d(prim.GetCV(i, j)));
+                        vertices.Add(new Vector3d(surface.GetCV(i, j)));
                         normals.Add(new Vector3d(0, 0, 1));
                     }
                 }
 
                 //vertical
-                for (int i = 0; i < prim.CVCount(0) - 1; i++)
+                for (int i = 0; i < surface.CvCount0 - 1; i++)
                 {
-                    for (int j = 0; j < prim.CVCount(1); j++)
+                    for (int j = 0; j < surface.CvCount1; j++)
                     {
-                        var from = i * prim.CVCount(1) + j;
-                        var to = from + prim.CVCount(1);
+                        var from = i * surface.CvCount1 + j;
+                        var to = from + surface.CvCount1;
                         indices.AddRange(new int[] { from ,to });
                     }
                 }
 
                 //horizontal
-                for (int i = 0; i < prim.CVCount(0); i++)
+                for (int i = 0; i < surface.CvCount0; i++)
                 {
-                    for (int j = 0; j < prim.CVCount(1) - 1; j++)
+                    for (int j = 0; j < surface.CvCount1 - 1; j++)
                     {
-                        var from = i * prim.CVCount(1) + j;
+                        var from = i * surface.CvCount1 + j;
                         var to = from + 1;
                         indices.AddRange(new int[] { from, to });
                     }
@@ -201,7 +197,7 @@ namespace Luthier.Model
             normals.Clear();
             indices.Clear();
 
-            foreach (NurbsCurve curve in model.Objects.Where(x => x is NurbsCurve))
+            foreach (NurbsCurve curve in model.Where(x => x is NurbsCurve))
             {
                 var startIndex = vertices.Count();
                 for (int i = 0; i < curve.NumberOfPoints; i++)

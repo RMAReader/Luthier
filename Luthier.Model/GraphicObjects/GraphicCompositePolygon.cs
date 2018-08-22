@@ -32,16 +32,16 @@ namespace Luthier.Model.GraphicObjects
 
             foreach (var pointKeyPair in Junctions.EnumeratePairsClosed())
             {
-                    GraphicIntersection left = (GraphicIntersection)model.Objects()[pointKeyPair.Item1];
-                    Point2D left_centre = ((GraphicPoint2D)model.Objects()[left.Centre]).ToPrimitive();
-                    var left_curve1 = (left.Object1 == null) ? null : ((GraphicBSplineCurve)model.Objects()[left.Object1]).ToPrimitive(model);
-                    var left_curve2 = (left.Object2 == null) ? null : ((GraphicBSplineCurve)model.Objects()[left.Object2]).ToPrimitive(model);
+                    GraphicIntersection left = (GraphicIntersection)model.Model[pointKeyPair.Item1];
+                    Point2D left_centre = ((GraphicPoint2D)model.Model[left.Centre]).ToPrimitive();
+                    var left_curve1 = (left.Object1 == null) ? null : ((GraphicBSplineCurve)model.Model[left.Object1]).ToPrimitive(model);
+                    var left_curve2 = (left.Object2 == null) ? null : ((GraphicBSplineCurve)model.Model[left.Object2]).ToPrimitive(model);
                     var left_intersect = Intersection.GetIntersection(left_curve1, left_curve2, left_centre, 0.001);
 
-                    GraphicIntersection right = (GraphicIntersection)model.Objects()[pointKeyPair.Item2];
-                    Point2D right_centre = ((GraphicPoint2D)model.Objects()[right.Centre]).ToPrimitive();
-                    var right_curve1 = (right.Object1 == null) ? null : ((GraphicBSplineCurve)model.Objects()[right.Object1]).ToPrimitive(model);
-                    var right_curve2 = (right.Object2 == null) ? null : ((GraphicBSplineCurve)model.Objects()[right.Object2]).ToPrimitive(model);
+                    GraphicIntersection right = (GraphicIntersection)model.Model[pointKeyPair.Item2];
+                    Point2D right_centre = ((GraphicPoint2D)model.Model[right.Centre]).ToPrimitive();
+                    var right_curve1 = (right.Object1 == null) ? null : ((GraphicBSplineCurve)model.Model[right.Object1]).ToPrimitive(model);
+                    var right_curve2 = (right.Object2 == null) ? null : ((GraphicBSplineCurve)model.Model[right.Object2]).ToPrimitive(model);
                     var right_intersect = Intersection.GetIntersection(right_curve1, right_curve2, right_centre, 0.001);
 
                     if (left_intersect != null && right_intersect != null)

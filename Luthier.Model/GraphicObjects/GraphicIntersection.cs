@@ -30,7 +30,7 @@ namespace Luthier.Model.GraphicObjects
 
         public override double GetDistance(ApplicationDocumentModel model, double x, double y)
         {
-            return model.Objects()[Centre].GetDistance(model, x, y);
+            return model.Model[Centre].GetDistance(model, x, y);
         }
     }
 

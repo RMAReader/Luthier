@@ -33,7 +33,7 @@ namespace Luthier.Model.GraphicObjects
 
         public override double GetDistance(ApplicationDocumentModel model, double x, double y)
         {
-            return model.objects
+            return model.Model
                 .Where(o => pointsKeys.Contains(o.Key))
                 .Select(o => o.GetDistance(model,x,y))
                 .OrderBy(o => o)
@@ -42,7 +42,7 @@ namespace Luthier.Model.GraphicObjects
 
         public Geometry.BSpline.NurbsCurve ToPrimitive(IApplicationDocumentModel model)
         {
-            var points = pointsKeys.Select(x => ((GraphicPoint2D)model.Objects()[x]).ToPrimitive()).ToList();
+            var points = pointsKeys.Select(x => ((GraphicPoint2D)model.Model[x]).ToPrimitive()).ToList();
             return new Geometry.BSpline.NurbsCurve(points, knot);
         }
     }

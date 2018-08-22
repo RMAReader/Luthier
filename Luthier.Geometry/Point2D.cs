@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Luthier.Geometry
 {
+ 
     public class Point2D
     {
         public double x;

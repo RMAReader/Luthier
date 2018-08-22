@@ -22,7 +22,7 @@ namespace Luthier.Model.ToolPathSpecificationFactory
         public PocketSpecification New()
         {
             var pocketSpec  = new PocketSpecification();
-            model.objects.Add(pocketSpec);
+            model.Model.Add(pocketSpec);
             return pocketSpec;
         }
 

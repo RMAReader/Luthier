@@ -94,7 +94,7 @@ namespace SharpHelper
                 Usage = Usage.RenderTargetOutput
             };
 
-            FeatureLevel[] levels = new FeatureLevel[] { FeatureLevel.Level_10_1 };
+            FeatureLevel[] levels = new FeatureLevel[] { FeatureLevel.Level_11_1 };
 
             //create device and swapchain
             DeviceCreationFlags flag = DeviceCreationFlags.None | DeviceCreationFlags.BgraSupport;

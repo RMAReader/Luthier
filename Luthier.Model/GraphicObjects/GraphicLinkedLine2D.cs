@@ -53,7 +53,7 @@ namespace Luthier.Model.GraphicObjects
 
         public override double GetDistance(ApplicationDocumentModel model, double x, double y)
         {
-            return model.objects
+            return model.Model
               .Where(o => pointsKeys.Contains(o.Key))
               .Select(o => o.GetDistance(model, x, y))
               .OrderBy(o => o)

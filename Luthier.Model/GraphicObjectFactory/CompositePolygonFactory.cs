@@ -23,7 +23,7 @@ namespace Luthier.Model.GraphicObjectFactory
         public GraphicCompositePolygon New()
         {
             var obj = new GraphicCompositePolygon();
-            data.objects.Add(obj);
+            data.Model.Add(obj);
 
             Log.Instance().Append(string.Format("Created CompositePolygon. Key = {0}", obj.Key));
             return obj;

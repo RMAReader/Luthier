@@ -23,7 +23,7 @@ namespace Luthier.Model.GraphicObjectFactory
             var p2 = data.Point2DFactory().New(x, y);
             var obj = new GraphicLengthGauge(p1.Key, p2.Key);
 
-            data.objects.Add(obj);
+            data.Model.Add(obj);
             Log.Instance().Append(string.Format("Created LengthGauge. Key = {0}", obj.Key));
 
             return obj;
@@ -32,7 +32,7 @@ namespace Luthier.Model.GraphicObjectFactory
 
         public void SetEndPoint(GraphicLengthGauge gauge, double x, double y)
         {
-            var point = data.Objects()[gauge.toPoint] as GraphicPoint2D;
+            var point = data.Model[gauge.toPoint] as GraphicPoint2D;
             if (point != null)
             {
                 point.X = x;
@@ -43,15 +43,15 @@ namespace Luthier.Model.GraphicObjectFactory
 
         public void Delete(GraphicLengthGauge gauge)
         {
-            if (data.objects.Where(x => x.Key == gauge.Key).ToList().Count == 0) throw new ArgumentException("gauge does not exist in data model");
+            if (!data.Model.ContainsObject(gauge)) throw new ArgumentException("gauge does not exist in data model");
 
             foreach (var key in new UniqueKey[] { gauge.fromPoint, gauge.toPoint })
             {
-                var point = (GraphicPoint2D)data.objects.Where(x => x.Key == key).First();
+                var point = (GraphicPoint2D)data.Model.Where(x => x.Key == key).First();
                 point.parentObjectKeys.Remove(gauge.Key);
-                if (point.parentObjectKeys.Count == 0) data.objects.Remove(point);
+                if (point.parentObjectKeys.Count == 0) data.Model.Remove(point);
             }
-            data.objects.Remove(gauge);
+            data.Model.Remove(gauge);
 
             Log.Instance().Append(string.Format("gauge.Delete: gauge.Key = {0}", gauge.Key));
         }

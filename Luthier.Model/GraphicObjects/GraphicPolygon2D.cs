@@ -20,7 +20,7 @@ namespace Luthier.Model.GraphicObjects
             List<Point2D> points = new List<Point2D>();
             foreach(var key in pointsKeys)
             {
-                GraphicPoint2D point = (GraphicPoint2D) model.Objects()[key];
+                GraphicPoint2D point = (GraphicPoint2D) model.Model[key];
                 points.Add(new Point2D(point.X, point.Y));
             }
             return new Polygon2D(points);

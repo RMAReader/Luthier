@@ -16,6 +16,8 @@ using Luthier.Model.UIForms;
 using SharpDX.Direct3D;
 using Luthier.Geometry.BSpline;
 using Luthier.Model.GraphicObjects;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace Luthier.Model.Presenter
 {
@@ -124,21 +126,21 @@ namespace Luthier.Model.Presenter
         private void DoDragParallelToXYPlaneToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var controller = new ControlPointDraggerParallelToPlane();
-            controller.referencePlane = GraphicObjects.Plane.CreateRightHandedXY(new double[3]);
+            controller.referencePlane = GraphicObjects.Plane.CreateRightHandedXY(origin: new double[3]);
             SetMouseController(controller);
         }
 
         private void DoDragParallelToYZPlaneToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var controller = new ControlPointDraggerParallelToPlane();
-            controller.referencePlane = GraphicObjects.Plane.CreateRightHandedYZ(new double[3]);
+            controller.referencePlane = GraphicObjects.Plane.CreateRightHandedYZ(origin: new double[3]);
             SetMouseController(controller);
         }
 
         private void DoDragParallelToZXPlaneToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var controller = new ControlPointDraggerParallelToPlane();
-            controller.referencePlane = GraphicObjects.Plane.CreateRightHandedZX(new double[3]);
+            controller.referencePlane = GraphicObjects.Plane.CreateRightHandedZX(origin: new double[3]);
             SetMouseController(controller);
         }
 
@@ -149,15 +151,21 @@ namespace Luthier.Model.Presenter
 
         private void DoSurfaceToolStripMenuItem(object sender, EventArgs e)
         {
-            var factory = model.BSplineFactory();
-            factory.CreateSurface(5, 5, -500, -500, 500, 500);
+            var dialog = new NewBSplineSurface();
+            dialog.StartPosition = FormStartPosition.CenterParent;
+            dialog.ShowDialog();
+            if(dialog.DialogResult == DialogResult.OK)
+            {
+                var controller = new SketchSurface(dialog.NumberOfControlPointsU, dialog.NumberOfControlPointsV);
+                SetMouseController(controller);
+            }
         }
 
 
         private void DoPlaneToolStripMenuItem(object sender, EventArgs e)
         {
             var plane = GraphicObjects.Plane.CreateRightHandedXY(new double[] { 0, 0, -1000});
-            model.Model.Objects.Add(plane);
+            model.Model.Add(plane);
         }
 
 
@@ -204,19 +212,40 @@ namespace Luthier.Model.Presenter
 
                 SharpMesh mesh_XYPlane = CreatePlaneXY(device);
 
-                    //Create Shader From File and Create Input Layout
-                    SharpShader shader = new SharpShader(device, "../../HLSL.txt",
-                        new SharpShaderDescription() { VertexShaderFunction = "VS", PixelShaderFunction = "PS" },
-                        new InputElement[] {
+                //Create Shader From File and Create Input Layout
+                SharpShader shader = new SharpShader(device, "../../HLSL.fx",
+                    new SharpShaderDescription() { VertexShaderFunction = "VS", PixelShaderFunction = "PS" },
+                    new InputElement[] {
                         new InputElement("POSITION", 0, Format.R32G32B32_Float, 0, 0),
                         new InputElement("NORMAL", 0, Format.R32G32B32_Float, 12, 0),
                         new InputElement("COLOR", 0, Format.R32G32B32A32_Float, 24, 0)
-                        });
+                    });
 
-                    //create constant buffer
-                    SharpDX.Direct3D11.Buffer buffer = shader.CreateBuffer<Data>();
+                SharpShader shaderLines = new SharpShader(device, "../../HLSL_Lines.fx",
+                    new SharpShaderDescription() { VertexShaderFunction = "VS", PixelShaderFunction = "PS" },
+                    new InputElement[] {
+                        new InputElement("POSITION", 0, Format.R32G32B32_Float, 0, 0),
+                        new InputElement("NORMAL", 0, Format.R32G32B32_Float, 12, 0),
+                        new InputElement("COLOR", 0, Format.R32G32B32A32_Float, 24, 0)
+                    });
 
-                    fpsCounter.Reset();
+                SharpShader shaderMetal = new SharpShader(device, "../../HLSL_AmbientDiffuseSpecular.fx",
+                new SharpShaderDescription() { VertexShaderFunction = "VS", PixelShaderFunction = "PS" },
+                new InputElement[] {
+                        new InputElement("POSITION", 0, Format.R32G32B32_Float, 0, 0),
+                        new InputElement("NORMAL", 0, Format.R32G32B32_Float, 12, 0),
+                        new InputElement("TANGENT", 0, Format.R32G32B32_Float, 24, 0),
+                        new InputElement("BINORMAL", 0, Format.R32G32B32_Float, 36, 0),
+                        new InputElement("TEXCOORD", 0, Format.R32G32_Float, 48, 0)
+                });
+
+                //create constant buffer
+                //SharpDX.Direct3D11.Buffer bufferLines = shaderLines.CreateBuffer<Data>();
+
+                SharpDX.Direct3D11.Buffer buffer = shaderMetal.CreateBuffer<Data2>();
+               
+
+                fpsCounter.Reset();
 
                     model.Model.HasChanged = true;
 
@@ -234,50 +263,58 @@ namespace Luthier.Model.Presenter
                         if (model.Model.HasChanged)
                         {
 
+                            var sw = new Stopwatch();
+                            sw.Restart();
+
                             model.CreateMesh_NurbsSurface(vertices, normals, indices);
                             model.Model.HasChanged = false;
                             
+                            var t1 = sw.Elapsed.TotalSeconds * 1000;
+                            sw.Restart();
+
                             //Init Mesh
-                            var Sharpvertices = new StaticColouredVertex[vertices.Count];
+                            var Sharpvertices = new TangentVertex[vertices.Count];
                             for (int i = 0; i < vertices.Count; i++)
                             {
                                 Sharpvertices[i].Position = new Vector3((float)vertices[i].x, (float)vertices[i].y, (float)vertices[i].z);
                                 Sharpvertices[i].Normal = new Vector3((float)normals[i].x, (float)normals[i].y, (float)normals[i].z);
-                                Sharpvertices[i].Color = new Vector4(1, 0, 0, 0);
+                                Sharpvertices[i].Tangent = new Vector3(1, 0, 0);
+                                Sharpvertices[i].Binormal = new Vector3(0, 1, 0);
+                                Sharpvertices[i].TextureCoordinate = new Vector2(0, 0);
                             }
 
                             if (Sharpvertices.Length > 0)
                             {
                                 if (mesh_NurbsSurface == null)
                                 {
-                                    mesh_NurbsSurface = SharpMesh.Create<StaticColouredVertex>(device, Sharpvertices, indices.ToArray());
+                                    mesh_NurbsSurface = SharpMesh.Create<TangentVertex>(device, Sharpvertices, indices.ToArray());
                                 }
                                 else
                                 {
                                     device.DeviceContext.UpdateSubresource(Sharpvertices, mesh_NurbsSurface.VertexBuffer);
                                 }
                             }
-
+                            var t2 = sw.Elapsed.TotalSeconds * 1000;
                             model.CreateMesh_NurbsControl(vertices, normals, indices);
 
                             //Init Mesh
-                            Sharpvertices = new StaticColouredVertex[vertices.Count];
+                            var Sharpvertices2 = new StaticColouredVertex[vertices.Count];
                             for (int i = 0; i < vertices.Count; i++)
                             {
-                                Sharpvertices[i].Position = new Vector3((float)vertices[i].x, (float)vertices[i].y, (float)vertices[i].z);
-                                Sharpvertices[i].Normal = new Vector3((float)normals[i].x, (float)normals[i].y, (float)normals[i].z);
-                                Sharpvertices[i].Color = new Vector4(0, 1, 0, 0);
+                                Sharpvertices2[i].Position = new Vector3((float)vertices[i].x, (float)vertices[i].y, (float)vertices[i].z);
+                                Sharpvertices2[i].Normal = new Vector3((float)normals[i].x, (float)normals[i].y, (float)normals[i].z);
+                                Sharpvertices2[i].Color = new Vector4(0,1,1,0);
                             }
 
-                            if (Sharpvertices.Length > 0)
+                            if (Sharpvertices2.Length > 0)
                             {
                                 if (mesh_NurbsControl == null)
                                 {
-                                    mesh_NurbsControl = SharpMesh.Create<StaticColouredVertex>(device, Sharpvertices, indices.ToArray());
+                                    mesh_NurbsControl = SharpMesh.Create<StaticColouredVertex>(device, Sharpvertices2, indices.ToArray());
                                 }
                                 else
                                 {
-                                    device.DeviceContext.UpdateSubresource(Sharpvertices, mesh_NurbsControl.VertexBuffer);
+                                    device.DeviceContext.UpdateSubresource(Sharpvertices2, mesh_NurbsControl.VertexBuffer);
                                 }
                             }
 
@@ -285,18 +322,17 @@ namespace Luthier.Model.Presenter
                             model.CreateMesh_NurbsCurve(vertices, normals, indices);
 
                             //Init Mesh
-                            Sharpvertices = new StaticColouredVertex[vertices.Count];
+                            Sharpvertices = new TangentVertex[vertices.Count];
                             for (int i = 0; i < vertices.Count; i++)
                             {
                                 Sharpvertices[i].Position = new Vector3((float)vertices[i].x, (float)vertices[i].y, (float)vertices[i].z);
                                 Sharpvertices[i].Normal = new Vector3((float)normals[i].x, (float)normals[i].y, (float)normals[i].z);
-                                Sharpvertices[i].Color = new Vector4(0, 1, 0, 0);
                             }
                             if (Sharpvertices.Length > 0)
                             {
                                 if (mesh_NurbsCurve != null) mesh_NurbsCurve.Dispose();
                                 
-                                mesh_NurbsCurve = SharpMesh.Create<StaticColouredVertex>(device, Sharpvertices, indices.ToArray());
+                                mesh_NurbsCurve = SharpMesh.Create<TangentVertex>(device, Sharpvertices, indices.ToArray());
                                 
                             }
                         }
@@ -307,7 +343,6 @@ namespace Luthier.Model.Presenter
 
                         //clear color
                         device.Clear(SharpDX.Color.CornflowerBlue);
-
                         Data sceneInformation = new Data()
                         {
                             world = _camera.World,
@@ -316,24 +351,57 @@ namespace Luthier.Model.Presenter
                             //viewDirection = new Vector4(Vector3.Normalize(from - to), 1),
                         };
 
+                        var viewI = _camera.View;
+                        viewI.Invert();
+
+                        var worldIT = _camera.World;
+                        worldIT.Invert();
+                        worldIT.Transpose();
+
+                        Data2 sceneInformation2 = new Data2()
+                        {
+                            World = _camera.World,
+                            WorldInverseTranspose = worldIT,
+                            ViewInverse = viewI,
+                            WorldViewProj = _camera.WVP,
+                            LightDirection = new Vector4(lightDirection, 1),
+                            SurfaceColor = new Vector3(0.6f, 0.6f, 0.6f),//Color.AntiqueWhite.ToVector3(),
+                            LampColor = Color.Red.ToVector3(),
+                            AmbiColor = new Vector3(0.6f,0.6f,0.6f),
+                            Kd = 1.0f,
+                            Kr = 0.5f,
+                            SpecExpon = 1f
+                        };
+
 
                         //apply shader
-                        shader.Apply();
+                        shaderMetal.Apply();
 
                         //update constant buffer
-                        device.UpdateData<Data>(buffer, sceneInformation);
+                        device.UpdateData<Data2>(buffer, sceneInformation2);
+
+                        ////set shaders to use
+                        //device.DeviceContext.VertexShader.Set(shaderMetal.VertexShader);
+                        //device.DeviceContext.PixelShader.Set(shaderMetal.PixelShader);
 
                         //pass constant buffer to shader
                         device.DeviceContext.VertexShader.SetConstantBuffer(0, buffer);
                         device.DeviceContext.PixelShader.SetConstantBuffer(0, buffer);
 
-
-
                         //draw mesh
                         device.SetDefaultRasterState();
                         if (mesh_NurbsSurface != null) mesh_NurbsSurface.Draw();
 
+
+                        shaderLines.Apply();
+                        //device.UpdateData<Data>(bufferLines, sceneInformation);
+
                         device.SetWireframeRasterState();
+                        //device.DeviceContext.VertexShader.Set(shaderLines.VertexShader);
+                        //device.DeviceContext.PixelShader.Set(shaderLines.PixelShader);
+                        //device.DeviceContext.VertexShader.SetConstantBuffer(0, bufferLines);
+                        //device.DeviceContext.PixelShader.SetConstantBuffer(0, bufferLines);
+
                         if (mesh_NurbsControl != null) mesh_NurbsControl.DrawPatch(PrimitiveTopology.LineList);
                         if (mesh_NurbsCurve != null) mesh_NurbsCurve.DrawPatch(PrimitiveTopology.LineList);
 
@@ -401,5 +469,24 @@ namespace Luthier.Model.Presenter
         public Matrix worldViewProjection;
         public Vector4 lightDirection;
         //public Vector4 viewDirection;
+    }
+
+    [StructLayout(LayoutKind.Sequential, Pack = 1)]
+    struct Data2
+    {
+        public Matrix World;
+        public Matrix WorldInverseTranspose;
+        public Matrix ViewInverse;
+        public Matrix WorldViewProj;
+        public Vector4 LightDirection;
+
+        public Vector3 SurfaceColor;
+        public float Kd;
+        public Vector3 LampColor;
+        public float SpecExpon;
+        public Vector3 AmbiColor;
+        public float Kr;
+        ////samplerCUBE EnvSampler;
+        
     }
 }

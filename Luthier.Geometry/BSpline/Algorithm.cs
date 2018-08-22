@@ -191,7 +191,7 @@ namespace Luthier.Geometry.BSpline
             double* q = stackalloc double[orderU];
 
             //evaluate V direction, creating new control points for U direction
-            for (int k = 0; k < orderV; k++ )
+            for (int k = 0; k < orderU; k++ )
             {
                 for (int i = 0; i < orderV; i++)
                 {

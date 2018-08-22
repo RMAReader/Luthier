@@ -19,7 +19,7 @@ namespace Luthier.Model.GraphicObjectFactory
 
         public void Delete(GraphicPoint2D point)
         {
-            if (point.parentObjectKeys.Count == 0) data.objects.Remove(point);
+            if (point.parentObjectKeys.Count == 0) data.Model.Remove(point);
 
             Log.Instance().Append(string.Format("Deleted Point2D({0},{1}). Key = {2}", point.X, point.Y, point.Key));
 
@@ -28,7 +28,7 @@ namespace Luthier.Model.GraphicObjectFactory
         public GraphicPoint2D New(double x, double y)
         {
             var obj = new GraphicPoint2D(x, y);
-            data.objects.Add(obj);
+            data.Model.Add(obj);
 
             Log.Instance().Append(string.Format("Created Point2D({0},{1}). Key = {2}",x,y,obj.Key));
 

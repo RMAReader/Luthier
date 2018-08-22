@@ -1,4 +1,5 @@
-﻿using Luthier.Model.GraphicObjects;
+﻿using Luthier.Geometry.BSpline;
+using Luthier.Model.GraphicObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Luthier.Model.GraphicObjectFactory
         public GraphicBSplineCurve New(int p)
         {
             var obj = new GraphicBSplineCurve(p);
-            data.objects.Add(obj);
+            data.Model.Add(obj);
             return obj;
         }
 
@@ -32,7 +33,6 @@ namespace Luthier.Model.GraphicObjectFactory
 
         public GraphicNurbSurface CreateSurface(int cv_count0, int cv_count1, double minx, double miny, double maxx, double maxy)
         {
-            data.Model.HasChanged = true;
 
             var points = new List<double>();
             for (int i = 0; i < cv_count0; i++)
@@ -57,8 +57,37 @@ namespace Luthier.Model.GraphicObjectFactory
             s.knotArray0 = knot0.ToArray();
             s.knotArray1 = knot1.ToArray();
 
-            data.objects.Add(s);
+            data.Model.Add(s);
             return s;
+        }
+
+
+        public static GraphicNurbSurface CreateSurface(int cv_count0, int cv_count1, double[] corner1, double[] corner2, double[] corner3)
+        {
+            var s = new GraphicNurbSurface(3, false, 3, 3, cv_count0, cv_count1);
+
+            for (int u = 0; u < cv_count0; u++)
+            {
+                double du = ((double)u) / (cv_count0 - 1);
+                for (int v = 0; v < cv_count1; v++)
+                {
+                    double dv = ((double)v) / (cv_count1 - 1);
+
+                    var cv = new double[3];
+                    for(int i = 0; i < cv.Length; i++)
+                    {
+                        cv[i] = (1 - du - dv) * corner1[i] + du * corner2[i] + dv * corner3[i];
+                    };
+
+                    s.SetCV(u, v, cv);
+                }
+            }
+
+            for (int i = 0; i < s.knotArray0.Length; i++) s.knotArray0[i] = i;
+            for (int i = 0; i < s.knotArray1.Length; i++) s.knotArray1[i] = i;
+
+            return s;
+           
         }
     }
 }

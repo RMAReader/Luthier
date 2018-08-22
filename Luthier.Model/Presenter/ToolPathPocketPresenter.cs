@@ -66,7 +66,7 @@ namespace Luthier.Model.Presenter
             SpindleState = specification.SpindleState;
             FeedRate = specification.FeedRate;
             BoundaryPolygonKey = specification.BoundaryPolygonKey
-                                        .Select(x => model.Objects()[x] as IPolygon2D)
+                                        .Select(x => model.Model[x] as IPolygon2D)
                                         .Where(x => x != null)
                                         .ToList();
 

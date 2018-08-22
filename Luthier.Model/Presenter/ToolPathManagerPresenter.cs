@@ -27,7 +27,7 @@ namespace Luthier.Model.Presenter
         public void LoadToolPaths()
         {
             ToolPaths = new BindingList<ToolPathSpecificationBase>();
-            foreach(ToolPathSpecificationBase specification in model.Objects().Values.Where(x => x is ToolPathSpecificationBase))
+            foreach(ToolPathSpecificationBase specification in model.Model.Where(x => x is ToolPathSpecificationBase))
             {
                 ToolPaths.Add(specification);
             }

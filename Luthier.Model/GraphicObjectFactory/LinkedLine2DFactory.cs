@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using Luthier.Model.GraphicObjects;
 
 namespace Luthier.Model.GraphicObjectFactory
@@ -19,7 +16,7 @@ namespace Luthier.Model.GraphicObjectFactory
         public GraphicLinkedLine2D New()
         {
             var obj = new GraphicLinkedLine2D();
-            data.objects.Add(obj);
+            data.Model.Add(obj);
             return obj;
         }
 
@@ -32,26 +29,26 @@ namespace Luthier.Model.GraphicObjectFactory
 
         public void DeletePoint(GraphicLinkedLine2D line, GraphicPoint2D point)
         {
-            if (data.objects.Where(x => x.Key == line.Key).ToList().Count == 0) throw new ArgumentException("Line does not exist in data model");
-            if (data.objects.Where(x => x.Key == point.Key).ToList().Count == 0) throw new ArgumentException("Point does not exist in data model");
+            if (!data.Model.ContainsObject(line)) throw new ArgumentException("Line does not exist in data model");
+            if (!data.Model.ContainsObject(point)) throw new ArgumentException("Point does not exist in data model");
 
             line.RemovePoint(point);
             point.parentObjectKeys.Remove(line.Key);
 
-            if (point.parentObjectKeys.Count == 0) data.objects.Remove(point);
+            if (point.parentObjectKeys.Count == 0) data.Model.Remove(point);
         }
 
         public void DeleteLine(GraphicLinkedLine2D line)
         {
-            if (data.objects.Where(x => x.Key == line.Key).ToList().Count == 0) throw new ArgumentException("Line does not exist in data model");
+            if (!data.Model.ContainsObject(line)) throw new ArgumentException("Line does not exist in data model");
             
             foreach(var key in line.pointsKeys)
             {
-                var point = (GraphicPoint2D) data.objects.Where(x => x.Key == key).First();
+                var point = (GraphicPoint2D) data.Model[key];
                 point.parentObjectKeys.Remove(line.Key);
-                if (point.parentObjectKeys.Count == 0) data.objects.Remove(point);
+                if (point.parentObjectKeys.Count == 0) data.Model.Remove(point);
             }
-            data.objects.Remove(line);
+            data.Model.Remove(line);
         }
     }
 

@@ -26,7 +26,7 @@ namespace Luthier.Model.GraphicObjectFactory
             var p1 = model.Point2DFactory().New(x, y);
             var p2 = model.Point2DFactory().New(x, y);
             var obj = new GraphicIntersection(p1.Key, p2.Key);
-            model.objects.Add(obj);
+            model.Model.Add(obj);
 
             Log.Instance().Append(string.Format("Created Intersection. Key = {0}", obj.Key));
             return obj;
@@ -35,7 +35,7 @@ namespace Luthier.Model.GraphicObjectFactory
 
         public GraphicPoint2D SetCentre(GraphicIntersection intersection, double x, double y)
         {
-            var centre = model.Objects()[intersection.Centre] as GraphicPoint2D;
+            var centre = model.Model[intersection.Centre] as GraphicPoint2D;
             centre.X = x;
             centre.Y = y;
             return centre;
@@ -44,7 +44,7 @@ namespace Luthier.Model.GraphicObjectFactory
 
         public GraphicPoint2D SetRadius(GraphicIntersection intersection, double x, double y)
         {
-            var radius = model.Objects()[intersection.Radius] as GraphicPoint2D;
+            var radius = model.Model[intersection.Radius] as GraphicPoint2D;
             radius.X = x;
             radius.Y = y;
             return radius;
@@ -62,15 +62,15 @@ namespace Luthier.Model.GraphicObjectFactory
 
         public void Delete(GraphicIntersection intersection)
         {
-            if (model.objects.Where(x => x.Key == intersection.Key).ToList().Count == 0) throw new ArgumentException("intersection does not exist in data model");
+            if (!model.Model.ContainsObject(intersection)) throw new ArgumentException("intersection does not exist in data model");
 
             foreach (var key in new UniqueKey[] { intersection.Centre, intersection.Radius })
             {
-                var point = (GraphicPoint2D)model.objects.Where(x => x.Key == key).First();
+                var point = (GraphicPoint2D)model.Model[key];
                 point.parentObjectKeys.Remove(intersection.Key);
-                if (point.parentObjectKeys.Count == 0) model.objects.Remove(point);
+                if (point.parentObjectKeys.Count == 0) model.Model.Remove(point);
             }
-            model.objects.Remove(intersection);
+            model.Model.Remove(intersection);
 
             Log.Instance().Append(string.Format("gauge.Delete: gauge.Key = {0}", intersection.Key));
         }

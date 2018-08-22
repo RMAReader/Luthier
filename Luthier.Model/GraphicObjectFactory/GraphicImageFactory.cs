@@ -20,7 +20,7 @@ namespace Luthier.Model.GraphicObjectFactory
         public GraphicImage New(double x, double y)
         {
             var obj = new GraphicImage();
-            data.objects.Add(obj);
+            data.Model.Add(obj);
 
             obj.pointsKeys[0] = data.Point2DFactory().New(x, y).Key;
             obj.pointsKeys[1] = data.Point2DFactory().New(x, y).Key;
@@ -33,7 +33,7 @@ namespace Luthier.Model.GraphicObjectFactory
 
         public void SetPoint(GraphicImage image, int pointIndex, double x, double y)
         {
-            var point = data.Objects()[image.pointsKeys[pointIndex]] as GraphicPoint2D;
+            var point = data.Model[image.pointsKeys[pointIndex]] as GraphicPoint2D;
             if (point != null)
             {
                 point.X = x;
@@ -43,9 +43,9 @@ namespace Luthier.Model.GraphicObjectFactory
 
         public void SetPointsFixedAspectRatio(GraphicImage image, double x0, double y0, double x1, double y1)
         {
-            var p0 = data.Objects()[image.pointsKeys[0]] as GraphicPoint2D;
-            var p1 = data.Objects()[image.pointsKeys[1]] as GraphicPoint2D;
-            var p2 = data.Objects()[image.pointsKeys[2]] as GraphicPoint2D;
+            var p0 = data.Model[image.pointsKeys[0]] as GraphicPoint2D;
+            var p1 = data.Model[image.pointsKeys[1]] as GraphicPoint2D;
+            var p2 = data.Model[image.pointsKeys[2]] as GraphicPoint2D;
             if (p0 != null && p1 != null && p2 != null)
             {
                 double width = image.GetImage().Width;
@@ -63,15 +63,15 @@ namespace Luthier.Model.GraphicObjectFactory
 
         public void Delete(GraphicImage image)
         {
-            if (data.objects.Where(x => x.Key == image.Key).ToList().Count == 0) throw new ArgumentException("image does not exist in data model");
+            if (!data.Model.ContainsObject(image)) throw new ArgumentException("image does not exist in data model");
 
             foreach (var key in image.pointsKeys)
             {
-                var point = (GraphicPoint2D)data.objects.Where(x => x.Key == key).First();
+                var point = (GraphicPoint2D)data.Model[key];
                 point.parentObjectKeys.Remove(image.Key);
-                if (point.parentObjectKeys.Count == 0) data.objects.Remove(point);
+                if (point.parentObjectKeys.Count == 0) data.Model.Remove(point);
             }
-            data.objects.Remove(image);
+            data.Model.Remove(image);
 
             Log.Instance().Append(string.Format("Image.Delete: Image.Key = {0}", image.Key));
         }

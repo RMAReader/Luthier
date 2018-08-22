@@ -21,7 +21,7 @@ namespace Luthier.Model.ToolPathSpecificationFactory
         public CurveSpecification New()
         {
             var spec = new CurveSpecification();
-            model.objects.Add(spec);
+            model.Model.Add(spec);
             return spec;
         }
     }

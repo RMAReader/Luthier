@@ -9,44 +9,13 @@ using Luthier.Model.Presenter;
 
 namespace Luthier.Model.MouseController3D
 {
-    class SketchNurbsCurve : IMouseController3D
+    class SketchNurbsCurve : SketchObjectBase
     {
-        private Camera _camera;
-        private IApplicationDocumentModel _model;
         private bool curveInProgress = false;
         private NurbsCurve _nurbsCurve;
-        private ISketchCanvas _canvas = Plane.CreateRightHandedXY(new double[] { 0, 0, 0 });
 
-        public int X { get; private set; }
-
-        public int Y { get; private set; }
-
-        public void Bind(IApplicationDocumentModel model)
-        {
-            _model = model;
-        }
-
-        public void Bind(Camera camera)
-        {
-            _camera = camera;
-        }
-
-        public void Close()
-        {
-            
-        }
-
-        public void MouseClick(object sender, MouseEventArgs e)
-        {
-            
-        }
-
-        public void MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-           
-        }
-
-        public void MouseDown(object sender, MouseEventArgs e)
+    
+        public override void MouseDown(object sender, MouseEventArgs e)
         {
             switch (e.Button)
             {
@@ -66,7 +35,7 @@ namespace Luthier.Model.MouseController3D
                         _nurbsCurve.SetCV(0, p);
                         _nurbsCurve.SetCV(1, p);
 
-                        _model.Model.Objects.Add(_nurbsCurve);
+                        _model.Model.Add(_nurbsCurve);
                         curveInProgress = true;
                     }
                     break;
@@ -79,11 +48,8 @@ namespace Luthier.Model.MouseController3D
         }
 
 
-        public void MouseMove(object sender, MouseEventArgs e)
+        public override void OnMouseMove(object sender, MouseEventArgs e)
         {
-            X = e.X;
-            Y = e.Y;
-
             if (curveInProgress)
             {
                 double[] p = CalculateIntersection(e.X, e.Y);
@@ -94,23 +60,6 @@ namespace Luthier.Model.MouseController3D
             
         }
 
-        public void MouseUp(object sender, MouseEventArgs e)
-        {
-            
-        }
-
-        public void MouseWheel(object sender, MouseEventArgs e)
-        {
-            
-        }
-
-
-        private double[] CalculateIntersection(int screenX, int screenY)
-        {
-            _camera.ConvertFromScreenToWorld(screenX, screenY, out double[] from, out double[] to);
-
-            return _canvas.GetPointOfIntersectionWorld(from, to);
-        }
 
     }
 }

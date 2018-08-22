@@ -31,9 +31,9 @@ namespace Luthier.Test.Model
             var doc1 = new ApplicationDocumentModel();
             var p1 = doc1.Point2DFactory().New(1.0f, 2.0f);
             
-            var bytes = Serializer<GraphicModel>.Serialize(doc1.model);
+            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage);
 
-            var model2 = Serializer<GraphicModel>.Deserialize(bytes);
+            var model2 = Serializer<GraphicModelStorage>.Deserialize(bytes);
 
        
         }
@@ -48,9 +48,9 @@ namespace Luthier.Test.Model
             var k6 = doc1.Polygon2DFactory().AppendPoint(k4, 0, 0);
             var k7 = doc1.Polygon2DFactory().AppendPoint(k4, 0, 1);
 
-            var bytes = Serializer<GraphicModel>.Serialize(doc1.model);
+            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage);
 
-            var model2 = Serializer<GraphicModel>.Deserialize(bytes);
+            var model2 = Serializer<GraphicModelStorage>.Deserialize(bytes);
         }
 
         [TestMethod]
@@ -63,9 +63,9 @@ namespace Luthier.Test.Model
             var k6 = doc1.LinkedLine2DFactory().AppendPoint(k4, 0, 0);
             var k7 = doc1.LinkedLine2DFactory().AppendPoint(k4, 0, 1);
 
-            var bytes = Serializer<GraphicModel>.Serialize(doc1.model);
+            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage);
 
-            var model2 = Serializer<GraphicModel>.Deserialize(bytes);
+            var model2 = Serializer<GraphicModelStorage>.Deserialize(bytes);
         }
 
         [TestMethod]
@@ -76,9 +76,9 @@ namespace Luthier.Test.Model
             var k4 = doc1.LengthGaugeFactory().New(1.0f, 2.0f);
             doc1.LengthGaugeFactory().SetEndPoint(k4, 5.0f, 2.0f);
             
-            var bytes = Serializer<GraphicModel>.Serialize(doc1.model);
+            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage);
 
-            var model2 = Serializer<GraphicModel>.Deserialize(bytes);
+            var model2 = Serializer<GraphicModelStorage>.Deserialize(bytes);
         }
 
         [TestMethod]
@@ -89,9 +89,9 @@ namespace Luthier.Test.Model
             var k4 = doc1.ImageFactory().New(1.0f, 2.0f);
             doc1.ImageFactory().SetPointsFixedAspectRatio(k4, 1.0f, 2.0f, 9.0f, 1.0f);
 
-            var bytes = Serializer<GraphicModel>.Serialize(doc1.model);
+            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage);
 
-            var model2 = Serializer<GraphicModel>.Deserialize(bytes);
+            var model2 = Serializer<GraphicModelStorage>.Deserialize(bytes);
         }
 
         [TestMethod]
@@ -104,9 +104,9 @@ namespace Luthier.Test.Model
             doc1.BSplineFactory().AppendPoint(k4, 2, 0);
             doc1.BSplineFactory().AppendPoint(k4, 3, 5);
             
-            var bytes = Serializer<GraphicModel>.Serialize(doc1.model);
+            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage);
 
-            var model2 = Serializer<GraphicModel>.Deserialize(bytes);
+            var model2 = Serializer<GraphicModelStorage>.Deserialize(bytes);
         }
 
         [TestMethod]
@@ -119,9 +119,9 @@ namespace Luthier.Test.Model
             doc1.IntersectionFactory().SetObject1(k1, doc1.BSplineFactory().New(2));
             doc1.IntersectionFactory().SetObject2(k1, doc1.BSplineFactory().New(2));
 
-            var bytes = Serializer<GraphicModel>.Serialize(doc1.model);
+            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage);
 
-            var model2 = Serializer<GraphicModel>.Deserialize(bytes);
+            var model2 = Serializer<GraphicModelStorage>.Deserialize(bytes);
         }
 
 
@@ -135,9 +135,9 @@ namespace Luthier.Test.Model
 
             doc1.CompositePolygonFactory().AddIntersection(p1, i1);
 
-            var bytes = Serializer<GraphicModel>.Serialize(doc1.model);
+            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage);
 
-            var model2 = Serializer<GraphicModel>.Deserialize(bytes);
+            var model2 = Serializer<GraphicModelStorage>.Deserialize(bytes);
         }
 
 
@@ -155,14 +155,14 @@ namespace Luthier.Test.Model
 
             var surface2 = Serializer<GraphicNurbSurface>.Deserialize(bytes);
             Assert.AreEqual(surface.Key, surface2.Key);
-            Assert.AreEqual(surface.order0, surface2.order0);
+            Assert.AreEqual(surface.Order0, surface2.Order0);
 
-            var model1 = new GraphicModel();
+            var model1 = new GraphicModelStorage();
             model1.Objects.Add(surface);
 
-            bytes = Serializer<GraphicModel>.Serialize(model1);
+            bytes = Serializer<GraphicModelStorage>.Serialize(model1);
 
-            var model2 = Serializer<GraphicModel>.Deserialize(bytes);
+            var model2 = Serializer<GraphicModelStorage>.Deserialize(bytes);
 
             Assert.AreEqual(model1.Objects[0].Key, model2.Objects[0].Key);
         }
@@ -192,9 +192,9 @@ namespace Luthier.Test.Model
             spec.StepLength = 2;
             
 
-            var bytes = Serializer<GraphicModel>.Serialize(doc1.model);
+            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage);
 
-            var model2 = Serializer<GraphicModel>.Deserialize(bytes);
+            var model2 = Serializer<GraphicModelStorage>.Deserialize(bytes);
         }
 
     }
