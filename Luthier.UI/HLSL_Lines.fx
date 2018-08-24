@@ -4,16 +4,18 @@ cbuffer data : register(b0)
 {
     float4x4 World;
     float4x4 WorldInverseTranspose;
-    float4x4 ViewInverse;
+    float4x4 WorldView;
     float4x4 WorldViewProj;
     float4 LightDirection;
 
-    float3 SurfaceColor;
-    float Kd;
-    float3 LampColor;
-    float SpecExpon;
-    float3 AmbiColor;
-    float Kr;
+    float3 AmbientColor;
+    float AmbientCoefficient;
+    float3 DiffuseColor;
+    float DiffuseCoefficient;
+    float3 SpecularColor;
+    float SpecularCoefficient;
+    float3 Padding1;
+    float ShininessCoefficient;
 };
 
 //cbuffer data :register(b0)

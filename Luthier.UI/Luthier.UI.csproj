@@ -180,10 +180,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="HLSL.fx" />
+    <Content Include="HLSL_Textured_Unshaded.fx" />
     <Content Include="HLSL_AmbientDiffuseSpecular.fx" />
     <Content Include="HLSL_Lines.fx" />
-    <Content Include="HLSL_nvidia_metal.fx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

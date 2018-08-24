@@ -94,7 +94,9 @@ namespace SharpHelper
                 Usage = Usage.RenderTargetOutput
             };
 
-            FeatureLevel[] levels = new FeatureLevel[] { FeatureLevel.Level_10_1 };
+
+
+            FeatureLevel[] levels = new FeatureLevel[] { FeatureLevel.Level_11_1 };
 
             //create device and swapchain
             DeviceCreationFlags flag = DeviceCreationFlags.None | DeviceCreationFlags.BgraSupport;
@@ -161,7 +163,7 @@ namespace SharpHelper
 
             var _zbufferTexture = new Texture2D(Device, new Texture2DDescription()
             {
-                Format = Format.D16_UNorm,
+                Format = Format.D32_Float,//Format.D16_UNorm,
                 ArraySize = 1,
                 MipLevels = 1,
                 Width = View.ClientSize.Width,
@@ -296,6 +298,7 @@ namespace SharpHelper
             DepthStencilStateDescription description = DepthStencilStateDescription.Default();
             description.DepthComparison = Comparison.LessEqual;
             description.IsDepthEnabled = true;
+            description.IsStencilEnabled = true;
 
             _depthState = new DepthStencilState(Device, description);
         }

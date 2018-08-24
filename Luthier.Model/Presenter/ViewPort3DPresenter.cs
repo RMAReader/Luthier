@@ -79,12 +79,12 @@ namespace Luthier.Model.Presenter
 
             _lightData = new LightData()
             {
-                SurfaceColor = new Vector3(1.0f, 1.0f, 1.0f),//Color.AntiqueWhite.ToVector3(),
-                LampColor = Color.Red.ToVector3(),
-                AmbiColor = new Vector3(0.2f,0.2f,0.2f),
-                Kd = 1.0f,
-                Kr = 0.5f,
-                SpecExpon = 1.0f
+                AmbientColor = new Vector3(1.0f, 1.0f, 1.0f),//Color.AntiqueWhite.ToVector3(),
+                DiffuseColor = Color.Red.ToVector3(),
+                SpecularColor = new Vector3(0.2f,0.2f,0.2f),
+                AmbientCoefficient = 1.0f,
+                SpecularCoefficient = 0.5f,
+                ShininessCoefficient = 1.0f
             };
         }
 
@@ -239,12 +239,14 @@ namespace Luthier.Model.Presenter
                 SharpMesh mesh_XYPlane = CreatePlaneXY(device);
 
                 //Create Shader From File and Create Input Layout
-                SharpShader shader = new SharpShader(device, "../../HLSL.fx",
+                SharpShader shaderTextured = new SharpShader(device, "../../HLSL_Textured_Unshaded.fx",
                     new SharpShaderDescription() { VertexShaderFunction = "VS", PixelShaderFunction = "PS" },
                     new InputElement[] {
-                        new InputElement("POSITION", 0, Format.R32G32B32_Float, 0, 0),
+                         new InputElement("POSITION", 0, Format.R32G32B32_Float, 0, 0),
                         new InputElement("NORMAL", 0, Format.R32G32B32_Float, 12, 0),
-                        new InputElement("COLOR", 0, Format.R32G32B32A32_Float, 24, 0)
+                        new InputElement("TANGENT", 0, Format.R32G32B32_Float, 24, 0),
+                        new InputElement("BINORMAL", 0, Format.R32G32B32_Float, 36, 0),
+                        new InputElement("TEXCOORD", 0, Format.R32G32_Float, 48, 0)
                     });
 
                 SharpShader shaderLines = new SharpShader(device, "../../HLSL_Lines.fx",
@@ -255,7 +257,7 @@ namespace Luthier.Model.Presenter
                         new InputElement("COLOR", 0, Format.R32G32B32A32_Float, 24, 0)
                     });
 
-                SharpShader shaderMetal = new SharpShader(device, "../../HLSL_AmbientDiffuseSpecular.fx",
+                SharpShader shaderPhong = new SharpShader(device, "../../HLSL_AmbientDiffuseSpecular.fx",
                 new SharpShaderDescription() { VertexShaderFunction = "VS", PixelShaderFunction = "PS" },
                 new InputElement[] {
                         new InputElement("POSITION", 0, Format.R32G32B32_Float, 0, 0),
@@ -265,11 +267,12 @@ namespace Luthier.Model.Presenter
                         new InputElement("TEXCOORD", 0, Format.R32G32_Float, 48, 0)
                 });
 
+                ShaderResourceView texture = device.LoadTextureFromFile(@"C:\Users\Richard\Documents\Violins\Titian Stradivarius\small images\scroll from back.bmp");
+
                 //create constant buffer
                 //SharpDX.Direct3D11.Buffer bufferLines = shaderLines.CreateBuffer<Data>();
 
-                SharpDX.Direct3D11.Buffer buffer = shaderMetal.CreateBuffer<Data2>();
-               
+                SharpDX.Direct3D11.Buffer buffer = shaderPhong.CreateBuffer<Data2>();
 
                 fpsCounter.Reset();
 
@@ -391,17 +394,18 @@ namespace Luthier.Model.Presenter
                             WorldView = _camera.WorldView,
                             WorldViewProj = _camera.WorldViewProjection,
                             LightDirection = new Vector4(lightDirection, 1),
-                            SurfaceColor = _lightData.SurfaceColor,//new Vector3(0.6f, 0.6f, 0.6f),//Color.AntiqueWhite.ToVector3(),
-                            LampColor = _lightData.LampColor,// Color.Red.ToVector3(),
-                            AmbiColor = _lightData.AmbiColor,// new Vector3(0.6f,0.6f,0.6f),
-                            Kd = _lightData.Kd,//1.0f,
-                            Kr = _lightData.Kr,//0.5f,
-                            SpecExpon = _lightData.SpecExpon //1f
+                            AmbientColor = _lightData.AmbientColor,
+                            DiffuseColor = _lightData.DiffuseColor,
+                            SpecularColor = _lightData.SpecularColor,
+                            AmbientCoefficient = _lightData.AmbientCoefficient,
+                            DiffuseCoefficient = _lightData.DiffuseCoefficient,
+                            SpecularCoefficient = _lightData.SpecularCoefficient,
+                            ShininessCoefficient = _lightData.ShininessCoefficient
                         };
 
 
                         //apply shader
-                        shaderMetal.Apply();
+                        shaderPhong.Apply();
 
                         //update constant buffer
                         device.UpdateData<Data2>(buffer, sceneInformation2);
@@ -431,7 +435,13 @@ namespace Luthier.Model.Presenter
                         if (mesh_NurbsControl != null) mesh_NurbsControl.DrawPatch(PrimitiveTopology.LineList);
                         if (mesh_NurbsCurve != null) mesh_NurbsCurve.DrawPatch(PrimitiveTopology.LineList);
 
+
+                        
+                        shaderTextured.Apply();
                         device.SetDefaultRasterState();
+                        //device.DeviceContext.VertexShader.SetConstantBuffer(0, buffer);
+                        //device.DeviceContext.PixelShader.SetConstantBuffer(0, buffer);
+                        device.DeviceContext.PixelShader.SetShaderResource(0, texture);
                         mesh_XYPlane.Draw();
 
                         //begin drawing text
@@ -454,7 +464,8 @@ namespace Luthier.Model.Presenter
                 if (mesh_NurbsCurve != null) mesh_NurbsCurve.Dispose();
                 mesh_XYPlane.Dispose();
                 buffer.Dispose();
-                
+                texture.Dispose();
+                _lightingOptionsForm?.Close();
             }
           
         }
@@ -465,27 +476,29 @@ namespace Luthier.Model.Presenter
 
         public SharpMesh CreatePlaneXY(SharpDevice device)
         {
-            var topColor = new Vector4(0, 0.5f, 0.5f, 0);
             var topNormal = new Vector3(0, 0, 1);
-            var undersideColor = new Vector4(0.5f, 0.5f, 0.5f, 0);
             var undersideNormal = new Vector3(0, 0, -1);
 
-            var vertices = new StaticColouredVertex[]
+            var vertices = new TangentVertex[]
             {
-                new StaticColouredVertex{ Position = new Vector3(-1000, -1000, -100), Normal =  topNormal,Color = topColor},
-                new StaticColouredVertex{ Position = new Vector3(1000, -1000, -100), Normal =  topNormal,Color = topColor},
-                new StaticColouredVertex{ Position = new Vector3(1000, 1000, -100), Normal =  topNormal,Color = topColor},
-                new StaticColouredVertex{ Position = new Vector3(-1000, 1000, -100), Normal =  topNormal,Color = topColor},
+                new TangentVertex{ Position = new Vector3(-1000, -1000, -100), Normal =  topNormal, TextureCoordinate = new Vector2(0, 0)},
+                new TangentVertex{ Position = new Vector3(1000, -1000, -100), Normal =  topNormal, TextureCoordinate = new Vector2(1, 0)},
+                new TangentVertex{ Position = new Vector3(1000, 1000, -100), Normal =  topNormal, TextureCoordinate = new Vector2(1, 1)},
+                new TangentVertex{ Position = new Vector3(-1000, 1000, -100), Normal =  topNormal, TextureCoordinate = new Vector2(0, 1)},
 
-                new StaticColouredVertex{ Position = new Vector3(-1000, -1000, -100), Normal = undersideNormal,Color = undersideColor},
-                new StaticColouredVertex{ Position = new Vector3(1000, -1000, -100), Normal = undersideNormal,Color = undersideColor},
-                new StaticColouredVertex{ Position = new Vector3(1000, 1000, -100), Normal = undersideNormal,Color = undersideColor},
-                new StaticColouredVertex{ Position = new Vector3(-1000, 1000, -100), Normal = undersideNormal,Color = undersideColor},
+                new TangentVertex{ Position = new Vector3(-1000, -1000, -100), Normal = undersideNormal, TextureCoordinate = new Vector2(0, 0)},
+                new TangentVertex{ Position = new Vector3(1000, -1000, -100), Normal = undersideNormal, TextureCoordinate = new Vector2(1, 0)},
+                new TangentVertex{ Position = new Vector3(1000, 1000, -100), Normal = undersideNormal, TextureCoordinate = new Vector2(1, 1)},
+                new TangentVertex{ Position = new Vector3(-1000, 1000, -100), Normal = undersideNormal, TextureCoordinate = new Vector2(0, 1)},
             };
             var indices = new int[]{0,2,1,2,0,3,4,5,6,6,7,4};
 
-            return SharpMesh.Create<StaticColouredVertex>(device, vertices, indices);
+            return SharpMesh.Create<TangentVertex>(device, vertices, indices);
         }
+
+
+
+
 
     }
 
@@ -506,24 +519,26 @@ namespace Luthier.Model.Presenter
         public Matrix WorldViewProj;
         public Vector4 LightDirection;
 
-        public Vector3 SurfaceColor;
-        public float Kd;
-        public Vector3 LampColor;
-        public float SpecExpon;
-        public Vector3 AmbiColor;
-        public float Kr;
-        ////samplerCUBE EnvSampler;
-        
+        public Vector3 AmbientColor;
+        public float AmbientCoefficient;
+        public Vector3 DiffuseColor;
+        public float DiffuseCoefficient;
+        public Vector3 SpecularColor;
+        public float SpecularCoefficient;
+        public Vector3 Padding1;
+        public float ShininessCoefficient;
+
     }
 
     public class LightData
     {
-        public Vector3 SurfaceColor;
-        public float Kd;
-        public Vector3 LampColor;
-        public float SpecExpon;
-        public Vector3 AmbiColor;
-        public float Kr;
+        public Vector3 AmbientColor;
+        public float AmbientCoefficient;
+        public Vector3 DiffuseColor;
+        public float DiffuseCoefficient;
+        public Vector3 SpecularColor;
+        public float SpecularCoefficient;
+        public float ShininessCoefficient;
     }
 
 }

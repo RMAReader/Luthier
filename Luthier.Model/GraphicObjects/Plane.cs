@@ -9,10 +9,8 @@ namespace Luthier.Model.GraphicObjects
 {
     public class Plane : GraphicObjectBase, ISketchCanvas
     {
-        private double[] _origin;
-        private double[] _normal;
-        private double[] _unitU;
-        private double[] _unitV;
+        protected double[] _origin;
+        protected double[] _normal;
 
         public override double GetDistance(ApplicationDocumentModel model, double x, double y)
         {
@@ -41,8 +39,6 @@ namespace Luthier.Model.GraphicObjects
             return new Plane
             {
                 _origin = point,
-                _unitU = this._unitU,
-                _unitV = this._unitV,
                 _normal = this._normal,
             };
         }
@@ -53,8 +49,6 @@ namespace Luthier.Model.GraphicObjects
             return new Plane
             {
                 _origin = origin,
-                _unitU = new double[] { 1.0, 0, 0 },
-                _unitV = new double[] { 0, 1.0, 0 },
                 _normal = new double[] { 0, 0, 1.0 },
             };
         }
@@ -63,8 +57,6 @@ namespace Luthier.Model.GraphicObjects
             return new Plane
             {
                 _origin = origin,
-                _unitU = new double[] { 0, 1.0, 0 },
-                _unitV = new double[] { 0, 0, 1.0 },
                 _normal = new double[] { 1.0, 0, 0 },
             };
         }
@@ -73,8 +65,6 @@ namespace Luthier.Model.GraphicObjects
             return new Plane
             {
                 _origin = origin,
-                _unitU = new double[] { 0, 0, 1.0 },
-                _unitV = new double[] { 1.0, 0, 0 },
                 _normal = new double[] { 0, 1.0, 0 },
             };
         }
@@ -94,8 +84,6 @@ namespace Luthier.Model.GraphicObjects
             {
                 _normal = normal,
                 _origin = origin,
-                _unitU = unitU,
-                _unitV = unitV,
             };
         }
     }

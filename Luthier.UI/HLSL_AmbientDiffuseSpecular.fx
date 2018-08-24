@@ -13,12 +13,14 @@ cbuffer data : register(b0)
     float4x4 WorldViewProj;
     float4 LightDirection;
 
-    float3 SurfaceColor;
-    float Kd;
-    float3 LampColor;
-    float SpecExpon;
-    float3 AmbiColor;
-    float Kr;
+    float3 AmbientColor;
+    float AmbientCoefficient;
+    float3 DiffuseColor;
+    float DiffuseCoefficient;
+    float3 SpecularColor;
+    float SpecularCoefficient;
+    float3 Padding1;
+    float ShininessCoefficient;
 };
 
 
@@ -68,7 +70,7 @@ float4 PS(PS_IN IN) : SV_Target
 {
     float3 diffuseColor;
     float3 specularColor;
-    float3 ambientColour = AmbiColor * SurfaceColor;
+    float3 ambientColour = AmbientColor * AmbientCoefficient;
     
     float3 toLight = normalize(IN.LightVec);
     float3 vertexNormal = normalize(IN.WorldNormal);
@@ -78,7 +80,7 @@ float4 PS(PS_IN IN) : SV_Target
     float cosAngle = clamp(dot(vertexNormal, toLight), 0, 1);
 
     // Scale the color of this fragment based on its angle to the light.
-    diffuseColor = LampColor * cosAngle * Kd;
+    diffuseColor = DiffuseColor * cosAngle * DiffuseCoefficient;
 
     //Calculate the reflection vector
     float3 reflVect = normalize(reflect(vertexNormal, toLight));
@@ -89,14 +91,14 @@ float4 PS(PS_IN IN) : SV_Target
 
     // Calculate the cosine of the angle between the reflection vector
     // and the vector going to the camera.
-    cosAngle = clamp(dot(reflVect, toCamera), 0, 1);
-    cosAngle = pow(cosAngle, SpecExpon);
+    float cosAngle2 = clamp(dot(reflVect, toCamera), 0, 1);
+    cosAngle2 = pow(cosAngle2, ShininessCoefficient);
 
     // The specular color is from the light source, not the object
-    if (cosAngle > 0.0)
+    if (cosAngle > 0.0 && cosAngle2 > 0.0)
     {
-        specularColor = LampColor * cosAngle * Kr;
-        diffuseColor = diffuseColor * (1.0 - cosAngle * Kr);
+        specularColor = SpecularColor * cosAngle2 * SpecularCoefficient;
+        diffuseColor = diffuseColor * (1.0 - cosAngle2);
     }
     else
     {
