@@ -9,7 +9,7 @@ cbuffer data : register(b0)
 {
     float4x4 World;
     float4x4 WorldInverseTranspose;
-    float4x4 ViewInverse;
+    float4x4 WorldView;
     float4x4 WorldViewProj;
     float4 LightDirection;
 
@@ -49,11 +49,11 @@ PS_IN VS(VS_IN IN)
 	
     PS_IN OUT = (PS_IN) 0;
 
-    OUT.WorldPosition = mul(World, float4(IN.Position, 1)).xyz;
+    OUT.WorldPosition = mul(WorldView, float4(IN.Position, 1)).xyz;
     
-    OUT.WorldNormal = mul(World, IN.Normal).xyz;
+    OUT.WorldNormal = mul(WorldView, IN.Normal).xyz;
     
-    OUT.LightVec = mul(World, LightDirection).xyz;
+    OUT.LightVec = mul(WorldView, LightDirection).xyz;
     
     OUT.HPosition = mul(WorldViewProj, float4(IN.Position, 1));
 	
@@ -78,7 +78,7 @@ float4 PS(PS_IN IN) : SV_Target
     float cosAngle = clamp(dot(vertexNormal, toLight), 0, 1);
 
     // Scale the color of this fragment based on its angle to the light.
-    diffuseColor = SurfaceColor * cosAngle;
+    diffuseColor = LampColor * cosAngle * Kd;
 
     //Calculate the reflection vector
     float3 reflVect = normalize(reflect(vertexNormal, toLight));
@@ -95,8 +95,8 @@ float4 PS(PS_IN IN) : SV_Target
     // The specular color is from the light source, not the object
     if (cosAngle > 0.0)
     {
-        specularColor = LampColor * cosAngle;
-        diffuseColor = diffuseColor * (1.0 - cosAngle);
+        specularColor = LampColor * cosAngle * Kr;
+        diffuseColor = diffuseColor * (1.0 - cosAngle * Kr);
     }
     else
     {

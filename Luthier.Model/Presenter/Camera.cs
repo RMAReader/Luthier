@@ -66,11 +66,13 @@ namespace Luthier.Model.Presenter
         public Matrix View => Matrix.LookAtLH(Position, LookAt, Vector3.UnitZ);
             
         public Matrix World;
-        public Matrix WVP => World * View * Projection;
+        public Matrix WorldView => World * View;
+        public Matrix WorldViewProjection => World * View * Projection;
+
 
         public double[] ConvertFromWorldToScreen(double[] v)
         {
-            var p = SharpUtilities.Mul(WVP, v);
+            var p = SharpUtilities.Mul(WorldViewProjection, v);
             return new double[] {
                 (1 + p[0] / p[3]) * ViewWidth / 2,
                 (1 - p[1] / p[3]) * ViewHeight / 2,
@@ -83,7 +85,7 @@ namespace Luthier.Model.Presenter
             var x = screenX * 2 / ViewWidth - 1;
             var y = 1 - screenY * 2 / ViewHeight;
 
-            var m = WVP;
+            var m = WorldViewProjection;
             m.Invert();
 
             var fromH = SharpUtilities.Mul(m, new double[] { x, y, 0});

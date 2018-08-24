@@ -139,6 +139,12 @@
     <Compile Include="ToolPathSpecification\CurveSpecification.cs" />
     <Compile Include="ToolPathSpecification\PocketSpecification.cs" />
     <Compile Include="ToolPathSpecification\ToolPathSpecificationBase.cs" />
+    <Compile Include="UIForms\LightingOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\LightingOptions.Designer.cs">
+      <DependentUpon>LightingOptions.cs</DependentUpon>
+    </Compile>
     <Compile Include="UIForms\NewBSplineSurface.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +185,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="UIForms\LightingOptions.resx">
+      <DependentUpon>LightingOptions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UIForms\NewBSplineSurface.resx">
       <DependentUpon>NewBSplineSurface.cs</DependentUpon>
     </EmbeddedResource>

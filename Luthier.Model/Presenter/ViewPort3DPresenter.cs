@@ -32,6 +32,7 @@ namespace Luthier.Model.Presenter
         private IKeyController3D keyController;
         private Camera _camera ;
         private Vector3 lightDirection;
+        private LightData _lightData;
 
         public ViewPort3DPresenter(IApplicationDocumentModel model)
         {
@@ -71,10 +72,20 @@ namespace Luthier.Model.Presenter
             form.DoDragParallelToYZPlaneToolStripMenuItem_Click = DoDragParallelToYZPlaneToolStripMenuItem_Click;
             form.DoDragParallelToZXPlaneToolStripMenuItem_Click = DoDragParallelToZXPlaneToolStripMenuItem_Click;
             form.DoDragNormalToPlaneToolStripMenuItem_Click = DoDragNormalToPlaneToolStripMenuItem_Click;
+            form.DoLightingOptionsToolStripMenuItem_Click = DoLightingOptionsToolStripMenuItem_Click;
 
             _camera.ViewWidth = form.ClientSize.Width;
             _camera.ViewHeight = form.ClientSize.Height;
 
+            _lightData = new LightData()
+            {
+                SurfaceColor = new Vector3(1.0f, 1.0f, 1.0f),//Color.AntiqueWhite.ToVector3(),
+                LampColor = Color.Red.ToVector3(),
+                AmbiColor = new Vector3(0.2f,0.2f,0.2f),
+                Kd = 1.0f,
+                Kr = 0.5f,
+                SpecExpon = 1.0f
+            };
         }
 
 
@@ -180,6 +191,21 @@ namespace Luthier.Model.Presenter
             _camera.ProjectionMethod = EnumProjectionMethod.Orthonormal;
         }
 
+
+        private LightingOptions _lightingOptionsForm;
+        private void DoLightingOptionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(_lightingOptionsForm == null || _lightingOptionsForm.IsDisposed)
+            {
+                _lightingOptionsForm = new LightingOptions(_lightData);
+                _lightingOptionsForm.Show();
+            }
+            else
+            {
+                _lightingOptionsForm.Focus();
+            }
+            
+        }
 
 
 
@@ -346,7 +372,7 @@ namespace Luthier.Model.Presenter
                         Data sceneInformation = new Data()
                         {
                             world = _camera.World,
-                            worldViewProjection = _camera.WVP,
+                            worldViewProjection = _camera.WorldViewProjection,
                             lightDirection = new Vector4(lightDirection, 1),
                             //viewDirection = new Vector4(Vector3.Normalize(from - to), 1),
                         };
@@ -362,15 +388,15 @@ namespace Luthier.Model.Presenter
                         {
                             World = _camera.World,
                             WorldInverseTranspose = worldIT,
-                            ViewInverse = viewI,
-                            WorldViewProj = _camera.WVP,
+                            WorldView = _camera.WorldView,
+                            WorldViewProj = _camera.WorldViewProjection,
                             LightDirection = new Vector4(lightDirection, 1),
-                            SurfaceColor = new Vector3(0.6f, 0.6f, 0.6f),//Color.AntiqueWhite.ToVector3(),
-                            LampColor = Color.Red.ToVector3(),
-                            AmbiColor = new Vector3(0.6f,0.6f,0.6f),
-                            Kd = 1.0f,
-                            Kr = 0.5f,
-                            SpecExpon = 1f
+                            SurfaceColor = _lightData.SurfaceColor,//new Vector3(0.6f, 0.6f, 0.6f),//Color.AntiqueWhite.ToVector3(),
+                            LampColor = _lightData.LampColor,// Color.Red.ToVector3(),
+                            AmbiColor = _lightData.AmbiColor,// new Vector3(0.6f,0.6f,0.6f),
+                            Kd = _lightData.Kd,//1.0f,
+                            Kr = _lightData.Kr,//0.5f,
+                            SpecExpon = _lightData.SpecExpon //1f
                         };
 
 
@@ -476,7 +502,7 @@ namespace Luthier.Model.Presenter
     {
         public Matrix World;
         public Matrix WorldInverseTranspose;
-        public Matrix ViewInverse;
+        public Matrix WorldView;
         public Matrix WorldViewProj;
         public Vector4 LightDirection;
 
@@ -489,4 +515,15 @@ namespace Luthier.Model.Presenter
         ////samplerCUBE EnvSampler;
         
     }
+
+    public class LightData
+    {
+        public Vector3 SurfaceColor;
+        public float Kd;
+        public Vector3 LampColor;
+        public float SpecExpon;
+        public Vector3 AmbiColor;
+        public float Kr;
+    }
+
 }
