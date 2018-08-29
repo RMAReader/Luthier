@@ -116,11 +116,13 @@ namespace Luthier.Model
 
             int nU = 20;
             int nV = 20;
+
+            int indexOffset;
             foreach (GraphicNurbSurface surface in model.Where(x => x is GraphicNurbSurface))
             {
 
-               
-
+                indexOffset = vertices.Count;
+                
                 // var points2d = new List<Vector3d>();
                 for (int i = 0; i < nU; i++)
                 {
@@ -137,7 +139,7 @@ namespace Luthier.Model
                 {
                     for (int j = 0; j < nV - 1; j++)
                     {
-                        int sw = i * nV + j;
+                        int sw = i * nV + j + indexOffset;
                         int se = sw + 1;
                         int nw = sw + nV;
                         int ne = nw + 1;
@@ -153,9 +155,13 @@ namespace Luthier.Model
             vertices.Clear();
             normals.Clear();
             indices.Clear();
+            int indexOffset;
 
             foreach (GraphicNurbSurface surface in model.Where(x => x is GraphicNurbSurface))
             {
+
+                indexOffset = vertices.Count;
+
                 for (int i = 0; i < surface.CvCount0; i++)
                 {
                     for (int j = 0; j < surface.CvCount1; j++)
@@ -170,7 +176,7 @@ namespace Luthier.Model
                 {
                     for (int j = 0; j < surface.CvCount1; j++)
                     {
-                        var from = i * surface.CvCount1 + j;
+                        var from = i * surface.CvCount1 + j + indexOffset;
                         var to = from + surface.CvCount1;
                         indices.AddRange(new int[] { from ,to });
                     }
@@ -181,7 +187,7 @@ namespace Luthier.Model
                 {
                     for (int j = 0; j < surface.CvCount1 - 1; j++)
                     {
-                        var from = i * surface.CvCount1 + j;
+                        var from = i * surface.CvCount1 + j + indexOffset;
                         var to = from + 1;
                         indices.AddRange(new int[] { from, to });
                     }

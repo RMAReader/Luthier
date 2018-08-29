@@ -79,12 +79,13 @@ namespace Luthier.Model.Presenter
 
             _lightData = new LightData()
             {
-                AmbientColor = new Vector3(1.0f, 1.0f, 1.0f),//Color.AntiqueWhite.ToVector3(),
+                AmbientColor = Color.White.ToVector3(),
                 DiffuseColor = Color.Red.ToVector3(),
-                SpecularColor = new Vector3(0.2f,0.2f,0.2f),
-                AmbientCoefficient = 1.0f,
-                SpecularCoefficient = 0.5f,
-                ShininessCoefficient = 1.0f
+                SpecularColor = Color.White.ToVector3(),
+                AmbientCoefficient = 0.2f,
+                DiffuseCoefficient = 0.9f,
+                SpecularCoefficient = 0.9f,
+                ShininessCoefficient = 30
             };
         }
 
@@ -272,7 +273,8 @@ namespace Luthier.Model.Presenter
                 //create constant buffer
                 //SharpDX.Direct3D11.Buffer bufferLines = shaderLines.CreateBuffer<Data>();
 
-                SharpDX.Direct3D11.Buffer buffer = shaderPhong.CreateBuffer<Data2>();
+                //SharpDX.Direct3D11.Buffer buffer = shaderPhong.CreateBuffer<Data2>();
+                SharpDX.Direct3D11.Buffer buffer = shaderTextured.CreateBuffer<Data2>();
 
                 fpsCounter.Reset();
 
@@ -295,9 +297,12 @@ namespace Luthier.Model.Presenter
                             var sw = new Stopwatch();
                             sw.Restart();
 
+                            int vertexBufferSize = vertices.Count;
+                            int indexBufferSize = indices.Count;
+
                             model.CreateMesh_NurbsSurface(vertices, normals, indices);
                             model.Model.HasChanged = false;
-                            
+
                             var t1 = sw.Elapsed.TotalSeconds * 1000;
                             sw.Restart();
 
@@ -318,21 +323,27 @@ namespace Luthier.Model.Presenter
                                 {
                                     mesh_NurbsSurface = SharpMesh.Create<TangentVertex>(device, Sharpvertices, indices.ToArray());
                                 }
+                                else if (vertexBufferSize != vertices.Count || indexBufferSize != indices.Count)
+                                {
+                                    mesh_NurbsSurface.Dispose();
+                                    mesh_NurbsSurface = SharpMesh.Create<TangentVertex>(device, Sharpvertices, indices.ToArray());
+                                }
                                 else
                                 {
                                     device.DeviceContext.UpdateSubresource(Sharpvertices, mesh_NurbsSurface.VertexBuffer);
                                 }
                             }
                             var t2 = sw.Elapsed.TotalSeconds * 1000;
-                            model.CreateMesh_NurbsControl(vertices, normals, indices);
 
+                            model.CreateMesh_NurbsControl(vertices, normals, indices);
+                            
                             //Init Mesh
                             var Sharpvertices2 = new StaticColouredVertex[vertices.Count];
                             for (int i = 0; i < vertices.Count; i++)
                             {
                                 Sharpvertices2[i].Position = new Vector3((float)vertices[i].x, (float)vertices[i].y, (float)vertices[i].z);
                                 Sharpvertices2[i].Normal = new Vector3((float)normals[i].x, (float)normals[i].y, (float)normals[i].z);
-                                Sharpvertices2[i].Color = new Vector4(0,1,1,0);
+                                Sharpvertices2[i].Color = new Vector4(1, 0, 0, 1);
                             }
 
                             if (Sharpvertices2.Length > 0)
@@ -343,8 +354,13 @@ namespace Luthier.Model.Presenter
                                 }
                                 else
                                 {
-                                    device.DeviceContext.UpdateSubresource(Sharpvertices2, mesh_NurbsControl.VertexBuffer);
+                                    mesh_NurbsControl.Dispose();
+                                    mesh_NurbsControl = SharpMesh.Create<StaticColouredVertex>(device, Sharpvertices2, indices.ToArray());
                                 }
+                                //else
+                                //{
+                                //    device.DeviceContext.UpdateSubresource(Sharpvertices2, mesh_NurbsControl.VertexBuffer);
+                                //}
                             }
 
 
@@ -360,26 +376,20 @@ namespace Luthier.Model.Presenter
                             if (Sharpvertices.Length > 0)
                             {
                                 if (mesh_NurbsCurve != null) mesh_NurbsCurve.Dispose();
-                                
+
                                 mesh_NurbsCurve = SharpMesh.Create<TangentVertex>(device, Sharpvertices, indices.ToArray());
-                                
+
                             }
                         }
 
 
                         //apply states
                         device.UpdateAllStates();
+                        device.SetDefaultBlendState();
 
                         //clear color
-                        device.Clear(SharpDX.Color.CornflowerBlue);
-                        Data sceneInformation = new Data()
-                        {
-                            world = _camera.World,
-                            worldViewProjection = _camera.WorldViewProjection,
-                            lightDirection = new Vector4(lightDirection, 1),
-                            //viewDirection = new Vector4(Vector3.Normalize(from - to), 1),
-                        };
-
+                        device.Clear(SharpDX.Color.LightSkyBlue);
+                      
                         var viewI = _camera.View;
                         viewI.Invert();
 
@@ -410,10 +420,6 @@ namespace Luthier.Model.Presenter
                         //update constant buffer
                         device.UpdateData<Data2>(buffer, sceneInformation2);
 
-                        ////set shaders to use
-                        //device.DeviceContext.VertexShader.Set(shaderMetal.VertexShader);
-                        //device.DeviceContext.PixelShader.Set(shaderMetal.PixelShader);
-
                         //pass constant buffer to shader
                         device.DeviceContext.VertexShader.SetConstantBuffer(0, buffer);
                         device.DeviceContext.PixelShader.SetConstantBuffer(0, buffer);
@@ -424,29 +430,26 @@ namespace Luthier.Model.Presenter
 
 
                         shaderLines.Apply();
-                        //device.UpdateData<Data>(bufferLines, sceneInformation);
-
                         device.SetWireframeRasterState();
-                        //device.DeviceContext.VertexShader.Set(shaderLines.VertexShader);
-                        //device.DeviceContext.PixelShader.Set(shaderLines.PixelShader);
-                        //device.DeviceContext.VertexShader.SetConstantBuffer(0, bufferLines);
-                        //device.DeviceContext.PixelShader.SetConstantBuffer(0, bufferLines);
+
 
                         if (mesh_NurbsControl != null) mesh_NurbsControl.DrawPatch(PrimitiveTopology.LineList);
                         if (mesh_NurbsCurve != null) mesh_NurbsCurve.DrawPatch(PrimitiveTopology.LineList);
 
 
-                        
+
                         shaderTextured.Apply();
+                        device.UpdateData<Data2>(buffer, sceneInformation2);
                         device.SetDefaultRasterState();
-                        //device.DeviceContext.VertexShader.SetConstantBuffer(0, buffer);
-                        //device.DeviceContext.PixelShader.SetConstantBuffer(0, buffer);
+                        device.SetBlend(BlendOperation.Add, BlendOption.SourceAlpha, BlendOption.InverseSourceAlpha);
+                        device.DeviceContext.VertexShader.SetConstantBuffer(0, buffer);
+                        device.DeviceContext.PixelShader.SetConstantBuffer(0, buffer);
                         device.DeviceContext.PixelShader.SetShaderResource(0, texture);
                         mesh_XYPlane.Draw();
 
                         //begin drawing text
                         device.Font.Begin();
-
+                        
                         //draw string
                         fpsCounter.Update();
                         device.Font.DrawString("FPS: " + fpsCounter.FPS, 0, 30);
