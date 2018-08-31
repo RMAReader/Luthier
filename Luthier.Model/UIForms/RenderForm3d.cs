@@ -28,6 +28,7 @@ namespace Luthier.Model.UIForms
         public EventHandler DoDragParallelToZXPlaneToolStripMenuItem_Click;
         public EventHandler DoDragNormalToPlaneToolStripMenuItem_Click;
         public EventHandler DoLightingOptionsToolStripMenuItem_Click;
+        public EventHandler DoInsertImageToolStripMenuItem_Click;
 
         private void curveToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -77,6 +78,11 @@ namespace Luthier.Model.UIForms
         private void lightingOptionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DoLightingOptionsToolStripMenuItem_Click(sender, e);
+        }
+
+        private void insertImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DoInsertImageToolStripMenuItem_Click(sender, e);
         }
     }
 }

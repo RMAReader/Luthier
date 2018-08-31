@@ -28,7 +28,7 @@ namespace Luthier.Model
 
     public class ImageData
     {
-        public Image image;
+        public System.Drawing.Image image;
         public PointF[] points;
 
         public ImageData()

@@ -73,6 +73,7 @@ namespace Luthier.Model.Presenter
             form.DoDragParallelToZXPlaneToolStripMenuItem_Click = DoDragParallelToZXPlaneToolStripMenuItem_Click;
             form.DoDragNormalToPlaneToolStripMenuItem_Click = DoDragNormalToPlaneToolStripMenuItem_Click;
             form.DoLightingOptionsToolStripMenuItem_Click = DoLightingOptionsToolStripMenuItem_Click;
+            form.DoInsertImageToolStripMenuItem_Click = DoInsertImageToolStripMenuItem_Click;
 
             _camera.ViewWidth = form.ClientSize.Width;
             _camera.ViewHeight = form.ClientSize.Height;
@@ -208,7 +209,17 @@ namespace Luthier.Model.Presenter
             
         }
 
+        private void DoInsertImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var openFileDialog = new OpenFileDialog();
+            if(openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                var image = new Image(openFileDialog.FileName);
+                var controller = new InsertImage(image);
+                SetMouseController(controller);
+            }
 
+        }
 
         public void ShowRenderForm()
         {
@@ -268,7 +279,7 @@ namespace Luthier.Model.Presenter
                         new InputElement("TEXCOORD", 0, Format.R32G32_Float, 48, 0)
                 });
 
-                ShaderResourceView texture = device.LoadTextureFromFile(@"C:\Users\Richard\Documents\Violins\Titian Stradivarius\small images\scroll from back.bmp");
+                ShaderResourceView texture = device.LoadTextureFromFile(@"C:\Users\Lizzie\Documents\Richards documents\Violin\Le Messie Stradivarius\neck sideview.bmp");
 
                 //create constant buffer
                 //SharpDX.Direct3D11.Buffer bufferLines = shaderLines.CreateBuffer<Data>();

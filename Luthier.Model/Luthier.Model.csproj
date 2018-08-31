@@ -83,6 +83,7 @@
     <Compile Include="GraphicObjects\GraphicObjectBase.cs" />
     <Compile Include="GraphicObjects\GraphicPoint2D.cs" />
     <Compile Include="GraphicObjects\GraphicPolygon2D.cs" />
+    <Compile Include="GraphicObjects\Image.cs" />
     <Compile Include="GraphicObjects\IPolygon2D.cs" />
     <Compile Include="GraphicObjects\ISketchCanvas.cs" />
     <Compile Include="GraphicObjects\NurbsCurve.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="MouseController3D\ControlPointDraggerBase.cs" />
     <Compile Include="MouseController3D\ControlPointDraggerNormalToPlane.cs" />
     <Compile Include="MouseController3D\ControlPointDraggerParallelToPlane.cs" />
+    <Compile Include="MouseController3D\InsertImage.cs" />
     <Compile Include="MouseController3D\SketchObjectBase.cs" />
     <Compile Include="MouseController3D\SketchSurface.cs" />
     <Compile Include="MouseController3D\IMouseController3D.cs" />

@@ -44,6 +44,7 @@
             this.perspectiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.orthonormalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lightingOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.insertImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,14 +73,14 @@
             // curveToolStripMenuItem
             // 
             this.curveToolStripMenuItem.Name = "curveToolStripMenuItem";
-            this.curveToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.curveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.curveToolStripMenuItem.Text = "Curve";
             this.curveToolStripMenuItem.Click += new System.EventHandler(this.curveToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(138, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
             // 
             // dragPointsToolStripMenuItem
             // 
@@ -89,7 +90,7 @@
             this.dragParallelToZXPlaneToolStripMenuItem,
             this.normalToPlaneToolStripMenuItem});
             this.dragPointsToolStripMenuItem.Name = "dragPointsToolStripMenuItem";
-            this.dragPointsToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.dragPointsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.dragPointsToolStripMenuItem.Text = "Drag points...";
             // 
             // parallelToPlaneToolStripMenuItem
@@ -124,7 +125,8 @@
             // 
             this.constructToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.planeToolStripMenuItem,
-            this.surfaceToolStripMenuItem});
+            this.surfaceToolStripMenuItem,
+            this.insertImageToolStripMenuItem});
             this.constructToolStripMenuItem.Name = "constructToolStripMenuItem";
             this.constructToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.constructToolStripMenuItem.Text = "Construct";
@@ -132,14 +134,14 @@
             // planeToolStripMenuItem
             // 
             this.planeToolStripMenuItem.Name = "planeToolStripMenuItem";
-            this.planeToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.planeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.planeToolStripMenuItem.Text = "Plane";
             this.planeToolStripMenuItem.Click += new System.EventHandler(this.planeToolStripMenuItem_Click);
             // 
             // surfaceToolStripMenuItem
             // 
             this.surfaceToolStripMenuItem.Name = "surfaceToolStripMenuItem";
-            this.surfaceToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.surfaceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.surfaceToolStripMenuItem.Text = "Surface";
             this.surfaceToolStripMenuItem.Click += new System.EventHandler(this.surfaceToolStripMenuItem_Click);
             // 
@@ -156,23 +158,30 @@
             // perspectiveToolStripMenuItem
             // 
             this.perspectiveToolStripMenuItem.Name = "perspectiveToolStripMenuItem";
-            this.perspectiveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.perspectiveToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.perspectiveToolStripMenuItem.Text = "Perspective";
             this.perspectiveToolStripMenuItem.Click += new System.EventHandler(this.perspectiveToolStripMenuItem_Click);
             // 
             // orthonormalToolStripMenuItem
             // 
             this.orthonormalToolStripMenuItem.Name = "orthonormalToolStripMenuItem";
-            this.orthonormalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.orthonormalToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.orthonormalToolStripMenuItem.Text = "Orthonormal";
             this.orthonormalToolStripMenuItem.Click += new System.EventHandler(this.orthonormalToolStripMenuItem_Click);
             // 
             // lightingOptionsToolStripMenuItem
             // 
             this.lightingOptionsToolStripMenuItem.Name = "lightingOptionsToolStripMenuItem";
-            this.lightingOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.lightingOptionsToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.lightingOptionsToolStripMenuItem.Text = "Lighting options...";
             this.lightingOptionsToolStripMenuItem.Click += new System.EventHandler(this.lightingOptionsToolStripMenuItem_Click);
+            // 
+            // insertImageToolStripMenuItem
+            // 
+            this.insertImageToolStripMenuItem.Name = "insertImageToolStripMenuItem";
+            this.insertImageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.insertImageToolStripMenuItem.Text = "Insert Image";
+            this.insertImageToolStripMenuItem.Click += new System.EventHandler(this.insertImageToolStripMenuItem_Click);
             // 
             // RenderForm3d
             // 
@@ -208,5 +217,6 @@
         private System.Windows.Forms.ToolStripMenuItem dragParallelToYZPlaneToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dragParallelToZXPlaneToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lightingOptionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem insertImageToolStripMenuItem;
     }
 }

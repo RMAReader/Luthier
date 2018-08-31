@@ -17,20 +17,20 @@ namespace Luthier.Model.GraphicObjects
         [XmlArray]
         public UniqueKey[] pointsKeys = new UniqueKey[3];
         
-        private Image image;
+        private System.Drawing.Image image;
 
         public override double GetDistance(ApplicationDocumentModel model, double x, double y)
         {
             return float.MaxValue;
         }
 
-        public Image GetImage()
+        public System.Drawing.Image GetImage()
         {
             if(image == null)
             {
                 try
                 {
-                    image = Image.FromFile(SourcePath);
+                    image = System.Drawing.Image.FromFile(SourcePath);
                 }
                 catch(Exception e)
                 {
