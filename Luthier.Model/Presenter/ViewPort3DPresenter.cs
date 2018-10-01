@@ -209,15 +209,19 @@ namespace Luthier.Model.Presenter
             
         }
 
+        private NewImage _newImageForm;
         private void DoInsertImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var openFileDialog = new OpenFileDialog();
-            if(openFileDialog.ShowDialog() == DialogResult.OK)
+
+            if(_newImageForm == null || _newImageForm.IsDisposed)
             {
-                var image = new Image(openFileDialog.FileName);
-                var controller = new InsertImage(image);
-                SetMouseController(controller);
+                var controller = new InsertImage(null);
+                _newImageForm = new NewImage();
             }
+            
+            _newImageForm.Show();
+
+        
 
         }
 
