@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Luthier.Model.MouseController3D;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,11 +12,15 @@ using System.Windows.Forms;
 
 namespace Luthier.Model.UIForms
 {
-    public partial class NewImage : Form
+    public partial class NewImageForm : Form
     {
-        public NewImage()
+        public InsertImage Controller { get; private set; }
+
+        public NewImageForm(InsertImage controller)
         {
             InitializeComponent();
+
+            Controller = controller;
         }
 
         private void selectImageBrowseButton_Click(object sender, EventArgs e)
@@ -35,8 +40,15 @@ namespace Luthier.Model.UIForms
         {
             if (File.Exists(imageFilePathTextBox.Text))
             {
+                Controller.Path = imageFilePathTextBox.Text;
+
                 imagePictureBox.Image = System.Drawing.Image.FromFile(imageFilePathTextBox.Text);
             }
+        }
+
+        private void placeImageButton_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

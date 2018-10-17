@@ -129,7 +129,7 @@ namespace Luthier.Model
         public IEnumerable<ImageData> GetImages()
         {
             var result = new List<ImageData>();
-            foreach (GraphicImage image in model.Model.Where(x => x is GraphicImage))
+            foreach (GraphicImage2d image in model.Model.Where(x => x is GraphicImage2d))
             {
                 var data = new ImageData();
                 for (int i = 0; i<3; i++)

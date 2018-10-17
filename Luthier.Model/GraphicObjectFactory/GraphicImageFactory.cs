@@ -17,9 +17,9 @@ namespace Luthier.Model.GraphicObjectFactory
             this.data = data;
         }
 
-        public GraphicImage New(double x, double y)
+        public GraphicImage2d New(double x, double y)
         {
-            var obj = new GraphicImage();
+            var obj = new GraphicImage2d();
             data.Model.Add(obj);
 
             obj.pointsKeys[0] = data.Point2DFactory().New(x, y).Key;
@@ -31,7 +31,7 @@ namespace Luthier.Model.GraphicObjectFactory
             return obj;
         }
 
-        public void SetPoint(GraphicImage image, int pointIndex, double x, double y)
+        public void SetPoint(GraphicImage2d image, int pointIndex, double x, double y)
         {
             var point = data.Model[image.pointsKeys[pointIndex]] as GraphicPoint2D;
             if (point != null)
@@ -41,7 +41,7 @@ namespace Luthier.Model.GraphicObjectFactory
             }
         }
 
-        public void SetPointsFixedAspectRatio(GraphicImage image, double x0, double y0, double x1, double y1)
+        public void SetPointsFixedAspectRatio(GraphicImage2d image, double x0, double y0, double x1, double y1)
         {
             var p0 = data.Model[image.pointsKeys[0]] as GraphicPoint2D;
             var p1 = data.Model[image.pointsKeys[1]] as GraphicPoint2D;
@@ -61,7 +61,7 @@ namespace Luthier.Model.GraphicObjectFactory
             }
         }
 
-        public void Delete(GraphicImage image)
+        public void Delete(GraphicImage2d image)
         {
             if (!data.Model.ContainsObject(image)) throw new ArgumentException("image does not exist in data model");
 

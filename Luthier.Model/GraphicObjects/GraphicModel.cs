@@ -12,7 +12,7 @@ namespace Luthier.Model.GraphicObjects
     [XmlInclude(typeof(GraphicPoint2D))]
     [XmlInclude(typeof(GraphicLinkedLine2D))]
     [XmlInclude(typeof(GraphicPolygon2D))]
-    [XmlInclude(typeof(GraphicImage))]
+    [XmlInclude(typeof(GraphicImage2d))]
     [XmlInclude(typeof(GraphicBSplineCurve))]
     [XmlInclude(typeof(GraphicLengthGauge))]
     [XmlInclude(typeof(GraphicIntersection))]

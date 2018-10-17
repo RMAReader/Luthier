@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 namespace Luthier.Model.GraphicObjects
 {
     [Serializable]
-    public class GraphicImage : GraphicObjectBase
+    public class GraphicImage2d : GraphicObjectBase
     {
         [XmlElement]
         public string SourcePath = @"C:\Users\Richard\Documents\Violins\Messiah Stradivarious\Belly profile.bmp";

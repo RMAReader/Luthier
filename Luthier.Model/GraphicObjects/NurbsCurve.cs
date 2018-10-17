@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Luthier.Geometry.BSpline;
+using SharpHelper;
 
 namespace Luthier.Model.GraphicObjects
 {
-    public class NurbsCurve : GraphicObjectBase
+    public class NurbsCurve : GraphicObjectBase, IDrawableLines
     {
 
         private int _dimension;
@@ -179,7 +180,47 @@ namespace Luthier.Model.GraphicObjects
             throw new NotImplementedException();
         }
 
+        #region "IDrawableLines implementation"
 
+        public void GetVertexAndIndexLists(ref List<StaticColouredVertex> vertices, ref List<int> indices)
+        {
+
+            var startIndex = vertices.Count();
+            for (int i = 0; i < NumberOfPoints; i++)
+            {
+                var pos = GetCV(i);
+                vertices.Add(new StaticColouredVertex
+                {
+                    Position = new SharpDX.Vector3((float)pos[0], (float)pos[1], (float)pos[2]),
+                    Color = new SharpDX.Vector4(0, 1, 0, 1)
+                });
+            }
+            for (int i = startIndex; i < startIndex + NumberOfPoints - 1; i++)
+            {
+                indices.AddRange(new int[] { i, i + 1 });
+            }
+
+
+            int numberOfLineSegments = 1000;
+            if (NumberOfPoints > 2)
+            {
+                startIndex = vertices.Count();
+                foreach (var pos in ToLines(numberOfLineSegments))
+                {
+                    vertices.Add(new StaticColouredVertex
+                    {
+                        Position = new SharpDX.Vector3((float)pos[0], (float)pos[1], (float)pos[2]),
+                        Color = new SharpDX.Vector4(0, 1, 0, 1)
+                    });
+                }
+                for (int i = startIndex; i < startIndex + numberOfLineSegments; i++)
+                {
+                    indices.AddRange(new int[] { i, i + 1 });
+                }
+            }
+        }
+
+        #endregion
     }
 
     public class DraggableCurveCV : IDraggable

@@ -58,5 +58,10 @@ namespace SharpHelper
         /// Number of indices to draw
         /// </summary>
         public int IndexCount { get; set; }
+
+        /// <summary>
+        /// Name of Texture 
+        /// </summary>
+        public string TextureName { get; set; }
     }
 }

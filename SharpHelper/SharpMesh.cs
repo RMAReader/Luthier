@@ -46,7 +46,7 @@ namespace SharpHelper
         /// <summary>
         /// Mesh Parts
         /// </summary>
-        public List<SharpSubSet> SubSets { get; private set; }
+        public List<SharpSubSet> SubSets { get; set; }
 
         private SharpMesh(SharpDevice device)
         {
@@ -74,6 +74,15 @@ namespace SharpHelper
         public void Draw(int subset)
         {
             Device.DeviceContext.DrawIndexed(SubSets[subset].IndexCount, SubSets[subset].StartIndex, 0);
+        }
+
+        /// <summary>
+        /// Draw Mesh
+        /// </summary>
+        /// <param name="subset">Subsets</param>
+        public void Draw(SharpSubSet subSet)
+        {
+            Device.DeviceContext.DrawIndexed(subSet.IndexCount, subSet.StartIndex, 0);
         }
 
         /// <summary>

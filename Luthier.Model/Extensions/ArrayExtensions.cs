@@ -115,6 +115,15 @@ namespace Luthier.Model.Extensions
             }
         }
 
+        public static double[] Multiply(this double[] array, double a)
+        {
+            var result = new double[array.Length];
+            for (int i = 0; i < array.Length; i++)
+            {
+                result[i] = array[i] * a;
+            }
+            return result;
+        }
     }
 
    

@@ -1,5 +1,6 @@
 ﻿using Luthier.Geometry;
 using Luthier.Geometry.BSpline;
+using SharpHelper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ using Algorithm = Luthier.Geometry.BSpline.Algorithm;
 namespace Luthier.Model.GraphicObjects
 {
     [Serializable]
-    public class GraphicNurbSurface : GraphicObjectBase
+    public class GraphicNurbSurface : GraphicObjectBase, IDrawablePhongSurface, IDrawableLines
     {
         [XmlElement]
         public int Dimension;
@@ -123,23 +124,7 @@ namespace Luthier.Model.GraphicObjects
             return result;
         }
 
-
-        //public NurbsSurface ToPrimitive(IApplicationDocumentModel model)
-        //{
-        //    var surface = new NurbsSurface(Dimension,IsRational,Order0,Order1,CvCount0,CvCount1);
-
-        //    for (int i = 0; i < surface.KnotCount(0); i++) surface.SetKnot(0, i, knotArray0[i]);
-        //    for (int i = 0; i < surface.KnotCount(1); i++) surface.SetKnot(1, i, knotArray1[i]);
-        //    for (int i = 0; i < CvCount0; i++)
-        //    {
-        //        for (int j = 0; j < CvCount1; j++)
-        //        {
-        //            surface.SetCV(i, j, GetCV(i,j));
-        //        }
-        //    }
-        //    return surface;
-        //}
-
+        
         public IEnumerable<IDraggable2d> GetDraggableObjects2d()
         {
             for (int i = 0; i < CvCount0; i++)
@@ -166,6 +151,97 @@ namespace Luthier.Model.GraphicObjects
         {
             throw new NotImplementedException();
         }
+
+        #region "IDrawableXXX implementations"
+
+        public void GetVertexAndIndexLists(ref List<TangentVertex> vertices, ref List<int> indices)
+        {
+            
+            int nU = 20;
+            int nV = 20;
+
+            int indexOffset = vertices.Count;
+
+            for (int i = 0; i < nU; i++)
+            {
+                double u = (1 - (double)i / (nU)) * Domain0().Min + (double)i / (nU) * Domain0().Max;
+                for (int j = 0; j < nV; j++)
+                {
+                    double v = (1 - (double)j / (nV)) * Domain1().Min + (double)j / (nV) * Domain1().Max;
+
+                    var position = Evaluate(u, v);
+                    var normal = EvaluateNormal(u, v);
+
+                    vertices.Add(new TangentVertex
+                    {
+                        Position = new SharpDX.Vector3((float)position[0], (float)position[1], (float)position[2]),
+                        Normal = new SharpDX.Vector3((float)normal[0], (float)normal[1], (float)normal[2]),
+                        Tangent = new SharpDX.Vector3(1, 0, 0),
+                        Binormal = new SharpDX.Vector3(0, 1, 0),
+                        TextureCoordinate = new SharpDX.Vector2(0, 0)
+                    });
+                }
+            }
+            
+            for (int i = 0; i < nU - 1; i++)
+            {
+                for (int j = 0; j < nV - 1; j++)
+                {
+                    int sw = i * nV + j + indexOffset;
+                    int se = sw + 1;
+                    int nw = sw + nV;
+                    int ne = nw + 1;
+                    indices.AddRange(new int[] { sw, se, ne, ne, nw, sw });
+                    indices.AddRange(new int[] { sw, ne, se, ne, sw, nw });
+                }
+            }
+            
+        }
+
+
+        public void GetVertexAndIndexLists(ref List<StaticColouredVertex> vertices, ref List<int> indices)
+        {
+            var indexOffset = vertices.Count;
+
+            for (int i = 0; i < CvCount0; i++)
+            {
+                for (int j = 0; j < CvCount1; j++)
+                {
+                    var position = GetCV(i, j);
+
+                    vertices.Add(new StaticColouredVertex
+                    {
+                        Position = new SharpDX.Vector3((float)position[0], (float)position[1], (float)position[2]),
+                        Normal = new SharpDX.Vector3(0, 0, 1),
+                        Color = new SharpDX.Vector4(1, 0, 0, 1)
+                    });
+                }
+            }
+
+            //vertical
+            for (int i = 0; i < CvCount0 - 1; i++)
+            {
+                for (int j = 0; j < CvCount1; j++)
+                {
+                    var from = i * CvCount1 + j + indexOffset;
+                    var to = from + CvCount1;
+                    indices.AddRange(new int[] { from, to });
+                }
+            }
+
+            //horizontal
+            for (int i = 0; i < CvCount0; i++)
+            {
+                for (int j = 0; j < CvCount1 - 1; j++)
+                {
+                    var from = i * CvCount1 + j + indexOffset;
+                    var to = from + 1;
+                    indices.AddRange(new int[] { from, to });
+                }
+            }
+        }
+
+        #endregion
     }
 
 

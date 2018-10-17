@@ -1,6 +1,6 @@
 ﻿namespace Luthier.Model.UIForms
 {
-    partial class NewImage
+    partial class NewImageForm
     {
         /// <summary>
         /// Required designer variable.
@@ -34,6 +34,7 @@
             this.transparencyLabel = new System.Windows.Forms.Label();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.imagePictureBox = new System.Windows.Forms.PictureBox();
+            this.placeImageButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imagePictureBox)).BeginInit();
@@ -105,21 +106,33 @@
             // 
             // imagePictureBox
             // 
-            this.imagePictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.imagePictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.imagePictureBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.imagePictureBox.Location = new System.Drawing.Point(13, 93);
+            this.imagePictureBox.Location = new System.Drawing.Point(13, 97);
             this.imagePictureBox.Name = "imagePictureBox";
-            this.imagePictureBox.Size = new System.Drawing.Size(285, 155);
+            this.imagePictureBox.Size = new System.Drawing.Size(285, 179);
             this.imagePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imagePictureBox.TabIndex = 1;
             this.imagePictureBox.TabStop = false;
+            // 
+            // placeImageButton
+            // 
+            this.placeImageButton.Location = new System.Drawing.Point(13, 283);
+            this.placeImageButton.Name = "placeImageButton";
+            this.placeImageButton.Size = new System.Drawing.Size(139, 38);
+            this.placeImageButton.TabIndex = 2;
+            this.placeImageButton.Text = "Place image";
+            this.placeImageButton.UseVisualStyleBackColor = true;
+            this.placeImageButton.Click += new System.EventHandler(this.placeImageButton_Click);
             // 
             // NewImage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(310, 259);
+            this.ClientSize = new System.Drawing.Size(310, 333);
+            this.Controls.Add(this.placeImageButton);
             this.Controls.Add(this.imagePictureBox);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -141,5 +154,6 @@
         private System.Windows.Forms.Label transparencyLabel;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.PictureBox imagePictureBox;
+        private System.Windows.Forms.Button placeImageButton;
     }
 }

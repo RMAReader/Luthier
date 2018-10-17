@@ -817,11 +817,9 @@ namespace SharpHelper
 
             return InitTextureFromData(device, context, header, null, data, offset, 0, out isCubeMap);
         }
-        
-        private static ShaderResourceView CreateTextureFromBitmap(Device device, DeviceContext context, string filename)
-        {
-            System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(filename);
 
+        private static ShaderResourceView CreateTextureFromBitmap(Device device, DeviceContext context, System.Drawing.Bitmap bitmap)
+        {
             int width = bitmap.Width;
             int height = bitmap.Height;
 
@@ -849,6 +847,12 @@ namespace SharpHelper
 
             return resourceView;
         }
+        private static ShaderResourceView CreateTextureFromBitmap(Device device, DeviceContext context, string filename)
+        {
+            System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(filename);
+
+            return CreateTextureFromBitmap(device, context, bitmap);
+        }
 
         /// <summary>
         /// Load texture from file
@@ -869,6 +873,11 @@ namespace SharpHelper
             {
                 return CreateTextureFromBitmap(device.Device, device.DeviceContext, filename);
             }
+        }
+
+        public static ShaderResourceView LoadTextureFromBitMap(this SharpDevice device, System.Drawing.Bitmap bitmap)
+        {
+            return CreateTextureFromBitmap(device.Device, device.DeviceContext, bitmap);
         }
     }
 }

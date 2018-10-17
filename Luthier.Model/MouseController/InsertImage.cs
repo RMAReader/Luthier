@@ -21,7 +21,7 @@ namespace Luthier.Model.MouseController
     {
         private GraphicImageFactory factory;
         private InsertImageState state;
-        private GraphicImage image;
+        private GraphicImage2d image;
         private PointF firstPoint;
 
         public InsertImage(GraphicImageFactory factory)

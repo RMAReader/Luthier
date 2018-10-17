@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="AdapterSystemDrawing.cs" />
     <Compile Include="ApplicationDocumentModel.cs" />
+    <Compile Include="CustomSettings\GraphicPlaneGridAppearence.cs" />
     <Compile Include="Extensions\ArrayExtensions.cs" />
     <Compile Include="GraphicObjectFactory\BSplineFactory.cs" />
     <Compile Include="GraphicObjectFactory\CompositePolygonFactory.cs" />
@@ -76,14 +77,17 @@
     <Compile Include="GraphicObjects\GraphicIntersection.cs" />
     <Compile Include="GraphicObjects\GraphicModel.cs" />
     <Compile Include="GraphicObjects\GraphicBSplineCurve.cs" />
-    <Compile Include="GraphicObjects\GraphicImage.cs" />
+    <Compile Include="GraphicObjects\GraphicImage2d.cs" />
     <Compile Include="GraphicObjects\GraphicLengthGauge.cs" />
     <Compile Include="GraphicObjects\GraphicLinkedLine2D.cs" />
     <Compile Include="GraphicObjects\GraphicNurbSurface.cs" />
     <Compile Include="GraphicObjects\GraphicObjectBase.cs" />
     <Compile Include="GraphicObjects\GraphicPoint2D.cs" />
     <Compile Include="GraphicObjects\GraphicPolygon2D.cs" />
-    <Compile Include="GraphicObjects\Image.cs" />
+    <Compile Include="GraphicObjects\GraphicImage3d.cs" />
+    <Compile Include="GraphicObjects\IDrawableLines.cs" />
+    <Compile Include="GraphicObjects\IDrawablePhongSurface.cs" />
+    <Compile Include="GraphicObjects\IDrawableTextured.cs" />
     <Compile Include="GraphicObjects\IPolygon2D.cs" />
     <Compile Include="GraphicObjects\ISketchCanvas.cs" />
     <Compile Include="GraphicObjects\NurbsCurve.cs" />
@@ -97,6 +101,7 @@
     <Compile Include="MouseController3D\ControlPointDraggerNormalToPlane.cs" />
     <Compile Include="MouseController3D\ControlPointDraggerParallelToPlane.cs" />
     <Compile Include="MouseController3D\InsertImage.cs" />
+    <Compile Include="MouseController3D\InsertPlane.cs" />
     <Compile Include="MouseController3D\SketchObjectBase.cs" />
     <Compile Include="MouseController3D\SketchSurface.cs" />
     <Compile Include="MouseController3D\IMouseController3D.cs" />
@@ -128,6 +133,18 @@
     <Compile Include="Presenter\ViewMapper2D.cs" />
     <Compile Include="Presenter\ViewPort3DPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Scene3D\Scene.cs" />
+    <Compile Include="Scene3D\SceneComponentBase.cs" />
+    <Compile Include="Scene3D\SceneComponentLines.cs" />
+    <Compile Include="Scene3D\SceneComponentPhongShaded.cs" />
+    <Compile Include="Scene3D\SceneComponentTexture.cs" />
+    <Compile Include="Scene3D\SceneUpdater.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="ToolPathCalculator\PocketCalculator.cs" />
     <Compile Include="ToolPathCalculator\ToolPathCalculatorBase.cs" />
     <Compile Include="Presenter\ToolPathPocketPresenter.cs" />
@@ -191,6 +208,10 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="UIForms\LightingOptions.resx">
