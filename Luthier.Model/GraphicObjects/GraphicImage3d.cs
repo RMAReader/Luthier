@@ -63,15 +63,15 @@ namespace Luthier.Model.GraphicObjects
 
             vertices.AddRange(new TangentVertex[]
             {
-                new TangentVertex{ Position = sw, Normal = n, TextureCoordinate = new Vector2(0, 0)},
-                new TangentVertex{ Position = se, Normal = n, TextureCoordinate = new Vector2(1, 0)},
-                new TangentVertex{ Position = ne, Normal = n, TextureCoordinate = new Vector2(1, 1)},
-                new TangentVertex{ Position = nw, Normal = n, TextureCoordinate = new Vector2(0, 1)},
+                new TangentVertex{ Position = sw, Normal = n, TextureCoordinate = new Vector2(0, 1)},
+                new TangentVertex{ Position = se, Normal = n, TextureCoordinate = new Vector2(1, 1)},
+                new TangentVertex{ Position = ne, Normal = n, TextureCoordinate = new Vector2(1, 0)},
+                new TangentVertex{ Position = nw, Normal = n, TextureCoordinate = new Vector2(0, 0)},
 
-                new TangentVertex{ Position = sw, Normal = -n, TextureCoordinate = new Vector2(0, 0)},
-                new TangentVertex{ Position = se, Normal = -n, TextureCoordinate = new Vector2(1, 0)},
-                new TangentVertex{ Position = ne, Normal = -n, TextureCoordinate = new Vector2(1, 1)},
-                new TangentVertex{ Position = nw, Normal = -n, TextureCoordinate = new Vector2(0, 1)},
+                new TangentVertex{ Position = sw, Normal = -n, TextureCoordinate = new Vector2(0, 1)},
+                new TangentVertex{ Position = se, Normal = -n, TextureCoordinate = new Vector2(1, 1)},
+                new TangentVertex{ Position = ne, Normal = -n, TextureCoordinate = new Vector2(1, 0)},
+                new TangentVertex{ Position = nw, Normal = -n, TextureCoordinate = new Vector2(0, 0)},
             });
 
             var rawIndices = new int[] { 0, 2, 1, 2, 0, 3, 4, 5, 6, 6, 7, 4 };

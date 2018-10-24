@@ -15,7 +15,7 @@ namespace Luthier.Model.MouseController3D
         private EnumSketchSurfaceStatus state;
         private double[] firstPoint;
         private double[] secondPoint;
-      
+        private GraphicPlane _plane;
       
         public override void MouseDown(object sender, MouseEventArgs e)
         {
@@ -37,9 +37,9 @@ namespace Luthier.Model.MouseController3D
                             var pu = secondPoint;
                             var pv = origin.Add(base._canvas.GetNormalAtPointOfIntersectionWorld(null, null));
 
-                            var plane = Plane.CreateRightHandedThroughPoints(origin, pu, pv);
+                            _plane = GraphicPlane.CreateRightHandedThroughPoints(origin, pu, pv);
 
-                            _model.Model.Add(plane);
+                            _model.Model.Add(_plane);
 
                             state = EnumSketchSurfaceStatus.FirstPointPending;
                             break;
@@ -47,6 +47,12 @@ namespace Luthier.Model.MouseController3D
                     break;
 
                 case MouseButtons.Right:
+                    if (_plane != null)
+                    {
+                        _model.Model.Remove(_plane);
+                        _plane = null;
+                    }
+
                     state = EnumSketchSurfaceStatus.FirstPointPending;
                     break;
             }

@@ -47,7 +47,7 @@ namespace Luthier.Model.GraphicObjectFactory
 
             foreach (var key in new UniqueKey[] { gauge.fromPoint, gauge.toPoint })
             {
-                var point = (GraphicPoint2D)data.Model.Where(x => x.Key == key).First();
+                var point = (GraphicPoint2D)data.Model.VisibleObjects().Where(x => x.Key == key).First();
                 point.parentObjectKeys.Remove(gauge.Key);
                 if (point.parentObjectKeys.Count == 0) data.Model.Remove(point);
             }

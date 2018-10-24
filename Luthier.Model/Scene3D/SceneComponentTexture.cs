@@ -76,7 +76,7 @@ namespace Luthier.Model.Scene3D
             var vertices = new List<TangentVertex>();
             var indices = new List<int>();
            
-            foreach (IDrawableTextured obj in _model.Model.Where(x => x is IDrawableTextured))
+            foreach (IDrawableTextured obj in _model.Model.VisibleObjects().Where(x => x is IDrawableTextured))
             {
                 if (!Textures.ContainsKey(obj.TextureName))
                 {

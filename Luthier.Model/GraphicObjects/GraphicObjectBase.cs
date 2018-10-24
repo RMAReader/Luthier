@@ -17,17 +17,57 @@ namespace Luthier.Model.GraphicObjects
     //[XmlInclude(typeof(PocketSpecification))]
     public abstract class GraphicObjectBase
     {
+        [XmlIgnore]
+        public GraphicModel Model { get; set; }
+
         [XmlElement()]
         public UniqueKey Key { get; set; }
-        
+
+        [XmlElement()]
+        public UniqueKey LayerKey { get; set; }
+
+        [XmlElement()]
+        public string Name { get; set; }
+
+        [XmlElement()]
+        public virtual bool IsVisible { get; set; }
+
+
         public GraphicObjectBase()
         {
-           Key = new UniqueKey();
+            Key = new UniqueKey();
+            IsVisible = true;
+        }
+        public GraphicObjectBase(string name)
+        {
+            Key = new UniqueKey();
+            Name = name;
+            IsVisible = true;
         }
 
+        public override string ToString()
+        {
+            return (String.IsNullOrEmpty(Name)) ? Key.ToString() : Name;
+        }
 
         public abstract double GetDistance(ApplicationDocumentModel model, double x, double y);
 
+
+        public virtual void RemoveFromLayer()
+        {
+            if (LayerKey != null)
+            {
+                var layer = (GraphicLayer) Model[LayerKey];
+                layer.Objects.Remove(Key);
+                LayerKey = null;
+            }
+        }
+
+        public virtual void RemoveFromModel()
+        {
+            RemoveFromLayer();
+            Model.Remove(this);
+        }
     }
 
     [Serializable]

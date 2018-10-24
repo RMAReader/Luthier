@@ -29,7 +29,7 @@ namespace Luthier.Model
         IMouseControllerFactory MouseControllerFactory();
 
         byte[] SerialiseToBytes();
-        void DeserialiseFromBytes(byte[] bytes);
+        void DeserialiseFromBytes(byte[] bytes, string name);
         void New();
     }
 }

@@ -61,7 +61,7 @@ namespace Luthier.Model.MouseController
         {
             PointF p = ViewMapper.TransformViewToModelCoordinates(new PointF((float)x, (float)y));
             var range = (double)Math.Sqrt(selectionRadius * selectionRadius * ViewMapper.Scale * ViewMapper.Scale);
-            var nearestObj = factory.GetModel().Model
+            var nearestObj = factory.GetModel().Model.VisibleObjects()
                 .Where(o => o is GraphicIntersection)
                 .Select(o => new { Distance = o.GetDistance(factory.GetModel(), p.X, p.Y), Object = o })
                 .Where(o => o.Distance < range)

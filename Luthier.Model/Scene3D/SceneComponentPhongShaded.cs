@@ -53,7 +53,7 @@ namespace Luthier.Model.Scene3D
             var vertices = new List<TangentVertex>();
             var indices = new List<int>();
 
-            foreach (IDrawablePhongSurface obj in _model.Model.Where(x => x is IDrawablePhongSurface))
+            foreach (IDrawablePhongSurface obj in _model.Model.VisibleObjects().Where(x => x is IDrawablePhongSurface))
             {
                 obj.GetVertexAndIndexLists(ref vertices, ref indices);
             }

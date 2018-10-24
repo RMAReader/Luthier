@@ -20,7 +20,7 @@ namespace Luthier.Model.MouseController3D
         protected int startY;
         protected double[] startWorldPoint;
 
-        public Plane referencePlane { get; set; }
+        public GraphicPlane referencePlane { get; set; }
 
         public int X { get; private set; }
 

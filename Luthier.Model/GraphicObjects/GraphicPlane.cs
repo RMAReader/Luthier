@@ -1,4 +1,5 @@
-﻿using Luthier.Model.CustomSettings;
+﻿using System.Numerics;
+using Luthier.Model.CustomSettings;
 using Luthier.Model.Extensions;
 using Luthier.Model.Properties;
 using SharpHelper;
@@ -13,43 +14,38 @@ using System.Xml.Serialization;
 
 namespace Luthier.Model.GraphicObjects
 {
-    public class Plane : GraphicObjectBase, ISketchCanvas, IDrawableLines
+    public class GraphicPlane : GraphicObjectBase, ISketchCanvas, IDrawableLines, ISelectable
     {
         protected double[] _origin;
         protected double[] _normal;
         protected double[] _unitU;
         protected double[] _unitV;
+        protected double _minU = -200;
+        protected double _minV = -200;
+        protected double _maxU = 200;
+        protected double _maxV = 200;
+
+        private bool _isVisible;
+        public override bool IsVisible
+        {
+            get => _isVisible;
+            set
+            {
+                _isVisible = value;
+                if (_isVisible == false)
+                    IsSelected = false;
+            }
+        }
 
         public override double GetDistance(ApplicationDocumentModel model, double x, double y)
         {
             return Double.MaxValue;
         }
 
-      
 
-        public double[] GetPointOfIntersectionWorld(double[] from, double[] to)
+        public GraphicPlane GetParallelPlaneThroughPoint(double[] point)
         {
-            double d = _normal[0] * (to[0] - from[0]) + _normal[1] * (to[1] - from[1]) + _normal[2] * (to[2] - from[2]);
-            if (Math.Abs(d) < Single.Epsilon) return null;
-
-            double r = (_normal[0] * (_origin[0] - from[0]) + _normal[1] * (_origin[1] - from[1]) + _normal[2] * (_origin[2] - from[2])) / d;
-
-            return new double[] 
-            {
-                (1 - r) * from[0] + r * to[0],
-                (1 - r) * from[1] + r * to[1],
-                (1 - r) * from[2] + r * to[2]
-            };
-        }
-
-        public double[] GetNormalAtPointOfIntersectionWorld(double[] from, double[] to)
-        {
-            return _normal;
-        }
-
-        public Plane GetParallelPlaneThroughPoint(double[] point)
-        {
-            return new Plane
+            return new GraphicPlane
             {
                 _origin = point,
                 _normal = this._normal,
@@ -59,9 +55,9 @@ namespace Luthier.Model.GraphicObjects
         }
 
 
-        public static Plane CreateRightHandedXY(double[] origin)
+        public static GraphicPlane CreateRightHandedXY(double[] origin)
         {
-            return new Plane
+            return new GraphicPlane
             {
                 _origin = origin,
                 _normal = new double[] { 0, 0, 1.0 },
@@ -69,9 +65,9 @@ namespace Luthier.Model.GraphicObjects
                 _unitV = new double[] { 0, 1.0, 0 },
             };
         }
-        public static Plane CreateRightHandedYZ(double[] origin)
+        public static GraphicPlane CreateRightHandedYZ(double[] origin)
         {
-            return new Plane
+            return new GraphicPlane
             {
                 _origin = origin,
                 _normal = new double[] { 1.0, 0, 0 },
@@ -79,9 +75,9 @@ namespace Luthier.Model.GraphicObjects
                 _unitV = new double[] { 0, 0, 1.0 },
             };
         }
-        public static Plane CreateRightHandedZX(double[] origin)
+        public static GraphicPlane CreateRightHandedZX(double[] origin)
         {
-            return new Plane
+            return new GraphicPlane
             {
                 _origin = origin,
                 _normal = new double[] { 0, 1.0, 0 },
@@ -91,7 +87,7 @@ namespace Luthier.Model.GraphicObjects
         }
 
 
-        public static Plane CreateRightHandedThroughPoints(double[] origin, double[] pu, double[] pv)
+        public static GraphicPlane CreateRightHandedThroughPoints(double[] origin, double[] pu, double[] pv)
         {
             var unitU = pu.Subtract(origin);
             unitU.Normalise();
@@ -101,7 +97,7 @@ namespace Luthier.Model.GraphicObjects
 
             var normal = unitU.VectorProduct(unitV);
 
-            return new Plane
+            return new GraphicPlane
             {
                 _normal = normal,
                 _origin = origin,
@@ -109,6 +105,72 @@ namespace Luthier.Model.GraphicObjects
                 _unitV = unitV,
             };
         }
+
+        #region "ISketchCanvas implementation"
+
+        public double[] GetPointOfIntersectionWorld(double[] from, double[] to)
+        {
+            return GetRayIntersection(from, to).IntersectInWorldCoords;
+        }
+
+        public double[] GetNormalAtPointOfIntersectionWorld(double[] from, double[] to)
+        {
+            return _normal;
+        }
+
+        #endregion
+
+        #region "ISelectable implementation"
+
+
+        public bool IsSelected { get; set; }
+
+
+        public RayIntersection GetRayIntersection(double[] from, double[] to)
+        {
+            RayIntersection result = null;
+
+            Matrix4x4 m = new Matrix4x4((float)_unitU[0], (float)_unitU[1], (float)_unitU[2], 0,
+                                        (float)_unitV[0], (float)_unitV[1], (float)_unitV[2], 0,
+                                        (float)(from[0] - to[0]), (float)(from[1] - to[1]), (float)(from[2] - to[2]), 0,
+                                        0,0,0,1f);
+            
+            if (Matrix4x4.Invert(m, out Matrix4x4 mInverse))
+            {
+                Vector3 f = new Vector3((float)from[0], (float)from[1], (float)from[2]);
+                Vector3 o = new Vector3((float)_origin[0], (float)_origin[1], (float)_origin[2]);
+
+                var coeffs = Vector3.Transform(f - o, mInverse);
+                var intersectWorld = new double[]
+                {
+                    (1 - coeffs.Z) * from[0] + coeffs.Z * to[0],
+                    (1 - coeffs.Z) * from[1] + coeffs.Z * to[1],
+                    (1 - coeffs.Z) * from[2] + coeffs.Z * to[2]
+                };
+
+                result = new RayIntersection
+                {
+                    Object = this,
+                    IntersectInWorldCoords = intersectWorld,
+                    RayParameter = coeffs.Z,
+                    ObjectParameters = new double[] { coeffs.X, coeffs.Y },
+                    ObjectHit = _minU <= coeffs.X && coeffs.X <= _maxU && _minV <= coeffs.Y && coeffs.Y <= _maxV
+                };
+            }
+            else
+            {
+                result = new RayIntersection
+                {
+                    Object = this,
+                    ObjectHit = false
+                };
+            }
+          
+            return result;
+            
+        }
+
+        #endregion
 
         #region "IDrawable implementation"
 
@@ -123,7 +185,7 @@ namespace Luthier.Model.GraphicObjects
             int vMin = -20;
             int vMax = 20;
 
-            var setting = Settings.Default.GraphicPlaneGridAppearance;
+            var setting = (IsSelected) ? Settings.Default.GraphicPlaneGridAppearanceSelected : Settings.Default.GraphicPlaneGridAppearance;
 
             //horizontal
             for (int i = uMin; i <= uMax; i++)

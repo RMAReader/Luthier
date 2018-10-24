@@ -31,14 +31,18 @@ namespace Luthier.Model
         private MouseControllerFactory mouseControllerFactory;
         private ToolPathFactory toolPathFactory;
 
-        
         public GraphicModel model;
 
 
         public ApplicationDocumentModel()
         {
             model = new GraphicModel();
-            model.Add(Plane.CreateRightHandedXY(new double[] { 0, 0, 0 }));
+            var plane = GraphicPlane.CreateRightHandedXY(new double[] { 0, 0, 0 });
+            var layer = new GraphicLayer();
+            layer.Objects = new List<UniqueKey> { plane.Key };
+            plane.LayerKey = layer.Key;
+            model.Add(layer);
+            model.Add(plane);
 
             point2DFactory = new Point2DFactory(this);
             polygon2DFactory =new Polygon2DFactory(this);
@@ -81,13 +85,13 @@ namespace Luthier.Model
 
         public byte[] SerialiseToBytes()
         {
-            return Serializer<GraphicModelStorage>.Serialize(model.GetStorage);
+            return Serializer<GraphicModelStorage>.Serialize(model.GetStorage());
         }
 
-        public void DeserialiseFromBytes(byte[] bytes)
+        public void DeserialiseFromBytes(byte[] bytes, string name)
         {
             var storage = Serializer<GraphicModelStorage>.Deserialize(bytes);
-            model = new GraphicModel(storage);
+            model = new GraphicModel(storage, name);
         }
 
         public void New()

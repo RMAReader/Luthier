@@ -1,22 +1,11 @@
 ﻿using SharpDX;
-using SharpDX.Direct3D11;
-using SharpDX.DXGI;
 using SharpDX.Windows;
 using SharpHelper;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using g3;
 using Luthier.Model.MouseController3D;
 using System.Windows.Forms;
 using Luthier.Model.KeyController3D;
 using Luthier.Model.UIForms;
-using SharpDX.Direct3D;
-using Luthier.Geometry.BSpline;
-using Luthier.Model.GraphicObjects;
-using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Luthier.Model.Scene3D;
 
@@ -28,12 +17,14 @@ namespace Luthier.Model.Presenter
     public class ViewPort3DPresenter
     {
         private readonly IApplicationDocumentModel model;
+        private SplitContainer splitContainer;
         private RenderForm3d form;
         private IMouseController3D mouseController;
         private IKeyController3D keyController;
         private Camera _camera ;
         private Vector3 lightDirection;
         private LightData _lightData;
+        private ObjectExplorerForm _objectExplorerForm;
 
         public ViewPort3DPresenter(IApplicationDocumentModel model)
         {
@@ -60,9 +51,11 @@ namespace Luthier.Model.Presenter
         {
             form = new RenderForm3d();
             form.Text = "3D Viewport";
-
+           
             SetMouseController(new ControlPointDraggerBase());
             SetKeyController(new OrbitZoom());
+
+            _selectPlaneController = new SelectPlaneController();
 
             form.DoCurveToolStripItem_Click = DoCurveToolStripItem;
             form.DoPlaneToolStripMenuItem_Click = DoPlaneToolStripMenuItem;
@@ -75,6 +68,8 @@ namespace Luthier.Model.Presenter
             form.DoDragNormalToPlaneToolStripMenuItem_Click = DoDragNormalToPlaneToolStripMenuItem_Click;
             form.DoLightingOptionsToolStripMenuItem_Click = DoLightingOptionsToolStripMenuItem_Click;
             form.DoInsertImageToolStripMenuItem_Click = DoInsertImageToolStripMenuItem_Click;
+            form.DoSelectCanvasToolStripMenuItem_Click = DoSelectCanvasToolStripMenuItem_Click;
+            form.DoObjectExplorerToolStripMenuItem_Click = DoObjectExplorerToolStripMenuItem_Click;
 
             _camera.ViewWidth = form.ClientSize.Width;
             _camera.ViewHeight = form.ClientSize.Height;
@@ -134,27 +129,29 @@ namespace Luthier.Model.Presenter
 
         private void DoCurveToolStripItem(object sender, EventArgs e)
         {
-            SetMouseController(new SketchNurbsCurve());
+            var controller = new SketchNurbsCurve();
+            controller.Canvas = _selectPlaneController.Plane;
+            SetMouseController(controller);
         }
 
         private void DoDragParallelToXYPlaneToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var controller = new ControlPointDraggerParallelToPlane();
-            controller.referencePlane = GraphicObjects.Plane.CreateRightHandedXY(origin: new double[3]);
+            controller.referencePlane = GraphicObjects.GraphicPlane.CreateRightHandedXY(origin: new double[3]);
             SetMouseController(controller);
         }
 
         private void DoDragParallelToYZPlaneToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var controller = new ControlPointDraggerParallelToPlane();
-            controller.referencePlane = GraphicObjects.Plane.CreateRightHandedYZ(origin: new double[3]);
+            controller.referencePlane = GraphicObjects.GraphicPlane.CreateRightHandedYZ(origin: new double[3]);
             SetMouseController(controller);
         }
 
         private void DoDragParallelToZXPlaneToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var controller = new ControlPointDraggerParallelToPlane();
-            controller.referencePlane = GraphicObjects.Plane.CreateRightHandedZX(origin: new double[3]);
+            controller.referencePlane = GraphicObjects.GraphicPlane.CreateRightHandedZX(origin: new double[3]);
             SetMouseController(controller);
         }
 
@@ -171,6 +168,7 @@ namespace Luthier.Model.Presenter
             if(dialog.DialogResult == DialogResult.OK)
             {
                 var controller = new SketchSurface(dialog.NumberOfControlPointsU, dialog.NumberOfControlPointsV);
+                controller.Canvas = _selectPlaneController.Plane;
                 SetMouseController(controller);
             }
         }
@@ -179,6 +177,7 @@ namespace Luthier.Model.Presenter
         private void DoPlaneToolStripMenuItem(object sender, EventArgs e)
         {
             var controller = new InsertPlane();
+            controller.Canvas = _selectPlaneController.Plane;
             SetMouseController(controller);
         }
 
@@ -210,20 +209,37 @@ namespace Luthier.Model.Presenter
             
         }
 
-        private NewImageForm _newImageForm;
+        //private NewImageForm _newImageForm;
         private void DoInsertImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            if(_newImageForm == null || _newImageForm.IsDisposed)
-            {
-                var controller = new InsertImage();
-                _newImageForm = new NewImageForm(controller);
-            }
-
-            SetMouseController(_newImageForm.Controller);
+            var controller = new InsertImage();
+            controller.Canvas = _selectPlaneController.Plane;
+            SetMouseController(controller);
+            var _newImageForm = new NewImageForm(this, controller);
+            
             _newImageForm.Show();
-
         }
+
+        private SelectPlaneController _selectPlaneController;
+        private void DoSelectCanvasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_selectPlaneController == null)
+            {
+                _selectPlaneController = new SelectPlaneController();
+            }
+            SetMouseController(_selectPlaneController);
+        }
+
+
+        private void DoObjectExplorerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(_objectExplorerForm == null || _objectExplorerForm.IsDisposed)
+            {
+                _objectExplorerForm = new ObjectExplorerForm(model);
+            }
+            _objectExplorerForm.Show();
+        }
+
 
         public void ShowRenderForm()
         {
@@ -240,8 +256,6 @@ namespace Luthier.Model.Presenter
             {
 
                 var scene = new Scene(device, model, _camera, _lightData);
-
-                ShaderResourceView texture = device.LoadTextureFromFile(@"C:\Users\Richard\Documents\Development\Luthier\TestData\TitianStradScroll\scroll from left.bmp");
 
                 fpsCounter.Reset();
 
@@ -291,34 +305,6 @@ namespace Luthier.Model.Presenter
             }
           
         }
-
-
-        
-
-
-        public SharpMesh CreatePlaneXY(SharpDevice device)
-        {
-            var topNormal = new Vector3(0, 0, 1);
-            var undersideNormal = new Vector3(0, 0, -1);
-
-            var vertices = new TangentVertex[]
-            {
-                new TangentVertex{ Position = new Vector3(-1000, -1000, -100), Normal =  topNormal, TextureCoordinate = new Vector2(0, 0)},
-                new TangentVertex{ Position = new Vector3(1000, -1000, -100), Normal =  topNormal, TextureCoordinate = new Vector2(1, 0)},
-                new TangentVertex{ Position = new Vector3(1000, 1000, -100), Normal =  topNormal, TextureCoordinate = new Vector2(1, 1)},
-                new TangentVertex{ Position = new Vector3(-1000, 1000, -100), Normal =  topNormal, TextureCoordinate = new Vector2(0, 1)},
-
-                new TangentVertex{ Position = new Vector3(-1000, -1000, -100), Normal = undersideNormal, TextureCoordinate = new Vector2(0, 0)},
-                new TangentVertex{ Position = new Vector3(1000, -1000, -100), Normal = undersideNormal, TextureCoordinate = new Vector2(1, 0)},
-                new TangentVertex{ Position = new Vector3(1000, 1000, -100), Normal = undersideNormal, TextureCoordinate = new Vector2(1, 1)},
-                new TangentVertex{ Position = new Vector3(-1000, 1000, -100), Normal = undersideNormal, TextureCoordinate = new Vector2(0, 1)},
-            };
-            var indices = new int[]{0,2,1,2,0,3,4,5,6,6,7,4};
-
-            return SharpMesh.Create<TangentVertex>(device, vertices, indices);
-        }
-
-
 
 
 

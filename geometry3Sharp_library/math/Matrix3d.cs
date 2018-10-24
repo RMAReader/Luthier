@@ -262,5 +262,11 @@ namespace g3
         public string ToString(string fmt) {
             return string.Format("[{0}] [{1}] [{2}]", Row0.ToString(fmt), Row1.ToString(fmt), Row2.ToString(fmt));
         }
+
+
+        public Vector3d MMult(Vector3d rhs)
+        {
+            return new Vector3d(Row0.Dot(rhs), Row1.Dot(rhs), Row2.Dot(rhs));
+        }
     }
 }

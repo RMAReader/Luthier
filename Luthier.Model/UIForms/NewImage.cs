@@ -1,4 +1,5 @@
 ﻿using Luthier.Model.MouseController3D;
+using Luthier.Model.Presenter;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,13 +15,16 @@ namespace Luthier.Model.UIForms
 {
     public partial class NewImageForm : Form
     {
-        public InsertImage Controller { get; private set; }
+        private readonly ViewPort3DPresenter _presenter;
 
-        public NewImageForm(InsertImage controller)
+        private readonly InsertImage _insertImageController;
+
+        public NewImageForm(ViewPort3DPresenter presenter, InsertImage insertImageController)
         {
             InitializeComponent();
 
-            Controller = controller;
+            _insertImageController = insertImageController;
+            _presenter = presenter;
         }
 
         private void selectImageBrowseButton_Click(object sender, EventArgs e)
@@ -40,15 +44,31 @@ namespace Luthier.Model.UIForms
         {
             if (File.Exists(imageFilePathTextBox.Text))
             {
-                Controller.Path = imageFilePathTextBox.Text;
+                _insertImageController.Path = imageFilePathTextBox.Text;
 
                 imagePictureBox.Image = System.Drawing.Image.FromFile(imageFilePathTextBox.Text);
+
+                placeImageButton.Enabled = true;
+            }
+            else
+            {
+                placeImageButton.Enabled = false;
             }
         }
 
         private void placeImageButton_Click(object sender, EventArgs e)
         {
+            if(_insertImageController.Canvas != null)
+            {
+                _presenter.SetMouseController(_insertImageController);
+            }
+            else
+            {
+                MessageBox.Show("A plane must be selected in order to insert an image.");
+            }
             
         }
+
+       
     }
 }

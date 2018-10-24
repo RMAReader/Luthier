@@ -35,21 +35,37 @@ namespace Luthier.Model.GraphicObjects
 
     public class GraphicModel : IEnumerable<GraphicObjectBase>
     {
+        
         private readonly Dictionary<UniqueKey, GraphicObjectBase> _data;
+
+        public event EventHandler<ModelChangeEventArgs> ModelChangedHandler;
+
+        public string Name { get; set; }
 
         public bool HasChanged { get; set; }
 
-        public GraphicModelStorage GetStorage => new GraphicModelStorage { Objects = _data.Values.ToList() };
+        public GraphicModelStorage GetStorage() => new GraphicModelStorage { Objects = _data.Values.ToList() };
 
         public GraphicModel()
         {
             _data = new Dictionary<UniqueKey, GraphicObjectBase>();
             HasChanged = true;
+            Name = "NewModel";
         }
         public GraphicModel(GraphicModelStorage storage)
         {
             _data = storage.Objects.ToDictionary(x => x.Key);
+            foreach (var obj in _data.Values) BindGraphicObject(obj); 
             HasChanged = true;
+            Name = "NewModel";
+        }
+        public GraphicModel(GraphicModelStorage storage, string name)
+        {
+            _data = storage.Objects.ToDictionary(x => x.Key);
+            foreach (var obj in _data.Values) BindGraphicObject(obj);
+
+            HasChanged = true;
+            Name = name;
         }
 
         public GraphicObjectBase this[UniqueKey key] => _data[key];
@@ -68,16 +84,23 @@ namespace Luthier.Model.GraphicObjects
         }
 
 
-        public void Add(GraphicObjectBase obj)
+        public void Add(GraphicObjectBase obj, bool raiseChangeEvent = true)
         {
+            SetDefaultName(obj);
+            BindGraphicObject(obj);
             _data.Add(obj.Key, obj);
-            HasChanged = true;
+
+            if (raiseChangeEvent)
+            {
+                var e = new ModelChangeEventArgs { ObjectAdded = obj };
+                OnModelChanged(e);
+            }
         }
 
         public void Remove(GraphicObjectBase obj)
         {
             _data.Remove(obj.Key);
-            HasChanged = true;
+            UnbindGraphicObject(obj);
         }
 
         public IEnumerable<IDraggable2d> GetDraggableObjects2d()
@@ -95,6 +118,51 @@ namespace Luthier.Model.GraphicObjects
             {
                 foreach (IDraggable o in s.GetDraggableObjects()) yield return o;
             }
+        }
+        public IEnumerable<GraphicObjectBase> VisibleObjects()
+        {
+            return _data.Values.Where(p => p.IsVisible);
+        }
+
+
+        public void RaiseModelChangedEvent()
+        {
+            OnModelChanged(new ModelChangeEventArgs());
+        }
+
+        private void OnModelChanged(ModelChangeEventArgs e)
+        {
+            HasChanged = true;
+            ModelChangedHandler?.Invoke(this, e);
+        }
+
+        private void SetDefaultName(GraphicObjectBase obj)
+        {
+            if (String.IsNullOrEmpty(obj.Name))
+            {
+                var prefix = obj.GetType().Name;
+
+                var count = 0;
+                foreach (var x in _data.Values.Where(x => x.GetType() == obj.GetType() && x.Name.Substring(0, Math.Min(prefix.Length,x.Name.Length)) == prefix))
+                {
+                    if (Int32.TryParse(x.Name.Substring(prefix.Length, x.Name.Length - prefix.Length), out int suffix))
+                    {
+                        if(count < suffix) count = suffix;
+                    }
+                }
+                obj.Name = $"{prefix}{count + 1}";
+            }
+        }
+
+
+        private void BindGraphicObject(GraphicObjectBase obj)
+        {
+            obj.Model = this;
+        }
+
+        private void UnbindGraphicObject(GraphicObjectBase obj)
+        {
+            obj.Model = null;
         }
     }
 

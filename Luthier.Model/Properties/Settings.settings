@@ -3,7 +3,41 @@
   <Profiles />
   <Settings>
     <Setting Name="GraphicPlaneGridAppearance" Type="Luthier.Model.CustomSettings.GraphicPlaneGridAppearence" Scope="User">
-      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;GraphicPlaneGridAppearence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;&lt;MajorAxisColour&gt;&lt;X&gt;0.6&lt;/X&gt;&lt;Y&gt;0.6&lt;/Y&gt;&lt;Z&gt;0.6&lt;/Z&gt;&lt;W&gt;1&lt;/W&gt;&lt;/MajorAxisColour&gt;&lt;MinorAxisColour&gt;&lt;X&gt;0.8&lt;/X&gt;&lt;Y&gt;0.8&lt;/Y&gt;&lt;Z&gt;0.8&lt;/Z&gt;&lt;W&gt;1&lt;/W&gt;&lt;/MinorAxisColour&gt;&lt;/GraphicPlaneGridAppearence&gt;</Value>
+      <Value Profile="(Default)">
+          &lt;GraphicPlaneGridAppearence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+            &lt;MajorAxisColour&gt;
+              &lt;X&gt;0.6&lt;/X&gt;
+              &lt;Y&gt;0.6&lt;/Y&gt;
+              &lt;Z&gt;0.6&lt;/Z&gt;
+              &lt;W&gt;1&lt;/W&gt;
+            &lt;/MajorAxisColour&gt;
+            &lt;MinorAxisColour&gt;
+              &lt;X&gt;0.8&lt;/X&gt;
+              &lt;Y&gt;0.8&lt;/Y&gt;
+              &lt;Z&gt;0.8&lt;/Z&gt;
+              &lt;W&gt;1&lt;/W&gt;
+            &lt;/MinorAxisColour&gt;
+          &lt;/GraphicPlaneGridAppearence&gt;
+        </Value>
+    </Setting>
+    <Setting Name="GraphicPlaneGridAppearanceSelected" Type="Luthier.Model.CustomSettings.GraphicPlaneGridAppearence" Scope="User">
+      <Value Profile="(Default)">
+          &lt;GraphicPlaneGridAppearence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+            &lt;MajorAxisStep&gt;0&lt;/MajorAxisStep&gt;
+            &lt;MajorAxisColour&gt;
+              &lt;X&gt;0.6&lt;/X&gt;
+              &lt;Y&gt;0&lt;/Y&gt;
+              &lt;Z&gt;0&lt;/Z&gt;
+              &lt;W&gt;1&lt;/W&gt;
+            &lt;/MajorAxisColour&gt;
+            &lt;MinorAxisColour&gt;
+              &lt;X&gt;0.8&lt;/X&gt;
+              &lt;Y&gt;0&lt;/Y&gt;
+              &lt;Z&gt;0&lt;/Z&gt;
+              &lt;W&gt;1&lt;/W&gt;
+            &lt;/MinorAxisColour&gt;
+          &lt;/GraphicPlaneGridAppearence&gt;
+        </Value>
     </Setting>
   </Settings>
 </SettingsFile>

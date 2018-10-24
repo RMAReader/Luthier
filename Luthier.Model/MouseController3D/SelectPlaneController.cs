@@ -1,25 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Luthier.Model.GraphicObjects;
 using Luthier.Model.Presenter;
 
 namespace Luthier.Model.MouseController3D
 {
-    public class SketchObjectBase : IMouseController3D
+    public class SelectPlaneController : IMouseController3D
     {
         protected Camera _camera;
         protected IApplicationDocumentModel _model;
-        protected ISketchCanvas _canvas = GraphicPlane.CreateRightHandedXY(new double[] { 0, 0, 0 });
-
-        public ISketchCanvas Canvas { get => _canvas; set => _canvas = value; }
-
+ 
         public int X { get; private set; }
 
         public int Y { get; private set; }
+
+        public GraphicPlane Plane { get; private set; }
 
         public void Bind(IApplicationDocumentModel model)
         {
@@ -38,7 +34,30 @@ namespace Luthier.Model.MouseController3D
 
         public virtual void MouseClick(object sender, MouseEventArgs e)
         {
-            
+            _camera.ConvertFromScreenToWorld(e.X, e.Y, out double[] from, out double[] to);
+
+            var selectedPlanes = new List<GraphicPlane>();
+            var intersections = new List<RayIntersection>();
+            foreach (GraphicPlane plane in _model.Model.VisibleObjects().Where(X => X is GraphicPlane))
+            {
+                var query = plane.GetRayIntersection(from, to);
+
+                if (query.ObjectHit)
+                    intersections.Add(query);
+
+                if (plane.IsSelected)
+                    selectedPlanes.Add(plane);
+            }
+
+            if (intersections.Count > 0)
+            {
+                foreach(var plane in selectedPlanes)
+                    plane.IsSelected = false;
+
+                Plane = (GraphicPlane)intersections.OrderBy(x => x.RayParameter).First().Object;
+                Plane.IsSelected = true;
+                _model.Model.HasChanged = true;
+            }
         }
 
         public virtual void MouseDoubleClick(object sender, MouseEventArgs e)
@@ -67,18 +86,11 @@ namespace Luthier.Model.MouseController3D
         }
 
 
-      
+
         public virtual void OnMouseMove(object sender, MouseEventArgs e)
         {
         }
 
-
-        protected double[] CalculateIntersection(int screenX, int screenY)
-        {
-            _camera.ConvertFromScreenToWorld(screenX, screenY, out double[] from, out double[] to);
-
-            return _canvas.GetPointOfIntersectionWorld(from, to);
-        }
 
        
     }

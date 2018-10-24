@@ -25,13 +25,56 @@ namespace Luthier.Model.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?><GraphicPlaneGridAppearence xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema""><MajorAxisColour><X>0.6</X><Y>0.6</Y><Z>0.6</Z><W>1</W></MajorAxisColour><MinorAxisColour><X>0.8</X><Y>0.8</Y><Z>0.8</Z><W>1</W></MinorAxisColour></GraphicPlaneGridAppearence>")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"
+          <GraphicPlaneGridAppearence xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+            <MajorAxisColour>
+              <X>0.6</X>
+              <Y>0.6</Y>
+              <Z>0.6</Z>
+              <W>1</W>
+            </MajorAxisColour>
+            <MinorAxisColour>
+              <X>0.8</X>
+              <Y>0.8</Y>
+              <Z>0.8</Z>
+              <W>1</W>
+            </MinorAxisColour>
+          </GraphicPlaneGridAppearence>
+        ")]
         public global::Luthier.Model.CustomSettings.GraphicPlaneGridAppearence GraphicPlaneGridAppearance {
             get {
                 return ((global::Luthier.Model.CustomSettings.GraphicPlaneGridAppearence)(this["GraphicPlaneGridAppearance"]));
             }
             set {
                 this["GraphicPlaneGridAppearance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"
+          <GraphicPlaneGridAppearence xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+            <MajorAxisStep>0</MajorAxisStep>
+            <MajorAxisColour>
+              <X>0.6</X>
+              <Y>0</Y>
+              <Z>0</Z>
+              <W>1</W>
+            </MajorAxisColour>
+            <MinorAxisColour>
+              <X>0.8</X>
+              <Y>0</Y>
+              <Z>0</Z>
+              <W>1</W>
+            </MinorAxisColour>
+          </GraphicPlaneGridAppearence>
+        ")]
+        public global::Luthier.Model.CustomSettings.GraphicPlaneGridAppearence GraphicPlaneGridAppearanceSelected {
+            get {
+                return ((global::Luthier.Model.CustomSettings.GraphicPlaneGridAppearence)(this["GraphicPlaneGridAppearanceSelected"]));
+            }
+            set {
+                this["GraphicPlaneGridAppearanceSelected"] = value;
             }
         }
     }

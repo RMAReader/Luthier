@@ -76,7 +76,7 @@ namespace Luthier.Model.MouseController
         private Tuple<UniqueKey, UniqueKey> GetNearestIntesectingObjects(double x, double y)
         {
             var range = (double)Math.Sqrt(selectionRadius * selectionRadius * ViewMapper.Scale * ViewMapper.Scale);
-            var curves = ifactory.GetModel().Model
+            var curves = ifactory.GetModel().Model.VisibleObjects()
                 .Where(o => o is GraphicBSplineCurve)
                 .Select(o => new { o.Key, Curve = ((GraphicBSplineCurve)o).ToPrimitive(ifactory.GetModel()) }).ToList();
 

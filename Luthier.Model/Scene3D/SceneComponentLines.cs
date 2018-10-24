@@ -50,7 +50,7 @@ namespace Luthier.Model.Scene3D
             var vertices = new List<StaticColouredVertex>();
             var indices = new List<int>();
 
-            foreach (IDrawableLines obj in _model.Model.Where(x => x is IDrawableLines))
+            foreach (IDrawableLines obj in _model.Model.VisibleObjects().Where(x => x is IDrawableLines))
             {
                 obj.GetVertexAndIndexLists(ref vertices, ref indices);
             }

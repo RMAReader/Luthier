@@ -53,7 +53,7 @@ namespace Luthier.UI
                             {
                                 bytes = br.ReadBytes((int)myStream.Length);
                             }
-                            model.DeserialiseFromBytes(bytes);
+                            model.DeserialiseFromBytes(bytes, openFileDialog1.FileName);
                         }
                     }
                 }

@@ -112,31 +112,32 @@
             this.imagePictureBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.imagePictureBox.Location = new System.Drawing.Point(13, 97);
             this.imagePictureBox.Name = "imagePictureBox";
-            this.imagePictureBox.Size = new System.Drawing.Size(285, 179);
+            this.imagePictureBox.Size = new System.Drawing.Size(285, 224);
             this.imagePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imagePictureBox.TabIndex = 1;
             this.imagePictureBox.TabStop = false;
             // 
             // placeImageButton
             // 
-            this.placeImageButton.Location = new System.Drawing.Point(13, 283);
+            this.placeImageButton.Enabled = false;
+            this.placeImageButton.Location = new System.Drawing.Point(13, 327);
             this.placeImageButton.Name = "placeImageButton";
-            this.placeImageButton.Size = new System.Drawing.Size(139, 38);
+            this.placeImageButton.Size = new System.Drawing.Size(135, 38);
             this.placeImageButton.TabIndex = 2;
             this.placeImageButton.Text = "Place image";
             this.placeImageButton.UseVisualStyleBackColor = true;
             this.placeImageButton.Click += new System.EventHandler(this.placeImageButton_Click);
             // 
-            // NewImage
+            // NewImageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(310, 333);
+            this.ClientSize = new System.Drawing.Size(310, 371);
             this.Controls.Add(this.placeImageButton);
             this.Controls.Add(this.imagePictureBox);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "NewImage";
+            this.Name = "NewImageForm";
             this.Text = "NewImage";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

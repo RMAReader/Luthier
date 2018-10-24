@@ -27,7 +27,7 @@ namespace Luthier.Model
         public IEnumerable<PointF[]> GetLinkedLine2DPoints()
         {
             var result = new List<PointF[]>();
-            foreach (GraphicLinkedLine2D line in model.Model.Where(x => x is GraphicLinkedLine2D))
+            foreach (GraphicLinkedLine2D line in model.Model.VisibleObjects().Where(x => x is GraphicLinkedLine2D))
             {
                 List<PointF> points = new List<PointF>();
                 foreach(var pointKey in line.pointsKeys)
@@ -43,7 +43,7 @@ namespace Luthier.Model
         public IEnumerable<PointF[]> GetCurveControlPoints()
         {
             var result = new List<PointF[]>();
-            foreach (GraphicBSplineCurve line in model.Model.Where(x => x is GraphicBSplineCurve))
+            foreach (GraphicBSplineCurve line in model.Model.VisibleObjects().Where(x => x is GraphicBSplineCurve))
             {
                 List<PointF> points = new List<PointF>();
                 foreach (var pointKey in line.pointsKeys)
@@ -59,7 +59,7 @@ namespace Luthier.Model
         public IEnumerable<PointF[]> GetCurves()
         {
             var result = new List<PointF[]>();
-            foreach (GraphicBSplineCurve curve in model.Model.Where(x => x is GraphicBSplineCurve))
+            foreach (GraphicBSplineCurve curve in model.Model.VisibleObjects().Where(x => x is GraphicBSplineCurve))
             {
                 List<Point2D> points = new List<Point2D>();
                 foreach (var pointKey in curve.pointsKeys)
@@ -78,7 +78,7 @@ namespace Luthier.Model
         public IEnumerable<PointF[]> GetPolygon2DPoints()
         {
             var result = new List<PointF[]>();
-            foreach (GraphicPolygon2D polygon in model.Model.Where(x => x is GraphicPolygon2D))
+            foreach (GraphicPolygon2D polygon in model.Model.VisibleObjects().Where(x => x is GraphicPolygon2D))
             {
                 List<PointF> points = new List<PointF>();
                 foreach (var pointKey in polygon.pointsKeys)
@@ -129,7 +129,7 @@ namespace Luthier.Model
         public IEnumerable<ImageData> GetImages()
         {
             var result = new List<ImageData>();
-            foreach (GraphicImage2d image in model.Model.Where(x => x is GraphicImage2d))
+            foreach (GraphicImage2d image in model.Model.VisibleObjects().Where(x => x is GraphicImage2d))
             {
                 var data = new ImageData();
                 for (int i = 0; i<3; i++)
@@ -147,7 +147,7 @@ namespace Luthier.Model
         public IEnumerable<LengthGaugeData> GetLengthGauges()
         {
             var result = new List<LengthGaugeData>();
-            foreach (GraphicLengthGauge gauge in model.Model.Where(x => x is GraphicLengthGauge))
+            foreach (GraphicLengthGauge gauge in model.Model.VisibleObjects().Where(x => x is GraphicLengthGauge))
             {
                 
                 var p1 = (GraphicPoint2D)model.Model[gauge.fromPoint];
@@ -167,7 +167,7 @@ namespace Luthier.Model
         public IEnumerable<IntersectionData> GetIntersections()
         {
             var result = new List<IntersectionData>();
-            foreach (GraphicIntersection intersection in model.Model.Where(x => x is GraphicIntersection))
+            foreach (GraphicIntersection intersection in model.Model.VisibleObjects().Where(x => x is GraphicIntersection))
             {
                 GraphicPoint2D centre = (GraphicPoint2D)model.Model[intersection.Centre];
                 GraphicPoint2D radius = (GraphicPoint2D)model.Model[intersection.Radius];
@@ -183,7 +183,7 @@ namespace Luthier.Model
         public IEnumerable<PointF[]> GetCompositePolygons()
         {
             var result = new List<PointF[]>();
-            foreach (GraphicCompositePolygon polygon in model.Model.Where(x => x is GraphicCompositePolygon))
+            foreach (GraphicCompositePolygon polygon in model.Model.VisibleObjects().Where(x => x is GraphicCompositePolygon))
             {
                 result.Add(polygon.ToPolygon2D(model).GetPoints().Select(p => new PointF((float)p.x, (float)p.y)).ToArray());
             }
@@ -193,7 +193,7 @@ namespace Luthier.Model
         public IEnumerable<PointF[]> GetToolPath()
         {
             var result = new List<PointF[]>();
-            foreach (ToolPathSpecificationBase spec in model.Model.Where(x => x is ToolPathSpecificationBase))
+            foreach (ToolPathSpecificationBase spec in model.Model.VisibleObjects().Where(x => x is ToolPathSpecificationBase))
             {
                 if(spec.ToolPath != null)
                 {
@@ -220,7 +220,7 @@ namespace Luthier.Model
         public IEnumerable<PointF[]> GetSurfaceControlPoints()
         {
             var result = new List<PointF[]>();
-            foreach (GraphicNurbSurface surface in model.Model.Where(x => x is GraphicNurbSurface))
+            foreach (GraphicNurbSurface surface in model.Model.VisibleObjects().Where(x => x is GraphicNurbSurface))
             {
                 var net = new List<PointF>();
                 for (int i = 0; i < surface.CvCount0; i++)

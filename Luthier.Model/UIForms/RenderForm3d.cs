@@ -29,6 +29,8 @@ namespace Luthier.Model.UIForms
         public EventHandler DoDragNormalToPlaneToolStripMenuItem_Click;
         public EventHandler DoLightingOptionsToolStripMenuItem_Click;
         public EventHandler DoInsertImageToolStripMenuItem_Click;
+        public EventHandler DoSelectCanvasToolStripMenuItem_Click;
+        public EventHandler DoObjectExplorerToolStripMenuItem_Click;
 
         private void curveToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -83,6 +85,21 @@ namespace Luthier.Model.UIForms
         private void insertImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DoInsertImageToolStripMenuItem_Click(sender, e);
+        }
+
+        private void selectCanvasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DoSelectCanvasToolStripMenuItem_Click(sender, e);
+        }
+
+        private void objectExplorerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DoObjectExplorerToolStripMenuItem_Click(sender, e);
+        }
+
+        private void RenderForm3d_MouseEnter(object sender, EventArgs e)
+        {
+            this.Focus();
         }
     }
 }

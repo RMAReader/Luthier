@@ -31,7 +31,7 @@ namespace Luthier.Test.Model
             var doc1 = new ApplicationDocumentModel();
             var p1 = doc1.Point2DFactory().New(1.0f, 2.0f);
             
-            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage);
+            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage());
 
             var model2 = Serializer<GraphicModelStorage>.Deserialize(bytes);
 
@@ -48,7 +48,7 @@ namespace Luthier.Test.Model
             var k6 = doc1.Polygon2DFactory().AppendPoint(k4, 0, 0);
             var k7 = doc1.Polygon2DFactory().AppendPoint(k4, 0, 1);
 
-            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage);
+            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage());
 
             var model2 = Serializer<GraphicModelStorage>.Deserialize(bytes);
         }
@@ -63,7 +63,7 @@ namespace Luthier.Test.Model
             var k6 = doc1.LinkedLine2DFactory().AppendPoint(k4, 0, 0);
             var k7 = doc1.LinkedLine2DFactory().AppendPoint(k4, 0, 1);
 
-            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage);
+            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage());
 
             var model2 = Serializer<GraphicModelStorage>.Deserialize(bytes);
         }
@@ -76,7 +76,7 @@ namespace Luthier.Test.Model
             var k4 = doc1.LengthGaugeFactory().New(1.0f, 2.0f);
             doc1.LengthGaugeFactory().SetEndPoint(k4, 5.0f, 2.0f);
             
-            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage);
+            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage());
 
             var model2 = Serializer<GraphicModelStorage>.Deserialize(bytes);
         }
@@ -89,7 +89,7 @@ namespace Luthier.Test.Model
             var k4 = doc1.ImageFactory().New(1.0f, 2.0f);
             doc1.ImageFactory().SetPointsFixedAspectRatio(k4, 1.0f, 2.0f, 9.0f, 1.0f);
 
-            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage);
+            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage());
 
             var model2 = Serializer<GraphicModelStorage>.Deserialize(bytes);
         }
@@ -104,7 +104,7 @@ namespace Luthier.Test.Model
             doc1.BSplineFactory().AppendPoint(k4, 2, 0);
             doc1.BSplineFactory().AppendPoint(k4, 3, 5);
             
-            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage);
+            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage());
 
             var model2 = Serializer<GraphicModelStorage>.Deserialize(bytes);
         }
@@ -119,7 +119,7 @@ namespace Luthier.Test.Model
             doc1.IntersectionFactory().SetObject1(k1, doc1.BSplineFactory().New(2));
             doc1.IntersectionFactory().SetObject2(k1, doc1.BSplineFactory().New(2));
 
-            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage);
+            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage());
 
             var model2 = Serializer<GraphicModelStorage>.Deserialize(bytes);
         }
@@ -135,7 +135,7 @@ namespace Luthier.Test.Model
 
             doc1.CompositePolygonFactory().AddIntersection(p1, i1);
 
-            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage);
+            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage());
 
             var model2 = Serializer<GraphicModelStorage>.Deserialize(bytes);
         }
@@ -192,7 +192,7 @@ namespace Luthier.Test.Model
             spec.StepLength = 2;
             
 
-            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage);
+            var bytes = Serializer<GraphicModelStorage>.Serialize(doc1.model.GetStorage());
 
             var model2 = Serializer<GraphicModelStorage>.Deserialize(bytes);
         }

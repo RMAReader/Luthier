@@ -1,13 +1,14 @@
 ﻿using Luthier.Model.Extensions;
 using Luthier.Model.GraphicObjects;
-using SharpDX;
-using SharpHelper;
+//using SharpDX;
+//using SharpHelper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Numerics;
 
 namespace Luthier.Model.MouseController3D
 {
@@ -45,8 +46,13 @@ namespace Luthier.Model.MouseController3D
                         case EnumSketchSurfaceStatus.SecondPointPending:
                             if (_image != null)
                             {
-                                _image.LowerRight = CalculateIntersection(e.X, e.Y);
-                                _image.UpperLeft = GetUpperLeft(_image.LowerLeft, _image.LowerRight, _image.AspectRatio);
+                                _camera.ConvertFromScreenToWorld(X, Y, out double[] from, out double[] to);
+
+                                _image.LowerRight = _canvas.GetPointOfIntersectionWorld(from, to);
+
+                                var rayDirection = to.Subtract(from);
+
+                                _image.UpperLeft = GetUpperLeft(rayDirection, _image.LowerLeft, _image.LowerRight, _image.AspectRatio);
                                 state = EnumSketchSurfaceStatus.FirstPointPending;
                                 _image = null;
                             }
@@ -58,6 +64,7 @@ namespace Luthier.Model.MouseController3D
                 case MouseButtons.Right:
                     if (_image != null)
                     {
+                        _model.Model.Remove(_image);
                         state = EnumSketchSurfaceStatus.FirstPointPending;
                         _image = null;
                     }
@@ -69,23 +76,37 @@ namespace Luthier.Model.MouseController3D
         {
             if (_image != null)
             {
-                _image.LowerRight = CalculateIntersection(e.X, e.Y);
-                _image.UpperLeft = GetUpperLeft(_image.LowerLeft, _image.LowerRight, _image.AspectRatio);
+                _camera.ConvertFromScreenToWorld(X, Y, out double[] from, out double[] to);
+
+                _image.LowerRight = _canvas.GetPointOfIntersectionWorld(from, to);
+
+                var rayDirection = to.Subtract(from);
+
+                _image.UpperLeft = GetUpperLeft(rayDirection, _image.LowerLeft, _image.LowerRight, _image.AspectRatio);
+                _model.Model.HasChanged = true;
             }
         }
 
 
-        private double[] GetUpperLeft(double[] lowerLeft, double[] lowerRight, double aspectRatio)
+        private double[] GetUpperLeft(double[] ray, double[] lowerLeft, double[] lowerRight, double aspectRatio)
         {
             var normal = _canvas.GetNormalAtPointOfIntersectionWorld(null, null);
 
-            double[] bottomEdge = lowerRight.Subtract(lowerLeft);
-            Vector3 axis = new Vector3((float)normal[0], (float)normal[1], (float)normal[2]);
-            var rotation = Matrix.RotationAxis(axis, (float)Math.PI / 2);
-            double[] leftEdge4 = SharpUtilities.Mul(rotation, bottomEdge);
-            double[] leftEdge3 = new double[] { leftEdge4[0], leftEdge4[1], leftEdge4[2] };
+            Vector3 n = new Vector3((float)normal[0], (float)normal[1], (float)normal[2]);
+            Vector3 r = new Vector3((float)ray[0], (float)ray[1], (float)ray[2]);
+            Vector3 bottomLeft = new Vector3((float)lowerLeft[0], (float)lowerLeft[1], (float)lowerLeft[2]);
+            Vector3 bottomRight = new Vector3((float)lowerRight[0], (float)lowerRight[1], (float)lowerRight[2]);
 
-            return _image.LowerLeft.Add(leftEdge3.Multiply(1 / _image.AspectRatio));
+            //determines whether we are viewing plan from infront or behind.  Texture will be placed so that image is not flipped
+            var sign = Math.Sign(Vector3.Dot(n, r));
+
+            Vector3 bottomEdge = bottomRight - bottomLeft;
+
+            Vector3 leftEdge = (float)(sign / _image.AspectRatio) * Vector3.Cross(n, bottomEdge);
+
+            Vector3 topLeft = bottomLeft + leftEdge;
+
+            return new double[] { topLeft.X, topLeft.Y, topLeft.Z };
         }
     }
 }
