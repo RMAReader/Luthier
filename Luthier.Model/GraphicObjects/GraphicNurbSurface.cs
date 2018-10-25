@@ -201,6 +201,12 @@ namespace Luthier.Model.GraphicObjects
 
         public void GetVertexAndIndexLists(ref List<StaticColouredVertex> vertices, ref List<int> indices)
         {
+            AddControlNetEdges(ref vertices, ref indices);
+            
+        }
+
+        public void AddControlNetEdges(ref List<StaticColouredVertex> vertices, ref List<int> indices)
+        {
             var indexOffset = vertices.Count;
 
             for (int i = 0; i < CvCount0; i++)
@@ -240,6 +246,7 @@ namespace Luthier.Model.GraphicObjects
                 }
             }
         }
+
 
         #endregion
     }

@@ -184,27 +184,17 @@ namespace Luthier.Model.GraphicObjects
 
         public void GetVertexAndIndexLists(ref List<StaticColouredVertex> vertices, ref List<int> indices)
         {
+            GetVertexAndIndexListsForCurve(ref vertices, ref indices);
 
-            var startIndex = vertices.Count();
-            for (int i = 0; i < NumberOfPoints; i++)
-            {
-                var pos = GetCV(i);
-                vertices.Add(new StaticColouredVertex
-                {
-                    Position = new SharpDX.Vector3((float)pos[0], (float)pos[1], (float)pos[2]),
-                    Color = new SharpDX.Vector4(0, 1, 0, 1)
-                });
-            }
-            for (int i = startIndex; i < startIndex + NumberOfPoints - 1; i++)
-            {
-                indices.AddRange(new int[] { i, i + 1 });
-            }
+            GetVertexAndIndexListsForControlPolygon(ref vertices, ref indices);
+        }
 
-
+        private void GetVertexAndIndexListsForCurve(ref List<StaticColouredVertex> vertices, ref List<int> indices)
+        {
             int numberOfLineSegments = 1000;
             if (NumberOfPoints > 2)
             {
-                startIndex = vertices.Count();
+                int startIndex = vertices.Count();
                 foreach (var pos in ToLines(numberOfLineSegments))
                 {
                     vertices.Add(new StaticColouredVertex
@@ -219,6 +209,25 @@ namespace Luthier.Model.GraphicObjects
                 }
             }
         }
+
+        private void GetVertexAndIndexListsForControlPolygon(ref List<StaticColouredVertex> vertices, ref List<int> indices)
+        {
+            int startIndex = vertices.Count();
+            for (int i = 0; i < NumberOfPoints; i++)
+            {
+                var pos = GetCV(i);
+                vertices.Add(new StaticColouredVertex
+                {
+                    Position = new SharpDX.Vector3((float)pos[0], (float)pos[1], (float)pos[2]),
+                    Color = new SharpDX.Vector4(0, 1, 0, 1)
+                });
+            }
+            for (int i = startIndex; i < startIndex + NumberOfPoints - 1; i++)
+            {
+                indices.AddRange(new int[] { i, i + 1 });
+            }
+        }
+
 
         #endregion
     }

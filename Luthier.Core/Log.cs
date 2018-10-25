@@ -13,7 +13,7 @@ namespace Luthier.Core
     {
         private static Log instance = new Log();
 
-        private string path = Path.Combine(@"C:\Users\Richard\Documents\Development\Luthier\Log.txt");
+        private string path = $"Log{DateTime.Now:yyyyMMddhhss}.txt";
 
         protected Log() { }
 

@@ -95,6 +95,22 @@ namespace Luthier.Model.Presenter
             to = new double[] { toH[0] / toH[3], toH[1] / toH[3], toH[2] / toH[3] };
         }
 
+
+        public Camera DeepCopy()
+        {
+            return new Camera {
+                ViewWidth = this.ViewWidth,
+                ViewHeight = this.ViewHeight,
+                InitialView = this.InitialView,
+                ProjectionMethod = this.ProjectionMethod,
+                LookAt = this.LookAt,
+                ZoomFactor = this.ZoomFactor,
+                Distance = this.Distance,
+                World = this.World,
+                Theta = this.Theta,
+                Phi = this.Phi
+            };
+        }
     }
 
 }
