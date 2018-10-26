@@ -14,7 +14,7 @@ namespace Luthier.Model.MouseController3D
         {
             if (startWorldPoint != null)
             {
-                var dragPlane = referencePlane.GetParallelPlaneThroughPoint(startWorldPoint);
+                var dragPlane = ReferencePlane.GetParallelPlaneThroughPoint(startWorldPoint);
 
                 _camera.ConvertFromScreenToWorld(X, Y, out double[] from, out double[] to);
 

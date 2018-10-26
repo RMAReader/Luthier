@@ -62,14 +62,13 @@ namespace Luthier.Model.Presenter
             form.DoSurfaceToolStripMenuItem_Click = DoSurfaceToolStripMenuItem;
             form.DoOrthonormalToolStripMenuItem_Click = DoOrthonormalToolStripMenuItem_Click;
             form.DoPerspectiveToolStripMenuItem_Click = DoPerspectiveToolStripMenuItem_Click;
-            form.DoDragParallelToXYPlaneToolStripMenuItem_Click = DoDragParallelToXYPlaneToolStripMenuItem_Click;
-            form.DoDragParallelToYZPlaneToolStripMenuItem_Click = DoDragParallelToYZPlaneToolStripMenuItem_Click;
-            form.DoDragParallelToZXPlaneToolStripMenuItem_Click = DoDragParallelToZXPlaneToolStripMenuItem_Click;
+            form.DoDragParallelToPlaneToolStripMenuItem_Click = DoDragParallelToPlaneToolStripMenuItem_Click;
             form.DoDragNormalToPlaneToolStripMenuItem_Click = DoDragNormalToPlaneToolStripMenuItem_Click;
             form.DoLightingOptionsToolStripMenuItem_Click = DoLightingOptionsToolStripMenuItem_Click;
             form.DoInsertImageToolStripMenuItem_Click = DoInsertImageToolStripMenuItem_Click;
             form.DoSelectCanvasToolStripMenuItem_Click = DoSelectCanvasToolStripMenuItem_Click;
             form.DoObjectExplorerToolStripMenuItem_Click = DoObjectExplorerToolStripMenuItem_Click;
+            form.DoPanToolStripMenuItem_Click = DoPanToolStripMenuItem_Click;
 
             _camera.ViewWidth = form.ClientSize.Width;
             _camera.ViewHeight = form.ClientSize.Height;
@@ -129,56 +128,80 @@ namespace Luthier.Model.Presenter
 
         private void DoCurveToolStripItem(object sender, EventArgs e)
         {
-            var controller = new SketchNurbsCurve();
-            controller.Canvas = _selectPlaneController.Plane;
-            SetMouseController(controller);
+            if(_selectPlaneController.Plane != null)
+            {
+                var controller = new SketchNurbsCurve();
+                controller.Canvas = _selectPlaneController.Plane;
+                SetMouseController(controller);
+            }
+            else
+            {
+                MessageBox.Show("Must set canvas before sketching curve.");
+            }
+            
         }
 
-        private void DoDragParallelToXYPlaneToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DoDragParallelToPlaneToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var controller = new ControlPointDraggerParallelToPlane();
-            controller.referencePlane = GraphicObjects.GraphicPlane.CreateRightHandedXY(origin: new double[3]);
-            SetMouseController(controller);
-        }
-
-        private void DoDragParallelToYZPlaneToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var controller = new ControlPointDraggerParallelToPlane();
-            controller.referencePlane = GraphicObjects.GraphicPlane.CreateRightHandedYZ(origin: new double[3]);
-            SetMouseController(controller);
-        }
-
-        private void DoDragParallelToZXPlaneToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var controller = new ControlPointDraggerParallelToPlane();
-            controller.referencePlane = GraphicObjects.GraphicPlane.CreateRightHandedZX(origin: new double[3]);
-            SetMouseController(controller);
+            if (_selectPlaneController.Plane != null)
+            {
+                var controller = new ControlPointDraggerParallelToPlane();
+                controller.ReferencePlane = _selectPlaneController.Plane;
+                SetMouseController(controller);
+            }
+            else
+            {
+                MessageBox.Show("Must set reference plane before dragging objects.");
+            }
         }
 
         private void DoDragNormalToPlaneToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SetMouseController(new ControlPointDraggerNormalToPlane());
+            if (_selectPlaneController.Plane != null)
+            {
+                var controller = new ControlPointDraggerNormalToPlane();
+                controller.ReferencePlane = _selectPlaneController.Plane;
+                SetMouseController(controller);
+            }
+            else
+            {
+                MessageBox.Show("Must set reference plane before dragging objects.");
+            }
         }
 
         private void DoSurfaceToolStripMenuItem(object sender, EventArgs e)
         {
-            var dialog = new NewBSplineSurface();
-            dialog.StartPosition = FormStartPosition.CenterParent;
-            dialog.ShowDialog();
-            if(dialog.DialogResult == DialogResult.OK)
+            if (_selectPlaneController.Plane != null)
             {
-                var controller = new SketchSurface(dialog.NumberOfControlPointsU, dialog.NumberOfControlPointsV);
-                controller.Canvas = _selectPlaneController.Plane;
-                SetMouseController(controller);
+                var dialog = new NewBSplineSurface();
+                dialog.StartPosition = FormStartPosition.CenterParent;
+                dialog.ShowDialog();
+                if(dialog.DialogResult == DialogResult.OK)
+                {
+                    var controller = new SketchSurface(dialog.NumberOfControlPointsU, dialog.NumberOfControlPointsV);
+                    controller.Canvas = _selectPlaneController.Plane;
+                    SetMouseController(controller);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Must set reference plane before creating surface.");
             }
         }
 
 
         private void DoPlaneToolStripMenuItem(object sender, EventArgs e)
         {
-            var controller = new InsertPlane();
-            controller.Canvas = _selectPlaneController.Plane;
-            SetMouseController(controller);
+            if (_selectPlaneController.Plane != null)
+            {
+                var controller = new InsertPlane();
+                controller.Canvas = _selectPlaneController.Plane;
+                SetMouseController(controller);
+            }
+            else
+            {
+                MessageBox.Show("Must set reference plane before creating plane.");
+            }
         }
 
 
@@ -239,6 +262,12 @@ namespace Luthier.Model.Presenter
             }
             _objectExplorerForm.Show();
         }
+
+        private void DoPanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetMouseController(new PanZoomMouseWheelController());
+        }
+
 
 
         public void ShowRenderForm()

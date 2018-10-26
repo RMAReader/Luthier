@@ -1,13 +1,6 @@
 ﻿using SharpDX.Windows;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+
 
 namespace Luthier.Model.UIForms
 {
@@ -23,14 +16,13 @@ namespace Luthier.Model.UIForms
         public EventHandler DoSurfaceToolStripMenuItem_Click;
         public EventHandler DoPerspectiveToolStripMenuItem_Click;
         public EventHandler DoOrthonormalToolStripMenuItem_Click;
-        public EventHandler DoDragParallelToXYPlaneToolStripMenuItem_Click;
-        public EventHandler DoDragParallelToYZPlaneToolStripMenuItem_Click;
-        public EventHandler DoDragParallelToZXPlaneToolStripMenuItem_Click;
+        public EventHandler DoDragParallelToPlaneToolStripMenuItem_Click;
         public EventHandler DoDragNormalToPlaneToolStripMenuItem_Click;
         public EventHandler DoLightingOptionsToolStripMenuItem_Click;
         public EventHandler DoInsertImageToolStripMenuItem_Click;
         public EventHandler DoSelectCanvasToolStripMenuItem_Click;
         public EventHandler DoObjectExplorerToolStripMenuItem_Click;
+        public EventHandler DoPanToolStripMenuItem_Click;
 
         private void curveToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -54,7 +46,7 @@ namespace Luthier.Model.UIForms
 
         private void parallelToPlaneToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DoDragParallelToXYPlaneToolStripMenuItem_Click(sender, e);
+            DoDragParallelToPlaneToolStripMenuItem_Click(sender, e);
         }
 
         private void normalToPlaneToolStripMenuItem_Click(object sender, EventArgs e)
@@ -65,16 +57,6 @@ namespace Luthier.Model.UIForms
         private void surfaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DoSurfaceToolStripMenuItem_Click(sender, e);
-        }
-
-        private void dragParallelToYZPlaneToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DoDragParallelToYZPlaneToolStripMenuItem_Click(sender, e);
-        }
-
-        private void dragParallelToZXPlaneToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DoDragParallelToZXPlaneToolStripMenuItem_Click(sender, e);
         }
 
         private void lightingOptionsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -100,6 +82,11 @@ namespace Luthier.Model.UIForms
         private void RenderForm3d_MouseEnter(object sender, EventArgs e)
         {
             this.Focus();
+        }
+
+        private void panToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DoPanToolStripMenuItem_Click(sender, e);
         }
     }
 }

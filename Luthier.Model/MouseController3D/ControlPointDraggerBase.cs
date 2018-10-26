@@ -20,7 +20,7 @@ namespace Luthier.Model.MouseController3D
         protected int startY;
         protected double[] startWorldPoint;
 
-        public GraphicPlane referencePlane { get; set; }
+        public GraphicPlane ReferencePlane { get; set; }
 
         public int X { get; private set; }
 
@@ -60,7 +60,7 @@ namespace Luthier.Model.MouseController3D
                     startX = e.X;
                     startY = e.Y;
 
-                    _camera.ConvertFromScreenToWorld(e.X, e.Y, out double[] from, out double[] to);
+                    //_camera.ConvertFromScreenToWorld(e.X, e.Y, out double[] from, out double[] to);
 
 
                     double distance = double.MaxValue;

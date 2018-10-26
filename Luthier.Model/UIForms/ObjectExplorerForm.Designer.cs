@@ -31,12 +31,12 @@
             this.components = new System.ComponentModel.Container();
             this.modelTreeView = new System.Windows.Forms.TreeView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.newLayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemNewLayerSeparater = new System.Windows.Forms.ToolStripSeparator();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemEditSeparater = new System.Windows.Forms.ToolStripSeparator();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newLayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemNewLayerSeparater = new System.Windows.Forms.ToolStripSeparator();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,9 +49,9 @@
             this.modelTreeView.CheckBoxes = true;
             this.modelTreeView.ContextMenuStrip = this.contextMenuStrip1;
             this.modelTreeView.LabelEdit = true;
-            this.modelTreeView.Location = new System.Drawing.Point(13, 12);
+            this.modelTreeView.Location = new System.Drawing.Point(12, 12);
             this.modelTreeView.Name = "modelTreeView";
-            this.modelTreeView.Size = new System.Drawing.Size(265, 510);
+            this.modelTreeView.Size = new System.Drawing.Size(266, 510);
             this.modelTreeView.TabIndex = 0;
             this.modelTreeView.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.modelTreeView_AfterLabelEdit);
             this.modelTreeView.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.modelTreeView_AfterCheck);
@@ -71,44 +71,44 @@
             this.deleteToolStripMenuItem,
             this.renameToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 126);
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.editToolStripMenuItem.Text = "Edit";
-            // 
-            // toolStripMenuItemEditSeparater
-            // 
-            this.toolStripMenuItemEditSeparater.Name = "toolStripMenuItemEditSeparater";
-            this.toolStripMenuItemEditSeparater.Size = new System.Drawing.Size(149, 6);
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
-            // 
-            // renameToolStripMenuItem
-            // 
-            this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
-            this.renameToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.renameToolStripMenuItem.Text = "Rename";
-            this.renameToolStripMenuItem.Click += new System.EventHandler(this.renameToolStripMenuItem_Click);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(138, 104);
             // 
             // newLayerToolStripMenuItem
             // 
             this.newLayerToolStripMenuItem.Name = "newLayerToolStripMenuItem";
-            this.newLayerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newLayerToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.newLayerToolStripMenuItem.Text = "New Layer...";
             this.newLayerToolStripMenuItem.Click += new System.EventHandler(this.newLayerToolStripMenuItem_Click);
             // 
             // toolStripMenuItemNewLayerSeparater
             // 
             this.toolStripMenuItemNewLayerSeparater.Name = "toolStripMenuItemNewLayerSeparater";
-            this.toolStripMenuItemNewLayerSeparater.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItemNewLayerSeparater.Size = new System.Drawing.Size(134, 6);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // toolStripMenuItemEditSeparater
+            // 
+            this.toolStripMenuItemEditSeparater.Name = "toolStripMenuItemEditSeparater";
+            this.toolStripMenuItemEditSeparater.Size = new System.Drawing.Size(134, 6);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // renameToolStripMenuItem
+            // 
+            this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
+            this.renameToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.renameToolStripMenuItem.Text = "Rename";
+            this.renameToolStripMenuItem.Click += new System.EventHandler(this.renameToolStripMenuItem_Click);
             // 
             // ObjectExplorerForm
             // 
@@ -116,6 +116,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(290, 534);
             this.Controls.Add(this.modelTreeView);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "ObjectExplorerForm";
             this.Text = "ObjectExplorerForm";
             this.contextMenuStrip1.ResumeLayout(false);
