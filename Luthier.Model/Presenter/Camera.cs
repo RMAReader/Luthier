@@ -43,6 +43,40 @@ namespace Luthier.Model.Presenter
         }
 
 
+        public Vector3 Direction
+        {
+            get
+            {
+                var wvT = WorldView;
+                wvT.Transpose();
+                Vector3 direction = Vector3.UnitZ;
+                Vector3.Transform(ref direction, ref wvT, out Vector3 directionWV);
+                return directionWV;
+            }
+        }
+        public Vector3 CameraUp
+        {
+            get
+            {
+                var wvT = WorldView;
+                wvT.Transpose();
+                Vector3 direction = Vector3.UnitY;
+                Vector3.Transform(ref direction, ref wvT, out Vector3 directionWV);
+                return directionWV;
+            }
+        }
+        public Vector3 CameraRight
+        {
+            get
+            {
+                var wvT = WorldView;
+                wvT.Transpose();
+                Vector3 direction = Vector3.UnitX;
+                Vector3.Transform(ref direction, ref wvT, out Vector3 directionWV);
+                return directionWV;
+            }
+        }
+
 
         public Matrix Projection
         {
