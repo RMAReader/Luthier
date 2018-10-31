@@ -14,12 +14,16 @@ using System.Xml.Serialization;
 
 namespace Luthier.Model.GraphicObjects
 {
+ 
+    [Serializable]
     public class GraphicPlane : GraphicObjectBase, ISketchCanvas, IDrawableLines, ISelectable
     {
-        protected double[] _origin;
-        protected double[] _normal;
-        protected double[] _unitU;
-        protected double[] _unitV;
+        
+        public double[] _origin { get; set; }
+        public double[] _normal { get; set; }
+        public double[] _unitU { get; set; }
+        public double[] _unitV { get; set; }
+
         protected double _minU = -200;
         protected double _minV = -200;
         protected double _maxU = 200;

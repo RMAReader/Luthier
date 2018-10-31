@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<GraphicModelStorage>
+  <Objects>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="cc92b60c-3180-4257-a3e3-a4167df79fa5" />
+      <Name>Belly</Name>
+      <IsVisible>true</IsVisible>
+      <Objects data="9cedda34-7044-4a95-be76-f07cfa6a23df" />
+      <Objects data="29cb521e-1fbb-4326-94a4-f81a392744d6" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="9cedda34-7044-4a95-be76-f07cfa6a23df" />
+      <LayerKey data="cc92b60c-3180-4257-a3e3-a4167df79fa5" />
+      <Name>Belly XY Plane</Name>
+      <IsVisible>true</IsVisible>
+      <_origin>
+        <double>0</double>
+        <double>0</double>
+        <double>0</double>
+      </_origin>
+      <_normal>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_normal>
+      <_unitU>
+        <double>1</double>
+        <double>0</double>
+        <double>0</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>1</double>
+        <double>0</double>
+      </_unitV>
+      <IsSelected>true</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="29cb521e-1fbb-4326-94a4-f81a392744d6" />
+      <LayerKey data="cc92b60c-3180-4257-a3e3-a4167df79fa5" />
+      <Name>Belly Profile Image</Name>
+      <IsVisible>true</IsVisible>
+      <UpperLeft>
+        <double>201.55668640136719</double>
+        <double>142.94845581054688</double>
+        <double>-1.0405505236121826E-05</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>197.99997436969048</double>
+        <double>-90.004507025235611</double>
+        <double>-1.0405505349808664E-05</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>-194.99998519450216</double>
+        <double>-84.004187324353737</double>
+        <double>2.0442232766981761E-05</double>
+      </LowerRight>
+      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\Messiah Stradivarious\Belly profile.bmp</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+  </Objects>
+  <Name>TestModelLeMessie.xml</Name>
+</GraphicModelStorage>

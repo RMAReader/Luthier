@@ -26,7 +26,7 @@ namespace Luthier.Model.MouseController3D
         private double[] thirdPoint;
         private int _cvCount0;
         private int _cvCount1;
-        private GraphicNurbSurface _surface;
+        private GraphicNurbsSurface _surface;
 
         public SketchSurface(int cvCount0, int cvCount1)
         {

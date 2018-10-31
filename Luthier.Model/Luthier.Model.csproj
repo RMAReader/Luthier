@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Luthier.Model</RootNamespace>
     <AssemblyName>Luthier.Model</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -22,6 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>true</UseVSHostingProcess>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -62,8 +63,10 @@
   <ItemGroup>
     <Compile Include="AdapterSystemDrawing.cs" />
     <Compile Include="ApplicationDocumentModel.cs" />
+    <Compile Include="CustomSettings\GraphicNurbsCurveAppearance.cs" />
     <Compile Include="CustomSettings\GraphicPlaneGridAppearence.cs" />
     <Compile Include="Extensions\ArrayExtensions.cs" />
+    <Compile Include="Helpers\Convert.cs" />
     <Compile Include="GraphicObjectFactory\BSplineFactory.cs" />
     <Compile Include="GraphicObjectFactory\CompositePolygonFactory.cs" />
     <Compile Include="GraphicObjectFactory\GraphicImageFactory.cs" />
@@ -83,28 +86,29 @@
     <Compile Include="GraphicObjects\GraphicImage2d.cs" />
     <Compile Include="GraphicObjects\GraphicLengthGauge.cs" />
     <Compile Include="GraphicObjects\GraphicLinkedLine2D.cs" />
-    <Compile Include="GraphicObjects\GraphicNurbSurface.cs" />
+    <Compile Include="GraphicObjects\GraphicNurbsSurface.cs" />
     <Compile Include="GraphicObjects\GraphicObjectBase.cs" />
     <Compile Include="GraphicObjects\GraphicPoint2D.cs" />
     <Compile Include="GraphicObjects\GraphicPolygon2D.cs" />
     <Compile Include="GraphicObjects\GraphicImage3d.cs" />
-    <Compile Include="GraphicObjects\IDrawableLines.cs" />
-    <Compile Include="GraphicObjects\IDrawablePhongSurface.cs" />
-    <Compile Include="GraphicObjects\IDrawableTextured.cs" />
-    <Compile Include="GraphicObjects\IPolygon2D.cs" />
-    <Compile Include="GraphicObjects\ISelectable.cs" />
-    <Compile Include="GraphicObjects\ISketchCanvas.cs" />
-    <Compile Include="GraphicObjects\ModelChangeEvent.cs" />
-    <Compile Include="GraphicObjects\NurbsCurve.cs" />
+    <Compile Include="GraphicObjects\Interfaces\IDrawableLines.cs" />
+    <Compile Include="GraphicObjects\Interfaces\IDrawablePhongSurface.cs" />
+    <Compile Include="GraphicObjects\Interfaces\IDrawableTextured.cs" />
+    <Compile Include="GraphicObjects\Interfaces\IPolygon2D.cs" />
+    <Compile Include="GraphicObjects\Interfaces\ISelectable.cs" />
+    <Compile Include="GraphicObjects\Interfaces\ISketchCanvas.cs" />
+    <Compile Include="GraphicObjects\Events\ModelChangeEvent.cs" />
+    <Compile Include="GraphicObjects\GraphicNurbsCurve.cs" />
     <Compile Include="GraphicObjects\GraphicPlane.cs" />
     <Compile Include="IAdapterSystemDrawing.cs" />
     <Compile Include="IApplicationDocumentModel.cs" />
-    <Compile Include="GraphicObjects\IDraggable.cs" />
+    <Compile Include="GraphicObjects\Interfaces\IDraggable.cs" />
     <Compile Include="KeyController3D\IKeyController3D.cs" />
     <Compile Include="KeyController3D\OrbitZoom.cs" />
     <Compile Include="MouseController3D\ControlPointDraggerBase.cs" />
     <Compile Include="MouseController3D\ControlPointDraggerNormalToPlane.cs" />
     <Compile Include="MouseController3D\ControlPointDraggerParallelToPlane.cs" />
+    <Compile Include="MouseController3D\EditImageController3d.cs" />
     <Compile Include="MouseController3D\InsertImage.cs" />
     <Compile Include="MouseController3D\InsertPlane.cs" />
     <Compile Include="MouseController3D\PanZoomMouseWheelController.cs" />
@@ -129,7 +133,6 @@
     <Compile Include="MouseController\IMouseController.cs" />
     <Compile Include="MouseController\InsertSurface.cs" />
     <Compile Include="MouseController\MouseControllerFactory.cs" />
-    <Compile Include="MouseController\PanAndZoom.cs" />
     <Compile Include="MouseController\PanZoomMouseWheel.cs" />
     <Compile Include="MouseController\PointSelector.cs" />
     <Compile Include="MouseController\PolygonSelector.cs" />

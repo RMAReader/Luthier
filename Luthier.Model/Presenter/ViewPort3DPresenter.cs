@@ -258,7 +258,7 @@ namespace Luthier.Model.Presenter
         {
             if(_objectExplorerForm == null || _objectExplorerForm.IsDisposed)
             {
-                _objectExplorerForm = new ObjectExplorerForm(model);
+                _objectExplorerForm = new ObjectExplorerForm(model, this);
             }
             _objectExplorerForm.Show();
         }

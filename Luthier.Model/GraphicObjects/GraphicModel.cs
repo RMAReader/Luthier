@@ -17,7 +17,11 @@ namespace Luthier.Model.GraphicObjects
     [XmlInclude(typeof(GraphicLengthGauge))]
     [XmlInclude(typeof(GraphicIntersection))]
     [XmlInclude(typeof(GraphicCompositePolygon))]
-    [XmlInclude(typeof(GraphicNurbSurface))]
+    [XmlInclude(typeof(GraphicNurbsCurve))]
+    [XmlInclude(typeof(GraphicNurbsSurface))]
+    [XmlInclude(typeof(GraphicLayer))]
+    [XmlInclude(typeof(GraphicPlane))]
+    [XmlInclude(typeof(GraphicImage3d))]
     [XmlInclude(typeof(PocketSpecification))]
     [XmlInclude(typeof(EndMill))]
     [XmlInclude(typeof(BallNose))]
@@ -25,6 +29,9 @@ namespace Luthier.Model.GraphicObjects
     {
         [XmlArray()]
         public List<GraphicObjectBase> Objects { get; set; }
+
+        [XmlElement()]
+        public string Name { get; set; }
 
         public GraphicModelStorage()
         {
@@ -40,11 +47,13 @@ namespace Luthier.Model.GraphicObjects
 
         public event EventHandler<ModelChangeEventArgs> ModelChangedHandler;
 
+        public string Path { get; set; }
+
         public string Name { get; set; }
 
         public bool HasChanged { get; set; }
 
-        public GraphicModelStorage GetStorage() => new GraphicModelStorage { Objects = _data.Values.ToList() };
+        public GraphicModelStorage GetStorage() => new GraphicModelStorage { Objects = _data.Values.ToList(), Name = this.Name };
 
         public GraphicModel()
         {
@@ -57,15 +66,15 @@ namespace Luthier.Model.GraphicObjects
             _data = storage.Objects.ToDictionary(x => x.Key);
             foreach (var obj in _data.Values) BindGraphicObject(obj); 
             HasChanged = true;
-            Name = "NewModel";
+            Name = storage.Name;
         }
-        public GraphicModel(GraphicModelStorage storage, string name)
+        public GraphicModel(GraphicModelStorage storage, string path)
         {
             _data = storage.Objects.ToDictionary(x => x.Key);
             foreach (var obj in _data.Values) BindGraphicObject(obj);
 
             HasChanged = true;
-            Name = name;
+            Name = storage.Name ?? path;
         }
 
         public GraphicObjectBase this[UniqueKey key] => _data[key];
@@ -106,7 +115,7 @@ namespace Luthier.Model.GraphicObjects
         public IEnumerable<IDraggable2d> GetDraggableObjects2d()
         {
             foreach (IDraggable2d o in _data.Values.Where(p => p is IDraggable2d)) yield return o;
-            foreach (GraphicNurbSurface s in _data.Values.Where(p => p is GraphicNurbSurface))
+            foreach (GraphicNurbsSurface s in _data.Values.Where(p => p is GraphicNurbsSurface))
             {
                 foreach (IDraggable2d o in s.GetDraggableObjects2d()) yield return o;
             }
@@ -114,7 +123,7 @@ namespace Luthier.Model.GraphicObjects
         public IEnumerable<IDraggable> GetDraggableObjects()
         {
             foreach (IDraggable o in _data.Values.Where(p => p is IDraggable)) yield return o;
-            foreach (GraphicNurbSurface s in _data.Values.Where(p => p is GraphicNurbSurface))
+            foreach (GraphicNurbsSurface s in _data.Values.Where(p => p is GraphicNurbsSurface))
             {
                 foreach (IDraggable o in s.GetDraggableObjects()) yield return o;
             }

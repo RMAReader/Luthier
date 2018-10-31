@@ -1,4 +1,6 @@
 ﻿using Luthier.Model.GraphicObjects;
+using Luthier.Model.MouseController3D;
+using Luthier.Model.Presenter;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,12 +16,14 @@ namespace Luthier.Model.UIForms
     public partial class ObjectExplorerForm : Form
     {
         private readonly IApplicationDocumentModel _model;
+        private readonly ViewPort3DPresenter _presenter;
 
-        public ObjectExplorerForm(IApplicationDocumentModel model)
+        public ObjectExplorerForm(IApplicationDocumentModel model, ViewPort3DPresenter presenter)
         {
             InitializeComponent();
 
             _model = model;
+            _presenter = presenter;
 
             _model.Model.ModelChangedHandler += OnModelChanged;
 
@@ -29,16 +33,7 @@ namespace Luthier.Model.UIForms
        
         private void OnModelChanged(object sender, ModelChangeEventArgs e)
         {
-            if (e.ObjectAdded != null)
-            {
-                CreateTreeFromModel();
-                //modelTreeView.Nodes[0].Nodes[0].Nodes.Add(CreateNode(e.ObjectAdded));
-            }
-            if (e.ObjectRemoved != null)
-            {
-                CreateTreeFromModel();
-                //modelTreeView.Nodes[0].Nodes[0].Nodes.RemoveByKey(e.ObjectRemoved.Key.ToString());
-            }
+            CreateTreeFromModel();
         }
 
 
@@ -49,6 +44,7 @@ namespace Luthier.Model.UIForms
 
             var rootNode = new TreeNode();
             rootNode.Text = _model.Model.Name;
+            rootNode.ToolTipText = _model.Model.Path;
             rootNode.Checked = true;
             rootNode.Tag = _model.Model;
 
@@ -60,6 +56,7 @@ namespace Luthier.Model.UIForms
                 rootNode.Nodes.Add(BuildNodesFromBaseLayer(obj));
             }
 
+            modelTreeView.Sort();
             modelTreeView.ExpandAll();
         }
 
@@ -87,6 +84,7 @@ namespace Luthier.Model.UIForms
             return new TreeNode
             {
                 Text = obj.Name,
+                ToolTipText = obj.GetType().ToString(),
                 Name = obj.Key.ToString(),
                 Tag = obj,
                 Checked = obj.IsVisible,
@@ -100,7 +98,7 @@ namespace Luthier.Model.UIForms
 
         private void renameToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mySelectedNode != null && mySelectedNode.Parent != null)
+            if (mySelectedNode != null)
             {
                 modelTreeView.SelectedNode = mySelectedNode;
                 modelTreeView.LabelEdit = true;
@@ -111,8 +109,7 @@ namespace Luthier.Model.UIForms
             }
             else
             {
-                MessageBox.Show("No tree node selected or selected node is a root node.\n" +
-                   "Editing of root nodes is not allowed.", "Invalid selection");
+                MessageBox.Show("No tree node selected.\n", "Invalid selection");
             }
 
             contextMenuStrip1.Close();
@@ -347,6 +344,14 @@ namespace Luthier.Model.UIForms
 
                 this.deleteToolStripMenuItem.Visible = true;
                 this.renameToolStripMenuItem.Visible = true;
+            }
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(mySelectedNode.Tag is GraphicImage3d)
+            {
+                _presenter.SetMouseController(new EditImageController3d(mySelectedNode.Tag as GraphicImage3d));
             }
         }
     }

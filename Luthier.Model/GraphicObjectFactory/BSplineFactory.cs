@@ -31,7 +31,7 @@ namespace Luthier.Model.GraphicObjectFactory
             return point;
         }
 
-        public GraphicNurbSurface CreateSurface(int cv_count0, int cv_count1, double minx, double miny, double maxx, double maxy)
+        public GraphicNurbsSurface CreateSurface(int cv_count0, int cv_count1, double minx, double miny, double maxx, double maxy)
         {
 
             var points = new List<double>();
@@ -46,7 +46,7 @@ namespace Luthier.Model.GraphicObjectFactory
                     points.AddRange(new double[] { x, y, z });
                 }
             }
-            var s = new GraphicNurbSurface(3, false, 3, 3, cv_count0, cv_count1);
+            var s = new GraphicNurbsSurface(3, false, 3, 3, cv_count0, cv_count1);
             s.cvArray = points.ToArray();
 
             var knot0 = new List<double>();
@@ -62,9 +62,9 @@ namespace Luthier.Model.GraphicObjectFactory
         }
 
 
-        public static GraphicNurbSurface CreateSurface(int cv_count0, int cv_count1, double[] corner1, double[] corner2, double[] corner3)
+        public static GraphicNurbsSurface CreateSurface(int cv_count0, int cv_count1, double[] corner1, double[] corner2, double[] corner3)
         {
-            var s = new GraphicNurbSurface(3, false, 3, 3, cv_count0, cv_count1);
+            var s = new GraphicNurbsSurface(3, false, 3, 3, cv_count0, cv_count1);
 
             for (int u = 0; u < cv_count0; u++)
             {

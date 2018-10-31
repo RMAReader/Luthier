@@ -45,6 +45,8 @@ namespace Luthier.Model.GraphicObjects
             IsVisible = true;
         }
 
+
+     
         public override string ToString()
         {
             return (String.IsNullOrEmpty(Name)) ? Key.ToString() : Name;
@@ -63,9 +65,15 @@ namespace Luthier.Model.GraphicObjects
             }
         }
 
-        public virtual void RemoveFromModel()
+
+        public virtual void RemoveAllReferences()
         {
             RemoveFromLayer();
+        }
+
+        public virtual void RemoveFromModel()
+        {
+            RemoveAllReferences();
             Model.Remove(this);
         }
     }

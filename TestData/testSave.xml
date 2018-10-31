@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<GraphicModelStorage>
+  <Objects>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="2c9cc7d6-487f-4866-977f-ba52a55d47d7" />
+      <Name>GraphicLayer1</Name>
+      <IsVisible>true</IsVisible>
+      <Objects data="0c2fd83c-456f-4113-a51b-aa797f80d92c" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="0c2fd83c-456f-4113-a51b-aa797f80d92c" />
+      <LayerKey data="2c9cc7d6-487f-4866-977f-ba52a55d47d7" />
+      <Name>GraphicPlane1</Name>
+      <IsVisible>true</IsVisible>
+      <_normal>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_normal>
+      <_unitU>
+        <double>1</double>
+        <double>0</double>
+        <double>0</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>1</double>
+        <double>0</double>
+      </_unitV>
+      <_origin>
+        <double>0</double>
+        <double>0</double>
+        <double>0</double>
+      </_origin>
+      <IsSelected>true</IsSelected>
+    </GraphicObjectBase>
+  </Objects>
+</GraphicModelStorage>

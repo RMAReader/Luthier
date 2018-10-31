@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Luthier.Model.Extensions;
 using Luthier.Model.GraphicObjects;
+using Luthier.Model.MouseController;
 using Luthier.Model.Presenter;
 
 namespace Luthier.Model.MouseController3D
@@ -17,6 +19,7 @@ namespace Luthier.Model.MouseController3D
         private SharpDX.Vector3 _initialIntersection;
         private GraphicPlane _facingPlane;
         private Camera _initialCamera;
+        private int _cumulativeDelta;
 
         public int X { get; private set; }
 
@@ -48,16 +51,22 @@ namespace Luthier.Model.MouseController3D
         {
             if(e.Button == MouseButtons.Right && TryGetIntersection(e.X, e.Y, out RayIntersection intersection))
             {
-                _initialIntersection = new SharpDX.Vector3(
-                    (float)intersection.IntersectInWorldCoords[0],
-                    (float)intersection.IntersectInWorldCoords[1],
-                    (float)intersection.IntersectInWorldCoords[2]);
+               
+                _initialIntersection = Helpers.Convert.SharpDXVector3(intersection.IntersectInWorldCoords);
+
+                var cameraUp = _camera.CameraUp;
+                var cameraRight = _camera.CameraRight;
 
                 double[] origin = intersection.IntersectInWorldCoords;
-                double[] pu = new double[] { 1, 0, 0 };
-                double[] pv = new double[] { 0, 1, 0 };
-                _facingPlane = GraphicPlane.CreateRightHandedThroughPoints(origin, pu, pv);
+                double[] u = Helpers.Convert.ToArray(cameraRight);
+                double[] v = Helpers.Convert.ToArray(cameraUp);
+                _facingPlane = GraphicPlane.CreateRightHandedThroughPoints(origin, origin.Add(u), origin.Add(v));
 
+                _initialCamera = _camera.DeepCopy();
+            }
+            else if(e.Button == MouseButtons.Middle)
+            {
+                _cumulativeDelta = 0;
                 _initialCamera = _camera.DeepCopy();
             }
         }
@@ -72,11 +81,9 @@ namespace Luthier.Model.MouseController3D
             {
                 _initialCamera.ConvertFromScreenToWorld(e.X, e.Y, out double[] from, out double[] to);
 
-                double[] newIntersection = _facingPlane.GetRayIntersection(from, to).IntersectInWorldCoords;
+                var newIntersection = Helpers.Convert.SharpDXVector3(_facingPlane.GetRayIntersection(from, to).IntersectInWorldCoords);
 
-                _camera.LookAt.X = _initialCamera.LookAt.X + _initialIntersection.X - (float)newIntersection[0];
-                _camera.LookAt.Y = _initialCamera.LookAt.Y + _initialIntersection.Y - (float)newIntersection[1];
-                _camera.LookAt.Z = _initialCamera.LookAt.Z + _initialIntersection.Z - (float)newIntersection[2];
+                _camera.LookAt = _initialCamera.LookAt + _initialIntersection - newIntersection;
             }
         }
 
@@ -87,6 +94,8 @@ namespace Luthier.Model.MouseController3D
 
         public void MouseWheel(object sender, MouseEventArgs e)
         {
+            _cumulativeDelta += e.Delta;
+            _camera.ZoomFactor = _initialCamera.ZoomFactor * (float)Math.Exp((double)_cumulativeDelta / 1000);
         }
 
 

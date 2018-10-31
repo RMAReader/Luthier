@@ -11,10 +11,8 @@ namespace Luthier.Model.CustomSettings
     public class GraphicPlaneGridAppearence
     {
         public int MajorAxisStep;
-        
         public SharpDX.Vector4 MajorAxisColour;
         public SharpDX.Vector4 MinorAxisColour;
-
     }
 }
 

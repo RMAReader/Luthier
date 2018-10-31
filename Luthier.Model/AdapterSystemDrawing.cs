@@ -220,7 +220,7 @@ namespace Luthier.Model
         public IEnumerable<PointF[]> GetSurfaceControlPoints()
         {
             var result = new List<PointF[]>();
-            foreach (GraphicNurbSurface surface in model.Model.VisibleObjects().Where(x => x is GraphicNurbSurface))
+            foreach (GraphicNurbsSurface surface in model.Model.VisibleObjects().Where(x => x is GraphicNurbsSurface))
             {
                 var net = new List<PointF>();
                 for (int i = 0; i < surface.CvCount0; i++)

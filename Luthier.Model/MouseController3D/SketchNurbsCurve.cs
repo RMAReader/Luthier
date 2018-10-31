@@ -12,7 +12,7 @@ namespace Luthier.Model.MouseController3D
     class SketchNurbsCurve : SketchObjectBase
     {
         private bool curveInProgress = false;
-        private NurbsCurve _nurbsCurve;
+        private GraphicNurbsCurve _nurbsCurve;
 
     
         public override void MouseDown(object sender, MouseEventArgs e)
@@ -31,7 +31,7 @@ namespace Luthier.Model.MouseController3D
                     }
                     else
                     {
-                        _nurbsCurve = new NurbsCurve(dimension: 3, isRational: false, order: 3, cvCount: 2);
+                        _nurbsCurve = new GraphicNurbsCurve(dimension: 3, isRational: false, order: 3, cvCount: 2);
                         _nurbsCurve.SetCV(0, p);
                         _nurbsCurve.SetCV(1, p);
 

@@ -88,10 +88,10 @@ namespace Luthier.Model
             return Serializer<GraphicModelStorage>.Serialize(model.GetStorage());
         }
 
-        public void DeserialiseFromBytes(byte[] bytes, string name)
+        public void DeserialiseFromBytes(byte[] bytes, string path)
         {
             var storage = Serializer<GraphicModelStorage>.Deserialize(bytes);
-            model = new GraphicModel(storage, name);
+            model = new GraphicModel(storage, path);
         }
 
         public void New()

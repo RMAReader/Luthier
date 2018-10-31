@@ -13,7 +13,7 @@ namespace Luthier.Model.MouseController
     {
         private BSplineFactory factory;
         public bool inProgress;
-        private GraphicNurbSurface surface;
+        private GraphicNurbsSurface surface;
         public PointF firstPoint;
         public PointF secondPoint;
 

@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<GraphicModelStorage>
+  <Objects>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="b1d94abd-5864-4ed9-9c72-30aaf68861d8" />
+      <Name>Belly</Name>
+      <IsVisible>true</IsVisible>
+      <Objects data="b28ce372-a05b-4ca6-9ff4-ceadc08573ac" />
+      <Objects data="4435c2da-ac50-4a53-b5b4-b7e2521a464b" />
+      <Objects data="cd5b2b7d-a536-4410-9ea6-de676192e1c5" />
+      <Objects data="919e0c55-2e6b-465c-b98b-1ec6dfbe32ba" />
+      <Objects data="12d1307d-5f46-44ae-9b80-da15d31f4647" />
+      <Objects data="74f47bf3-b731-416f-ac9e-48d4ce9591ba" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="b28ce372-a05b-4ca6-9ff4-ceadc08573ac" />
+      <LayerKey data="b1d94abd-5864-4ed9-9c72-30aaf68861d8" />
+      <Name>Belly Profile Plane</Name>
+      <IsVisible>true</IsVisible>
+      <_origin>
+        <double>0</double>
+        <double>0</double>
+        <double>0</double>
+      </_origin>
+      <_normal>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_normal>
+      <_unitU>
+        <double>1</double>
+        <double>0</double>
+        <double>0</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>1</double>
+        <double>0</double>
+      </_unitV>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="919e0c55-2e6b-465c-b98b-1ec6dfbe32ba" />
+      <LayerKey data="b1d94abd-5864-4ed9-9c72-30aaf68861d8" />
+      <Name>Belly Profile Image</Name>
+      <IsVisible>true</IsVisible>
+      <UpperLeft>
+        <double>201.59275817871094</double>
+        <double>167.0987548828125</double>
+        <double>4.2682699131546542E-05</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>200.99997202531154</double>
+        <double>-70.003505702236808</double>
+        <double>4.2682697653617652E-05</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>-198.9999802472648</double>
+        <double>-69.003439411502157</double>
+        <double>6.0224857975299528E-05</double>
+      </LowerRight>
+      <Normal>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </Normal>
+      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\Messiah Stradivarious\Belly profile.bmp</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="4435c2da-ac50-4a53-b5b4-b7e2521a464b" />
+      <LayerKey data="b1d94abd-5864-4ed9-9c72-30aaf68861d8" />
+      <Name>Long Arch Plane</Name>
+      <IsVisible>false</IsVisible>
+      <_origin>
+        <double>0.76170479117219259</double>
+        <double>50.9277463018238</double>
+        <double>1.8134269907932321E-07</double>
+      </_origin>
+      <_normal>
+        <double>-0.0049048557844254383</double>
+        <double>-0.99998797112252</double>
+        <double>0</double>
+      </_normal>
+      <_unitU>
+        <double>0.99998797112252</double>
+        <double>-0.0049048557844254383</double>
+        <double>1.4588079930347694E-08</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_unitV>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="cd5b2b7d-a536-4410-9ea6-de676192e1c5" />
+      <LayerKey data="b1d94abd-5864-4ed9-9c72-30aaf68861d8" />
+      <Name>Long Arch Image</Name>
+      <IsVisible>true</IsVisible>
+      <UpperLeft>
+        <double>195.99879455566406</double>
+        <double>49.970111846923828</double>
+        <double>20.479393005371094</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>196.07469093378927</double>
+        <double>49.96973636874813</double>
+        <double>-4.0134815710239327</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>-178.7202324902336</double>
+        <double>51.808321315627751</double>
+        <double>-5.1749527697719984</double>
+      </LowerRight>
+      <Normal>
+        <double>-0.0049048557844254383</double>
+        <double>-0.99998797112252</double>
+        <double>0</double>
+      </Normal>
+      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\Messiah Stradivarious\Belly Arch Long.bmp</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="12d1307d-5f46-44ae-9b80-da15d31f4647" />
+      <LayerKey data="b1d94abd-5864-4ed9-9c72-30aaf68861d8" />
+      <Name>Belly Arch A Plane</Name>
+      <IsVisible>true</IsVisible>
+      <_origin>
+        <double>126.81679117205309</double>
+        <double>52.178122941359959</double>
+        <double>-8.4554869630437679E-06</double>
+      </_origin>
+      <_normal>
+        <double>-0.99998238803931727</double>
+        <double>0.0059349482868508363</double>
+        <double>0</double>
+      </_normal>
+      <_unitU>
+        <double>-0.0059349482868508363</double>
+        <double>-0.99998238803931727</double>
+        <double>-1.2888537612235157E-07</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_unitV>
+      <IsSelected>true</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="74f47bf3-b731-416f-ac9e-48d4ce9591ba" />
+      <LayerKey data="b1d94abd-5864-4ed9-9c72-30aaf68861d8" />
+      <Name>Belly Arch A Image</Name>
+      <IsVisible>true</IsVisible>
+      <UpperLeft>
+        <double>126.26102447509766</double>
+        <double>-41.470733642578125</double>
+        <double>11.774430274963379</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>126.26057683525832</double>
+        <double>-41.547090786840911</double>
+        <double>-3.3267170504856409</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>127.33020293080674</double>
+        <double>138.69132490805734</double>
+        <double>-4.2381374008510591</double>
+      </LowerRight>
+      <Normal>
+        <double>-0.99998238803931727</double>
+        <double>0.0059349482868508363</double>
+        <double>0</double>
+      </Normal>
+      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\Messiah Stradivarious\Belly Arch A.bmp</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+  </Objects>
+  <Name>NewModel</Name>
+</GraphicModelStorage>
