@@ -40,10 +40,10 @@ namespace Luthier.Model.GraphicObjects
                 .FirstOrDefault();
         }
 
-        public Geometry.BSpline.NurbsCurve ToPrimitive(IApplicationDocumentModel model)
+        public Geometry.BSpline.BSplineCurve ToPrimitive(IApplicationDocumentModel model)
         {
             var points = pointsKeys.Select(x => ((GraphicPoint2D)model.Model[x]).ToPrimitive()).ToList();
-            return new Geometry.BSpline.NurbsCurve(points, knot);
+            return new Geometry.BSpline.BSplineCurve(points, knot);
         }
     }
 }

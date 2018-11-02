@@ -25,15 +25,15 @@ namespace Luthier.Model.MouseController3D
 
                     if (curveInProgress)
                     {
-                        int lastCVIndex = _nurbsCurve.NumberOfPoints - 1;
-                        _nurbsCurve.SetCV(lastCVIndex, p);
-                        _nurbsCurve.ExtendBack(p);
+                        int lastCVIndex = _nurbsCurve.Curve.NumberOfPoints - 1;
+                        _nurbsCurve.Curve.SetCV(lastCVIndex, p);
+                        _nurbsCurve.Curve.ExtendBack(p);
                     }
                     else
                     {
                         _nurbsCurve = new GraphicNurbsCurve(dimension: 3, isRational: false, order: 3, cvCount: 2);
-                        _nurbsCurve.SetCV(0, p);
-                        _nurbsCurve.SetCV(1, p);
+                        _nurbsCurve.Curve.SetCV(0, p);
+                        _nurbsCurve.Curve.SetCV(1, p);
 
                         _model.Model.Add(_nurbsCurve);
                         curveInProgress = true;
@@ -53,8 +53,8 @@ namespace Luthier.Model.MouseController3D
             if (curveInProgress)
             {
                 double[] p = CalculateIntersection(e.X, e.Y);
-                int lastCVIndex = _nurbsCurve.NumberOfPoints - 1;
-                _nurbsCurve.SetCV(lastCVIndex, p);
+                int lastCVIndex = _nurbsCurve.Curve.NumberOfPoints - 1;
+                _nurbsCurve.Curve.SetCV(lastCVIndex, p);
                 _model.Model.HasChanged = true;
             }
             

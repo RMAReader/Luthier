@@ -51,8 +51,10 @@
   <ItemGroup>
     <Compile Include="Algorithm.cs" />
     <Compile Include="BSpline\Algorithm.cs" />
+    <Compile Include="BSpline\BSplineCurve.cs" />
     <Compile Include="BSpline\NurbsCurve.cs" />
     <Compile Include="BSpline\Knot.cs" />
+    <Compile Include="BSpline\NurbsCurveNearestPoint.cs" />
     <Compile Include="BSpline\NurbsSurface.cs" />
     <Compile Include="ClipperWrapper.cs" />
     <Compile Include="Intersection.cs" />
@@ -61,7 +63,9 @@
     <Compile Include="LineSegment2D.cs" />
     <Compile Include="LinkedLine2D.cs" />
     <Compile Include="MeshHelper.cs" />
+    <Compile Include="Optimization\NurbsCurveNearstPointObjFunc.cs" />
     <Compile Include="Point2D.cs" />
+    <Compile Include="PointCloud.cs" />
     <Compile Include="Polygon2D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

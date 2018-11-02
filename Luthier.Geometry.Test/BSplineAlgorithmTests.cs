@@ -6,6 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using Luthier.Geometry.Optimization;
+using MathNet.Numerics.Optimization;
+using MathNet.Numerics.LinearAlgebra.Double;
 
 namespace Luthier.Geometry.Test
 {
@@ -17,7 +20,7 @@ namespace Luthier.Geometry.Test
         [TestMethod]
         public void Curve_InsertPoints()
         {
-            var curve = new NurbsCurve(
+            var curve = new BSplineCurve(
                 new List<Point2D>
                 {
                     new Point2D(0,0),
@@ -45,7 +48,7 @@ namespace Luthier.Geometry.Test
         [TestMethod]
         public void Curve_CloseFront()
         {
-            var curve = new NurbsCurve(
+            var curve = new BSplineCurve(
                 new List<Point2D>
                 {
                     new Point2D(0,0),
@@ -73,7 +76,7 @@ namespace Luthier.Geometry.Test
         [TestMethod]
         public void Curve_CloseBack()
         {
-            var curve = new NurbsCurve(
+            var curve = new BSplineCurve(
                 new List<Point2D>
                 {
                     new Point2D(0,0),
@@ -99,7 +102,7 @@ namespace Luthier.Geometry.Test
         [TestMethod]
         public void Curve_CurveIntersection()
         {
-            var c1 = new NurbsCurve(
+            var c1 = new BSplineCurve(
                 new List<Point2D>
                 {
                     new Point2D(-1,0),
@@ -108,7 +111,7 @@ namespace Luthier.Geometry.Test
                 },
                 Knot.CreateUniformOpen(2, 6)
             );
-            var c2 = new NurbsCurve(
+            var c2 = new BSplineCurve(
                 new List<Point2D>
                 {
                     new Point2D(0.5f,-1),
@@ -149,7 +152,7 @@ namespace Luthier.Geometry.Test
             var cvy = new double[] { 0, 0, 1 };
             var cvblock = new double[] { 0, 0, 1, 0, 1, 1 };
 
-            var curve = new NurbsCurve(
+            var curve = new BSplineCurve(
                new List<Point2D>
                {
                     new Point2D(0,0),
@@ -256,6 +259,44 @@ namespace Luthier.Geometry.Test
 
             File.WriteAllLines(@"C:\Users\Richard\Documents\Development\Luthier\TestResult.txt", new string[] { string.Format("t1 = {0}, t2 = {1}, t3 = {2}", t1, t2, t3) });
 
+        }
+
+
+        [TestMethod]
+        public void NurbsCurveNearestPointTest()
+        {
+            var curve = new NurbsCurve(dimension: 2, isRational: false, order: 3, cvCount: 5);
+            curve.SetCV(0, new double[] { 0, 0 });
+            curve.SetCV(1, new double[] { 1, 1 });
+            curve.SetCV(2, new double[] { 2, 0 });
+            curve.SetCV(3, new double[] { 3, -1 });
+            curve.SetCV(4, new double[] { 4, 0 });
+
+            var cloudPoints = new List<double[]>();
+            int numberOfPoints = 1000;
+            Random rnd = new Random();
+            for (int i = 0; i < numberOfPoints; i++)
+            {
+                cloudPoints.Add(new double[] 
+                {
+                    i / numberOfPoints +  rnd.NextDouble() * 0.1,
+                    rnd.NextDouble() * 0.1
+                });
+            }
+            var cloud = new PointCloud(cloudPoints);
+
+            var nearestPoints = new NurbsCurveNearestPoint();
+            var result = nearestPoints.Calculate(curve, cloud);
+
+            var objFunc = new NurbsCurveNearstPointObjFunc(curve, cloud);
+
+            var obj = ObjectiveFunction.Gradient(objFunc.Value, objFunc.Gradient);
+            var solver = new BfgsBMinimizer(1e-10, 1e-10, 1e-10, maximumIterations: 1000);
+            var lowerBound = new DenseVector(new[] { -5.0, -5.0, -5.0, -5.0, -5.0, -5.0, -5.0, -5.0, -5.0, -5.0 });
+            var upperBound = new DenseVector(new[] { 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0 });
+            var initialGuess = new DenseVector(curve.cvDataBlock);
+
+            var optresult = solver.FindMinimum(obj, lowerBound, upperBound, initialGuess);
         }
     }
 }

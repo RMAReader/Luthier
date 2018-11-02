@@ -68,7 +68,7 @@ namespace Luthier.Model
                     points.Add(new Point2D(point.X, point.Y));
                 }
 
-                var approxCurve = new Geometry.BSpline.NurbsCurve(points, curve.GetKnot()).ToLines(100);
+                var approxCurve = new Geometry.BSpline.BSplineCurve(points, curve.GetKnot()).ToLines(100);
 
                 result.Add(approxCurve.Select(p => new PointF((float)p.x, (float)p.y)).ToArray());
             }
