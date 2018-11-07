@@ -1,4 +1,4 @@
-﻿using Luthier.Geometry.BSpline;
+﻿using Luthier.Geometry.Nurbs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -9,12 +9,196 @@ using System.IO;
 using Luthier.Geometry.Optimization;
 using MathNet.Numerics.Optimization;
 using MathNet.Numerics.LinearAlgebra.Double;
+using MathNet.Numerics.Optimization.ObjectiveFunctions;
+using System.Diagnostics;
 
 namespace Luthier.Geometry.Test
 {
     [TestClass]
     public class BSplineAlgorithmTests
     {
+
+        [TestMethod]
+        public void Find_Knot_Span()
+        {
+            int degree = 2;
+            double[] knot = new double[] { 1, 3, 6, 10 };
+
+            double[] t = { 0, 1, 1.5, 3, 3.2, 6, 6.5, 10, 11 };
+            int[] expected = new int[] { 1, 1, 1, 1, 1, 1, 1, 1 };
+
+            for(int i = 0; i < expected.Length; i++)
+            {
+                int knotIX = Nurbs.Algorithm.Find_Knot_Span(degree, knot, t[i]);
+                Assert.AreEqual(expected[i], knotIX);
+            }
+ 
+        }
+
+
+        [TestMethod]
+        public void BasisFunction_Evaluate_Deboor_Degree_Zero()
+        {
+            int degree = 0;
+            double[] knot = new double[] { 0, 0, 0, 0.3, 0.5, 0.5, 0.6, 1, 1, 1 };
+
+            //N0(t)==0 for all t since [k0, k1) = [0, 0) so doesn't exist
+            Assert.AreEqual(0, Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(0, degree, 0, ref knot, -1.0));
+            Assert.AreEqual(0, Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(0, degree, 4, ref knot, 0.5));
+            Assert.AreEqual(0, Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(0, degree, 7, ref knot, 1.0));
+
+            //N1(t)==0 for all t since [k1, k2) = [0, 0) so doesn't exist
+            Assert.AreEqual(0, Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(1, degree, 0, ref knot, -1.0));
+            Assert.AreEqual(0, Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(1, degree, 4, ref knot, 0.5));
+            Assert.AreEqual(0, Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(1, degree, 7, ref knot, 1.0));
+
+            //N2(t)==1 for t in [0, 0.3), zero otherwise
+            double t = 0;
+            for(int knotIX = 0; knotIX < knot.Length - 1; knotIX++)
+            {
+                if(knot[knotIX] < knot[knotIX + 1])
+                {
+                    t = knot[knotIX];
+                    Assert.AreEqual(1, Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(2, degree, knotIX, ref knot, t));
+
+                    t = 0.5 * (knot[knotIX] + knot[knotIX + 1]);
+                    Assert.AreEqual(1, Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(2, degree, knotIX, ref knot, t));
+
+                    t = knot[knotIX + 1];
+                    Assert.AreEqual(0, Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(2, degree, knotIX, ref knot, t));
+                }
+                else
+                {
+                    t = knot[knotIX];
+                    Assert.AreEqual(0, Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(2, degree, knotIX, ref knot, t));
+                }
+
+
+            }
+           
+
+            double n1 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(1, degree, 1, ref knot, 0);
+            double n2 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(2, degree, 2, ref knot, 0.2);
+            double n3 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(3, degree, 3, ref knot, 0.4);
+            double n4 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(3, degree, 3, ref knot, 0.4);
+
+          
+
+        }
+
+        [TestMethod]
+        public void BasisFunction_Evaluate_Deboor()
+        {
+            int degree = 2;
+            double[] knot = new double[] { 1, 3, 6, 10 };
+
+            double t = 3.2;
+            int knotIX = 1;
+
+            double n0 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(0, degree, knotIX, ref knot, t);
+            double n1 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(1, degree, knotIX, ref knot, t);
+            double n2 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(2, degree, knotIX, ref knot, t);
+
+            Assert.AreEqual(0.52266666666666661, n0);
+            Assert.AreEqual(0.47542857142857148, n1);
+            Assert.AreEqual(0.001904761904761908, n2);
+
+        }
+
+        [Ignore("To be implemented")]
+        [TestMethod]
+        public void BasisFunction_EvaluateFirstDerivative_Deboor()
+        {
+            int degree = 2;
+            double[] knot = new double[] { 1, 3, 6, 10 };
+
+            double t = 3.2;
+            int knotIX = 1;
+
+            double n0 = Nurbs.Algorithm.BasisFunction_EvaluateFirstDerivative_Deboor(0, degree, knotIX, ref knot, t);
+            double n1 = Nurbs.Algorithm.BasisFunction_EvaluateFirstDerivative_Deboor(1, degree, knotIX, ref knot, t);
+            double n2 = Nurbs.Algorithm.BasisFunction_EvaluateFirstDerivative_Deboor(2, degree, knotIX, ref knot, t);
+
+            Assert.AreEqual(0.52266666666666661, n0);
+            Assert.AreEqual(0.47542857142857148, n1);
+            Assert.AreEqual(0.001904761904761908, n2);
+
+        }
+
+        [Ignore("To be implemented")]
+        [TestMethod]
+        public void BasisFunction_EvaluateDerivative_Deboor()
+        {
+            int degree = 2;
+            double[] knot = new double[] { 1, 3, 6, 10 };
+
+            double t = 3.2;
+            int knotIX = 1;
+
+            double n0 = Nurbs.Algorithm.BasisFunction_EvaluateDerivative_Deboor(0, 0, degree, knotIX, ref knot, t);
+            double d1n0 = Nurbs.Algorithm.BasisFunction_EvaluateDerivative_Deboor(1, 0, degree, knotIX, ref knot, t);
+            double d2n0 = Nurbs.Algorithm.BasisFunction_EvaluateDerivative_Deboor(2, 0, degree, knotIX, ref knot, t);
+           
+        }
+
+
+        [TestMethod]
+        public void CurveSpan_Evaluate_Deboor()
+        {
+            int degree = 2;
+            double[] knot = new double[] { 1, 3, 6, 10 };
+            double[] cvDataBlock = new double[] { 0, 0, 1, 0, 1.5, 1 };
+            int cvStride = 2;
+
+            double t = 3.2;
+            int knotIX = 1;
+
+            var cxt = Nurbs.Algorithm.CurveSpan_Evaluate_Deboor(degree, knotIX, ref knot, ref cvDataBlock, 0, cvStride, t);
+            var cyt = Nurbs.Algorithm.CurveSpan_Evaluate_Deboor(degree, knotIX, ref knot, ref cvDataBlock, 1, cvStride, t);
+
+            Assert.AreEqual(0.47828571428571437, cxt);
+            Assert.AreEqual(0.001904761904761908, cyt);
+
+        }
+
+        [TestMethod]
+        public void CurveSpan_EvaluateFirstDerivative_Deboor()
+        {
+            int degree = 2;
+            double[] knot = new double[] { 1, 3, 6, 10 };
+            double[] cvDataBlock = new double[] { 0, 0, 1, 0, 1.5, 1 };
+            int cvStride = 2;
+
+            double t = 3.2;
+            int knotIX = 1;
+
+            var cxt = Nurbs.Algorithm.CurveSpan_EvaluateFirstDerivative_Deboor(degree, knotIX, ref knot, ref cvDataBlock, 0, cvStride, t);
+            var cyt = Nurbs.Algorithm.CurveSpan_EvaluateFirstDerivative_Deboor(degree, knotIX, ref knot, ref cvDataBlock, 1, cvStride, t);
+
+            Assert.AreEqual(0.38285714285714284, cxt);
+            Assert.AreEqual(0.019047619047619063, cyt);
+        }
+
+        [TestMethod]
+        public void CurveSpan_EvaluateDerivatives_Deboor()
+        {
+            int degree = 2;
+            double[] knot = new double[] { 1, 3, 6, 10 };
+            double[] cvDataBlock = new double[] { 0, 0, 1, 0, 1.5, 1 };
+            int cvStride = 2;
+
+            double t = 3.2;
+            int knotIX = 1;
+
+            var cxtder0 = Nurbs.Algorithm.CurveSpan_EvaluateDerivative_Deboor(0, degree, knotIX, ref knot, ref cvDataBlock, 0, cvStride, t);
+            var cxtder1 = Nurbs.Algorithm.CurveSpan_EvaluateDerivative_Deboor(1, degree, knotIX, ref knot, ref cvDataBlock, 0, cvStride, t);
+            var cxtder2 = Nurbs.Algorithm.CurveSpan_EvaluateDerivative_Deboor(2, degree, knotIX, ref knot, ref cvDataBlock, 0, cvStride, t);
+
+            Assert.AreEqual(0.47828571428571437, cxtder0);
+            Assert.AreEqual(0.38285714285714284, cxtder1);
+            Assert.AreEqual(-0.12857142857142859, cxtder2);
+
+        }
 
 
         [TestMethod]
@@ -144,10 +328,10 @@ namespace Luthier.Geometry.Test
         }
 
         [TestMethod]
-        public void evaluation_Test1()
+        public void NurbsEvaluationSingleSpan_UnevenKnot()
         {
             int degree = 2;
-            var knot = new double[] { 1000, 1, 2, 3, 4 };
+            var knot = new double[] { 0, 1, 3, 6, 10 };
             var cvx = new double[] { 0, 1, 1 };
             var cvy = new double[] { 0, 0, 1 };
             var cvblock = new double[] { 0, 0, 1, 0, 1, 1 };
@@ -159,14 +343,15 @@ namespace Luthier.Geometry.Test
                     new Point2D(1,0),
                     new Point2D(1,1),
                },
-               Knot.CreateUniformOpen(2, 6)
+               new Knot() {p = degree, data = new List<double>(knot) }
+               //Knot.CreateUniformOpen(2, 6)
             );
 
-            var _px = BSpline.Algorithm.Evaluate_CurveSpan_Deboor(degree, 2, ref knot, ref cvblock, 0, 2, 2.2);
-            var _py = BSpline.Algorithm.Evaluate_CurveSpan_Deboor(degree, 2, ref knot, ref cvblock, 1, 2, 2.2);
+            var _px = Nurbs.Algorithm.CurveSpan_Evaluate_Deboor(degree, 2, ref knot, ref cvblock, 0, 2, 3.2);
+            var _py = Nurbs.Algorithm.CurveSpan_Evaluate_Deboor(degree, 2, ref knot, ref cvblock, 1, 2, 3.2);
 
 
-            var _p1 = curve.Evaluate(2.2);
+            var _p1 = curve.Evaluate(3.2);
 
 
             int n = 10000000;
@@ -181,8 +366,8 @@ namespace Luthier.Geometry.Test
             for (int i = 0; i < n; i++)
             {
                 double t = 2 + (double)i / n;
-                px[i] = BSpline.Algorithm.Evaluate_CurveSpan_Deboor(degree, 2, ref knot, ref cvblock, 0, 2, t);
-                py[i] = BSpline.Algorithm.Evaluate_CurveSpan_Deboor(degree, 2, ref knot, ref cvblock, 1, 2, t);
+                px[i] = Nurbs.Algorithm.CurveSpan_Evaluate_Deboor(degree, 2, ref knot, ref cvblock, 0, 2, t);
+                py[i] = Nurbs.Algorithm.CurveSpan_Evaluate_Deboor(degree, 2, ref knot, ref cvblock, 1, 2, t);
             }
 
             var t1 = sw.ElapsedMilliseconds;
@@ -210,6 +395,138 @@ namespace Luthier.Geometry.Test
            
             File.WriteAllLines(@"C:\Users\Richard\Documents\Development\Luthier\TestResult.txt", new string[] { string.Format("t1 = {0}, t2 = {1}, t3 = {2}", t1, t2, t3) });
         }
+
+
+        [TestMethod]
+        public void BSplineBasisFunction()
+        {
+            int degree = 2;
+            var knot = new double[] { 0, 1, 3, 6, 10, 15 };
+            var cvx = new double[] { 0, 1, 1 };
+            var cvy = new double[] { 0, 0, 1 };
+            var cvblock = new double[] { 0, 0, 1, 0, 1, 1 };
+
+            double t = 3.2;
+            //deboor_value coded to use "long" knot vector
+            var n0 = Nurbs.Algorithm.deboor_value(0, degree, knot, t);
+            var n1 = Nurbs.Algorithm.deboor_value(1, degree, knot, t);
+            var n2 = Nurbs.Algorithm.deboor_value(2, degree, knot, t);
+
+            //  var ct1 = cvblock[0] * n0 + cvblock[2] * n1 * cvblock[4] * n2;
+
+            knot = new double[] { 1, 3, 6, 10 };
+            var cv0 = new double[] { 1, 0, 0 };
+            var ct0 = Nurbs.Algorithm.CurveSpan_Evaluate_Deboor(degree, 1, ref knot, ref cv0, 0, 1, t);
+            var ct01 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(0, degree, 1, ref knot, t);
+
+            var cv1 = new double[] { 0, 1, 0 };
+            var ct1 = Nurbs.Algorithm.CurveSpan_Evaluate_Deboor(degree, 1, ref knot, ref cv1, 0, 1, t);
+            var ct11 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(1, degree, 1, ref knot, t);
+
+            var cv2 = new double[] { 0, 0, 1 };
+            var ct2 = Nurbs.Algorithm.CurveSpan_Evaluate_Deboor(degree, 1, ref knot, ref cv2, 0, 1, t);
+            var ct21 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(2, degree, 1, ref knot, t);
+
+            int iterations = 1000000;
+            var sw = new System.Diagnostics.Stopwatch();
+            sw.Restart();
+            for(int i=0; i<iterations; i++)
+            {
+                n0 = Nurbs.Algorithm.deboor_value(0, degree, knot, t);
+            }
+            long t1 = sw.ElapsedMilliseconds;
+
+            sw.Restart();
+            for (int i = 0; i < iterations; i++)
+            {
+                cv0 = new double[] { 1, 0, 0 };
+                ct0 = Nurbs.Algorithm.CurveSpan_Evaluate_Deboor(degree, 1, ref knot, ref cv0, 0, 1, t);
+            }
+            long t2 = sw.ElapsedMilliseconds;
+
+            sw.Restart();
+            for (int i = 0; i < iterations; i++)
+            {
+                ct01 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(0, degree, 1, ref knot, t);
+            }
+            long t3 = sw.ElapsedMilliseconds;
+
+
+        }
+
+
+        [TestMethod]
+        public void DerivativeEvaluation_Test1()
+        {
+            int degree = 2;
+            var knot = new double[] { 0, 1, 3, 6 };
+            var cvblock = new double[] { 0, 0, 1, 0, 1.5, 1 };
+
+            double h = 1E-6;
+
+            double px = Nurbs.Algorithm.CurveSpan_Evaluate_Deboor(degree,  1, ref knot, ref cvblock, 0, 2, 1.2);
+            double pxh = Nurbs.Algorithm.CurveSpan_Evaluate_Deboor(degree,  1, ref knot, ref cvblock, 0, 2, 1.2 + h);
+            double forwardDiffDeriv = (pxh - px) / h;
+
+            double derivpx = Nurbs.Algorithm.CurveSpan_EvaluateFirstDerivative_Deboor(degree, 1, ref knot, ref cvblock, 0, 2, 1.2);
+
+            double deriv0 = Nurbs.Algorithm.CurveSpan_EvaluateDerivative_Deboor(0, degree, 1, ref knot, ref cvblock, 0, 2, 1.2);
+            double deriv1 = Nurbs.Algorithm.CurveSpan_EvaluateDerivative_Deboor(1, degree, 1, ref knot, ref cvblock, 0, 2, 1.2);
+            double deriv2 = Nurbs.Algorithm.CurveSpan_EvaluateDerivative_Deboor(2, degree, 1, ref knot, ref cvblock, 0, 2, 1.2);
+
+            //timings
+            int iterations = 1000000;
+            var sw = new Stopwatch();
+            sw.Restart();
+            var timings = new List<string>();
+
+            var result = new double[iterations];
+            for(int i = 0; i < iterations; i++)
+            {
+                result[i] = Nurbs.Algorithm.CurveSpan_Evaluate_Deboor(degree, 1, ref knot, ref cvblock, 0, 2, 1.2);
+            }
+            timings.Add($"Evaluate_CurveSpan_Deboor: {iterations} calculations in {sw.ElapsedMilliseconds}ms");
+
+            sw.Restart();
+            for (int i = 0; i < iterations; i++)
+            {
+                result[i] = Nurbs.Algorithm.CurveSpan_EvaluateFirstDerivative_Deboor(degree, 1, ref knot, ref cvblock, 0, 2, 1.2);
+            }
+            timings.Add($"EvaluateDerivative_CurveSpan_Deboor: {iterations} calculations in {sw.ElapsedMilliseconds}ms");
+
+            sw.Restart();
+            for (int i = 0; i < iterations; i++)
+            {
+                result[i] = Nurbs.Algorithm.CurveSpan_EvaluateDerivative_Deboor(0, degree, 1, ref knot, ref cvblock, 0, 2, 1.2);
+            }
+            timings.Add($"EvaluateHigherDerivative(0): {iterations} calculations in {sw.ElapsedMilliseconds}ms");
+
+            sw.Restart();
+            for (int i = 0; i < iterations; i++)
+            {
+                result[i] = Nurbs.Algorithm.CurveSpan_EvaluateDerivative_Deboor(1, degree, 1, ref knot, ref cvblock, 0, 2, 1.2);
+            }
+            timings.Add($"EvaluateHigherDerivative(1): {iterations} calculations in {sw.ElapsedMilliseconds}ms");
+
+            sw.Restart();
+            for (int i = 0; i < iterations; i++)
+            {
+                result[i] = Nurbs.Algorithm.CurveSpan_EvaluateDerivative_Deboor(2, degree, 1, ref knot, ref cvblock, 0, 2, 1.2);
+            }
+            timings.Add($"EvaluateHigherDerivative(2): {iterations} calculations in {sw.ElapsedMilliseconds}ms");
+
+            sw.Restart();
+            for (int i = 0; i < iterations; i++)
+            {
+                result[i] = Nurbs.Algorithm.CurveSpan_Evaluate_Deboor(degree, 1, ref knot, ref cvblock, 0, 2, 1.2);
+            }
+            timings.Add($"Evaluate_CurveSpan_Deboor: {iterations} calculations in {sw.ElapsedMilliseconds}ms");
+
+
+        
+
+        }
+
 
 
         [TestMethod]
@@ -265,38 +582,98 @@ namespace Luthier.Geometry.Test
         [TestMethod]
         public void NurbsCurveNearestPointTest()
         {
-            var curve = new NurbsCurve(dimension: 2, isRational: false, order: 3, cvCount: 5);
-            curve.SetCV(0, new double[] { 0, 0 });
-            curve.SetCV(1, new double[] { 1, 1 });
-            curve.SetCV(2, new double[] { 2, 0 });
-            curve.SetCV(3, new double[] { 3, -1 });
-            curve.SetCV(4, new double[] { 4, 0 });
+            var curve = new NurbsCurve(dimension: 2, isRational: false, order: 3, cvCount: 6);
+            curve.SetCV(0, new double[] { 0, -0.81 });
+            curve.SetCV(1, new double[] { 0, 0.81 });
+            curve.SetCV(2, new double[] { 1.2, 2 });
+            curve.SetCV(3, new double[] { 2.8, 2 });
+            curve.SetCV(4, new double[] { 4, 0.81 });
+            curve.SetCV(5, new double[] { 4, -0.81 });
 
             var cloudPoints = new List<double[]>();
-            int numberOfPoints = 1000;
+            int numberOfPoints = 10000;
             Random rnd = new Random();
-            for (int i = 0; i < numberOfPoints; i++)
+            for (int i = 0; i <= numberOfPoints; i++)
             {
                 cloudPoints.Add(new double[] 
                 {
-                    i / numberOfPoints +  rnd.NextDouble() * 0.1,
-                    rnd.NextDouble() * 0.1
+                    2 - 2 * Math.Cos((double)i / numberOfPoints * Math.PI),
+                    2 * Math.Sin((double)i / numberOfPoints * Math.PI)
                 });
             }
             var cloud = new PointCloud(cloudPoints);
 
-            var nearestPoints = new NurbsCurveNearestPoint();
-            var result = nearestPoints.Calculate(curve, cloud);
+            var result1 = curve.NearestSquaredDistanceLinear(cloud, 16384);
+            var result2 = curve.NearestSquaredDistanceBinaryTree(cloud, 16384);
+            var result3 = curve.NearestSquaredDistanceBinaryTreeExact(cloud, 256);
 
-            var objFunc = new NurbsCurveNearstPointObjFunc(curve, cloud);
+            double s2 = result2.Distances.Sum();
+            double s3 = result3.Distances.Sum();
 
-            var obj = ObjectiveFunction.Gradient(objFunc.Value, objFunc.Gradient);
-            var solver = new BfgsBMinimizer(1e-10, 1e-10, 1e-10, maximumIterations: 1000);
-            var lowerBound = new DenseVector(new[] { -5.0, -5.0, -5.0, -5.0, -5.0, -5.0, -5.0, -5.0, -5.0, -5.0 });
-            var upperBound = new DenseVector(new[] { 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0 });
+            var lowerBound = new DenseVector(new double[] { -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, -50 });
+            var upperBound = new DenseVector(new double[] { 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50 });
             var initialGuess = new DenseVector(curve.cvDataBlock);
 
-            var optresult = solver.FindMinimum(obj, lowerBound, upperBound, initialGuess);
+            var objFunc = new NurbsCurveSquaredDistanceObjFunc(curve, cloud, EndConstraint.FixedPositionFixedTangent);
+            var objvalue = ObjectiveFunction.Value(objFunc.Value);
+            var fdgof = new ForwardDifferenceGradientObjectiveFunction(objvalue, lowerBound, upperBound);
+
+            var sw = new Stopwatch();
+            sw.Restart();
+
+            var cgresult = ConjugateGradientMinimizer.Minimum(fdgof, initialGuess, gradientTolerance: 1e-2, maxIterations: 10000);
+
+            var t1 = sw.ElapsedMilliseconds;
+            //var solver = new BfgsBMinimizer(1e-5, 1e-5, 1e-5, maximumIterations: 100);
+            //var optresult = solver.FindMinimum(fdgof, lowerBound, upperBound, initialGuess);
+
+        }
+
+        [TestMethod]
+        public void NurbsCurveTreeTest()
+        {
+            var curve = new NurbsCurve(dimension: 2, isRational: false, order: 3, cvCount: 6);
+            curve.SetCV(0, new double[] { 0, -1 });
+            curve.SetCV(1, new double[] { 0, 1 });
+            curve.SetCV(2, new double[] { 1, 3 });
+            curve.SetCV(3, new double[] { 3, 3 });
+            curve.SetCV(4, new double[] { 4, 1 });
+            curve.SetCV(5, new double[] { 4, -1 });
+
+            var sw = new Stopwatch();
+            sw.Restart();
+
+            var tree = new NurbsCurveBinaryTree(curve, 100000);
+
+            long t1 = sw.ElapsedMilliseconds;
+
+        }
+
+        [TestMethod]
+        public void NurbsCurveNearestPoint()
+        {
+            var curve = new NurbsCurve(dimension: 2, isRational: false, order: 3, cvCount: 6);
+            curve.SetCV(0, new double[] { 0, -1 });
+            curve.SetCV(1, new double[] { 0, 1 });
+            curve.SetCV(2, new double[] { 1, 3 });
+            curve.SetCV(3, new double[] { 3, 3 });
+            curve.SetCV(4, new double[] { 4, 1 });
+            curve.SetCV(5, new double[] { 4, -1 });
+
+            var sw = new Stopwatch();
+            sw.Restart();
+
+            double[] point = new double[] { 0, 3 };
+            double[] tarray = new double[10000];
+            for (int i = 0; i < tarray.Length; i++)
+            {
+                
+                var solver = new NurbsCurveNearestPoint(curve, point);
+
+                tarray[i] = solver.NearestSquaredDistanceNewtonRaphson(2.2, 2.3);// curve.Domain.Min, curve.Domain.Max);
+            }
+            long t1 = sw.ElapsedMilliseconds;
+
         }
     }
 }

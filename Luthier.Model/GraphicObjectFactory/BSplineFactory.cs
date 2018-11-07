@@ -1,4 +1,4 @@
-﻿using Luthier.Geometry.BSpline;
+﻿using Luthier.Geometry.Nurbs;
 using Luthier.Model.GraphicObjects;
 using System;
 using System.Collections.Generic;

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Luthier.Geometry.BSpline;
+using Luthier.Geometry.Nurbs;
 using SharpHelper;
 using System.Xml.Serialization;
 using Luthier.Model.Properties;
@@ -20,147 +20,7 @@ namespace Luthier.Model.GraphicObjects
         public GraphicNurbsCurve(int dimension, bool isRational, int order, int cvCount)
         {
             Curve = new NurbsCurve(dimension, isRational, order, cvCount);
-          
         }
-
-
-        //public double[] GetCV(int IX)
-        //{
-        //    double[] cv = new double[_cvSize];
-        //    for (int i = 0; i < _cvSize; i++) cv[i] = cvDataBlock[IX + i * _cvCount];
-        //    return cv;
-        //}
-
-        //public void SetCV(int IX, double[] cv)
-        //{
-        //    for (int i = 0; i < _cvSize; i++) cvDataBlock[IX + i * _cvCount] = cv[i];
-        //}
-        //public double GetKnot(int IX)
-        //{
-        //    return knot[IX];
-        //}
-        //public int GetDegree() => _order - 1;
-        //public int NumberOfPoints { get => _cvCount; }
-
-        //public Interval Domain
-        //{
-        //    get => new Interval(knot[_order - 2], knot[knot.Length - _order + 1]);
-        //}
-
-        //public double[] Evaluate(double t)
-        //{
-        //    double[] p = new double[_cvSize];
-        //    int knotIX = Geometry.BSpline.Algorithm.Find_Knot_Span(_order - 1, knot, t);
-        //    int cvIX = knotIX - _order + 2;
-        //    for (int i = 0; i < _cvSize; i++)
-        //    {
-        //        p[i] = Geometry.BSpline.Algorithm.Evaluate_CurveSpan_Deboor(_order - 1, knotIX, ref knot, ref cvDataBlock, i * _cvCount + cvIX, cvStride: 1, t: t);
-        //    }
-        //    return p;
-        //}
-
-
-        //public List<double[]> ToLines(int numberOfLines) => ToLines(numberOfLines, double.MinValue, double.MaxValue);
-        //public List<double[]> ToLines(int numberOfLines, double from, double to)
-        //{
-        //    from = Math.Max(from, Domain.Min);
-        //    to = Math.Min(to, Domain.Max);
-        //    var result = new List<double[]>();
-
-        //    for (int i = 0; i <= numberOfLines; i++)
-        //    {
-        //        var t = ((double)i / numberOfLines) * to + (1 - (double)i / numberOfLines) * from;
-        //        var point = Evaluate(t);
-        //        if (point != null) result.Add(point);
-        //    }
-        //    return result;
-        //}
-
-        //public void InsertKnots(List<double> knots)
-        //{
-        //    //var newKnot = new Knot { p = knot.p, data = new List<double>(knot.data) };
-        //    //newKnot.data.AddRange(knots);
-        //    //newKnot.data.Sort();
-        //    //points = BSpline.Algorithm.olso_insertion(points, knot.p, knot.data, newKnot.data);
-        //    //knot = newKnot;
-        //}
-
-        //public void CloseFront()
-        //{
-        //    //var newknot = new List<double>();
-        //    //var minParam = knot.minParam;
-        //    //for (int i = 0; i < knot.Continuity(minParam); i++) newknot.Add(minParam);
-        //    //InsertKnots(newknot);
-        //    //points = points.GetRange(newknot.Count, points.Count - newknot.Count);
-        //    //knot.data = knot.data.GetRange(newknot.Count, knot.data.Count - newknot.Count);
-        //}
-
-        //public void CloseBack()
-        //{
-        //    //var newknots = new List<double>();
-        //    //var maxParam = knot.maxParam;
-        //    //for (int i = 0; i < knot.Continuity(maxParam); i++) newknots.Add(maxParam);
-        //    //InsertKnots(newknots);
-        //    //points = points.GetRange(0, points.Count - newknots.Count);
-        //    //knot.data = knot.data.GetRange(0, knot.data.Count - newknots.Count);
-        //}
-
-
-        public GraphicNurbsCurve DeepCopy()
-        {
-            return this;
-            //return new NurbsCurve(new List<Point2D>(points), knot.DeepCopy());
-        }
-
-
-
-        //public void ExtendFront(double[] cv)
-        //{
-        //    if (cv.Length != _cvSize) return;
-
-        //    var newKnot = new double[knot.Length + 1];
-        //    Array.Copy(knot, 0, newKnot, 1, knot.Length);
-        //    newKnot[0] = 2 * newKnot[1] - newKnot[2];
-
-        //    var newCvDataBlock = new double[cvDataBlock.Length + _cvSize];
-        //    Array.Copy(cvDataBlock, 0, newCvDataBlock, _cvSize, cvDataBlock.Length);
-        //    Array.Copy(cv, 0, newCvDataBlock, 0, _cvSize);
-
-        //    _cvCount++;
-
-        //    cvDataBlock = newCvDataBlock;
-        //    knot = newKnot;
-        //}
-
-        //public void ExtendBack(double[] cv)
-        //{
-        //    if (cv.Length != _cvSize) return;
-
-        //    var newKnot = new double[knot.Length + 1];
-        //    Array.Copy(knot, 0, newKnot, 0, knot.Length);
-        //    newKnot[newKnot.Length-1] = 2 * newKnot[newKnot.Length - 2] - newKnot[newKnot.Length - 3];
-
-        //    var newCvDataBlock = new double[cvDataBlock.Length + _cvSize];
-        //    for(int i = 0; i < _cvCount; i++)
-        //    {
-        //        for(int j=0; j < _cvSize; j++)
-        //        {
-        //            newCvDataBlock[i + j * (_cvCount + 1)] = cvDataBlock[i + j * _cvCount];
-        //        }
-        //    }
-        //    for (int j = 0; j < _cvSize; j++)
-        //    {
-        //        newCvDataBlock[_cvCount + j * (_cvCount + 1)] = cv[j];
-        //    }
-           
-        //    _cvCount++;
-
-        //    cvDataBlock = newCvDataBlock;
-        //    knot = newKnot;
-        //}
-
-
-
 
         public override double GetDistance(ApplicationDocumentModel model, double x, double y)
         {

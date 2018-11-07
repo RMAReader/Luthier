@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Double;
 using MathNet.Numerics.Optimization;
+using MathNet.Numerics.Providers.LinearAlgebra;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Luthier.Geometry.Test
@@ -45,6 +46,43 @@ namespace Luthier.Geometry.Test
 
         }
 
+
+
+        [TestMethod]
+        public void LinearSystemSolver()
+        {
+            //test NMath for solving Ax=b
+
+            LinearAlgebraControl.UseBest();
+            var provider = LinearAlgebraControl.Provider;
+
+            int dim = 20;
+            
+            var A = Matrix.Build.Dense(dim, dim);
+            var b = Vector.Build.Dense(dim);
+
+            var rnd = new Random();
+
+            for (int i = 0; i < dim; i++)
+            {
+                b[i] = i;
+                for (int j = i; j < Math.Min(i + 10, dim); j++)
+                    A[i, j] = rnd.NextDouble();
+            }
+
+            //create random positive semi-definite matrix
+            A.TransposeAndMultiply(A, A);
+
+            var sw = new System.Diagnostics.Stopwatch();
+            sw.Restart();
+
+            var x = A.Solve(b);
+
+            long t = sw.ElapsedMilliseconds;
+            
+            //check
+            var c = A.TransposeThisAndMultiply(x);
+        }
 
     }
 

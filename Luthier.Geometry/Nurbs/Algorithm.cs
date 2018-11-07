@@ -4,8 +4,9 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Numerics;
 
-namespace Luthier.Geometry.BSpline
+namespace Luthier.Geometry.Nurbs
 {
 
 
@@ -136,7 +137,87 @@ namespace Luthier.Geometry.BSpline
             return null;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static unsafe double BasisFunction_Evaluate_Deboor(
+            int functionIX,
+            int degree,
+            int knotIX,
+            ref double[] knot,
+            double t)
+        {
+            int pIX = functionIX - knotIX + 1;
+            if (pIX < 0 || pIX > degree)
+            {
+                return 0;
+            }
+            else
+            {
+                double* p = stackalloc double[degree + 1];
+                for (int i = 0; i < degree + 1; i++) p[i] = 0;
+                p[pIX] = 1;
+                return CompactSpan_Evaluate_Deboor(degree, knotIX, ref knot, p, t);
+            }
+        }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static unsafe double BasisFunction_EvaluateFirstDerivative_Deboor(
+            int functionIX,
+            int degree,
+            int knotIX,
+            ref double[] knot,
+            double t)
+        {
+            int pIX = functionIX - knotIX + 1;
+            if (pIX < 1 || pIX > degree)
+            {
+                return 0;
+            }
+            else
+            {
+                double* p = stackalloc double[degree];
+                for (int i = 0; i < degree; i++) p[i] = 0;
+
+                p[pIX - 1] = degree / (knot[knotIX + degree + pIX - 2] - knot[knotIX + pIX - 2]);
+                p[pIX] =  -degree / (knot[knotIX + degree + pIX - 1] - knot[knotIX + pIX - 1]);
+
+                return CompactSpan_Evaluate_Deboor(degree, knotIX, ref knot, p, t);
+            }
+        }
+
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static unsafe double BasisFunction_EvaluateDerivative_Deboor(
+            int derivative,
+            int functionIX,
+            int degree,
+            int knotIX,
+            ref double[] knot,
+            double t)
+        {
+            int pIX = functionIX - knotIX + 1;
+            if (pIX < derivative || pIX > degree)
+            {
+                return 0;
+            }
+            else
+            {
+                double* p = stackalloc double[degree + 1];
+                for (int i = 0; i < degree + 1; i++) p[i] = 0;
+                p[pIX] = 1;
+
+                for (int der = 0; der < derivative; der++)
+                {
+                    int imax = degree - der;
+                    for (int i = 0; i < degree - der; i++)
+                    {
+                        double alpha = imax / (knot[knotIX + imax + i - 1] - knot[knotIX + i - 1]);
+                        p[i] = alpha * (p[i + 1] - p[i]);
+                    }
+                }
+
+                return CompactSpan_Evaluate_Deboor(degree, knotIX, ref knot, p, t);
+            }
+        }
 
         /// <summary>
         /// Evaluates 1D span of bspline curve.  
@@ -152,7 +233,7 @@ namespace Luthier.Geometry.BSpline
         /// <param name="t">Evaluation parameter</param>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe double Evaluate_CurveSpan_Deboor(
+        public static unsafe double CurveSpan_Evaluate_Deboor(
             int degree, 
             int knotIX, 
             ref double[] knot, 
@@ -167,12 +248,65 @@ namespace Luthier.Geometry.BSpline
             {
                 p[i] = cv[cvIX + i * cvStride];
             }
-            return Evaluate_Span_Deboor_Compact(degree, knotIX, ref knot, p, t);
+            return CompactSpan_Evaluate_Deboor(degree, knotIX, ref knot, p, t);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static unsafe double CurveSpan_EvaluateFirstDerivative_Deboor(
+            int degree,
+            int knotIX,
+            ref double[] knot,
+            ref double[] cv,
+            int cvIX,
+            int cvStride,
+            double t)
+        {
+            //create working array on the stack
+            double* p = stackalloc double[degree];
+            for (int i = 0; i < degree; i++)
+            {
+                double alpha = degree / (knot[knotIX + degree + i - 1] - knot[knotIX + i - 1]);
+                p[i] = alpha * (cv[cvIX + (i + 1) * cvStride] - cv[cvIX + i * cvStride]);
+            }
+            return CompactSpan_Evaluate_Deboor(degree - 1, knotIX, ref knot, p, t);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static unsafe double CurveSpan_EvaluateDerivative_Deboor(
+            int derivative,
+            int degree,
+            int knotIX,
+            ref double[] knot,
+            ref double[] cv,
+            int cvIX,
+            int cvStride,
+            double t)
+        {
+            //create working array on the stack
+            double* p = stackalloc double[degree + 1];
+            for (int i = 0; i < degree + 1; i++)
+            {
+                p[i] = cv[cvIX + i * cvStride];
+            }
+
+            for (int der = 0; der < derivative; der++)
+            {
+                int imax = degree - der;
+                for (int i = 0; i < degree - der; i++)
+                {
+                    double alpha = imax / (knot[knotIX + imax + i - 1] - knot[knotIX + i - 1]);
+                    p[i] = alpha * (p[i + 1] - p[i]);
+                }
+            }
+            
+            return CompactSpan_Evaluate_Deboor(degree - derivative, knotIX, ref knot, p, t);
         }
 
 
+        
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe double Evaluate_SurfaceSpan_Deboor(
+        public static unsafe double SurfaceSpan_Evaluate_Deboor(
             int orderU, 
             int orderV, 
             int knotIU, 
@@ -197,27 +331,103 @@ namespace Luthier.Geometry.BSpline
                 {
                     p[i] = cv[cvIX + k * cvStrideU + i * cvStrideV];
                 }
-                q[k] = Evaluate_Span_Deboor_Compact(orderV - 1, knotIV, ref knotV, p, v);
+                q[k] = CompactSpan_Evaluate_Deboor(orderV - 1, knotIV, ref knotV, p, v);
             }
-            return Evaluate_Span_Deboor_Compact(orderU - 1, knotIU, ref knotU, q, u);
+            return CompactSpan_Evaluate_Deboor(orderU - 1, knotIU, ref knotU, q, u);
+        }
+
+
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static unsafe void ConvertPointsForDerivative(
+            int derivative,
+            int degree,
+            int knotIX,
+            ref double[] knot,
+            double* p)
+        {
+            for (int der = 0; der < derivative; der++)
+            {
+                int imax = degree - der;
+                for (int i = 0; i < degree - der; i++)
+                {
+                    double alpha = imax / (knot[knotIX + imax + i - 1] - knot[knotIX + i - 1]);
+                    p[i] = alpha * (p[i + 1] - p[i]);
+                }
+            }
         }
 
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe double Evaluate_Span_Deboor_Compact(int degree, int knotIX, ref double[] knot, double* cv, double t)
+        public static unsafe double CompactSpan_Evaluate_Deboor(int degree, int knotIX, ref double[] knot, double* cv, double t)
         {
             double alpha;
-            for (int r = 1; r <= degree + 1; r++)
+            for (int r = 0; r < degree; r++)
             {
-                for (int j = degree; j > r - 1; j--)
+                for (int j = degree; j > r; j--)
                 {
-                    alpha = (t - knot[j + knotIX - degree]) / (knot[j + 1 + knotIX - r] - knot[j + knotIX - degree]);
+                    alpha = (t - knot[knotIX + j - degree]) / (knot[knotIX + j - r] - knot[knotIX + j - degree]);
                     cv[j] = (1.0 - alpha) * cv[j - 1] + alpha * cv[j];
                 }
             }
             return cv[degree];
         }
 
+
+        #region "evaluation algorithms using SIMD vectorization"
+
+        /*
+         There was no speed up from using SIMD types on desktop machine - in fact, a small slow down.
+             
+             */
+
+        ///// <summary>
+        ///// Evaluates 1D span of bspline curve.  
+        ///// Using cvIX and cvStride allows curves/surfaces of any dimension to be evaluated by providing control vector data as one double[] datablock.
+        ///// Using local working array declared on the stack is faster than using a recursive evaluation function.
+        ///// </summary>
+        ///// <param name="degree">Degree of bspline curve. (Order = Degree + 1).</param>
+        ///// <param name="knotIX">Knot vector index for which knot[knotIX] <= t < knot[knotIX + 1]</param>
+        ///// <param name="knot">Knot vector array</param>
+        ///// <param name="cv">Control point array</param>
+        ///// <param name="cvIX">Index such that control points cv[cvIX], cv[cvIX + cvStride] + ... + cv[cvIX + cvStride * degree] are required for evaluation at t</param>
+        ///// <param name="cvStride">Stride such that control points cv[cvIX], cv[cvIX + cvStride] + ... + cv[cvIX + cvStride * degree] are required for evaluation at t</param>
+        ///// <param name="t">Evaluation parameter</param>
+        ///// <returns></returns>
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static Vector<double> Evaluate_CurveSpan_DeboorSIMD(
+        //    int degree,
+        //    int knotIX,
+        //    ref double[] knot,
+        //    ref double[] cv,
+        //    int cvIX,
+        //    int cvStride,
+        //    double t)
+        //{
+        //    Vector<double>[] p = new Vector<double>[degree + 1];
+        //    for (int i = 0; i < degree + 1; i++)
+        //    {
+        //        p[i] = new Vector<double> (cv, cvIX + i * cvStride);
+        //    }
+        //    return Evaluate_Span_Deboor_CompactSIMD(degree, knotIX, ref knot, p, t);
+        //}
+
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //public static System.Numerics.Vector<double> Evaluate_Span_Deboor_CompactSIMD(int degree, int knotIX, ref double[] knot, System.Numerics.Vector<double>[] cv, double t)
+        //{
+        //    double alpha;
+        //    for (int r = 0; r < degree; r++)
+        //    {
+        //        for (int j = degree; j > r; j--)
+        //        {
+        //            alpha = (t - knot[knotIX + j - degree]) / (knot[knotIX + j - r] - knot[knotIX + j - degree]);
+        //            cv[j] = (1.0 - alpha) * cv[j - 1] + alpha * cv[j];
+        //        }
+        //    }
+        //    return cv[degree];
+        //}
+
+        #endregion
 
         public static int Find_Knot_Span(int degree, double[] knot, double t)
         {

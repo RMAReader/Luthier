@@ -39,7 +39,11 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,12 +54,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithm.cs" />
-    <Compile Include="BSpline\Algorithm.cs" />
-    <Compile Include="BSpline\BSplineCurve.cs" />
-    <Compile Include="BSpline\NurbsCurve.cs" />
-    <Compile Include="BSpline\Knot.cs" />
-    <Compile Include="BSpline\NurbsCurveNearestPoint.cs" />
-    <Compile Include="BSpline\NurbsSurface.cs" />
+    <Compile Include="Image\LockBitmap.cs" />
+    <Compile Include="Nurbs\Algorithm.cs" />
+    <Compile Include="Nurbs\BSplineCurve.cs" />
+    <Compile Include="Nurbs\NurbsCurve.cs" />
+    <Compile Include="Nurbs\Knot.cs" />
+    <Compile Include="Nurbs\NurbsCurveBinaryTree.cs" />
+    <Compile Include="Nurbs\NurbsCurveNearestPoint.cs" />
+    <Compile Include="Nurbs\NurbsSurface.cs" />
     <Compile Include="ClipperWrapper.cs" />
     <Compile Include="Intersection.cs" />
     <Compile Include="Interval.cs" />
@@ -63,7 +69,8 @@
     <Compile Include="LineSegment2D.cs" />
     <Compile Include="LinkedLine2D.cs" />
     <Compile Include="MeshHelper.cs" />
-    <Compile Include="Optimization\NurbsCurveNearstPointObjFunc.cs" />
+    <Compile Include="Optimization\NurbsCurveQuadraticApproximationFitter.cs" />
+    <Compile Include="Optimization\NurbsCurveSquaredDistanceObjFunc.cs" />
     <Compile Include="Point2D.cs" />
     <Compile Include="PointCloud.cs" />
     <Compile Include="Polygon2D.cs" />

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Luthier.Geometry.BSpline
+namespace Luthier.Geometry.Nurbs
 {
     public class BSplineCurve
     {
@@ -71,7 +71,7 @@ namespace Luthier.Geometry.BSpline
             var newKnot = new Knot { p = knot.p, data = new List<double>(knot.data) };
             newKnot.data.AddRange(knots);
             newKnot.data.Sort();
-            points = BSpline.Algorithm.olso_insertion(points, knot.p, knot.data, newKnot.data);
+            points = Nurbs.Algorithm.olso_insertion(points, knot.p, knot.data, newKnot.data);
             knot = newKnot;
         }
 

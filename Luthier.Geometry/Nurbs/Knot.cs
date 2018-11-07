@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Luthier.Geometry.BSpline
+namespace Luthier.Geometry.Nurbs
 {
     public class Knot
     {

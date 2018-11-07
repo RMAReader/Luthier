@@ -1,4 +1,4 @@
-﻿using Luthier.Geometry.BSpline;
+﻿using Luthier.Geometry.Nurbs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ namespace Luthier.Model.GraphicObjects
         [XmlArray]
         public List<UniqueKey> pointsKeys;
         [XmlElement]
-        public Geometry.BSpline.Knot knot;
+        public Geometry.Nurbs.Knot knot;
 
         public GraphicBSplineCurve() { }
 
@@ -40,10 +40,10 @@ namespace Luthier.Model.GraphicObjects
                 .FirstOrDefault();
         }
 
-        public Geometry.BSpline.BSplineCurve ToPrimitive(IApplicationDocumentModel model)
+        public Geometry.Nurbs.BSplineCurve ToPrimitive(IApplicationDocumentModel model)
         {
             var points = pointsKeys.Select(x => ((GraphicPoint2D)model.Model[x]).ToPrimitive()).ToList();
-            return new Geometry.BSpline.BSplineCurve(points, knot);
+            return new Geometry.Nurbs.BSplineCurve(points, knot);
         }
     }
 }

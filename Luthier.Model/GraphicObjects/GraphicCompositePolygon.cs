@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Luthier.Core;
 using Luthier.Geometry;
-using Luthier.Geometry.BSpline;
+using Luthier.Geometry.Nurbs;
 using static Luthier.Geometry.Intersection;
 
 namespace Luthier.Model.GraphicObjects
@@ -80,7 +80,7 @@ namespace Luthier.Model.GraphicObjects
 
     class CurveSegment
     {
-        public Geometry.BSpline.BSplineCurve curve;
+        public Geometry.Nurbs.BSplineCurve curve;
         public double from;
         public double to;
 

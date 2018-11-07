@@ -1,7 +1,7 @@
 ﻿using Luthier.CncOperation;
 using Luthier.Core;
 using Luthier.Geometry;
-using Luthier.Geometry.BSpline;
+using Luthier.Geometry.Nurbs;
 using Luthier.Model.GraphicObjects;
 using Luthier.Model.MouseController;
 using Luthier.Model.ToolPathSpecification;
@@ -68,7 +68,7 @@ namespace Luthier.Model
                     points.Add(new Point2D(point.X, point.Y));
                 }
 
-                var approxCurve = new Geometry.BSpline.BSplineCurve(points, curve.GetKnot()).ToLines(100);
+                var approxCurve = new Geometry.Nurbs.BSplineCurve(points, curve.GetKnot()).ToLines(100);
 
                 result.Add(approxCurve.Select(p => new PointF((float)p.x, (float)p.y)).ToArray());
             }

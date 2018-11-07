@@ -1,4 +1,4 @@
-﻿using Luthier.Geometry.BSpline;
+﻿using Luthier.Geometry.Nurbs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
