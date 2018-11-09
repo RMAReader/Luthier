@@ -36,54 +36,110 @@ namespace Luthier.Geometry.Test
         }
 
 
+        private void TestNurbsBasisFunction(double expected, int i, int degree, double[] knot, double t)
+        {
+            //Assert.AreEqual(0, Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(0, degree, ref knot, t));
+            Assert.AreEqual(0, Nurbs.Algorithm.deboor_value(0, degree, knot, t));
+        }
+
+
         [TestMethod]
         public void BasisFunction_Evaluate_Deboor_Degree_Zero()
         {
             int degree = 0;
             double[] knot = new double[] { 0, 0, 0, 0.3, 0.5, 0.5, 0.6, 1, 1, 1 };
 
+            double[] parameters = new double[] { 0, 0.1, 0.3, 0.4, 0.5, 0.55, 0.6, 0.7, 1.0 };
+
             //N0(t)==0 for all t since [k0, k1) = [0, 0) so doesn't exist
-            Assert.AreEqual(0, Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(0, degree, 0, ref knot, -1.0));
-            Assert.AreEqual(0, Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(0, degree, 4, ref knot, 0.5));
-            Assert.AreEqual(0, Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(0, degree, 7, ref knot, 1.0));
+            foreach (double t in parameters)
+            {
+                double expected = 0;
+                TestNurbsBasisFunction(expected, 0, degree, knot, t);
+            }
 
             //N1(t)==0 for all t since [k1, k2) = [0, 0) so doesn't exist
-            Assert.AreEqual(0, Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(1, degree, 0, ref knot, -1.0));
-            Assert.AreEqual(0, Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(1, degree, 4, ref knot, 0.5));
-            Assert.AreEqual(0, Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(1, degree, 7, ref knot, 1.0));
+            foreach (double t in parameters)
+            {
+                double expected = 0;
+                TestNurbsBasisFunction(expected, 1, degree, knot, t);
+            }
 
             //N2(t)==1 for t in [0, 0.3), zero otherwise
-            double t = 0;
-            for(int knotIX = 0; knotIX < knot.Length - 1; knotIX++)
+            foreach (double t in parameters)
             {
-                if(knot[knotIX] < knot[knotIX + 1])
-                {
-                    t = knot[knotIX];
-                    Assert.AreEqual(1, Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(2, degree, knotIX, ref knot, t));
-
-                    t = 0.5 * (knot[knotIX] + knot[knotIX + 1]);
-                    Assert.AreEqual(1, Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(2, degree, knotIX, ref knot, t));
-
-                    t = knot[knotIX + 1];
-                    Assert.AreEqual(0, Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(2, degree, knotIX, ref knot, t));
-                }
-                else
-                {
-                    t = knot[knotIX];
-                    Assert.AreEqual(0, Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(2, degree, knotIX, ref knot, t));
-                }
-
-
+                double expected = (0 <= t && t < 0.3) ? 1 : 0;
+                TestNurbsBasisFunction(expected, 2, degree, knot, t);
             }
+
+            //N3(t)==1 for t in [0.3, 0.5), zero otherwise
+            foreach (double t in parameters)
+            {
+                double expected = (0.3 <= t && t < 0.5) ? 1 : 0;
+                TestNurbsBasisFunction(expected, 3, degree, knot, t);
+            }
+
+            //N4(t)==0 for all t since [k4, k5) = [0.5, 0.5) so doesn't exist
+            foreach (double t in parameters)
+            {
+                double expected = 0;
+                TestNurbsBasisFunction(expected, 4, degree, knot, t);
+            }
+
+            //N5(t)==1 for  t in [k5, k6) = [0.5, 0.6), zero otherwise
+            foreach (double t in parameters)
+            {
+                double expected = (0.5 <= t && t < 0.6) ? 1 : 0;
+                TestNurbsBasisFunction(expected, 5, degree, knot, t);
+            }
+
+            //N6(t)==1 for  t in [k6, k7) = [0.6, 1.0), zero otherwise
+            foreach (double t in parameters)
+            {
+                double expected = (0.6 <= t && t < 1.0) ? 1 : 0;
+                TestNurbsBasisFunction(expected, 6, degree, knot, t);
+            }
+
+            //N7(t)==0  for all t since [k7, k8) = [0, 0) so doesn't exist
+            foreach (double t in parameters)
+            {
+                double expected = 0;
+                TestNurbsBasisFunction(expected, 7, degree, knot, t);
+            }
+
+            //N8(t)==0  for all t since [k8, k9) = [0, 0) so doesn't exist
+            foreach (double t in parameters)
+            {
+                double expected = 0;
+                TestNurbsBasisFunction(expected, 8, degree, knot, t);
+            }
+
+        }
+
+
+        [TestMethod]
+        public void BasisFunction_Evaluate_Deboor_Degree_One()
+        {
+            int degree = 1;
+            double[] knot = new double[] { 0, 0, 0, 0.3, 0.5, 0.5, 0.6, 1, 1, 1 };
+
+            double[] parameters = new double[] { 0, 0.1, 0.3, 0.4, 0.5, 0.55, 0.6, 0.7, 1.0 };
+
+            //N0(t)==0 for all t since [k0, k2) = [0, 0) so doesn't exist
+            foreach (double t in parameters)
+            {
+                double expected = 0;
+                TestNurbsBasisFunction(expected, 0, degree, knot, t);
+            }
+
+            //N1(t) == 0 for t in [k1, k2) = [0, 0), and t == 1 - t/0.3 for t in [k2, k3) = [0, 0.3)
+            foreach (double t in parameters)
+            {
+                double expected = (0 <= t && t < 0.3) ? 1 - t / 0.3 : 0;
+                TestNurbsBasisFunction(expected, 1, degree, knot, t);
+            }
+
            
-
-            double n1 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(1, degree, 1, ref knot, 0);
-            double n2 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(2, degree, 2, ref knot, 0.2);
-            double n3 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(3, degree, 3, ref knot, 0.4);
-            double n4 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(3, degree, 3, ref knot, 0.4);
-
-          
-
         }
 
         [TestMethod]
@@ -93,11 +149,10 @@ namespace Luthier.Geometry.Test
             double[] knot = new double[] { 1, 3, 6, 10 };
 
             double t = 3.2;
-            int knotIX = 1;
-
-            double n0 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(0, degree, knotIX, ref knot, t);
-            double n1 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(1, degree, knotIX, ref knot, t);
-            double n2 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(2, degree, knotIX, ref knot, t);
+            
+            double n0 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(0, degree, ref knot, t);
+            double n1 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(1, degree, ref knot, t);
+            double n2 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(2, degree, ref knot, t);
 
             Assert.AreEqual(0.52266666666666661, n0);
             Assert.AreEqual(0.47542857142857148, n1);
@@ -408,24 +463,35 @@ namespace Luthier.Geometry.Test
 
             double t = 3.2;
             //deboor_value coded to use "long" knot vector
+            double[,] N0t = new double[3, knot.Length * 2];
+            for(int i=0; i<knot.Length - 1; i++)
+            {
+                for(int j=0; j<2; j++)
+                {
+                    t = (1-(double)j/2)*knot[i] + (double)j/2*knot[i + 1];
+                    N0t[0, i] = Nurbs.Algorithm.deboor_value(0, degree, knot, t);
+                    N0t[1, i] = Nurbs.Algorithm.deboor_value(1, degree, knot, t);
+                    N0t[2, i] = Nurbs.Algorithm.deboor_value(2, degree, knot, t);
+                }
+            }
             var n0 = Nurbs.Algorithm.deboor_value(0, degree, knot, t);
             var n1 = Nurbs.Algorithm.deboor_value(1, degree, knot, t);
             var n2 = Nurbs.Algorithm.deboor_value(2, degree, knot, t);
 
-            //  var ct1 = cvblock[0] * n0 + cvblock[2] * n1 * cvblock[4] * n2;
+             var ct1FromBasis = cvblock[0] * n0 + cvblock[2] * n1 + cvblock[4] * n2;
 
             knot = new double[] { 1, 3, 6, 10 };
             var cv0 = new double[] { 1, 0, 0 };
             var ct0 = Nurbs.Algorithm.CurveSpan_Evaluate_Deboor(degree, 1, ref knot, ref cv0, 0, 1, t);
-            var ct01 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(0, degree, 1, ref knot, t);
+            var ct01 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(0, degree,ref knot, t);
 
             var cv1 = new double[] { 0, 1, 0 };
             var ct1 = Nurbs.Algorithm.CurveSpan_Evaluate_Deboor(degree, 1, ref knot, ref cv1, 0, 1, t);
-            var ct11 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(1, degree, 1, ref knot, t);
+            var ct11 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(1, degree, ref knot, t);
 
             var cv2 = new double[] { 0, 0, 1 };
             var ct2 = Nurbs.Algorithm.CurveSpan_Evaluate_Deboor(degree, 1, ref knot, ref cv2, 0, 1, t);
-            var ct21 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(2, degree, 1, ref knot, t);
+            var ct21 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(2, degree, ref knot, t);
 
             int iterations = 1000000;
             var sw = new System.Diagnostics.Stopwatch();
@@ -447,7 +513,7 @@ namespace Luthier.Geometry.Test
             sw.Restart();
             for (int i = 0; i < iterations; i++)
             {
-                ct01 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(0, degree, 1, ref knot, t);
+                ct01 = Nurbs.Algorithm.BasisFunction_Evaluate_Deboor(0, degree,  ref knot, t);
             }
             long t3 = sw.ElapsedMilliseconds;
 
@@ -674,6 +740,17 @@ namespace Luthier.Geometry.Test
             }
             long t1 = sw.ElapsedMilliseconds;
 
+        }
+
+
+        private double[] Enumerate(double min, double max, int count)
+        {
+            double[] result = new double[count];
+            for (int i=0; i<count; i++)
+            {
+                double t = (1 - (double)i / count) * min + (double)i / count * max;
+            }
+            return result;
         }
     }
 }

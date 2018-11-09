@@ -137,25 +137,30 @@ namespace Luthier.Geometry.Nurbs
             return null;
         }
 
+
+
+       
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static unsafe double BasisFunction_Evaluate_Deboor(
             int functionIX,
             int degree,
-            int knotIX,
             ref double[] knot,
             double t)
         {
-            int pIX = functionIX - knotIX + 1;
-            if (pIX < 0 || pIX > degree)
-            {
-                return 0;
-            }
-            else
+            if ( knot[functionIX] <= t && t < knot[functionIX + degree + 1] )
             {
                 double* p = stackalloc double[degree + 1];
                 for (int i = 0; i < degree + 1; i++) p[i] = 0;
-                p[pIX] = 1;
-                return CompactSpan_Evaluate_Deboor(degree, knotIX, ref knot, p, t);
+                p[degree] = 1;
+
+                //while (knot[functionIX] < t) functionIX++;
+
+                return CompactSpan_Evaluate_Deboor(degree, functionIX, ref knot, p, t);
+            }
+            else
+            {
+                return 0;
             }
         }
 
@@ -361,13 +366,21 @@ namespace Luthier.Geometry.Nurbs
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static unsafe double CompactSpan_Evaluate_Deboor(int degree, int knotIX, ref double[] knot, double* cv, double t)
         {
-            double alpha;
+            double alpha, d;
             for (int r = 0; r < degree; r++)
             {
                 for (int j = degree; j > r; j--)
                 {
-                    alpha = (t - knot[knotIX + j - degree]) / (knot[knotIX + j - r] - knot[knotIX + j - degree]);
-                    cv[j] = (1.0 - alpha) * cv[j - 1] + alpha * cv[j];
+                    d = (knot[knotIX + j - r] - knot[knotIX + j - degree]);
+                    if(d > 0)
+                    {
+                        alpha = (t - knot[knotIX + j - degree]) / d;
+                        cv[j] = (1.0 - alpha) * cv[j - 1] + alpha * cv[j];
+                    }
+                    else
+                    {
+                        cv[j] = 1;
+                    }
                 }
             }
             return cv[degree];
