@@ -223,22 +223,22 @@ namespace Luthier.Model
             foreach (GraphicNurbsSurface surface in model.Model.VisibleObjects().Where(x => x is GraphicNurbsSurface))
             {
                 var net = new List<PointF>();
-                for (int i = 0; i < surface.CvCount0; i++)
+                for (int i = 0; i < surface.Surface.CvCount0; i++)
                 {
-                    for (int j = 0; j < surface.CvCount1 - 1; j++)
+                    for (int j = 0; j < surface.Surface.CvCount1 - 1; j++)
                     {
-                        var p1 = surface.GetCV(i, j);
-                        var p2 = surface.GetCV(i, j + 1);
+                        var p1 = surface.Surface.GetCV(i, j);
+                        var p2 = surface.Surface.GetCV(i, j + 1);
                         net.Add(new PointF((float)p1[0], (float)p1[1]));
                         net.Add(new PointF((float)p2[0], (float)p2[1]));
                     }
                 }
-                for (int i = 0; i < surface.CvCount0 - 1; i++)
+                for (int i = 0; i < surface.Surface.CvCount0 - 1; i++)
                 {
-                    for (int j = 0; j < surface.CvCount1; j++)
+                    for (int j = 0; j < surface.Surface.CvCount1; j++)
                     {
-                        var p1 = surface.GetCV(i, j);
-                        var p2 = surface.GetCV(i + 1, j);
+                        var p1 = surface.Surface.GetCV(i, j);
+                        var p2 = surface.Surface.GetCV(i + 1, j);
                         net.Add(new PointF((float)p1[0], (float)p1[1]));
                         net.Add(new PointF((float)p2[0], (float)p2[1]));
                     }

@@ -15,6 +15,7 @@ namespace Luthier.Geometry.Test
     public class MathNetTests
     {
 
+        [Ignore()]
         [TestMethod]
         public void Optimisation()
         {

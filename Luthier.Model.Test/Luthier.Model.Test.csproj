@@ -63,6 +63,10 @@
       <Project>{917e595e-9d4e-4efb-a880-17004d5cdf4f}</Project>
       <Name>Luthier.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Luthier.Geometry\Luthier.Geometry.csproj">
+      <Project>{14be8ed1-dada-4b1d-a4dc-43766fc15ed9}</Project>
+      <Name>Luthier.Geometry</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Luthier.Model\Luthier.Model.csproj">
       <Project>{08871544-1177-4e77-9d67-af6aab83aa23}</Project>
       <Name>Luthier.Model</Name>

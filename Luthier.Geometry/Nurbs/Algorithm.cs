@@ -139,56 +139,244 @@ namespace Luthier.Geometry.Nurbs
 
 
 
-       
+
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe double BasisFunction_Evaluate_Deboor(
+        public static double BasisFunction_Evaluate(
             int functionIX,
             int degree,
-            ref double[] knot,
+            double[] knot,
             double t)
         {
-            if ( knot[functionIX] <= t && t < knot[functionIX + degree + 1] )
+            if(degree == 2)
             {
-                double* p = stackalloc double[degree + 1];
-                for (int i = 0; i < degree + 1; i++) p[i] = 0;
-                p[degree] = 1;
-
-                //while (knot[functionIX] < t) functionIX++;
-
-                return CompactSpan_Evaluate_Deboor(degree, functionIX, ref knot, p, t);
+                return BasisFunction_Evaluate_DegreeTwo(functionIX, knot, t);
             }
             else
             {
-                return 0;
+                return deboor_value(functionIX, degree, knot, t);
             }
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe double BasisFunction_EvaluateFirstDerivative_Deboor(
+        public static double BasisFunction_Evaluate_DegreeTwo(
             int functionIX,
-            int degree,
-            int knotIX,
-            ref double[] knot,
+            double[] knot,
             double t)
         {
-            int pIX = functionIX - knotIX + 1;
-            if (pIX < 1 || pIX > degree)
+            double n02;
+
+            if (t < knot[functionIX])
             {
-                return 0;
+                n02 = 0;
+            }
+            else if (t < knot[functionIX + 1])
+            {
+                double alpha = t - knot[functionIX];
+
+                n02 = alpha * alpha / (knot[functionIX + 1] - knot[functionIX]) / (knot[functionIX + 2] - knot[functionIX]);
+
+            }
+            else if (t < knot[functionIX + 2])
+            {
+                double alpha = (knot[functionIX + 2] - knot[functionIX + 1]);
+
+                double n11 = (t - knot[functionIX + 1]);
+
+                double n01 = (knot[functionIX + 2] - t);
+
+                n02 = (n01 * (t - knot[functionIX]) / (knot[functionIX + 2] - knot[functionIX])
+                    + n11 * (knot[functionIX + 3] - t) / (knot[functionIX + 3] - knot[functionIX + 1])) / alpha;
+
+            }
+            else if (t < knot[functionIX + 3])
+            {
+                double alpha = knot[functionIX + 3] - t;
+
+                n02 = alpha * alpha / (knot[functionIX + 3] - knot[functionIX + 2]) / (knot[functionIX + 3] - knot[functionIX + 1]);
+
             }
             else
             {
-                double* p = stackalloc double[degree];
-                for (int i = 0; i < degree; i++) p[i] = 0;
+                n02 = 0;
+            }
 
-                p[pIX - 1] = degree / (knot[knotIX + degree + pIX - 2] - knot[knotIX + pIX - 2]);
-                p[pIX] =  -degree / (knot[knotIX + degree + pIX - 1] - knot[knotIX + pIX - 1]);
+            return n02;
+        }
 
-                return CompactSpan_Evaluate_Deboor(degree, knotIX, ref knot, p, t);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double BasisFunction_EvaluateFirstDerivative(
+            int functionIX,
+            int degree,
+            double[] knot,
+            double t)
+        {
+            if(degree == 2)
+            {
+                return BasisFunction_EvaluateFirstDerivative_DegreeTwo(functionIX, knot, t);
+            }
+            else
+            {
+                return deboor_derivative(functionIX, degree, knot, t);
+            }
+            
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double BasisFunction_EvaluateFirstDerivative_DegreeTwo(
+             int functionIX,
+             double[] knot,
+             double t)
+        {
+            double n02;
+
+            if (t < knot[functionIX])
+            {
+                n02 = 0;
+            }
+            else if (t < knot[functionIX + 1])
+            {
+                double n01 = (t - knot[functionIX]) / (knot[functionIX + 1] - knot[functionIX]);
+
+                n02 = 2 * n01 / (knot[functionIX + 2] - knot[functionIX]);
+            }
+            else if (t < knot[functionIX + 2])
+            {
+                double alpha = (knot[functionIX + 2] - knot[functionIX + 1]);
+
+                double n11 = (t - knot[functionIX + 1]);
+
+                double n01 = (knot[functionIX + 2] - t);
+
+                n02 = 2 * (n01 / (knot[functionIX + 2] - knot[functionIX]) - n11 / (knot[functionIX + 3] - knot[functionIX + 1])) / alpha;
+
+            }
+            else if (t < knot[functionIX + 3])
+            {
+                double n11 = (knot[functionIX + 3] - t) / (knot[functionIX + 3] - knot[functionIX + 2]);
+
+                n02 = -2 * n11 / (knot[functionIX + 3] - knot[functionIX + 1]);
+            }
+            else
+            {
+                n02 = 0;
+            }
+
+            return n02;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double BasisFunction_EvaluateSecondDerivative_DegreeTwo(
+             int functionIX,
+             double[] knot,
+             double t)
+        {
+            double n02;
+
+            if (t < knot[functionIX])
+            {
+                n02 = 0;
+            }
+            else if (t < knot[functionIX + 1])
+            {
+                n02 = 2 / (knot[functionIX + 1] - knot[functionIX]) / (knot[functionIX + 2] - knot[functionIX]);
+            }
+            else if (t < knot[functionIX + 2])
+            {
+                n02 = -2 * (1 / (knot[functionIX + 2] - knot[functionIX]) + 1 / (knot[functionIX + 3] - knot[functionIX + 1])) / (knot[functionIX + 2] - knot[functionIX + 1]);
+
+            }
+            else if (t < knot[functionIX + 3])
+            {
+                n02 = 2 / (knot[functionIX + 3] - knot[functionIX + 2]) / (knot[functionIX + 3] - knot[functionIX + 1]);
+            }
+            else
+            {
+                n02 = 0;
+            }
+
+            return n02;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void BasisFunction_EvaluateAllDerivatives_DegreeTwo(
+            int functionIX,
+            double[] knot,
+            double t,
+            ref double[] values)
+        {
+            if (t < knot[functionIX])
+            {
+                values[0] = 0;
+                values[1] = 0;
+                values[2] = 0;
+            }
+            else if (t < knot[functionIX + 1])
+            {
+                double alpha = t - knot[functionIX];
+
+                values[2] = 2 / (knot[functionIX + 1] - knot[functionIX]) / (knot[functionIX + 2] - knot[functionIX]);
+                values[1] = alpha * values[2];
+                values[0] = 0.5 * alpha * values[1];
+            }
+            else if (t < knot[functionIX + 2])
+            {
+                double a = knot[functionIX + 2] - knot[functionIX + 1];
+                double b = -2 / (knot[functionIX + 2] - knot[functionIX]) / a;
+                double c = -2 / (knot[functionIX + 3] - knot[functionIX + 1]) / a;
+
+                values[2] = b + c;
+
+                b *= t - knot[functionIX + 2];
+                c *= t - knot[functionIX + 1];
+
+                values[1] = b + c;
+                values[0] = 0.5 * ((t - knot[functionIX]) * b - (knot[functionIX + 3] - t) * c);
+            }
+            else if (t < knot[functionIX + 3])
+            {
+                double alpha = t - knot[functionIX + 3];
+
+                values[2] = 2 / (knot[functionIX + 3] - knot[functionIX + 2]) / (knot[functionIX + 3] - knot[functionIX + 1]);
+                values[1] = alpha * values[2];
+                values[0] = 0.5 * alpha * values[1];
+            }
+            else
+            {
+                values[0] = 0;
+                values[1] = 0;
+                values[2] = 0;
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void BasisFunction_EvaluateAllNonZero_DegreeTwo(
+            double[] knot,
+            double t,
+            ref double[] values,
+            ref int[] indices)
+        {
+            //we know that knot knot[knotIX] <= t < knot[knotIX + 1] (or t is outside of valid domain)
+            int knotIX = Find_Knot_Span(2, knot, t);
+
+            indices[2] = knotIX;
+            indices[1] = knotIX - 1;
+            indices[0] = knotIX - 2;
+
+            double a = 1 / (knot[knotIX + 1] - knot[knotIX]);
+            double b = (knot[knotIX + 1] - t);
+            double c = a * b / (knot[knotIX + 1] - knot[knotIX - 1]);
+
+            values[0] = b * c;
+            values[1] = (t - knot[knotIX - 1]) * c;
+
+            b = (t - knot[knotIX]);
+            c = a * b / (knot[knotIX + 2] - knot[knotIX]);
+
+            values[1] += (knot[knotIX + 2] - t) * c;
+            values[2] = b * c;
+
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static unsafe double BasisFunction_EvaluateDerivative_Deboor(
@@ -253,7 +441,40 @@ namespace Luthier.Geometry.Nurbs
             {
                 p[i] = cv[cvIX + i * cvStride];
             }
+
             return CompactSpan_Evaluate_Deboor(degree, knotIX, ref knot, p, t);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double CurveSpan_Evaluate_Deboor2(
+           int degree,
+           int knotIX,
+           ref double[] knot,
+           ref double[] cv,
+           int cvIX,
+           int cvStride,
+           double t)
+        {
+            double c = 0;
+            if (degree == 2)
+            {
+                //int[] indices = new int[3];
+                //double[] values = new double[3];
+                //BasisFunction_EvaluateAllNonZero_DegreeTwo(knot, t, ref values, ref indices);
+                for (int i = 0; i < degree + 1; i++)
+                {
+                    c += cv[cvIX + i * cvStride] * BasisFunction_Evaluate_DegreeTwo(i + knotIX - degree, knot, t);
+                    //c += cv[cvIX + i * cvStride] * values[i];
+                }
+            }
+            else
+            {
+                for (int i = 0; i < degree + 1; i++)
+                {
+                    c += cv[cvIX + i * cvStride] * BasisFunction_Evaluate(knotIX - degree, degree, knot, t);
+                }
+            }
+            return c;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -371,16 +592,9 @@ namespace Luthier.Geometry.Nurbs
             {
                 for (int j = degree; j > r; j--)
                 {
-                    d = (knot[knotIX + j - r] - knot[knotIX + j - degree]);
-                    if(d > 0)
-                    {
-                        alpha = (t - knot[knotIX + j - degree]) / d;
-                        cv[j] = (1.0 - alpha) * cv[j - 1] + alpha * cv[j];
-                    }
-                    else
-                    {
-                        cv[j] = 1;
-                    }
+                    alpha = (t - knot[knotIX + j - degree]) / (knot[knotIX + j - r] - knot[knotIX + j - degree]);
+
+                    cv[j] = (1.0 - alpha) * cv[j - 1] + alpha * cv[j];
                 }
             }
             return cv[degree];
@@ -444,8 +658,8 @@ namespace Luthier.Geometry.Nurbs
 
         public static int Find_Knot_Span(int degree, double[] knot, double t)
         {
-            int imin = degree - 1;
-            int imax = knot.Length - degree - 1;
+            int imin = degree;
+            int imax = knot.Length - degree - 2;
             if (knot[imin] > t) return imin;
             if (knot[imax] <= t) return imax;
             for (int i = imin; i <= imax; i++)

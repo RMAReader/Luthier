@@ -29,6 +29,9 @@ namespace Luthier.Geometry.Nurbs
         [XmlElement]
         public int _cvCount;
 
+        private NurbsCurveBulkEvaluator _bulkEvaluator;
+
+
         public NurbsCurve() { }
         public NurbsCurve(int dimension, bool isRational, int order, int cvCount)
         {
@@ -38,7 +41,7 @@ namespace Luthier.Geometry.Nurbs
             _cvSize = (isRational) ? dimension + 1 : dimension;
             _cvCount = cvCount;
 
-            knot = new double[_cvCount + _order - 2];
+            knot = new double[_cvCount + _order];
             for (int i = 0; i < knot.Length; i++) knot[i] = i;
 
             cvDataBlock = new double[_cvSize * _cvCount];
@@ -65,24 +68,49 @@ namespace Luthier.Geometry.Nurbs
 
         public Interval Domain
         {
-            get => new Interval(knot[_order - 2], knot[knot.Length - _order + 1]);
+            get => new Interval(knot[_order - 1], knot[knot.Length - _order]);
         }
 
         public double[] Evaluate(double t)
         {
-            double[] p = new double[_cvSize]; 
+            double[] p = new double[_cvSize];
             Evaluate(t, p);
             return p;
         }
 
         public void Evaluate(double t, double[] point)
         {
-            int knotIX = Geometry.Nurbs.Algorithm.Find_Knot_Span(_order - 1, knot, t);
-            int cvIX = knotIX - _order + 2;
+            //int knotIX = Algorithm.Find_Knot_Span(_order - 1, knot, t);
+            //int cvIX = knotIX - _order + 1;
+            //int cvStride = 1;
+            //for (int i = 0; i < _cvSize; i++)
+            //{
+            //    point[i] = Algorithm.CurveSpan_Evaluate_Deboor(_order - 1, knotIX, ref knot, ref cvDataBlock, cvIX, cvStride, t);
+            //}
+
+            int[] indices = new int[3];
+            double[] values = new double[3];
+            Algorithm.BasisFunction_EvaluateAllNonZero_DegreeTwo(knot, t, ref values, ref indices);
+
             for (int i = 0; i < _cvSize; i++)
             {
-                point[i] = Geometry.Nurbs.Algorithm.CurveSpan_Evaluate_Deboor(_order - 1, knotIX, ref knot, ref cvDataBlock, i * _cvCount + cvIX, cvStride: 1, t: t);
+                point[i] = 0;
+
+                for (int j = 0; j < values.Length; j++)
+                {
+                    int cvIX = indices[j] + i * _cvCount;
+                    point[i] += cvDataBlock[cvIX] * values[j];
+                }
             }
+        }
+
+        public void SetEvaluationPoints(double[] t)
+        {
+            _bulkEvaluator = new NurbsCurveBulkEvaluator(this, t);
+        }
+        public double[] RecalculateAtEvaluationPoints()
+        {
+            return _bulkEvaluator.Evaluate();
         }
 
         public double[] EvaluateDerivative(int derivative, double t)
@@ -94,8 +122,8 @@ namespace Luthier.Geometry.Nurbs
 
         public void EvaluateDerivative(int derivative, double t, double[] point)
         {
-            int knotIX = Geometry.Nurbs.Algorithm.Find_Knot_Span(_order - 1, knot, t);
-            int cvIX = knotIX - _order + 2;
+            int knotIX = Algorithm.Find_Knot_Span(_order - 1, knot, t);
+            int cvIX = knotIX - _order + 1;
             for (int i = 0; i < _cvSize; i++)
             {
                 if(derivative == 1)
@@ -412,8 +440,7 @@ namespace Luthier.Geometry.Nurbs
                     parentList = childrenList;
                 }
 
-                double[] nearestNodeCentre = new double[] { tree.Nodes[nearestNodeIndex].CentreX, tree.Nodes[nearestNodeIndex].CentreY };
-                NurbsCurveNearestPoint np = new NurbsCurveNearestPoint(this, nearestNodeCentre);
+                NurbsCurveNearestPoint np = new NurbsCurveNearestPoint(this, cp);
 
                 double t = np.NearestSquaredDistanceNewtonRaphson(tree.Nodes[nearestNodeIndex].Minparameter - 0.1, tree.Nodes[nearestNodeIndex].MaxParameter + 0.1);
                 double[] d2 = Evaluate(t);

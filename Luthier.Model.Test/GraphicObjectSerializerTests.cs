@@ -145,17 +145,17 @@ namespace Luthier.Test.Model
         public void ModelSerialization_GraphicNurbsSurface()
         {
             var surface = new GraphicNurbsSurface(2, false, 3, 3, 3, 3);
-            surface.cvArray = new double[36];
-            for(int i = 0; i < 36; i++) surface.cvArray[i] = i;
-            surface.knotArray0 = new double[] {0,1,2,3};
-            surface.knotArray1 = new double[] {0,1,2,3};
+            surface.Surface.cvArray = new double[36];
+            for(int i = 0; i < 36; i++) surface.Surface.cvArray[i] = i;
+            surface.Surface.knotArray0 = new double[] {0,1,2,3};
+            surface.Surface.knotArray1 = new double[] {0,1,2,3};
 
 
             var bytes = Serializer<GraphicNurbsSurface>.Serialize(surface);
 
             var surface2 = Serializer<GraphicNurbsSurface>.Deserialize(bytes);
             Assert.AreEqual(surface.Key, surface2.Key);
-            Assert.AreEqual(surface.Order0, surface2.Order0);
+            Assert.AreEqual(surface.Surface.Order0, surface2.Surface.Order0);
 
             var model1 = new GraphicModelStorage();
             model1.Objects.Add(surface);

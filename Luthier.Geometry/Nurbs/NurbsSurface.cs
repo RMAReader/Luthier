@@ -44,8 +44,8 @@ namespace Luthier.Geometry.Nurbs
 
         private void InitialiseArrays()
         {
-            knotArray0 = new double[CvCount0 + Order0 - 2];
-            knotArray1 = new double[CvCount1 + Order1 - 2];
+            knotArray0 = new double[CvCount0 + Order0];
+            knotArray1 = new double[CvCount1 + Order1];
             cvArray = new double[CvSize * CvCount0 * CvCount1];
         }
 
@@ -84,7 +84,7 @@ namespace Luthier.Geometry.Nurbs
 
             int knotIU = Nurbs.Algorithm.Find_Knot_Span(Order0 - 1, knotArray0, u);
             int knotIV = Nurbs.Algorithm.Find_Knot_Span(Order1 - 1, knotArray1, v);
-            int cvIX = ((knotIU - Order0 + 2) * CvCount1 + knotIV - Order1 + 2) * CvSize;
+            int cvIX = ((knotIU - Order0 + 1) * CvCount1 + knotIV - Order1 + 1) * CvSize;
             int cvStrideU = CvCount1 * CvSize;
             int cvStrideV = CvSize;
 

@@ -64,6 +64,8 @@
     <Compile Include="ClipperWrapperTests.cs" />
     <Compile Include="MathNetTests.cs" />
     <Compile Include="MeshHelperTests.cs" />
+    <Compile Include="NurbsAlgorithmTests.cs" />
+    <Compile Include="NurbsCurveTests.cs" />
     <Compile Include="PointCloudTests.cs" />
     <Compile Include="Polygon2DTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

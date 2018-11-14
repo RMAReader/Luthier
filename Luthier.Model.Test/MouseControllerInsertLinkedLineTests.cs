@@ -20,6 +20,8 @@ namespace Luthier.Test.Model
         public void LeftButtonDown_LineNotInProgress()
         {
             var doc = new ApplicationDocumentModel();
+            int startCount = doc.Model.Count();
+
             var controller = new InsertLinkedLine(doc.LinkedLine2DFactory());
 
             controller.MouseLeftButtonDown(1, 0);
@@ -28,7 +30,7 @@ namespace Luthier.Test.Model
             var p1 = (GraphicPoint2D) doc.Model.First(x => x is GraphicPoint2D);
             var p2 = (GraphicPoint2D) doc.Model.Where(x => x is GraphicPoint2D).ElementAt(1);
 
-            Assert.AreEqual(3, doc.Model.Count());
+            Assert.AreEqual(startCount + 3, doc.Model.Count());
             Assert.AreEqual(p1.Key, line.pointsKeys[0]);
             Assert.AreEqual(p2.Key, line.pointsKeys[1]);
             Assert.AreEqual(1, p1.X);
@@ -44,6 +46,8 @@ namespace Luthier.Test.Model
         public void LeftButtonDown_LineInProgress()
         {
             var doc = new ApplicationDocumentModel();
+
+            int startCount = doc.Model.Count();
             var controller = new InsertLinkedLine(doc.LinkedLine2DFactory());
 
             controller.MouseLeftButtonDown(1, 0);
@@ -54,7 +58,7 @@ namespace Luthier.Test.Model
             var p2 = (GraphicPoint2D)doc.Model.Where(x => x is GraphicPoint2D).ElementAt(1);
             var p3 = (GraphicPoint2D)doc.Model.Where(x => x is GraphicPoint2D).ElementAt(2);
 
-            Assert.AreEqual(4, doc.Model.Count());
+            Assert.AreEqual(startCount + 4, doc.Model.Count());
             Assert.AreEqual(p1.Key, line.pointsKeys[0]);
             Assert.AreEqual(p2.Key, line.pointsKeys[1]);
             Assert.AreEqual(p3.Key, line.pointsKeys[2]);
@@ -76,6 +80,8 @@ namespace Luthier.Test.Model
         public void MouseMove_LineInProgress()
         {
             var doc = new ApplicationDocumentModel();
+            int startCount = doc.Model.Count();
+
             var controller = new InsertLinkedLine(doc.LinkedLine2DFactory());
 
             controller.MouseLeftButtonDown(1, 0);
@@ -85,7 +91,7 @@ namespace Luthier.Test.Model
             var p1 = (GraphicPoint2D)doc.Model.First(x => x is GraphicPoint2D);
             var p2 = (GraphicPoint2D)doc.Model.Where(x => x is GraphicPoint2D).ElementAt(1);
 
-            Assert.AreEqual(3, doc.Model.Count());
+            Assert.AreEqual(startCount + 3, doc.Model.Count());
             Assert.AreEqual(p1.Key, line.pointsKeys[0]);
             Assert.AreEqual(p2.Key, line.pointsKeys[1]);
 
@@ -103,6 +109,7 @@ namespace Luthier.Test.Model
         public void RightButtonDown_LineInProgress()
         {
             var doc = new ApplicationDocumentModel();
+            int startCount = doc.Model.Count();
             var controller = new InsertLinkedLine(doc.LinkedLine2DFactory());
 
             controller.MouseLeftButtonDown(1, 0);
@@ -112,7 +119,7 @@ namespace Luthier.Test.Model
             var p1 = (GraphicPoint2D)doc.Model.First(x => x is GraphicPoint2D);
             var p2 = (GraphicPoint2D)doc.Model.Where(x => x is GraphicPoint2D).ElementAt(1);
 
-            Assert.AreEqual(3, doc.Model.Count());
+            Assert.AreEqual(startCount + 3, doc.Model.Count());
             Assert.AreEqual(p1.Key, line.pointsKeys[0]);
             Assert.AreEqual(p2.Key, line.pointsKeys[1]);
 
@@ -129,12 +136,13 @@ namespace Luthier.Test.Model
         public void Close_LineInProgress_ShortLine()
         {
             var doc = new ApplicationDocumentModel();
+            int startCount = doc.Model.Count();
             var controller = new InsertLinkedLine(doc.LinkedLine2DFactory());
 
             controller.MouseLeftButtonDown(1, 0);
             controller.Close();
 
-            Assert.AreEqual(0, doc.Model.Count());
+            Assert.AreEqual(startCount, doc.Model.Count());
             Assert.AreEqual(false, controller.lineInProgress);
         }
 
@@ -143,6 +151,8 @@ namespace Luthier.Test.Model
         public void Close_LineInProgress_LongLine()
         {
             var doc = new ApplicationDocumentModel();
+            int startCount = doc.Model.Count();
+
             var controller = doc.MouseControllerFactory().InserLinekedLine();
             
             controller.MouseLeftButtonDown(1, 0);
@@ -153,7 +163,7 @@ namespace Luthier.Test.Model
             var p1 = (GraphicPoint2D)doc.Model.First(x => x is GraphicPoint2D);
             var p2 = (GraphicPoint2D)doc.Model.Where(x => x is GraphicPoint2D).ElementAt(1);
 
-            Assert.AreEqual(3, doc.Model.Count());
+            Assert.AreEqual(startCount + 3, doc.Model.Count());
             Assert.AreEqual(p1.Key, line.pointsKeys[0]);
             Assert.AreEqual(p2.Key, line.pointsKeys[1]);
 

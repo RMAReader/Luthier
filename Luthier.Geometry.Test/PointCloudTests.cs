@@ -31,6 +31,7 @@ namespace Luthier.Geometry.Test
         }
 
 
+        [Ignore()]
         [TestMethod]
         public void BuildPointCloudFromImageAndFit()
         {
@@ -51,6 +52,17 @@ namespace Luthier.Geometry.Test
                 var x = ((double)i / divisor) * maxX + (1 - (double)i / divisor) * minX;
                 curve.SetCV(i, new double[] { x, y });
             }
+
+            var fitter = new NurbsCurveFitterConjugateGradient();
+            fitter.IterationCompleteEvent += (object sender, IterationCompleteEventArgs e) =>
+            {
+                var newImage = (Bitmap)image.Clone();
+                DrawFittedCurve(curve, newImage, Color.Magenta);
+
+                newImage.Save($"{filename}_fitted{e.NumberOfIterations}.bmp");
+            };
+
+            fitter.Fit(curve, cloud);
 
             var lowerBound = DenseVector.Build.Dense(curve.cvDataBlock.Length, -5000);
             var upperBound = DenseVector.Build.Dense(curve.cvDataBlock.Length, 5000);
@@ -73,10 +85,7 @@ namespace Luthier.Geometry.Test
 
                 }
                 iteration++;
-                var newImage = (Bitmap)image.Clone();
-                DrawFittedCurve(curve, newImage, Color.Magenta);
-
-                newImage.Save($"{filename}_fitted{iteration}.bmp");
+               
             }
            
             

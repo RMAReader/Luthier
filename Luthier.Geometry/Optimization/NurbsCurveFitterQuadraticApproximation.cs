@@ -8,12 +8,16 @@ using MathNet.Numerics.LinearAlgebra;
 
 namespace Luthier.Geometry.Optimization
 {
-    public class NurbsCurveQuadraticApproximationFitter
+    /// <summary>
+    /// Class which implements the algorithm described here:
+    /// https://www.microsoft.com/en-us/research/wp-content/uploads/2016/12/Fitting-B-spline-Curves-to-Point-Clouds-by-Curvature-Based-Squared-Distance-Minimization.pdf
+    /// </summary>
+    public class NurbsCurveFitterQuadraticApproximation : NurbsCurveFitterBase
     {
         private int footPointCount = 1024 * 16;
 
 
-        public NurbsCurve FitPointCloud(NurbsCurve initialGuess, PointCloud cloud)
+        public override NurbsCurve Fit(NurbsCurve initialGuess, PointCloud cloud)
         {
             NurbsCurve currentCurve = initialGuess.DeepCopy();
 
