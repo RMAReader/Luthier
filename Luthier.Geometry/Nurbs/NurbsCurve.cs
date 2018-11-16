@@ -88,20 +88,24 @@ namespace Luthier.Geometry.Nurbs
             //    point[i] = Algorithm.CurveSpan_Evaluate_Deboor(_order - 1, knotIX, ref knot, ref cvDataBlock, cvIX, cvStride, t);
             //}
 
-            int[] indices = new int[3];
-            double[] values = new double[3];
-            Algorithm.BasisFunction_EvaluateAllNonZero_DegreeTwo(knot, t, ref values, ref indices);
-
-            for (int i = 0; i < _cvSize; i++)
+            if (_order == 3)
             {
-                point[i] = 0;
+                int[] indices = new int[3];
+                double[] values = new double[3];
+                Algorithm.BasisFunction_EvaluateAllNonZero_DegreeTwo(knot, t, ref values, ref indices);
 
-                for (int j = 0; j < values.Length; j++)
+                for (int i = 0; i < _cvSize; i++)
                 {
-                    int cvIX = indices[j] + i * _cvCount;
-                    point[i] += cvDataBlock[cvIX] * values[j];
+                    point[i] = 0;
+
+                    for (int j = 0; j < values.Length; j++)
+                    {
+                        int cvIX = indices[j] + i * _cvCount;
+                        point[i] += cvDataBlock[cvIX] * values[j];
+                    }
                 }
             }
+            else throw new NotImplementedException();
         }
 
         public void SetEvaluationPoints(double[] t)
@@ -136,6 +140,54 @@ namespace Luthier.Geometry.Nurbs
                 }
             }
         }
+
+
+        /// <summary>
+        /// returns a vector from point on curve C(t) to the centre of its osculating circle
+        /// </summary>
+        /// <param name="t"></param>
+        /// <param name="result"></param>
+        public void CentreOfCurvature(double t, double[] result)
+        {
+            if (_dimension == 2)
+            {
+                double[] d1 = EvaluateDerivative(1, t);
+                double[] d2 = EvaluateDerivative(2, t);
+
+                double a = (d1[0] * d1[0] + d1[1] * d1[1]) / (d1[0] * d2[1] - d2[0] * d1[1]);
+
+                result[0] = -d1[1] * a;
+                result[1] = d1[0] * a;
+            }
+            else if(_dimension == 3)
+            {
+                double[] d1 = EvaluateDerivative(1, t);
+                double[] d2 = EvaluateDerivative(2, t);
+
+                double zy = d2[2] * d1[1] - d2[1] * d1[2];
+                double xz = d2[0] * d1[2] - d2[2] * d1[0];
+                double yx = d2[1] * d1[0] - d2[0] * d1[1];
+
+                double b = (d1[0] * d1[0] + d1[1] * d1[1] + d1[2] * d1[2]);
+
+                b *= Math.Sqrt(b);
+                b /= Math.Sqrt(zy * zy + xz * xz + yx * yx);
+                b /= Math.Sqrt(d2[0] * d2[0] + d2[1] * d2[1] + d2[2] * d2[2]);
+
+                result[0] = d2[0] * b;
+                result[1] = d2[1] * b;
+                result[2] = d2[2] * b;
+
+            }
+            else throw new NotImplementedException();
+        }
+        public double[] CentreOfCurvature(double t)
+        {
+            double[] result = new double[_dimension];
+            CentreOfCurvature(t, result);
+            return result;
+        }
+
 
         public List<double[]> ToLines(int numberOfLines) => ToLines(numberOfLines, double.MinValue, double.MaxValue);
         public List<double[]> ToLines(int numberOfLines, double from, double to)
