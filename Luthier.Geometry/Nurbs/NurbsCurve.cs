@@ -80,30 +80,14 @@ namespace Luthier.Geometry.Nurbs
 
         public void Evaluate(double t, double[] point)
         {
-            //int knotIX = Algorithm.Find_Knot_Span(_order - 1, knot, t);
-            //int cvIX = knotIX - _order + 1;
-            //int cvStride = 1;
-            //for (int i = 0; i < _cvSize; i++)
-            //{
-            //    point[i] = Algorithm.CurveSpan_Evaluate_Deboor(_order - 1, knotIX, ref knot, ref cvDataBlock, cvIX, cvStride, t);
-            //}
-
             if (_order == 3)
             {
                 int[] indices = new int[3];
                 double[] values = new double[3];
                 Algorithm.BasisFunction_EvaluateAllNonZero_DegreeTwo(knot, t, ref values, ref indices);
 
-                for (int i = 0; i < _cvSize; i++)
-                {
-                    point[i] = 0;
+                Algorithm.Curve_EvaluateGivenBasisFunctions(_order - 1, _dimension, indices[0], values, cvDataBlock, 1, _cvCount, ref point);
 
-                    for (int j = 0; j < values.Length; j++)
-                    {
-                        int cvIX = indices[j] + i * _cvCount;
-                        point[i] += cvDataBlock[cvIX] * values[j];
-                    }
-                }
             }
             else throw new NotImplementedException();
         }
@@ -141,6 +125,72 @@ namespace Luthier.Geometry.Nurbs
             }
         }
 
+        public double[] EvaluateAllDerivatives(double t)
+        {
+            double[] values = new double[_dimension * _order];
+            EvaluateAllDerivatives(t, values);
+            return values;
+        }
+        public void EvaluateAllDerivatives(double t, double[] values)
+        {
+            if(_order == 3)
+            {
+                int[] indices = new int[3];
+                double[] basis = new double[9];
+                Algorithm.BasisFunction_EvaluateAllNonZero_AllDerivatives_DegreeTwo(knot, t, ref basis, ref indices);
+
+                for (int i = 0; i < _cvSize; i++)
+                {
+                    values[i] = 0;
+                    values[i + _dimension] = 0;
+                    values[i + 2 * _dimension] = 0;
+
+                    for (int j = 0; j < _order; j++)
+                    {
+                        int cvIX = indices[j] + i * _cvCount;
+
+                        values[i] += cvDataBlock[cvIX] * basis[j];
+                        values[i + _dimension] += cvDataBlock[cvIX] * basis[j + _order];
+                        values[i + 2 * _dimension] += cvDataBlock[cvIX] * basis[j + 2 * _order];
+                    }
+                }
+                
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+
+        public void EvaluateAllDerivatives(double[] basis, int[] indices, ref double[] d0, ref double[] d1, ref double[] d2)
+        {
+            if (_order == 3)
+            {
+                for (int i = 0; i < _cvSize; i++)
+                {
+                    d0[i] = 0;
+                    d1[i] = 0;
+                    d2[i] = 0;
+
+                    for (int j = 0; j < _order; j++)
+                    {
+                        int cvIX = indices[j] + i * _cvCount;
+
+                        d0[i] += cvDataBlock[cvIX] * basis[j];
+                        d1[i] += cvDataBlock[cvIX] * basis[j + _order];
+                        d2[i] += cvDataBlock[cvIX] * basis[j + 2 * _order];
+                    }
+                }
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+
+        }
+
+
 
         /// <summary>
         /// returns a vector from point on curve C(t) to the centre of its osculating circle
@@ -154,33 +204,20 @@ namespace Luthier.Geometry.Nurbs
                 double[] d1 = EvaluateDerivative(1, t);
                 double[] d2 = EvaluateDerivative(2, t);
 
-                double a = (d1[0] * d1[0] + d1[1] * d1[1]) / (d1[0] * d2[1] - d2[0] * d1[1]);
+                Curvature.CentreOfCurvature_TwoDimensions(d1, d2, ref result);
 
-                result[0] = -d1[1] * a;
-                result[1] = d1[0] * a;
             }
             else if(_dimension == 3)
             {
                 double[] d1 = EvaluateDerivative(1, t);
                 double[] d2 = EvaluateDerivative(2, t);
 
-                double zy = d2[2] * d1[1] - d2[1] * d1[2];
-                double xz = d2[0] * d1[2] - d2[2] * d1[0];
-                double yx = d2[1] * d1[0] - d2[0] * d1[1];
-
-                double b = (d1[0] * d1[0] + d1[1] * d1[1] + d1[2] * d1[2]);
-
-                b *= Math.Sqrt(b);
-                b /= Math.Sqrt(zy * zy + xz * xz + yx * yx);
-                b /= Math.Sqrt(d2[0] * d2[0] + d2[1] * d2[1] + d2[2] * d2[2]);
-
-                result[0] = d2[0] * b;
-                result[1] = d2[1] * b;
-                result[2] = d2[2] * b;
+                Curvature.CentreOfCurvature_ThreeDimensions(d1, d2, ref result);
 
             }
             else throw new NotImplementedException();
         }
+
         public double[] CentreOfCurvature(double t)
         {
             double[] result = new double[_dimension];
@@ -291,7 +328,7 @@ namespace Luthier.Geometry.Nurbs
 
         public NurbsCurveNearestPointResult NearestSquaredDistance(PointCloud cloud, int numberOfFootPoints)
         {
-            return NearestSquaredDistanceBinaryTree(cloud, numberOfFootPoints);
+            return NearestSquaredDistanceBinaryTreeExact(cloud, numberOfFootPoints);
         }
 
         public NurbsCurveNearestPointResult NearestSquaredDistanceLinear(PointCloud cloud, int numberOfFootPoints)
@@ -427,6 +464,7 @@ namespace Luthier.Geometry.Nurbs
             var result = new NurbsCurveNearestPointResult
             {
                 Distances = new double[cloud.PointCount],
+                Parameters = new double[cloud.PointCount],
                 Coordinates = new double[cloud.PointCount * cloud.Dimension],
             };
 
@@ -493,11 +531,18 @@ namespace Luthier.Geometry.Nurbs
                 }
 
                 NurbsCurveNearestPoint np = new NurbsCurveNearestPoint(this, cp);
+                double[] c0 = new double[_dimension * _order];
+                double[] c1 = new double[_dimension];
+                double[] c2 = new double[_dimension];
 
-                double t = np.NearestSquaredDistanceNewtonRaphson(tree.Nodes[nearestNodeIndex].Minparameter - 0.1, tree.Nodes[nearestNodeIndex].MaxParameter + 0.1);
-                double[] d2 = Evaluate(t);
+                //double t = np.NearestSquaredDistanceNewtonRaphson(tree.Nodes[nearestNodeIndex].Minparameter - 0.1, tree.Nodes[nearestNodeIndex].MaxParameter + 0.1,ref c0,ref c1,ref c2);
 
-                result.Distances[i] = (d2[0] - cp[0]) * (d2[0] - cp[0]) + (d2[1] - cp[1]) * (d2[1] - cp[1]);
+                double t = np.FindRoot(tree.Nodes[nearestNodeIndex].Minparameter - 0.1, tree.Nodes[nearestNodeIndex].MaxParameter + 0.1, ref c0);
+
+                result.Distances[i] = (c0[0] - cp[0]) * (c0[0] - cp[0]) + (c0[1] - cp[1]) * (c0[1] - cp[1]);
+                result.Parameters[i] = t;
+                result.Coordinates[i * cloud.Dimension] = c0[0];
+                result.Coordinates[i * cloud.Dimension + 1] = c0[1];
             }
             long t3 = sw.ElapsedMilliseconds;
 

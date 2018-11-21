@@ -151,6 +151,59 @@ namespace Luthier.Geometry.Test
 
         }
 
+        [TestMethod]
+        public void BasisFunction_EvaluateAllNonZero_AllDerivatives_DegreeTwo()
+        {
+            //test zero'th derivatives
+            BasisFunctionEvaluation handler0 = (expected, i, degree, knot, t) =>
+            {
+                double[] values = new double[9];
+                int[] indices = new int[3];
+                Nurbs.Algorithm.BasisFunction_EvaluateAllNonZero_AllDerivatives_DegreeTwo(knot, t, ref values, ref indices);
+
+                if (indices.Contains(i) && t < 1.0)
+                {
+                    int j = Array.IndexOf(indices, i);
+                    Assert.AreEqual(expected, values[j], 1E-12);
+                }
+            };
+
+            BasisFunction_Evaluate_ComplexKnot_DegreeTwo(handler0);
+
+            //test first derivatives
+            BasisFunctionEvaluation handler1 = (expected, i, degree, knot, t) =>
+            {
+                double[] values = new double[9];
+                int[] indices = new int[3];
+                Nurbs.Algorithm.BasisFunction_EvaluateAllNonZero_AllDerivatives_DegreeTwo(knot, t, ref values, ref indices);
+
+                if (indices.Contains(i) && t < 1.0)
+                {
+                    int j = Array.IndexOf(indices, i);
+                    Assert.AreEqual(expected, values[3 + j], 1E-12);
+                }
+            };
+
+            BasisFunction_EvaluateFirstDerivative_ComplexKnot_DegreeTwo(handler1);
+
+            //test second derivatives
+            BasisFunctionEvaluation handler2 = (expected, i, degree, knot, t) =>
+            {
+                double[] values = new double[9];
+                int[] indices = new int[3];
+                Nurbs.Algorithm.BasisFunction_EvaluateAllNonZero_AllDerivatives_DegreeTwo(knot, t, ref values, ref indices);
+
+                if (indices.Contains(i) && t < 1.0)
+                {
+                    int j = Array.IndexOf(indices, i);
+                    Assert.AreEqual(expected, values[6 + j], 1E-12);
+                }
+            };
+
+            BasisFunction_EvaluateSecondDerivative_ComplexKnot_DegreeTwo(handler2);
+
+        }
+
 
         [TestMethod]
         public void CurveSpan_Evaluate_Deboor2()

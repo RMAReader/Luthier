@@ -121,6 +121,7 @@ namespace Luthier.Geometry.Test
                 Assert.AreEqual(e[1], a[1], 1E-9);
             }
         }
+
         [TestMethod]
         public void NurbsCurve_EvaluateDerivative2()
         {
@@ -147,6 +148,38 @@ namespace Luthier.Geometry.Test
 
                 Assert.AreEqual(e[0], a[0], 1E-9);
                 Assert.AreEqual(e[1], a[1], 1E-9);
+            }
+        }
+
+        [TestMethod]
+        public void NurbsCurve_EvaluateAllDerivatives()
+        {
+            var curve = new NurbsCurve(dimension: 2, isRational: false, order: 3, cvCount: 3);
+            curve.SetCV(0, new double[] { 0, 0 });
+            curve.SetCV(1, new double[] { 0, 1 });
+            curve.SetCV(2, new double[] { 1, 1 });
+
+            double[] evaluationPoints = new double[] { 2, 2.5, 3 };
+
+            double[][] expected = new double[][]
+                {
+                    new double[]{ 0.0, 0.5, 0.0, 1.0, 1.0, -1.0 },
+                    new double[]{ 0.125, 0.875, 0.5, 0.5, 1.0, -1.0 },
+                    new double[]{ 0.5, 1.0, 1.0, 0.0, 1.0, -1.0 }
+                };
+
+
+            for (int i = 0; i < evaluationPoints.Length; i++)
+            {
+                double t = evaluationPoints[i];
+                double[] e = expected[i];
+                double[] a = curve.EvaluateAllDerivatives(t);
+
+                Assert.AreEqual(e.Length, a.Length);
+                for (int j = 0; j < expected.Length; j++)
+                {
+                    Assert.AreEqual(e[j], a[j], 1E-9);
+                }
             }
         }
 
@@ -183,20 +216,23 @@ namespace Luthier.Geometry.Test
         [TestMethod]
         public void NurbsCurve_CentreOfCurvature_Dimension3()
         {
+            //curve is same as in NurbsCurve_CentreOfCurvature_Dimension2() but rotated by Pi/4 around x axis 
+            double s = 1 / Math.Sqrt(2);
+
             var curve = new NurbsCurve(dimension: 3, isRational: false, order: 3, cvCount: 3);
             curve.SetCV(0, new double[] { 0, 0, 0 });
-            curve.SetCV(1, new double[] { 0, 1, 0 });
-            curve.SetCV(2, new double[] { 1, 1, 0 });
+            curve.SetCV(1, new double[] { 0, s, s });
+            curve.SetCV(2, new double[] { 1, s, s });
 
             double[] evaluationPoints = new double[] { 2, 2.2, 2.5, 2.8, 3 };
 
             double[][] expected = new double[][]
                 {
                     new double[]{ 1.0, 0.0, 0 },
-                    new double[]{ 0.544, -0.136, 0 },
-                    new double[]{ 0.25, -0.25, 0 },
-                    new double[]{ 0.136, -0.544, 0 },
-                    new double[]{ 0.0, -1.0, 0 }
+                    new double[]{ 0.544, -0.136 * s, -0.136 * s},
+                    new double[]{ 0.25, -0.25 * s, -0.25 * s },
+                    new double[]{ 0.136, -0.544 * s, -0.544 * s },
+                    new double[]{ 0.0, -1.0 * s, -1.0 * s }
                 };
 
             for (int i = 0; i < evaluationPoints.Length; i++)
@@ -209,6 +245,5 @@ namespace Luthier.Geometry.Test
                 Assert.AreEqual(e[1], a[1], 1E-9);
             }
         }
-
     }
 }

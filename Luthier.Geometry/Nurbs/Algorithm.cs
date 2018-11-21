@@ -378,6 +378,56 @@ namespace Luthier.Geometry.Nurbs
 
         }
 
+
+        /// <summary>
+        /// returns all derivatives for all non-zero basis functions at t as follows:
+        /// values = {n[i](t), n[i+1](t), n[i+2](t), n'[i](t), n'[i+1](t), n'[i+2](t), n''[i](t), n''[i+1](t), n''[i+2](t) }
+        /// </summary>
+        /// <param name="knot"></param>
+        /// <param name="t"></param>
+        /// <param name="values"></param>
+        /// <param name="indices"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void BasisFunction_EvaluateAllNonZero_AllDerivatives_DegreeTwo(
+            double[] knot,
+            double t,
+            ref double[] values,
+            ref int[] indices)
+        {
+            //we know that knot knot[knotIX] <= t < knot[knotIX + 1] (or t is outside of valid domain)
+            int knotIX = Find_Knot_Span(2, knot, t);
+
+            indices[2] = knotIX;
+            indices[1] = knotIX - 1;
+            indices[0] = knotIX - 2;
+
+            //new version********************************************************************************
+            double e = 2 / (knot[knotIX + 1] - knot[knotIX]);
+            double f = e / (knot[knotIX + 1] - knot[knotIX - 1]);
+            double g = e / (knot[knotIX + 2] - knot[knotIX]);
+
+            double k = t - knot[knotIX + 2];
+            double h = t - knot[knotIX + 1];
+            double i = t - knot[knotIX];
+            double j = t - knot[knotIX - 1];
+
+            //first basis function and derivatives
+            values[6] =  f;
+            values[3] =  f * h;
+            values[0] = 0.5 * values[3] * h;
+
+            //third basis function and derivatives
+            values[8] = g;
+            values[5] = g * i;
+            values[2] = 0.5 * values[5] * i;
+
+            //second basis function and derivatives
+            values[7] = -(values[6] + values[8]);
+            values[4] = -(values[3] + values[5]);
+            values[1] = 0.5 * (-values[3] * j - values[5] * k);
+
+        }
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static unsafe double BasisFunction_EvaluateDerivative_Deboor(
             int derivative,
@@ -411,6 +461,32 @@ namespace Luthier.Geometry.Nurbs
                 return CompactSpan_Evaluate_Deboor(degree, knotIX, ref knot, p, t);
             }
         }
+
+       
+        public static unsafe void Curve_EvaluateGivenBasisFunctions(
+            int degree,
+            int dimension,
+            int startIx, 
+            double[] basisFunctions, 
+            double[] cv,
+            int cvStride,
+            int dimensionStride,
+            ref double[] result)
+        {
+
+                for (int d = 0, k = 0; k < dimension; d += dimensionStride, k++)
+                {
+                    result[k] = 0;
+                    for (int i = 0, j = startIx + d; i <= degree; i++, j += cvStride)
+                    {
+                        result[k] += basisFunctions[i] * cv[j];
+                    }
+                }
+
+            
+        }
+
+
 
         /// <summary>
         /// Evaluates 1D span of bspline curve.  

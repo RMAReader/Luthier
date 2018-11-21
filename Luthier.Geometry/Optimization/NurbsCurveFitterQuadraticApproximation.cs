@@ -14,35 +14,47 @@ namespace Luthier.Geometry.Optimization
     /// </summary>
     public class NurbsCurveFitterQuadraticApproximation : NurbsCurveFitterBase
     {
-        private int footPointCount = 1024 * 16;
+        private PointCloud _cloud;
+        private NurbsCurve _initialGuess;
+        private NurbsCurve _curve;
+
+        private int footPointCount = 32;
 
 
         public override NurbsCurve Fit(NurbsCurve initialGuess, PointCloud cloud)
         {
-            NurbsCurve currentCurve = initialGuess.DeepCopy();
+            _initialGuess = initialGuess;
+            _cloud = cloud;
+            _curve = initialGuess.DeepCopy();
 
-            var nearestPoints = currentCurve.NearestSquaredDistance(cloud, footPointCount);
+            var squaredDistanceFunction = new NurbsCurveSquaredDistance(_initialGuess, _cloud, EndConstraint.VariablePositionVariableTangent);
 
-            while (!IsConverged(nearestPoints))
+            var values = new List<double>();
+
+
+            for (int i=0; i< 10; i++)
             {
-                BuildLinearSystem(out Matrix<double> M, out Vector<double> v);
+                values.Add(squaredDistanceFunction.Value(_curve.cvDataBlock));
 
-                var d = M.Solve(v);
+                var H = squaredDistanceFunction.Hessian(_curve.cvDataBlock);
+                var D = squaredDistanceFunction.Gradient(_curve.cvDataBlock);
 
-                currentCurve = UpdateCurve(currentCurve, d);
+                var M = Matrix<double>.Build.Dense(_curve.cvDataBlock.Length, _curve.cvDataBlock.Length, H);
+                var V = Vector<double>.Build.Dense(D);
 
-                nearestPoints = currentCurve.NearestSquaredDistance(cloud, footPointCount);
+                var d = M.Solve(-V);
+
+                for(int j=0; j<d.Count;j++ )
+                {
+                    _curve.cvDataBlock[i] -= d[i];
+                }
             }
 
+            
             return null;
         }
 
 
-        private void BuildLinearSystem(out Matrix<double> M, out Vector<double> v)
-        {
-            M = null;
-            v = null;
-        }
 
         private NurbsCurve UpdateCurve(NurbsCurve currentCurve, Vector<double> v)
         {
@@ -53,5 +65,9 @@ namespace Luthier.Geometry.Optimization
         {
             return false;
         }
+
+
+
+
     }
 }

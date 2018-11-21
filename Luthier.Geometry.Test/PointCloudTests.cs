@@ -67,9 +67,9 @@ namespace Luthier.Geometry.Test
             var lowerBound = DenseVector.Build.Dense(curve.cvDataBlock.Length, -5000);
             var upperBound = DenseVector.Build.Dense(curve.cvDataBlock.Length, 5000);
 
-            var objFunc = new NurbsCurveSquaredDistanceObjFunc(curve, cloud, EndConstraint.VariablePositionVariableTangent);
-            var objvalue = ObjectiveFunction.Value(objFunc.Value);
-            var fdgof = new ForwardDifferenceGradientObjectiveFunction(objvalue, lowerBound, upperBound);
+            var objFunc = new NurbsCurveSquaredDistance(curve, cloud, EndConstraint.VariablePositionVariableTangent);
+            //var objvalue = ObjectiveFunction.Value(objFunc.Value);
+            //var fdgof = new ForwardDifferenceGradientObjectiveFunction(objvalue, lowerBound, upperBound);
 
             int iteration = 0;
 
@@ -78,7 +78,7 @@ namespace Luthier.Geometry.Test
                 try
                 {
                     var initialGuess = new DenseVector(curve.cvDataBlock);
-                    var cgresult = ConjugateGradientMinimizer.Minimum(fdgof, initialGuess, gradientTolerance: 1e-2, maxIterations: 1);
+                    //var cgresult = ConjugateGradientMinimizer.Minimum(fdgof, initialGuess, gradientTolerance: 1e-2, maxIterations: 1);
                 }
                 catch
                 {

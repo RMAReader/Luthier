@@ -60,8 +60,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlgorithmTests.cs" />
+    <Compile Include="AssertExtensions.cs" />
+    <Compile Include="Benchmark\NurbsAlgorithmBenchmarkTests.cs" />
+    <Compile Include="Benchmark\NurbsCurveBenchmarkTests.cs" />
     <Compile Include="BSplineAlgorithmTests.cs" />
     <Compile Include="ClipperWrapperTests.cs" />
+    <Compile Include="CurvatureTests.cs" />
     <Compile Include="MathNetTests.cs" />
     <Compile Include="MeshHelperTests.cs" />
     <Compile Include="NurbsAlgorithmTests.cs" />

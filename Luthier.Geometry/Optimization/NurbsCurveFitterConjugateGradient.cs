@@ -13,35 +13,34 @@ namespace Luthier.Geometry.Optimization
 
     public class NurbsCurveFitterConjugateGradient : NurbsCurveFitterBase
     {
-        public override NurbsCurve Fit(NurbsCurve initialGuess, PointCloud cloud)
-        {
-            var lowerBound = DenseVector.Build.Dense(initialGuess.cvDataBlock.Length, -5000);
-            var upperBound = DenseVector.Build.Dense(initialGuess.cvDataBlock.Length, 5000);
+        //public override NurbsCurve Fit(NurbsCurve initialGuess, PointCloud cloud)
+        //{
+        //    var lowerBound = DenseVector.Build.Dense(initialGuess.cvDataBlock.Length, -5000);
+        //    var upperBound = DenseVector.Build.Dense(initialGuess.cvDataBlock.Length, 5000);
 
-            var objFunc = new NurbsCurveSquaredDistanceObjFunc(initialGuess, cloud, EndConstraint.VariablePositionVariableTangent);
-            var objvalue = ObjectiveFunction.Value(objFunc.Value);
-            var fdgof = new ForwardDifferenceGradientObjectiveFunction(objvalue, lowerBound, upperBound);
+        //    var objFunc = new NurbsCurveSquaredDistance(initialGuess, cloud, EndConstraint.VariablePositionVariableTangent);
+        //    var objvalue = ObjectiveFunction.Value(objFunc.Value);
 
-            int iteration = 0;
+        //    int iteration = 0;
 
-            while (iteration < 20)
-            {
-                try
-                {
-                    var currentPoint = new DenseVector(initialGuess.cvDataBlock);
-                    var cgresult = ConjugateGradientMinimizer.Minimum(fdgof, currentPoint, gradientTolerance: 1e-2, maxIterations: 1);
-                }
-                catch
-                {
-                    var e = new IterationCompleteEventArgs();
-                    e.NumberOfIterations = iteration;
-                    OnIterationComplete(e);
-                }
-                iteration++;
-            }
+        //    while (iteration < 20)
+        //    {
+        //        try
+        //        {
+        //            var currentPoint = new DenseVector(initialGuess.cvDataBlock);
+        //            var cgresult = ConjugateGradientMinimizer.Minimum(fdgof, currentPoint, gradientTolerance: 1e-2, maxIterations: 1);
+        //        }
+        //        catch
+        //        {
+        //            var e = new IterationCompleteEventArgs();
+        //            e.NumberOfIterations = iteration;
+        //            OnIterationComplete(e);
+        //        }
+        //        iteration++;
+        //    }
 
-            return initialGuess;
-        }
+        //    return initialGuess;
+        //}
       
 
     }

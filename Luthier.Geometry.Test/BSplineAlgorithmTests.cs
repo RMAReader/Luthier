@@ -611,22 +611,7 @@ namespace Luthier.Geometry.Test
             double s2 = result2.Distances.Sum();
             double s3 = result3.Distances.Sum();
 
-            var lowerBound = new DenseVector(new double[] { -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, -50, -50 });
-            var upperBound = new DenseVector(new double[] { 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50 });
-            var initialGuess = new DenseVector(curve.cvDataBlock);
-
-            var objFunc = new NurbsCurveSquaredDistanceObjFunc(curve, cloud, EndConstraint.FixedPositionFixedTangent);
-            var objvalue = ObjectiveFunction.Value(objFunc.Value);
-            var fdgof = new ForwardDifferenceGradientObjectiveFunction(objvalue, lowerBound, upperBound);
-
-            var sw = new Stopwatch();
-            sw.Restart();
-
-            var cgresult = ConjugateGradientMinimizer.Minimum(fdgof, initialGuess, gradientTolerance: 1e-2, maxIterations: 10000);
-
-            var t1 = sw.ElapsedMilliseconds;
-            //var solver = new BfgsBMinimizer(1e-5, 1e-5, 1e-5, maximumIterations: 100);
-            //var optresult = solver.FindMinimum(fdgof, lowerBound, upperBound, initialGuess);
+       
 
         }
 
@@ -650,7 +635,7 @@ namespace Luthier.Geometry.Test
 
         }
 
-        [Ignore("Newton Raphson fails to converge")]
+        
         [TestMethod]
         public void NurbsCurveNearestPoint()
         {
@@ -672,7 +657,11 @@ namespace Luthier.Geometry.Test
                 
                 var solver = new NurbsCurveNearestPoint(curve, point);
 
-                tarray[i] = solver.NearestSquaredDistanceNewtonRaphson(2.2, 2.3);// curve.Domain.Min, curve.Domain.Max);
+                double[] c0 = new double[curve._dimension];
+                double[] c1 = new double[curve._dimension];
+                double[] c2 = new double[curve._dimension];
+
+                tarray[i] = solver.NearestSquaredDistanceNewtonRaphson(2.2, 2.3, ref c0, ref c1, ref c2);// curve.Domain.Min, curve.Domain.Max);
             }
             long t1 = sw.ElapsedMilliseconds;
 
@@ -687,6 +676,48 @@ namespace Luthier.Geometry.Test
                 double t = (1 - (double)i / count) * min + (double)i / count * max;
             }
             return result;
+        }
+
+
+
+        [TestMethod]
+        public void NurbsCurveFitter()
+        {
+            var curve = new NurbsCurve(dimension: 2, isRational: false, order: 3, cvCount: 6);
+            curve.SetCV(0, new double[] { 0, -2 });
+            curve.SetCV(1, new double[] { 0, 2 });
+            curve.SetCV(2, new double[] { 1, 2 });
+            curve.SetCV(3, new double[] { 3, 2 });
+            curve.SetCV(4, new double[] { 4, 2 });
+            curve.SetCV(5, new double[] { 4, -2 });
+
+            var cloudPoints = new List<double[]>();
+            int numberOfPoints = 5000;
+            Random rnd = new Random();
+            for (int i = 0; i <= numberOfPoints; i++)
+            {
+                cloudPoints.Add(new double[]
+                {
+                    2 - 2 * Math.Cos((double)i / numberOfPoints * Math.PI),
+                    2 * Math.Sin((double)i / numberOfPoints * Math.PI)
+                });
+            }
+            var cloud = new PointCloud(cloudPoints);
+
+            var fitter = new NurbsCurveFitterAccordNet();
+
+            fitter.Fit(curve, cloud);
+
+
+            var fitter2 = new NurbsCurveFitterQuadraticApproximation();
+
+            fitter2.Fit(curve, cloud);
+
+
+            var fitter3 = new NursCurveFitterNewton();
+
+            fitter3.Fit(curve, cloud);
+
         }
     }
 }
