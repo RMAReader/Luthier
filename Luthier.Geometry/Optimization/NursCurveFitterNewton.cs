@@ -77,13 +77,22 @@ namespace Luthier.Geometry.Optimization
             };
 
             // Finally, we can create the L-BFGS solver, passing the functions as arguments
-            var minimizer = new NewtonMinimizer(gradientTolerance: 1E-9, maximumIterations: 1000);
+            var minimizer = new NewtonMinimizer(gradientTolerance: 1E-6, maximumIterations: 10000, useLineSearch: false);
+
+            var lbfgs = new BfgsMinimizer(
+                gradientTolerance: 1E-6, 
+                parameterTolerance: 1E-6, 
+                functionProgressTolerance: 1E-6);
 
             var objvalue = ObjectiveFunction.GradientHessian(f, g, h);
 
+            
+                
             // And then minimize the function:
             sw.Restart();
-            var result = minimizer.FindMinimum(objvalue, Vector<double>.Build.Dense(_initialGuess.cvDataBlock));
+
+            //var result1 = lbfgs.FindMinimum(objvalue, Vector<double>.Build.Dense(_initialGuess.cvDataBlock));
+            var result2 = minimizer.FindMinimum(objvalue, Vector<double>.Build.Dense(_initialGuess.cvDataBlock));
 
             long t4 = sw.ElapsedMilliseconds;
 

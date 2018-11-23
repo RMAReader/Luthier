@@ -96,6 +96,12 @@ namespace Luthier.Geometry.Nurbs
             return result;
         }
 
+        public void EvaluateDerivative(int derivative, double t, double[] point)
+        {
+            throw new NotImplementedException();
+        }
+
+
         public double[] EvaluateNormal(double u, double v)
         {
             var result = new double[Dimension];

@@ -691,6 +691,9 @@ namespace Luthier.Geometry.Test
             curve.SetCV(4, new double[] { 4, 2 });
             curve.SetCV(5, new double[] { 4, -2 });
 
+            var cvDataBlock = new double[curve.cvDataBlock.Length];
+            Array.Copy(curve.cvDataBlock, cvDataBlock, cvDataBlock.Length);
+
             var cloudPoints = new List<double[]>();
             int numberOfPoints = 5000;
             Random rnd = new Random();
@@ -704,20 +707,34 @@ namespace Luthier.Geometry.Test
             }
             var cloud = new PointCloud(cloudPoints);
 
-            var fitter = new NurbsCurveFitterAccordNet();
+            try
+            {
+                Array.Copy(cvDataBlock, curve.cvDataBlock, cvDataBlock.Length);
+                var fitter = new NurbsCurveFitterAccordNet();
 
-            fitter.Fit(curve, cloud);
+                fitter.Fit(curve, cloud);
 
+                
+            }
+            catch { }
 
-            var fitter2 = new NurbsCurveFitterQuadraticApproximation();
+            try
+            {
+                Array.Copy(cvDataBlock, curve.cvDataBlock, cvDataBlock.Length);
+                var fitter2 = new NurbsCurveFitterQuadraticApproximation();
 
-            fitter2.Fit(curve, cloud);
+                fitter2.Fit(curve, cloud);
+            }
+            catch { }
 
+            try
+            {
+                Array.Copy(cvDataBlock, curve.cvDataBlock, cvDataBlock.Length);
+                var fitter3 = new NursCurveFitterNewton();
 
-            var fitter3 = new NursCurveFitterNewton();
-
-            fitter3.Fit(curve, cloud);
-
+                fitter3.Fit(curve, cloud);
+            }
+            catch { }
         }
     }
 }

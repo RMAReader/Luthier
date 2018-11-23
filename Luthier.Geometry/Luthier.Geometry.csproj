@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithm.cs" />
+    <Compile Include="ArrayExtensions.cs" />
     <Compile Include="Curvature.cs" />
     <Compile Include="Image\LockBitmap.cs" />
     <Compile Include="Nurbs\Algorithm.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="LineSegment2D.cs" />
     <Compile Include="LinkedLine2D.cs" />
     <Compile Include="MeshHelper.cs" />
+    <Compile Include="Nurbs\NurbsSurfaceNearestPoint.cs" />
     <Compile Include="Optimization\INurbsCurveFitter.cs" />
     <Compile Include="Optimization\NurbsCurveFitterAccordNet.cs" />
     <Compile Include="Optimization\NurbsCurveFitterBase.cs" />

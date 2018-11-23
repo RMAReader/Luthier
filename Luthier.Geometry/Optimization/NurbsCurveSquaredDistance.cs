@@ -24,6 +24,9 @@ namespace Luthier.Geometry.Optimization
         private PointCloud _cloud;
         private EndConstraint _constraint;
 
+        private bool _requireGradient;
+        private bool _requireHessian;
+
         public double CurrentValue { get; private set; }
         public double[] CurrentGradient { get; private set; }
         public double[] CurrentHessian { get; private set; }
@@ -36,6 +39,9 @@ namespace Luthier.Geometry.Optimization
             _curve = curve;
             _cloud = cloud;
             _constraint = constraint;
+
+            _requireGradient = false;
+            _requireHessian = false;
 
             EvaluationCount = 0;
             CurrentValue = double.MaxValue;
@@ -69,8 +75,9 @@ namespace Luthier.Geometry.Optimization
 
         public double[] Gradient(double[] point)
         {
-            if(HasChanged(Parameters, point))
+            if(HasChanged(Parameters, point) || _requireGradient == false)
             {
+                _requireGradient = true;
                 EvaluateAtParameters(point);
             }
             return CurrentGradient;
@@ -78,8 +85,9 @@ namespace Luthier.Geometry.Optimization
 
         public double[] Hessian(double[] point)
         {
-            if (HasChanged(Parameters, point))
+            if (HasChanged(Parameters, point) || _requireHessian == false)
             {
+                _requireHessian = true;
                 EvaluateAtParameters(point);
             }
             return CurrentHessian;
@@ -147,50 +155,54 @@ namespace Luthier.Geometry.Optimization
                     CurrentGradient[vectorIx] += 2 * beta * normal[1] * basis[i];
                 }
 
-                double tangentCoeff = 0;
-                if(beta > 0)
-                {
-                    double d = Math.Sqrt(nearestPoints.Distances[p]);
-                    tangentCoeff = d / (d - curvature);
-                }
 
-                //update Hessian
-                for(int i = 0; i < _curve._order; i++)
+                if (_requireHessian)
                 {
-                    for (int j = 0; j < _curve._order; j++)
+                    //update Hessian
+                    double tangentCoeff = 0;
+                    if (beta > 0)
                     {
-                        double basisFunctions = 2 * basis[i] * basis[j];
-                                                
-                        //x-coordinates to x-coordinates
-                        int vectorIx = indices[i];
-                        int vectorIy = indices[j];
-                        int hessianPos = vectorIx + _curve.cvDataBlock.Length * vectorIy;
+                        double d = Math.Sqrt(nearestPoints.Distances[p]);
+                        tangentCoeff = d / (d - curvature);
+                    }
 
-                        CurrentHessian[hessianPos] += basisFunctions * (tangentCoeff * tangent[0] * tangent[0] + normal[0] * normal[0]);
+                    for (int i = 0; i < _curve._order; i++)
+                    {
+                        for (int j = 0; j < _curve._order; j++)
+                        {
+                            double basisFunctions = 2 * basis[i] * basis[j];
 
+                            //x-coordinates to x-coordinates
+                            int vectorIx = indices[i];
+                            int vectorIy = indices[j];
+                            int hessianPos = vectorIx + _curve.cvDataBlock.Length * vectorIy;
 
-                        //x-coordinates to y-coordinates
-                        vectorIx = indices[i];
-                        vectorIy = indices[j] + _curve._cvCount;
-                        hessianPos = vectorIx + _curve.cvDataBlock.Length * vectorIy;
-
-                        CurrentHessian[hessianPos] += basisFunctions * (tangentCoeff * tangent[0] * tangent[1] + normal[0] * normal[1]);
-
-
-                        //y-coordinates to x-coordinates
-                        vectorIx = indices[i] + _curve._cvCount;
-                        vectorIy = indices[j];
-                        hessianPos = vectorIx + _curve.cvDataBlock.Length * vectorIy;
-
-                        CurrentHessian[hessianPos] += basisFunctions * (tangentCoeff * tangent[1] * tangent[0] + normal[1] * normal[0]);
+                            CurrentHessian[hessianPos] += basisFunctions * (tangentCoeff * tangent[0] * tangent[0] + normal[0] * normal[0]);
 
 
-                        //y-coordinates to y-coordinates
-                        vectorIx = indices[i] + _curve._cvCount;
-                        vectorIy = indices[j] + _curve._cvCount;
-                        hessianPos = vectorIx + _curve.cvDataBlock.Length * vectorIy;
+                            //x-coordinates to y-coordinates
+                            vectorIx = indices[i];
+                            vectorIy = indices[j] + _curve._cvCount;
+                            hessianPos = vectorIx + _curve.cvDataBlock.Length * vectorIy;
 
-                        CurrentHessian[hessianPos] += basisFunctions * (tangentCoeff * tangent[1] * tangent[1] + normal[1] * normal[1]);
+                            CurrentHessian[hessianPos] += basisFunctions * (tangentCoeff * tangent[0] * tangent[1] + normal[0] * normal[1]);
+
+
+                            //y-coordinates to x-coordinates
+                            vectorIx = indices[i] + _curve._cvCount;
+                            vectorIy = indices[j];
+                            hessianPos = vectorIx + _curve.cvDataBlock.Length * vectorIy;
+
+                            CurrentHessian[hessianPos] += basisFunctions * (tangentCoeff * tangent[1] * tangent[0] + normal[1] * normal[0]);
+
+
+                            //y-coordinates to y-coordinates
+                            vectorIx = indices[i] + _curve._cvCount;
+                            vectorIy = indices[j] + _curve._cvCount;
+                            hessianPos = vectorIx + _curve.cvDataBlock.Length * vectorIy;
+
+                            CurrentHessian[hessianPos] += basisFunctions * (tangentCoeff * tangent[1] * tangent[1] + normal[1] * normal[1]);
+                        }
                     }
                 }
             }

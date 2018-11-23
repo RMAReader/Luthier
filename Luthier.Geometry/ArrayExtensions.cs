@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Luthier.Model.Extensions
+namespace Luthier.Geometry
 {
     public static class ArrayExtensions
     {
@@ -126,9 +126,8 @@ namespace Luthier.Model.Extensions
         }
 
 
-        
+
     }
 
-    
-   
+
 }
