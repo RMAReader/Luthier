@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Luthier.Geometry.Optimization
 {
-    public class NursCurveFitterNewton : NurbsCurveFitterBase
+    public class NurbsCurveFitterNewton : NurbsCurveFitterBase
     {
 
         private PointCloud _cloud;

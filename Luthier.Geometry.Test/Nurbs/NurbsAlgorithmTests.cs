@@ -27,7 +27,7 @@ namespace Luthier.Geometry.Test
 
             for (int i = 0; i < expected.Length; i++)
             {
-                int knotIX = Nurbs.Algorithm.Find_Knot_Span(degree, knot, t[i]);
+                int knotIX = Luthier.Geometry.Nurbs.Algorithm.Find_Knot_Span(degree, knot, t[i]);
                 Assert.AreEqual(expected[i], knotIX);
             }
 
@@ -38,7 +38,7 @@ namespace Luthier.Geometry.Test
         {
             BasisFunctionEvaluation handler2 = (expected, i, degree, knot, t) => 
             {
-                Assert.AreEqual(expected, Nurbs.Algorithm.BasisFunction_Evaluate(i, degree, knot, t), 1E-12);
+                Assert.AreEqual(expected, Luthier.Geometry.Nurbs.Algorithm.BasisFunction_Evaluate(i, degree, knot, t), 1E-12);
             };
 
             BasisFunction_Evaluate_ComplexKnot_DegreeZero(handler2);
@@ -52,7 +52,7 @@ namespace Luthier.Geometry.Test
         {
             BasisFunctionEvaluation handler2 = (expected, i, degree, knot, t) =>
             {
-                double v1 = Nurbs.Algorithm.BasisFunction_Evaluate_DegreeTwo(i, knot, t);
+                double v1 = Luthier.Geometry.Nurbs.Algorithm.BasisFunction_Evaluate_DegreeTwo(i, knot, t);
                 Assert.AreEqual(expected, v1, 1E-12);
             };
 
@@ -65,7 +65,7 @@ namespace Luthier.Geometry.Test
         {
             BasisFunctionEvaluation handler2 = (expected, i, degree, knot, t) =>
             {
-                double v1 = Nurbs.Algorithm.BasisFunction_EvaluateFirstDerivative(i, degree, knot, t);
+                double v1 = Luthier.Geometry.Nurbs.Algorithm.BasisFunction_EvaluateFirstDerivative(i, degree, knot, t);
                 Assert.AreEqual(expected, v1, 1E-12);
             };
 
@@ -78,7 +78,7 @@ namespace Luthier.Geometry.Test
         {
             BasisFunctionEvaluation handler2 = (expected, i, degree, knot, t) =>
             {
-                double v1 = Nurbs.Algorithm.BasisFunction_EvaluateFirstDerivative_DegreeTwo(i, knot, t);
+                double v1 = Luthier.Geometry.Nurbs.Algorithm.BasisFunction_EvaluateFirstDerivative_DegreeTwo(i, knot, t);
                 Assert.AreEqual(expected, v1, 1E-12);
             };
 
@@ -91,7 +91,7 @@ namespace Luthier.Geometry.Test
         {
             BasisFunctionEvaluation handler2 = (expected, i, degree, knot, t) =>
             {
-                double v1 = Nurbs.Algorithm.BasisFunction_EvaluateSecondDerivative_DegreeTwo(i, knot, t);
+                double v1 = Luthier.Geometry.Nurbs.Algorithm.BasisFunction_EvaluateSecondDerivative_DegreeTwo(i, knot, t);
                 Assert.AreEqual(expected, v1, 1E-12);
             };
 
@@ -105,7 +105,7 @@ namespace Luthier.Geometry.Test
             BasisFunctionEvaluation handler0 = (expected, i, degree, knot, t) =>
             {
                 double[] values = new double[3];
-                Nurbs.Algorithm.BasisFunction_EvaluateAllDerivatives_DegreeTwo(i, knot, t, ref values);
+                Luthier.Geometry.Nurbs.Algorithm.BasisFunction_EvaluateAllDerivatives_DegreeTwo(i, knot, t, ref values);
                 Assert.AreEqual(expected, values[0], 1E-12);
             };
 
@@ -114,7 +114,7 @@ namespace Luthier.Geometry.Test
             BasisFunctionEvaluation handler1 = (expected, i, degree, knot, t) =>
             {
                 double[] values = new double[3];
-                Nurbs.Algorithm.BasisFunction_EvaluateAllDerivatives_DegreeTwo(i, knot, t, ref values);
+                Luthier.Geometry.Nurbs.Algorithm.BasisFunction_EvaluateAllDerivatives_DegreeTwo(i, knot, t, ref values);
                 Assert.AreEqual(expected, values[1], 1E-12);
             };
 
@@ -123,7 +123,7 @@ namespace Luthier.Geometry.Test
             BasisFunctionEvaluation handler2 = (expected, i, degree, knot, t) =>
             {
                 double[] values = new double[3];
-                Nurbs.Algorithm.BasisFunction_EvaluateAllDerivatives_DegreeTwo(i, knot, t, ref values);
+                Luthier.Geometry.Nurbs.Algorithm.BasisFunction_EvaluateAllDerivatives_DegreeTwo(i, knot, t, ref values);
                 Assert.AreEqual(expected, values[2], 1E-12);
             };
 
@@ -138,7 +138,7 @@ namespace Luthier.Geometry.Test
             {
                 double[] values = new double[3];
                 int[] indices = new int[3];
-                Nurbs.Algorithm.BasisFunction_EvaluateAllNonZero_DegreeTwo(knot, t, ref values, ref indices);
+                Luthier.Geometry.Nurbs.Algorithm.BasisFunction_EvaluateAllNonZero_DegreeTwo(knot, t, ref values, ref indices);
 
                 if(indices.Contains(i) && t < 1.0)
                 {
@@ -159,7 +159,7 @@ namespace Luthier.Geometry.Test
             {
                 double[] values = new double[9];
                 int[] indices = new int[3];
-                Nurbs.Algorithm.BasisFunction_EvaluateAllNonZero_AllDerivatives_DegreeTwo(knot, t, ref values, ref indices);
+                Luthier.Geometry.Nurbs.Algorithm.BasisFunction_EvaluateAllNonZero_AllDerivatives_DegreeTwo(knot, t, ref values, ref indices);
 
                 if (indices.Contains(i) && t < 1.0)
                 {
@@ -175,7 +175,7 @@ namespace Luthier.Geometry.Test
             {
                 double[] values = new double[9];
                 int[] indices = new int[3];
-                Nurbs.Algorithm.BasisFunction_EvaluateAllNonZero_AllDerivatives_DegreeTwo(knot, t, ref values, ref indices);
+                Luthier.Geometry.Nurbs.Algorithm.BasisFunction_EvaluateAllNonZero_AllDerivatives_DegreeTwo(knot, t, ref values, ref indices);
 
                 if (indices.Contains(i) && t < 1.0)
                 {
@@ -191,7 +191,7 @@ namespace Luthier.Geometry.Test
             {
                 double[] values = new double[9];
                 int[] indices = new int[3];
-                Nurbs.Algorithm.BasisFunction_EvaluateAllNonZero_AllDerivatives_DegreeTwo(knot, t, ref values, ref indices);
+                Luthier.Geometry.Nurbs.Algorithm.BasisFunction_EvaluateAllNonZero_AllDerivatives_DegreeTwo(knot, t, ref values, ref indices);
 
                 if (indices.Contains(i) && t < 1.0)
                 {
@@ -210,7 +210,7 @@ namespace Luthier.Geometry.Test
         {
             CurveEvaluation handler = (expected, degree, knotIX, knot, cvDataBlock, t) =>
             {
-                Assert.AreEqual(expected, Nurbs.Algorithm.CurveSpan_Evaluate_Deboor2(degree, knotIX, ref knot, ref cvDataBlock, knotIX - degree, 1, t), 1E-12);
+                Assert.AreEqual(expected, Luthier.Geometry.Nurbs.Algorithm.CurveSpan_Evaluate_Deboor2(degree, knotIX, ref knot, ref cvDataBlock, knotIX - degree, 1, t), 1E-12);
             };
 
             CurveSpan_Evaluate_ComplexKnot_DegreeTwo(handler);
@@ -580,9 +580,9 @@ namespace Luthier.Geometry.Test
                 double expected = 0;
                 if (0 <= t && t < 0.3)
                 {
-                    double N0 = Nurbs.Algorithm.deboor_value(0, degree, knot, t);
-                    double N1 = Nurbs.Algorithm.deboor_value(1, degree, knot, t);
-                    double N2 = Nurbs.Algorithm.deboor_value(2, degree, knot, t);
+                    double N0 = Luthier.Geometry.Nurbs.Algorithm.deboor_value(0, degree, knot, t);
+                    double N1 = Luthier.Geometry.Nurbs.Algorithm.deboor_value(1, degree, knot, t);
+                    double N2 = Luthier.Geometry.Nurbs.Algorithm.deboor_value(2, degree, knot, t);
 
                     expected = N0 * cvDataBlock[0] + N1 * cvDataBlock[1] + N2 * cvDataBlock[2];
 
@@ -590,9 +590,9 @@ namespace Luthier.Geometry.Test
                 }
                 else if (t < 0.5)
                 {
-                    double N1 = Nurbs.Algorithm.deboor_value(1, degree, knot, t);
-                    double N2 = Nurbs.Algorithm.deboor_value(2, degree, knot, t);
-                    double N3 = Nurbs.Algorithm.deboor_value(3, degree, knot, t);
+                    double N1 = Luthier.Geometry.Nurbs.Algorithm.deboor_value(1, degree, knot, t);
+                    double N2 = Luthier.Geometry.Nurbs.Algorithm.deboor_value(2, degree, knot, t);
+                    double N3 = Luthier.Geometry.Nurbs.Algorithm.deboor_value(3, degree, knot, t);
 
                     expected = N1 * cvDataBlock[1] + N2 * cvDataBlock[2] + N3 * cvDataBlock[3];
 
@@ -600,9 +600,9 @@ namespace Luthier.Geometry.Test
                 }
                 else if (t < 0.6)
                 {
-                    double N3 = Nurbs.Algorithm.deboor_value(3, degree, knot, t);
-                    double N4 = Nurbs.Algorithm.deboor_value(4, degree, knot, t);
-                    double N5 = Nurbs.Algorithm.deboor_value(5, degree, knot, t);
+                    double N3 = Luthier.Geometry.Nurbs.Algorithm.deboor_value(3, degree, knot, t);
+                    double N4 = Luthier.Geometry.Nurbs.Algorithm.deboor_value(4, degree, knot, t);
+                    double N5 = Luthier.Geometry.Nurbs.Algorithm.deboor_value(5, degree, knot, t);
 
                     expected = N3 * cvDataBlock[3] + N4 * cvDataBlock[4] + N5 * cvDataBlock[5];
 
@@ -610,9 +610,9 @@ namespace Luthier.Geometry.Test
                 }
                 else if (t <= 1.0)
                 {
-                    double N4 = Nurbs.Algorithm.deboor_value(4, degree, knot, t);
-                    double N5 = Nurbs.Algorithm.deboor_value(5, degree, knot, t);
-                    double N6 = Nurbs.Algorithm.deboor_value(6, degree, knot, t);
+                    double N4 = Luthier.Geometry.Nurbs.Algorithm.deboor_value(4, degree, knot, t);
+                    double N5 = Luthier.Geometry.Nurbs.Algorithm.deboor_value(5, degree, knot, t);
+                    double N6 = Luthier.Geometry.Nurbs.Algorithm.deboor_value(6, degree, knot, t);
 
                     expected = N4 * cvDataBlock[4] + N5 * cvDataBlock[5] + N6 * cvDataBlock[6];
 

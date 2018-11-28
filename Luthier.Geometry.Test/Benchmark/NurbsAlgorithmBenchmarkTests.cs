@@ -34,7 +34,7 @@ namespace Luthier.Geometry.Test.Benchmark
             for (int i = 0; i < iterations; i++)
             {
 
-                Nurbs.Algorithm.Curve_EvaluateGivenBasisFunctions(degree, dimension, startIx, basisFunctions, cvblock, cvStride, dimensionStride, ref result);
+                Luthier.Geometry.Nurbs.Algorithm.Curve_EvaluateGivenBasisFunctions(degree, dimension, startIx, basisFunctions, cvblock, cvStride, dimensionStride, ref result);
             }
             long t1 = sw.ElapsedMilliseconds;
         }

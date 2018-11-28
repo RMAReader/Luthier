@@ -70,6 +70,7 @@
     <Compile Include="Image\LockBitmap.cs" />
     <Compile Include="Nurbs\Algorithm.cs" />
     <Compile Include="Nurbs\BSplineCurve.cs" />
+    <Compile Include="Nurbs\ControlPoints.cs" />
     <Compile Include="Nurbs\NurbsCurve.cs" />
     <Compile Include="Nurbs\Knot.cs" />
     <Compile Include="Nurbs\NurbsCurveBinaryTree.cs" />
@@ -85,12 +86,16 @@
     <Compile Include="MeshHelper.cs" />
     <Compile Include="Nurbs\NurbsSurfaceNearestPoint.cs" />
     <Compile Include="Optimization\INurbsCurveFitter.cs" />
+    <Compile Include="Optimization\INurbsSurfaceFitter.cs" />
     <Compile Include="Optimization\NurbsCurveFitterAccordNet.cs" />
     <Compile Include="Optimization\NurbsCurveFitterBase.cs" />
     <Compile Include="Optimization\NurbsCurveFitterConjugateGradient.cs" />
     <Compile Include="Optimization\NurbsCurveFitterQuadraticApproximation.cs" />
     <Compile Include="Optimization\NurbsCurveSquaredDistance.cs" />
-    <Compile Include="Optimization\NursCurveFitterNewton.cs" />
+    <Compile Include="Optimization\NurbsSurfaceFitterAccordNet.cs" />
+    <Compile Include="Optimization\NurbsSurfaceFitterBase.cs" />
+    <Compile Include="Optimization\NurbsSurfaceSquaredDistance.cs" />
+    <Compile Include="Optimization\NurbsCurveFitterNewton.cs" />
     <Compile Include="Point2D.cs" />
     <Compile Include="PointCloud.cs" />
     <Compile Include="Polygon2D.cs" />
