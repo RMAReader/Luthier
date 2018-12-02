@@ -112,7 +112,7 @@ namespace Luthier.Geometry.Optimization
                 normal[0] /= normalL2;
                 normal[1] /= normalL2;
                 normal[2] /= normalL2;
-                
+                                
                 //beta = [C(t) - X].N(t)
                 double cxn = (values[0] - cp[0]) * normal[0];
                 double cyn = (values[1] - cp[1]) * normal[1];

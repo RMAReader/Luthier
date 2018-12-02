@@ -66,6 +66,8 @@ namespace Luthier.Geometry.Optimization
             // Finally, we can create the L-BFGS solver, passing the functions as arguments
             var lbfgs = new BroydenFletcherGoldfarbShanno(numberOfVariables: _surface.controlPoints.Data.Length, function: f, gradient: g);
 
+            lbfgs.Progress += Lbfgs_Progress;
+
             // And then minimize the function:
             sw.Restart();
 
@@ -78,5 +80,15 @@ namespace Luthier.Geometry.Optimization
 
         }
 
+        private void Lbfgs_Progress(object sender, OptimizationProgressEventArgs e)
+        {
+            var eventArg = new IterationCompleteEventArgs
+            {
+                Error = e.SolutionNorm,
+                NumberOfIterations = e.Iteration,
+                Parameters = e.Solution
+            };
+            OnIterationComplete(eventArg);
+        }
     }
 }

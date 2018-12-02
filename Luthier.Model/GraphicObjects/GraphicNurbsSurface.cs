@@ -55,10 +55,10 @@ namespace Luthier.Model.GraphicObjects
 
             for (int i = 0; i < nU; i++)
             {
-                double u = (1 - (double)i / (nU)) * Surface.Domain0().Min + (double)i / (nU) * Surface.Domain0().Max;
+                double u = (1 - (double)i / (nU - 1)) * Surface.Domain0().Min + (double)i / (nU - 1) * Surface.Domain0().Max;
                 for (int j = 0; j < nV; j++)
                 {
-                    double v = (1 - (double)j / (nV)) * Surface.Domain1().Min + (double)j / (nV) * Surface.Domain1().Max;
+                    double v = (1 - (double)j / (nV - 1)) * Surface.Domain1().Min + (double)j / (nV - 1) * Surface.Domain1().Max;
 
                     var position = Surface.Evaluate(u, v);
                     var normal = Surface.EvaluateNormal(u, v);

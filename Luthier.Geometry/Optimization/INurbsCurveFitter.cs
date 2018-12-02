@@ -20,6 +20,7 @@ namespace Luthier.Geometry.Optimization
     {
         public int NumberOfIterations { get; set; }
         public double Error { get; set; }
+        public double[] Parameters { get; set; }
     }
 
    

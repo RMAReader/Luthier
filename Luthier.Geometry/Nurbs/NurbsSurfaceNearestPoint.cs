@@ -47,6 +47,12 @@ namespace Luthier.Geometry.Nurbs
                 u = u - JInverse[0, 0] * f[0] - JInverse[0, 1] * f[1];
                 v = v - JInverse[1, 0] * f[0] - JInverse[1, 1] * f[1];
 
+                if (u < minU) u = minU;
+                else if (u > maxU) u = maxU;
+
+                if (v < minV) v = minV;
+                else if (v > maxV) v = maxV;
+
                 values = surface.EvaluateAllDerivatives(u, v);
 
                 UpdateFunctionAndJacobian(surface, point, du, dv, duu, duv, dvv, values, ref f, ref J, ref error);
