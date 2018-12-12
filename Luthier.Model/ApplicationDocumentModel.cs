@@ -49,7 +49,7 @@ namespace Luthier.Model
             model.Add(layer);
             model.Add(plane);
             
-            GetFittedSurface();
+            GetFittedSurface(out PointCloud cloud);
             for(int i=0; i<_fittingHistory.Count; i++)
             {
                 var surface = new GraphicNurbsSurface();
@@ -58,6 +58,9 @@ namespace Luthier.Model
                 layer.AddToLayer(surface);
                 model.Add(surface);
             }
+
+            model.Add(new GraphicPointCloud { Cloud = cloud });
+
 
             point2DFactory = new Point2DFactory(this);
             polygon2DFactory =new Polygon2DFactory(this);
@@ -116,16 +119,16 @@ namespace Luthier.Model
 
 
 
-        private NurbsSurface GetFittedSurface()
+        private NurbsSurface GetFittedSurface(out PointCloud cloud)
         {
             //create point cloud for a spherical patch
             var cloudPoints = new List<double[]>();
-            int numberOfPoints = 50;
+            int numberOfPoints = 100;
             double minX = -10;
             double minY = -10;
             double maxX = 10;
             double maxY = 10;
-            double radius = 20;
+            double radius = 50;
             for (int i = 0; i < numberOfPoints; i++)
             {
                 double u = (double)i / (numberOfPoints - 1);
@@ -135,13 +138,21 @@ namespace Luthier.Model
 
                     double x = (1 - u) * minX + u * maxX;
                     double y = (1 - v) * minY + v * maxY;
-                    double z = Math.Max(0,Math.Sqrt(radius * radius - x * x - y * y) - radius + 3);
+                    double z = Math.Max(0, Math.Sqrt(Math.Max(0, radius * radius - x * x - y * y)) - 0.75 * radius);
                     cloudPoints.Add(new double[] { x, y, z });
                 }
             }
-            var cloud = new PointCloud(cloudPoints);
+            cloud = new PointCloud(cloudPoints);
 
-            var surface = new NurbsSurface(dimension: 3, bIsRational: false, order0: 3, order1: 3, cv_count0: 30, cv_count1: 30);
+            double meanz = 0;
+            foreach (var p in cloudPoints)
+            {
+                meanz += p[2];
+            }
+            meanz /= cloudPoints.Count;
+
+
+            var surface = new NurbsSurface(dimension: 3, bIsRational: false, order0: 3, order1: 3, cv_count0: 10, cv_count1: 10);
             
             for(int i=0; i< surface.knotArray0.Length; i++)
             {
@@ -159,9 +170,9 @@ namespace Luthier.Model
                 {
                     double v = (double)j / (surface.CvCount1 - 1);
 
-                    double x = (1 - u) * minX * 2 + u * maxX * 2;
-                    double y = (1 - v) * minY * 2 + v * maxY * 2;
-                    double z = 0;// Math.Sqrt(radius * radius - x * x - y * y) - radius;
+                    double x = (1 - u) * minX  + u * maxX;
+                    double y = (1 - v) * minY  + v * maxY;
+                    double z = meanz;// Math.Sqrt(radius * radius - x * x - y * y) - radius;
 
                     surface.SetCV(i, j, new double[] { x, y, z });
                 }

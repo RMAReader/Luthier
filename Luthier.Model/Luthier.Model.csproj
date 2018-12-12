@@ -66,6 +66,8 @@
     <Compile Include="CustomSettings\GraphicNurbsCurveAppearance.cs" />
     <Compile Include="CustomSettings\GraphicPlaneGridAppearence.cs" />
     <Compile Include="Extensions\ArrayExtensions.cs" />
+    <Compile Include="GraphicObjects\GraphicPointCloud.cs" />
+    <Compile Include="GraphicObjects\Interfaces\IDrawablePoints.cs" />
     <Compile Include="Helpers\Convert.cs" />
     <Compile Include="GraphicObjectFactory\BSplineFactory.cs" />
     <Compile Include="GraphicObjectFactory\CompositePolygonFactory.cs" />
@@ -152,6 +154,7 @@
     <Compile Include="Scene3D\SceneComponentBase.cs" />
     <Compile Include="Scene3D\SceneComponentLines.cs" />
     <Compile Include="Scene3D\SceneComponentPhongShaded.cs" />
+    <Compile Include="Scene3D\SceneComponentPoints.cs" />
     <Compile Include="Scene3D\SceneComponentTexture.cs" />
     <Compile Include="Scene3D\SceneUpdater.cs" />
     <Compile Include="Settings.cs" />
