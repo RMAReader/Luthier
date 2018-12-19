@@ -145,8 +145,8 @@ namespace Luthier.Test.Model
         public void ModelSerialization_GraphicNurbsSurface()
         {
             var surface = new GraphicNurbsSurface(2, false, 3, 3, 3, 3);
-            surface.Surface.cvArray = new double[36];
-            for(int i = 0; i < 36; i++) surface.Surface.cvArray[i] = i;
+            
+            for(int i = 0; i < 36; i++) surface.Surface.controlPoints.Data[i] = i;
             surface.Surface.knotArray0 = new double[] {0,1,2,3};
             surface.Surface.knotArray1 = new double[] {0,1,2,3};
 

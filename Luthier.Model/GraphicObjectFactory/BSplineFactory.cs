@@ -33,8 +33,8 @@ namespace Luthier.Model.GraphicObjectFactory
 
         public GraphicNurbsSurface CreateSurface(int cv_count0, int cv_count1, double minx, double miny, double maxx, double maxy)
         {
-
-            var points = new List<double>();
+            var s = new GraphicNurbsSurface(3, false, 3, 3, cv_count0, cv_count1);
+            
             for (int i = 0; i < cv_count0; i++)
             {
                 double x = (1 - (double)i / (cv_count0 - 1)) * minx + ((double)i / (cv_count0 - 1)) * maxx;
@@ -43,11 +43,11 @@ namespace Luthier.Model.GraphicObjectFactory
                     double y = (1 - (double)j / (cv_count1 - 1)) * miny + ((double)j / (cv_count1 - 1)) * maxy;
                     double z = (x * x + y * y) / 1000;
 
-                    points.AddRange(new double[] { x, y, z });
+                    s.Surface.SetCV(i, j, new double[] { x, y, z });
+                    
                 }
             }
-            var s = new GraphicNurbsSurface(3, false, 3, 3, cv_count0, cv_count1);
-            s.Surface.cvArray = points.ToArray();
+            
 
             var knot0 = new List<double>();
             for (int i = 0; i < cv_count0 + 1; i++) knot0.Add(i);
@@ -83,11 +83,13 @@ namespace Luthier.Model.GraphicObjectFactory
                 }
             }
 
-            for (int i = 0; i < s.Surface.knotArray0.Length; i++) s.Surface.knotArray0[i] = i;
-            for (int i = 0; i < s.Surface.knotArray1.Length; i++) s.Surface.knotArray1[i] = i;
-
+            s.Surface.knotArray0 = Knot.CreateUniformClosed(s.Surface.Order0 - 1, s.Surface.knotArray0.Length).data.ToArray();
+            s.Surface.knotArray1 = Knot.CreateUniformClosed(s.Surface.Order1 - 1, s.Surface.knotArray1.Length).data.ToArray();
+            
             return s;
            
         }
+
+
     }
 }

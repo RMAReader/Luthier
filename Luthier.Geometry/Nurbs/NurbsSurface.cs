@@ -18,12 +18,12 @@ namespace Luthier.Geometry.Nurbs
         public int Order0;
         [XmlElement]
         public int Order1;
-        [XmlElement]
-        public int CvCount0;
-        [XmlElement]
-        public int CvCount1;
-        [XmlArray]
-        public double[] cvArray;
+        //[XmlElement]
+        //public int CvCount0;
+        //[XmlElement]
+        //public int CvCount1;
+        //[XmlArray]
+        //public double[] cvArray;
         [XmlArray]
         public double[] knotArray0;
         [XmlArray]
@@ -39,8 +39,8 @@ namespace Luthier.Geometry.Nurbs
             IsRational = bIsRational;
             Order0 = order0;
             Order1 = order1;
-            CvCount0 = cv_count0;
-            CvCount1 = cv_count1;
+            //CvCount0 = cv_count0;
+            //CvCount1 = cv_count1;
 
             controlPoints = new ControlPoints(CvSize, cv_count0, cv_count1 );
 
@@ -49,12 +49,14 @@ namespace Luthier.Geometry.Nurbs
 
         private void InitialiseArrays()
         {
-            knotArray0 = new double[CvCount0 + Order0];
-            knotArray1 = new double[CvCount1 + Order1];
-            cvArray = new double[CvSize * CvCount0 * CvCount1];
+            knotArray0 = new double[controlPoints.CvCount[0] + Order0];
+            knotArray1 = new double[controlPoints.CvCount[1] + Order1];
+            //cvArray = new double[CvSize * CvCount0 * CvCount1];
         }
 
         public int CvSize => (IsRational) ? Dimension + 1 : Dimension;
+        public int CvCount0 => controlPoints.CvCount[0];
+        public int CvCount1 => controlPoints.CvCount[1];
 
         public Interval Domain0()
         {
@@ -78,8 +80,8 @@ namespace Luthier.Geometry.Nurbs
 
         public void SetCV(int i, int j, double[] cv)
         {
-            int startIndex = (CvCount1 * i + j) * CvSize;
-            Array.Copy(cv, 0, cvArray, startIndex, CvSize);
+            //int startIndex = (CvCount1 * i + j) * CvSize;
+            //Array.Copy(cv, 0, cvArray, startIndex, CvSize);
 
             controlPoints.SetCV(cv, i, j);
         }
@@ -245,8 +247,9 @@ namespace Luthier.Geometry.Nurbs
 
         public NurbsSurface Clone()
         {
-            var result = new NurbsSurface(Dimension, IsRational, Order0, Order1, CvCount0, CvCount1);
-            Array.Copy(cvArray, result.cvArray, cvArray.Length);
+            //var result = new NurbsSurface(Dimension, IsRational, Order0, Order1, CvCount0, CvCount1);
+            //Array.Copy(cvArray, result.cvArray, cvArray.Length);
+            var result = new NurbsSurface(Dimension, IsRational, Order0, Order1, controlPoints.CvCount[0], controlPoints.CvCount[1]);
             Array.Copy(knotArray0, result.knotArray0, knotArray0.Length);
             Array.Copy(knotArray1, result.knotArray1, knotArray1.Length);
             return result;

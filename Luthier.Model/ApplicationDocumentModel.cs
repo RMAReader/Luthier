@@ -49,17 +49,17 @@ namespace Luthier.Model
             model.Add(layer);
             model.Add(plane);
             
-            GetFittedSurface(out PointCloud cloud);
-            for(int i=0; i<_fittingHistory.Count; i++)
-            {
-                var surface = new GraphicNurbsSurface();
-                surface.Surface = _fittingHistory[i];
-                surface.Name = $"surface {i}";
-                layer.AddToLayer(surface);
-                model.Add(surface);
-            }
+            //GetFittedSurface(out PointCloud cloud);
+            //for(int i=0; i<_fittingHistory.Count; i++)
+            //{
+            //    var surface = new GraphicNurbsSurface();
+            //    surface.Surface = _fittingHistory[i];
+            //    surface.Name = $"surface {i}";
+            //    layer.AddToLayer(surface);
+            //    model.Add(surface);
+            //}
 
-            model.Add(new GraphicPointCloud { Cloud = cloud });
+            //model.Add(new GraphicPointCloud { Cloud = cloud });
 
 
             point2DFactory = new Point2DFactory(this);

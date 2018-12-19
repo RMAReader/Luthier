@@ -48,8 +48,8 @@ namespace Luthier.Model.GraphicObjects
         public void GetVertexAndIndexLists(ref List<TangentVertex> vertices, ref List<int> indices)
         {
             
-            int nU = 20;
-            int nV = 20;
+            int nU = 200;
+            int nV = 200;
 
             int indexOffset = vertices.Count;
 
@@ -110,7 +110,7 @@ namespace Luthier.Model.GraphicObjects
                     {
                         Position = new SharpDX.Vector3((float)position[0], (float)position[1], (float)position[2]),
                         Normal = new SharpDX.Vector3(0, 0, 1),
-                        Color = new SharpDX.Vector4(1, 0, 0, 1)
+                        Color = new SharpDX.Vector4(1, 1, 0, 1)
                     });
                 }
             }

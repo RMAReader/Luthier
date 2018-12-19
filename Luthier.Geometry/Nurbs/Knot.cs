@@ -33,6 +33,7 @@ namespace Luthier.Geometry.Nurbs
             Knot output = CreateUniformOpen(p, n);
             output.CloseFront();
             output.CloseBack();
+            output.Normalise();
             return output;
         }
 
@@ -69,7 +70,7 @@ namespace Luthier.Geometry.Nurbs
         public int Multiplicity(int knotIX) => data.Where(x => x == data[knotIX]).Count();
         
         //rescales knot vector so parameter is in range [0, 1]
-        public void Normalise() => data.ForEach(x => x = (x - minParam) / (maxParam - minParam));
+        public void Normalise() => data = data.Select(x => x = (x - minParam) / (maxParam - minParam)).ToList();
         
 
         public Knot DeepCopy()

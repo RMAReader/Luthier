@@ -11,24 +11,24 @@ namespace Luthier.Geometry.Nurbs
         /// <summary>
         /// Array storing control point values in some arrangement
         /// </summary>
-        public readonly double[] Data;
+        public double[] Data { get; set; }
 
         /// <summary>
         /// Dimension of control points
         /// </summary>
-        public readonly int Dimension;
+        public int Dimension { get; set; }
 
         /// <summary>
         /// Number of control points in each direction
         /// </summary>
-        public readonly int[] CvCount;
+        public int[] CvCount { get; set; }
 
         /// <summary>
         /// Stride between consecutive dimensions of same control point. 
         /// If C[i,j]_x = Data[s] then:
         /// C[i, j]_y = Data[s + DimensionStride] 
         /// </summary>
-        public readonly int DimensionStride;
+        public int DimensionStride { get; set; }
 
         /// <summary>
         /// Stride between control points in given direction. 
@@ -36,8 +36,9 @@ namespace Luthier.Geometry.Nurbs
         /// C[i + 1, j]_x = Data[s + CvStride[0]] 
         /// C[i, j + 1]_x = Data[s + CvStride[1]]
         /// </summary>
-        public readonly int[] CvStride;
+        public int[] CvStride { get; set; }
 
+        public ControlPoints() { }
 
         public ControlPoints(int dimension, params int[] cvCount)
         {
@@ -52,7 +53,7 @@ namespace Luthier.Geometry.Nurbs
             Data = new double[dataLength];
 
             CvStride = new int[CvCount.Length];
-            SetStrides(new int[] { 0, 1 }, 2, ref CvStride, ref DimensionStride);
+            SetStrides(new int[] { 0, 1 }, 2);
         }
 
         public void GetCV(double[] cv, params int[] cvIx)
@@ -91,15 +92,15 @@ namespace Luthier.Geometry.Nurbs
             return k;
         }
 
-        private void SetStrides(int[] cvOrder, int dimensionOrder, ref int[] cvStride, ref int dimensionStride)
+        private void SetStrides(int[] cvOrder, int dimensionOrder)
         {
-            cvStride[0] = 1;
+            CvStride[0] = 1;
             for (int i = 1; i < CvCount.Length; i++)
             {
-                cvStride[i] = CvStride[i - 1] * CvCount[i - 1];  
+                CvStride[i] = CvStride[i - 1] * CvCount[i - 1];  
             }
             
-            dimensionStride = cvStride[CvCount.Length - 1] * CvCount[CvCount.Length - 1];
+            DimensionStride = CvStride[CvCount.Length - 1] * CvCount[CvCount.Length - 1];
 
         }
     }

@@ -81,7 +81,7 @@ namespace Luthier.Model.Presenter
                 AmbientCoefficient = 0.2f,
                 DiffuseCoefficient = 0.9f,
                 SpecularCoefficient = 0.9f,
-                ShininessCoefficient = 30
+                ShininessCoefficient = 300
             };
         }
 
@@ -301,26 +301,30 @@ namespace Luthier.Model.Presenter
                             _camera.ViewHeight = form.ClientSize.Height;
                         }
 
-                        if (model.Model.HasChanged)
+                        if (_camera.ViewWidth > 10)
                         {
-                            scene.Update();
-                            model.Model.HasChanged = false;
+
+                            if (model.Model.HasChanged)
+                            {
+                                scene.Update();
+                                model.Model.HasChanged = false;
+                            }
+
+                            scene.Draw();
+
+                            //begin drawing text
+                            device.Font.Begin();
+
+                            //draw string
+                            fpsCounter.Update();
+                            device.Font.DrawString("FPS: " + fpsCounter.FPS, 0, 30);
+                            device.Font.DrawString($"X = {mouseController.X}, Y = {mouseController.Y}", 0, 45);
+
+                            //flush text to view
+                            device.Font.End();
+                            //present
+                            device.Present();
                         }
-
-                        scene.Draw();
-
-                        //begin drawing text
-                        device.Font.Begin();
-                        
-                        //draw string
-                        fpsCounter.Update();
-                        device.Font.DrawString("FPS: " + fpsCounter.FPS, 0, 30);
-                        device.Font.DrawString($"X = {mouseController.X}, Y = {mouseController.Y}", 0, 45);
-
-                        //flush text to view
-                        device.Font.End();
-                        //present
-                        device.Present();
                     });
 
                 //release resources
