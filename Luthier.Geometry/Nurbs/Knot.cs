@@ -77,5 +77,13 @@ namespace Luthier.Geometry.Nurbs
         {
             return new Knot {p = p, data = new List<double>(data) };
         }
+
+        public static double[] Insert(double[] knot, params double[] newKnots)
+        {
+            var result = new List<double>(knot);
+            result.AddRange(newKnots);
+            result.Sort();
+            return result.ToArray();
+        }
     }
 }

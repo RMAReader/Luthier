@@ -10,14 +10,22 @@ namespace Luthier.Model.GraphicObjects
     {
         public NurbsSurface Surface;
        
-        public GraphicNurbsSurface()  { }
+        public bool DrawControlNet { get; set; }
+        public bool DrawKnotSpans { get; set; }
+        public bool DrawSurface { get; set; }
+
+        public GraphicNurbsSurface()  { DrawSurface = true; }
         public GraphicNurbsSurface(int dimension, bool bIsRational, int order0, int order1, int cv_count0, int cv_count1)
         {
             Surface = new NurbsSurface(dimension, bIsRational, order0, order1, cv_count0, cv_count1);
+            DrawControlNet = false;
+            DrawKnotSpans = false;
+            DrawSurface = true;
         }
         
         public IEnumerable<IDraggable2d> GetDraggableObjects2d()
         {
+            if (!DrawControlNet) yield break;
             for (int i = 0; i < Surface.CvCount0; i++)
             {
                 for (int j = 0; j < Surface.CvCount1; j++)
@@ -29,6 +37,7 @@ namespace Luthier.Model.GraphicObjects
 
         public IEnumerable<IDraggable> GetDraggableObjects()
         {
+            if (!DrawControlNet) yield break;
             for (int i = 0; i < Surface.CvCount0; i++)
             {
                 for (int j = 0; j < Surface.CvCount1; j++)
@@ -47,7 +56,11 @@ namespace Luthier.Model.GraphicObjects
 
         public void GetVertexAndIndexLists(ref List<TangentVertex> vertices, ref List<int> indices)
         {
-            
+            if (DrawSurface) GetVertexAndIndexListsFullSurfaceDomain(ref vertices, ref indices);
+        }
+
+        private void GetVertexAndIndexListsFullSurfaceDomain(ref List<TangentVertex> vertices, ref List<int> indices)
+        {
             int nU = 200;
             int nV = 200;
 
@@ -73,7 +86,7 @@ namespace Luthier.Model.GraphicObjects
                     });
                 }
             }
-            
+
             for (int i = 0; i < nU - 1; i++)
             {
                 for (int j = 0; j < nV - 1; j++)
@@ -86,14 +99,13 @@ namespace Luthier.Model.GraphicObjects
                     indices.AddRange(new int[] { sw, ne, se, ne, sw, nw });
                 }
             }
-            
         }
 
 
         public void GetVertexAndIndexLists(ref List<StaticColouredVertex> vertices, ref List<int> indices)
         {
-            AddControlNetEdges(ref vertices, ref indices);
-            
+            if(DrawControlNet) AddControlNetEdges(ref vertices, ref indices);
+            if(DrawKnotSpans) AddKnotSpanLines(ref vertices, ref indices);
         }
 
         public void AddControlNetEdges(ref List<StaticColouredVertex> vertices, ref List<int> indices)
@@ -138,7 +150,69 @@ namespace Luthier.Model.GraphicObjects
             }
         }
 
+        public void AddKnotSpanLines(ref List<StaticColouredVertex> vertices, ref List<int> indices)
+        {
+            int nU = 200;
+            int nV = 200;
 
+            //knot lines in U direction
+            for (int j = Surface.Order1 - 1; j <= Surface.knotArray1.Length - Surface.Order1; j++)
+            {
+                var indexOffset = vertices.Count;
+
+                double v = Surface.knotArray1[j];
+                for (int i = 0; i < nU; i++)
+                {
+                    double u = (1 - (double)i / (nU - 1)) * Surface.Domain0().Min + (double)i / (nU - 1) * Surface.Domain0().Max;
+                
+                    var position = Surface.Evaluate(u, v);
+
+                    vertices.Add(new StaticColouredVertex
+                    {
+                        Position = new SharpDX.Vector3((float)position[0], (float)position[1], (float)position[2]),
+                        Normal = new SharpDX.Vector3(0, 0, 1),
+                        Color = new SharpDX.Vector4(1, 0, 1, 1)
+                    });
+                }
+
+                for (int i = 0; i < nU - 1; i++)
+                {
+                    var from = indexOffset + i;
+                    var to = from + 1;
+                    indices.AddRange(new int[] { from, to });
+                }
+            }
+
+            //knot lines in V direction
+            for (int i = Surface.Order0 - 1; i <= Surface.knotArray0.Length - Surface.Order0; i++)
+            {
+                var indexOffset = vertices.Count;
+
+                double u = Surface.knotArray0[i];
+                for (int j = 0; j < nV; j++)
+                {
+                    double v = (1 - (double)j / (nV - 1)) * Surface.Domain1().Min + (double)j / (nV - 1) * Surface.Domain1().Max;
+
+                    var position = Surface.Evaluate(u, v);
+
+                    vertices.Add(new StaticColouredVertex
+                    {
+                        Position = new SharpDX.Vector3((float)position[0], (float)position[1], (float)position[2]),
+                        Normal = new SharpDX.Vector3(0, 0, 1),
+                        Color = new SharpDX.Vector4(1, 0, 1, 1)
+                    });
+                }
+
+                for (int j = 0; j < nV - 1; j++)
+                {
+                    var from = indexOffset + j;
+                    var to = from + 1;
+                    indices.AddRange(new int[] { from, to });
+                }
+            }
+
+
+        }
         #endregion
     }
 

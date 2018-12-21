@@ -242,18 +242,43 @@ namespace Luthier.Geometry.Nurbs
 
         public NurbsSurface InsertKnot(int direction, double t)
         {
-            if (direction == 0) return InsertKnot(t, ref knotArray0, Order0);
-            else return InsertKnot(t, ref knotArray1, Order1);
-        }
-
-        private NurbsSurface InsertKnot(double t, ref double[] knotArray, int order)
-        {
-            double[] newKnot = new double[knotArray.Length + 1];
-            for(int i=0, j=0; i < knotArray.Length; i++)
+           
+            if (direction == 0)
             {
-
+                var result = new NurbsSurface(Dimension, IsRational, Order0, Order1, controlPoints.CvCount[0] + 1, controlPoints.CvCount[1]);
+                result.knotArray0 = Knot.Insert(knotArray0, t);
+                Array.Copy(knotArray1, result.knotArray1, result.knotArray1.Length);
+                for (int d = 0; d < controlPoints.Dimension; d++)
+                {
+                    for(int v = 0; v < controlPoints.CvCount[1]; v++)
+                    {
+                        double[] cv = controlPoints.GetCVSliceThroughPoint(d, direction, 0, v);
+                        double[] newCv = Algorithm.KnotInsertionOslo(cv, Order0 - 1, knotArray0, result.knotArray0);
+                        result.controlPoints.SetCVSliceThroughPoint(newCv, d, direction, 0, v);
+                    }
+                }
+                return result;
             }
+            else if (direction == 1)
+            {
+                var result = new NurbsSurface(Dimension, IsRational, Order0, Order1, controlPoints.CvCount[0], controlPoints.CvCount[1] + 1);
+                Array.Copy(knotArray0, result.knotArray0, result.knotArray0.Length);
+                result.knotArray1 = Knot.Insert(knotArray1, t);
+                for (int d = 0; d < controlPoints.Dimension; d++)
+                {
+                    for (int u = 0; u < controlPoints.CvCount[0]; u++)
+                    {
+                        double[] cv = controlPoints.GetCVSliceThroughPoint(d, direction, u, 0);
+                        double[] newCv = Algorithm.KnotInsertionOslo(cv, Order1 - 1, knotArray1, result.knotArray1);
+                        result.controlPoints.SetCVSliceThroughPoint(newCv, d, direction, u, 0);
+                    }
+                }
+                return result;
+            }
+            else throw new ArgumentOutOfRangeException();
         }
+
+       
 
 
         public NurbsSurface Clone()

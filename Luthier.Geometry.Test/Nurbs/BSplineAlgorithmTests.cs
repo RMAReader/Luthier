@@ -116,7 +116,7 @@ namespace Luthier.Geometry.Test
 
             var points = curve.ToLines(10);
 
-            curve.InsertKnots(new List<double> { 2, 2, 2.2, 2.8 });
+            curve.InsertKnots(new List<double> { 0, 0, 0.2, 0.3, 0.3, 0.8 });
 
             var p2 = curve.ToLines(10);
             for (int i = 0; i < 10; i++)

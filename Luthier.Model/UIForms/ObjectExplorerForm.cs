@@ -334,6 +334,18 @@ namespace Luthier.Model.UIForms
                 this.deleteToolStripMenuItem.Visible = true;
                 this.renameToolStripMenuItem.Visible = true;
             }
+            else if (node.Tag is GraphicNurbsSurface)
+            {
+                this.newLayerToolStripMenuItem.Visible = false;
+                this.toolStripMenuItemNewLayerSeparater.Visible = false;
+
+                this.editToolStripMenuItem.Visible = true;
+                this.toolStripMenuItemEditSeparater.Visible = true;
+                this.insertKnotToolStripMenuItem.Visible = true;
+
+                this.deleteToolStripMenuItem.Visible = true;
+                this.renameToolStripMenuItem.Visible = true;
+            }
             else if (node.Tag is GraphicObjectBase)
             {
                 this.newLayerToolStripMenuItem.Visible = false;
@@ -341,6 +353,7 @@ namespace Luthier.Model.UIForms
 
                 this.editToolStripMenuItem.Visible = true;
                 this.toolStripMenuItemEditSeparater.Visible = true;
+                this.insertKnotToolStripMenuItem.Visible = false;
 
                 this.deleteToolStripMenuItem.Visible = true;
                 this.renameToolStripMenuItem.Visible = true;
@@ -352,6 +365,38 @@ namespace Luthier.Model.UIForms
             if(mySelectedNode.Tag is GraphicImage3d)
             {
                 _presenter.SetMouseController(new EditImageController3d(mySelectedNode.Tag as GraphicImage3d));
+            }
+        }
+
+        private void insertKnotToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var surface = mySelectedNode.Tag as GraphicNurbsSurface;
+            if (surface != null)
+            {
+                var domain = surface.Surface.Domain0();
+                surface.Surface = surface.Surface.InsertKnot(0, 0.5 * domain.Min + 0.5 * domain.Max);
+
+                _model.Model.HasChanged = true;
+            }
+        }
+
+        private void parallelToPlaneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var surface = mySelectedNode.Tag as GraphicNurbsSurface;
+            if (surface != null)
+            {
+                surface.DrawControlNet = true;
+                _presenter.DoDragParallelToPlaneToolStripMenuItem_Click(sender, e);
+            }
+        }
+
+        private void normalToPlaneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var surface = mySelectedNode.Tag as GraphicNurbsSurface;
+            if (surface != null)
+            {
+                surface.DrawControlNet = true;
+                _presenter.DoDragNormalToPlaneToolStripMenuItem_Click(sender, e);
             }
         }
     }

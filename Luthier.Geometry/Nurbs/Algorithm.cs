@@ -820,19 +820,20 @@ namespace Luthier.Geometry.Nurbs
         //T = refinement knot vector of length Q > N + K
         //D = subdivided polygon of Type
         //*/
-        public static double[] olso_insertion(double[] OriginalControlPoints, int Order, double[] OriginalKnot, double[] newKnot)
+        public static double[] KnotInsertionOslo(double[] OriginalControlPoints, int degree, double[] OriginalKnot, double[] newKnot)
         {
             int MU;
-            double[] newControlPoints = new double[newKnot.Length - Order - 1];
+            double[] newControlPoints = new double[newKnot.Length - degree - 1];
             for (int j = 0; j < newControlPoints.Length; j++)
             {
-                MU = Find_Knot_Span(Order - 1, OriginalKnot, newKnot[j]);
-                newControlPoints[j] = olso_subdiv(OriginalControlPoints, Order + 1, OriginalKnot, newKnot, Order + 1, MU, j);
+                MU = Find_Knot_Span(degree - 1, OriginalKnot, newKnot[j]);
+                newControlPoints[j] = olso_subdiv_recursive(OriginalControlPoints, degree + 1, OriginalKnot, newKnot, degree + 1, MU, j);
+                //newControlPoints[j] = olso_subdiv(OriginalControlPoints, degree + 1, OriginalKnot, newKnot, MU, j);
             }
             return newControlPoints;
         }
 
-        static double olso_subdiv(double[] originalControlPoints, int Order, double[] OriginalKnot, double[] newKnot, int RPI, int i, int j)
+        static double olso_subdiv_recursive(double[] originalControlPoints, int Order, double[] OriginalKnot, double[] newKnot, int RPI, int i, int j)
         {
             int r = RPI - 1;
             if (r > 0)
@@ -841,8 +842,8 @@ namespace Luthier.Geometry.Nurbs
                 double PP1 = 0;
                 double P1 = newKnot[j + Order - r] - OriginalKnot[i];
                 double P2 = OriginalKnot[i + Order - r] - newKnot[j + Order - r];
-                if (P1 != 0) PP1 = olso_subdiv(originalControlPoints, Order, OriginalKnot, newKnot, r, i, j);
-                if (P2 != 0) PP2 = olso_subdiv(originalControlPoints, Order, OriginalKnot, newKnot, r, i - 1, j);
+                if (P1 != 0) PP1 = olso_subdiv_recursive(originalControlPoints, Order, OriginalKnot, newKnot, r, i, j);
+                if (P2 != 0) PP2 = olso_subdiv_recursive(originalControlPoints, Order, OriginalKnot, newKnot, r, i - 1, j);
                 if (Math.Abs(P1 + P2) > double.Epsilon)
                 {
                     return (P1 * PP1 + P2 * PP2) / (P1 + P2);
@@ -858,8 +859,26 @@ namespace Luthier.Geometry.Nurbs
             }
         }
 
+        static double olso_subdiv(double[] P, int K, double[] TAU, double[] T, int MU, int J)
+        {
+            double[] TEMP = new double[MU + 1];
+            for (int i = MU - K + 1; i <= MU; i++)
+            {
+                TEMP[i] = P[i];
+            }
+            for (int r = 1; r < K; r++)
+            {
+                for (int i = MU - K + 1 + r; i <= MU; i++)
+                {
+                    double T1 = T[J + K - r] - TAU[i];
+                    double T2 = TAU[i + K - r] - T[J + K - r];
+                    double d = T1 + T2;
+                    TEMP[i] = (Math.Abs(d) > double.Epsilon) ? (T1 * TEMP[i] + T2 * TEMP[i - 1])/d : 0;
 
-
+                }
+            }
+            return TEMP[MU];
+        }
 
 
 

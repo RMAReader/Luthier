@@ -92,6 +92,30 @@ namespace Luthier.Geometry.Nurbs
             return k;
         }
 
+
+        public double[] GetCVSliceThroughPoint(int dimension, int direction, params int[] cvIx)
+        {
+            double[] result = new double[CvCount[direction]];
+            for(int i = 0; i < result.Length; i++)
+            {
+                cvIx[direction] = i;
+                int k = GetDataIndex(dimension, cvIx);
+                result[i] = Data[k];
+            }
+
+            return result;
+        }
+
+        public void SetCVSliceThroughPoint(double[] cvSlice, int dimension, int direction, params int[] cvIx)
+        {
+            for (int i = 0; i < cvSlice.Length; i++)
+            {
+                cvIx[direction] = i;
+                int k = GetDataIndex(dimension, cvIx);
+                Data[k] = cvSlice[i];
+            }
+        }
+
         private void SetStrides(int[] cvOrder, int dimensionOrder)
         {
             CvStride[0] = 1;
@@ -103,5 +127,7 @@ namespace Luthier.Geometry.Nurbs
             DimensionStride = CvStride[CvCount.Length - 1] * CvCount[CvCount.Length - 1];
 
         }
+
+     
     }
 }

@@ -8,6 +8,8 @@ using Luthier.Model.KeyController3D;
 using Luthier.Model.UIForms;
 using System.Runtime.InteropServices;
 using Luthier.Model.Scene3D;
+using Luthier.Model.GraphicObjects;
+using System.Linq;
 
 namespace Luthier.Model.Presenter
 {
@@ -141,7 +143,7 @@ namespace Luthier.Model.Presenter
             
         }
 
-        private void DoDragParallelToPlaneToolStripMenuItem_Click(object sender, EventArgs e)
+        public void DoDragParallelToPlaneToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (_selectPlaneController.Plane != null)
             {
@@ -155,13 +157,14 @@ namespace Luthier.Model.Presenter
             }
         }
 
-        private void DoDragNormalToPlaneToolStripMenuItem_Click(object sender, EventArgs e)
+        public void DoDragNormalToPlaneToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (_selectPlaneController.Plane != null)
             {
                 var controller = new ControlPointDraggerNormalToPlane();
                 controller.ReferencePlane = _selectPlaneController.Plane;
                 SetMouseController(controller);
+                
             }
             else
             {

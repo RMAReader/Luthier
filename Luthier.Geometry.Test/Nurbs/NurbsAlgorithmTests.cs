@@ -217,6 +217,43 @@ namespace Luthier.Geometry.Test
         }
 
 
+        [TestMethod]
+        public void KnotInsertionOslo()
+        {
+            int degree = 2;
+            double[] knot = new double[] { 0, 0, 0, 0.3, 0.5, 0.5, 0.6, 1, 1, 1 };
+            double[] cvDataBlock = new double[] { 0.5, 1, 3, 6, 10, 15, 21 };
+
+            double[] newKnot = new double[] { 0, 0, 0, 0.3, 0.3, 0.5, 0.5, 0.6, 0.8, 1, 1, 1 };
+
+            double[] parameters = new double[] { 0, 0.1, 0.3, 0.4, 0.5, 0.55, 0.6, 0.7, 1.0 };
+
+            double[] newCvBlock = Luthier.Geometry.Nurbs.Algorithm.KnotInsertionOslo(cvDataBlock, degree, knot, newKnot);
+
+            foreach (double t in parameters)
+            {
+                var expected = EvaluateCurveForTest(degree, knot, cvDataBlock, t);
+                var actual = EvaluateCurveForTest(degree, newKnot, newCvBlock, t);
+
+                Assert.AreEqual(expected, actual, 0.000001);
+            }
+
+        }
+
+        private double EvaluateCurveForTest(int degree, double[] knot, double[] cvBlock, double t)
+        {
+            int i = Luthier.Geometry.Nurbs.Algorithm.Find_Knot_Span(degree, knot, t);
+
+            double expected = 0;
+
+            for(int j = i - degree; j <= i; j++)
+            {
+                expected += Luthier.Geometry.Nurbs.Algorithm.deboor_value(j, degree, knot, t) * cvBlock[j];
+            }
+
+            return expected;
+        }
+
 
         public void BasisFunction_Evaluate_ComplexKnot_DegreeZero(BasisFunctionEvaluation testFunction)
         {

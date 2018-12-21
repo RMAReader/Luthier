@@ -29,6 +29,11 @@ namespace Luthier.Model.MouseController3D
         public void Bind(IApplicationDocumentModel model)
         {
             _model = model;
+            foreach (GraphicNurbsSurface surface in _model.Model.Where(x => x is GraphicNurbsSurface))
+            {
+                surface.DrawControlNet = true;
+            }
+            _model.Model.HasChanged = true;
         }
 
         public void Bind(Camera camera)
@@ -38,7 +43,11 @@ namespace Luthier.Model.MouseController3D
 
         public void Close()
         {
-            
+            foreach (GraphicNurbsSurface surface in _model.Model.Where(x => x is GraphicNurbsSurface))
+            {
+                surface.DrawControlNet = false;
+            }
+            _model.Model.HasChanged = true;
         }
 
         public void MouseClick(object sender, MouseEventArgs e)
