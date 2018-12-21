@@ -60,7 +60,7 @@
         <double>0</double>
         <double>1</double>
       </Normal>
-      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\Messiah Stradivarious\Belly profile.bmp</FileName>
+      <FileName>..\..\..\TestData\Messiah Stradivarious\Belly profile.bmp</FileName>
       <IsSelected>false</IsSelected>
     </GraphicObjectBase>
     <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
@@ -123,7 +123,7 @@
         <double>0.99998403323345464</double>
         <double>-0</double>
       </Normal>
-      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\Messiah Stradivarious\Belly Arch Long.bmp</FileName>
+      <FileName>..\..\..\TestData\Messiah Stradivarious\Belly Arch Long.bmp</FileName>
       <IsSelected>false</IsSelected>
     </GraphicObjectBase>
     <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
@@ -194,7 +194,7 @@
         <double>0.0042483819858539409</double>
         <double>0</double>
       </Normal>
-      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\Messiah Stradivarious\Belly Arch C.bmp</FileName>
+      <FileName>..\..\..\TestData\Messiah Stradivarious\Belly Arch C.bmp</FileName>
       <IsSelected>false</IsSelected>
     </GraphicObjectBase>
     <GraphicObjectBase d3p1:type="GraphicNurbsSurface" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
@@ -501,7 +501,7 @@
         <double>-0.00204684743267725</double>
         <double>0</double>
       </Normal>
-      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\Messiah Stradivarious\Belly Arch B.bmp</FileName>
+      <FileName>..\..\..\TestData\Messiah Stradivarious\Belly Arch B.bmp</FileName>
       <IsSelected>false</IsSelected>
     </GraphicObjectBase>
     <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
@@ -568,7 +568,7 @@
         <double>-0.0047653786650738959</double>
         <double>0</double>
       </Normal>
-      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\Messiah Stradivarious\Belly Arch D.bmp</FileName>
+      <FileName>..\..\..\TestData\Messiah Stradivarious\Belly Arch D.bmp</FileName>
       <IsSelected>false</IsSelected>
     </GraphicObjectBase>
     <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
@@ -631,7 +631,7 @@
         <double>0.0035811431395488215</double>
         <double>0</double>
       </Normal>
-      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\Messiah Stradivarious\Belly Arch E.bmp</FileName>
+      <FileName>..\..\..\TestData\Messiah Stradivarious\Belly Arch E.bmp</FileName>
       <IsSelected>false</IsSelected>
     </GraphicObjectBase>
     <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">

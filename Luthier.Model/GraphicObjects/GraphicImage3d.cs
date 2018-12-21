@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -24,7 +25,7 @@ namespace Luthier.Model.GraphicObjects
         {
             get
             {
-                if (_image == null) _image = System.Drawing.Image.FromFile(FileName);
+                if (_image == null && File.Exists(FileName)) _image = System.Drawing.Image.FromFile(FileName);
                 return _image;
             }
         }

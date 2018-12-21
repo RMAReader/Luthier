@@ -18,12 +18,6 @@ namespace Luthier.Geometry.Nurbs
         public int Order0;
         [XmlElement]
         public int Order1;
-        //[XmlElement]
-        //public int CvCount0;
-        //[XmlElement]
-        //public int CvCount1;
-        //[XmlArray]
-        //public double[] cvArray;
         [XmlArray]
         public double[] knotArray0;
         [XmlArray]
@@ -242,6 +236,23 @@ namespace Luthier.Geometry.Nurbs
             result[2] = -u1 * v2 + u2 * v1;
 
             return result;
+        }
+
+
+
+        public NurbsSurface InsertKnot(int direction, double t)
+        {
+            if (direction == 0) return InsertKnot(t, ref knotArray0, Order0);
+            else return InsertKnot(t, ref knotArray1, Order1);
+        }
+
+        private NurbsSurface InsertKnot(double t, ref double[] knotArray, int order)
+        {
+            double[] newKnot = new double[knotArray.Length + 1];
+            for(int i=0, j=0; i < knotArray.Length; i++)
+            {
+
+            }
         }
 
 

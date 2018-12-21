@@ -745,24 +745,7 @@ namespace Luthier.Geometry.Nurbs
             return -1;
         }
 
-        /// <summary>
-        /// Insert new knot at t.
-        /// </summary>
-        /// <param name="degree">degree of bspline curve</param>
-        /// <param name="knotIX">index of knot span containing t</param>
-        /// <param name="knot"></param>
-        /// <param name="cv"></param>
-        /// <param name="t"></param>
-        /// <returns></returns>
-        public static double[] InsertKnot(int degree, int knotIX, ref double[] knot, ref double[] cv, int t)
-        {
-            var result = new double[cv.Length + 1];
-            int cvIX = knotIX - degree + 2;
-            int n = degree - 1;
-
-            return new double[1];
-        }
-
+     
 
         /*
         Oslo algorithm taken from Cohen et al.
@@ -824,6 +807,58 @@ namespace Luthier.Geometry.Nurbs
             }
             return newControlPoints;
         }
+
+
+
+
+
+        ///*
+        //N = where original polygon has N+1 vertices
+        //P = original polygon of Type
+        //K = order of bspline curve (i.e. p+1)
+        //TAU = original knot vector of length N + K
+        //T = refinement knot vector of length Q > N + K
+        //D = subdivided polygon of Type
+        //*/
+        public static double[] olso_insertion(double[] OriginalControlPoints, int Order, double[] OriginalKnot, double[] newKnot)
+        {
+            int MU;
+            double[] newControlPoints = new double[newKnot.Length - Order - 1];
+            for (int j = 0; j < newControlPoints.Length; j++)
+            {
+                MU = Find_Knot_Span(Order - 1, OriginalKnot, newKnot[j]);
+                newControlPoints[j] = olso_subdiv(OriginalControlPoints, Order + 1, OriginalKnot, newKnot, Order + 1, MU, j);
+            }
+            return newControlPoints;
+        }
+
+        static double olso_subdiv(double[] originalControlPoints, int Order, double[] OriginalKnot, double[] newKnot, int RPI, int i, int j)
+        {
+            int r = RPI - 1;
+            if (r > 0)
+            {
+                double PP2 = 0;
+                double PP1 = 0;
+                double P1 = newKnot[j + Order - r] - OriginalKnot[i];
+                double P2 = OriginalKnot[i + Order - r] - newKnot[j + Order - r];
+                if (P1 != 0) PP1 = olso_subdiv(originalControlPoints, Order, OriginalKnot, newKnot, r, i, j);
+                if (P2 != 0) PP2 = olso_subdiv(originalControlPoints, Order, OriginalKnot, newKnot, r, i - 1, j);
+                if (Math.Abs(P1 + P2) > double.Epsilon)
+                {
+                    return (P1 * PP1 + P2 * PP2) / (P1 + P2);
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            else
+            {
+                return originalControlPoints[i];
+            }
+        }
+
+
 
 
 
