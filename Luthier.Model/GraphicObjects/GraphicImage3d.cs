@@ -7,12 +7,18 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using Luthier.Model.Extensions;
+using Luthier.Model.GraphicObjects.Interfaces;
 using SharpDX;
 using SharpHelper;
 
 namespace Luthier.Model.GraphicObjects
 {
-    public class GraphicImage3d : GraphicObjectBase, IDrawableTextured, ISelectable, ISketchCanvas
+    public class GraphicImage3d : 
+        GraphicObjectBase, 
+        IDrawableTextured, 
+        ISelectable, 
+        ISketchCanvas,
+        IScalable
     {
         public double[] UpperLeft;
         public double[] LowerLeft;
@@ -170,9 +176,25 @@ namespace Luthier.Model.GraphicObjects
 
         }
 
-   
-
         #endregion
+
+        
+        public void ScaleObject(double scalefactor)
+        {
+            for (int i = 0; i < UpperLeft.Length; i++)
+                UpperLeft[i] *= scalefactor;
+
+            for (int i = 0; i < LowerLeft.Length; i++)
+                LowerLeft[i] *= scalefactor;
+
+            for (int i = 0; i < LowerRight.Length; i++)
+                LowerRight[i] *= scalefactor;
+
+            for (int i = 0; i < Normal.Length; i++)
+                Normal[i] *= scalefactor;
+        }
+
+
     }
 }
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Luthier.Model.GraphicObjects;
 using Luthier.Model.Presenter;
+using Luthier.Model.UIForms;
 
 namespace Luthier.Model.MouseController3D
 {
@@ -83,6 +84,38 @@ namespace Luthier.Model.MouseController3D
                             selectedPoints.Add(point);
                             distance = d;
                             startWorldPoint = point.Values;
+                        }
+                    }
+                    break;
+
+                case MouseButtons.Right:
+
+                    startX = e.X;
+                    startY = e.Y;
+
+                    distance = double.MaxValue;
+                    foreach (IDraggable point in _model.Model.GetDraggableObjects())
+                    {
+                        var p = _camera.ConvertFromWorldToScreen(point.Values);
+                        double d = Math.Sqrt((p[0] - e.X) * (p[0] - e.X) + (p[1] - e.Y) * (p[1] - e.Y));
+                        if (d < selectionRadius && d < distance)
+                        {
+                            selectedPoints.Clear();
+                            selectedPoints.Add(point);
+                            distance = d;
+                            startWorldPoint = point.Values;
+                        }
+                    }
+
+                    if (startWorldPoint != null)
+                    {
+                        var dialog = new CoordinateDialog(startWorldPoint);
+                        dialog.StartPosition = FormStartPosition.CenterParent;
+                        dialog.ShowDialog();
+                        if (dialog.DialogResult == DialogResult.OK)
+                        {
+                            selectedPoints[0].Values = dialog.Coordinates;
+                            _model.Model.HasChanged = true;
                         }
                     }
                     break;

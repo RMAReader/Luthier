@@ -274,8 +274,10 @@ namespace Luthier.Geometry.Nurbs
 
         public NurbsCurve DeepCopy()
         {
-            return this;
-            //return new NurbsCurve(new List<Point2D>(points), knot.DeepCopy());
+            var copy = new NurbsCurve(_dimension, _isRational, _order, _cvCount);
+            Array.Copy(cvDataBlock, copy.cvDataBlock, cvDataBlock.Length);
+            Array.Copy(knot, copy.knot, knot.Length);
+            return copy;
         }
 
 
@@ -553,6 +555,15 @@ namespace Luthier.Geometry.Nurbs
             return result;
         }
 
+
+        public NurbsCurve Scale(double scaleFactor)
+        {
+            var result = DeepCopy();
+            for (int i = 0; i < result.cvDataBlock.Length; i++)
+                result.cvDataBlock[i] *= scaleFactor;
+
+            return result;
+        }
     }
 
 

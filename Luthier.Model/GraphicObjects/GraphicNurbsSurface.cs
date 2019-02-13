@@ -1,26 +1,35 @@
 ﻿using Luthier.Geometry.Nurbs;
+using Luthier.Model.GraphicObjects.Interfaces;
 using SharpHelper;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Luthier.Model.GraphicObjects
 {
     [Serializable]
-    public class GraphicNurbsSurface : GraphicObjectBase, IDrawablePhongSurface, IDrawableLines
+    public class GraphicNurbsSurface : 
+        GraphicObjectBase, 
+        IDrawablePhongSurface, 
+        IDrawableStaticColouredSurface,
+        IDrawableLines,
+        IScalable
     {
         public NurbsSurface Surface;
        
         public bool DrawControlNet { get; set; }
         public bool DrawKnotSpans { get; set; }
         public bool DrawSurface { get; set; }
+        public SurfaceDrawingStyle SurfaceDrawingStyle { get; set; }
 
-        public GraphicNurbsSurface()  { DrawSurface = true; }
+        public GraphicNurbsSurface()  { SurfaceDrawingStyle = SurfaceDrawingStyle.PhongShadedColour; }
         public GraphicNurbsSurface(int dimension, bool bIsRational, int order0, int order1, int cv_count0, int cv_count1)
         {
             Surface = new NurbsSurface(dimension, bIsRational, order0, order1, cv_count0, cv_count1);
             DrawControlNet = false;
             DrawKnotSpans = false;
             DrawSurface = true;
+            SurfaceDrawingStyle = SurfaceDrawingStyle.PhongShadedColour;
         }
         
         public IEnumerable<IDraggable2d> GetDraggableObjects2d()
@@ -52,11 +61,19 @@ namespace Luthier.Model.GraphicObjects
             throw new NotImplementedException();
         }
 
+
+        public void ScaleObject(double scaleFactor)
+        {
+            Surface = Surface.ScaleSurface(scaleFactor);
+        }
+
+
         #region "IDrawableXXX implementations"
 
-        public void GetVertexAndIndexLists(ref List<TangentVertex> vertices, ref List<int> indices)
+        void IDrawablePhongSurface.GetVertexAndIndexLists(ref List<TangentVertex> vertices, ref List<int> indices)
         {
-            if (DrawSurface) GetVertexAndIndexListsFullSurfaceDomain(ref vertices, ref indices);
+            if (SurfaceDrawingStyle == SurfaceDrawingStyle.PhongShadedColour)
+                GetVertexAndIndexListsFullSurfaceDomain(ref vertices, ref indices);
         }
 
         private void GetVertexAndIndexListsFullSurfaceDomain(ref List<TangentVertex> vertices, ref List<int> indices)
@@ -101,8 +118,88 @@ namespace Luthier.Model.GraphicObjects
             }
         }
 
+        void IDrawableStaticColouredSurface.GetVertexAndIndexLists(ref List<StaticColouredVertex> vertices, ref List<int> indices)
+        {
+            if(SurfaceDrawingStyle == SurfaceDrawingStyle.HeatmapColour)
+                GetVertexAndIndexListsFullSurfaceDomainHeatMap(ref vertices, ref indices);
+        }
 
-        public void GetVertexAndIndexLists(ref List<StaticColouredVertex> vertices, ref List<int> indices)
+        private void GetVertexAndIndexListsFullSurfaceDomainHeatMap(ref List<StaticColouredVertex> vertices, ref List<int> indices)
+        {
+            //find range of surface
+            double minZ = double.MaxValue;
+            double maxZ = double.MinValue;
+            double[] cv = new double[3];
+            for (int i = 0; i < Surface.controlPoints.CvCount[0]; i++)
+            {
+                for (int j = 0; j < Surface.controlPoints.CvCount[1]; j++)
+                {
+                    Surface.controlPoints.GetCV(cv, i, j);
+                    if (cv[2] < minZ) minZ = cv[2];
+                    if (cv[2] > maxZ) maxZ = cv[2];
+                }
+            }
+
+            int nU = 200;
+            int nV = 200;
+
+            int indexOffset = vertices.Count;
+
+            for (int i = 0; i < nU; i++)
+            {
+                double u = (1 - (double)i / (nU - 1)) * Surface.Domain0().Min + (double)i / (nU - 1) * Surface.Domain0().Max;
+                for (int j = 0; j < nV; j++)
+                {
+                    double v = (1 - (double)j / (nV - 1)) * Surface.Domain1().Min + (double)j / (nV - 1) * Surface.Domain1().Max;
+
+                    var position = Surface.Evaluate(u, v);
+                    var normal = Surface.EvaluateNormal(u, v);
+                    //var color = (maxZ - minZ > 0) ?
+                    //    new SharpDX.Vector4((float)((position[2] - minZ) / (maxZ - minZ)), 0, (float)((maxZ - position[2]) / (maxZ - minZ)), 0) :
+                    //    new SharpDX.Vector4(0, 0, 1, 0);
+
+                    var c = (position[2] - minZ) / (maxZ - minZ);
+
+                    var color = (c < 0.1) ? SharpDX.Color.DarkBlue :
+                        (c < 0.2) ? SharpDX.Color.Blue :
+                        (c < 0.3) ? SharpDX.Color.LightBlue :
+                        (c < 0.4) ? SharpDX.Color.Turquoise :
+                        (c < 0.5) ? SharpDX.Color.Green :
+                        (c < 0.6) ? SharpDX.Color.YellowGreen :
+                        (c < 0.7) ? SharpDX.Color.Yellow :
+                        (c < 0.8) ? SharpDX.Color.Orange :
+                        (c < 0.9) ? SharpDX.Color.OrangeRed :
+                        (c <= 1.0) ? SharpDX.Color.Red :
+                        SharpDX.Color.DarkBlue;
+
+
+                    vertices.Add(new StaticColouredVertex
+                    {
+                        Position = new SharpDX.Vector3((float)position[0], (float)position[1], (float)position[2]),
+                        Normal = new SharpDX.Vector3((float)normal[0], (float)normal[1], (float)normal[2]),
+                        Color = color.ToVector4(),
+                    });
+                }
+            }
+
+            for (int i = 0; i < nU - 1; i++)
+            {
+                for (int j = 0; j < nV - 1; j++)
+                {
+                    int sw = i * nV + j + indexOffset;
+                    int se = sw + 1;
+                    int nw = sw + nV;
+                    int ne = nw + 1;
+                    indices.AddRange(new int[] { sw, se, ne, ne, nw, sw });
+                    indices.AddRange(new int[] { sw, ne, se, ne, sw, nw });
+                }
+            }
+
+            
+        }
+
+
+        void IDrawableLines.GetVertexAndIndexLists(ref List<StaticColouredVertex> vertices, ref List<int> indices)
         {
             if(DrawControlNet) AddControlNetEdges(ref vertices, ref indices);
             if(DrawKnotSpans) AddKnotSpanLines(ref vertices, ref indices);
@@ -213,6 +310,8 @@ namespace Luthier.Model.GraphicObjects
 
 
         }
+
+
         #endregion
     }
 
@@ -264,5 +363,11 @@ namespace Luthier.Model.GraphicObjects
             get => surface.Surface.GetCV(i, j);
             set => surface.Surface.SetCV(i, j, value);
         }
+    }
+
+    public enum SurfaceDrawingStyle
+    {
+        PhongShadedColour,
+        HeatmapColour
     }
 }

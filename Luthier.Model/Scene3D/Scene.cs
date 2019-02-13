@@ -35,9 +35,10 @@ namespace Luthier.Model.Scene3D
             Components = new List<SceneComponentBase>()
             {
                 new SceneComponentPhongShaded(Device, "../../HLSL_AmbientDiffuseSpecular.fx", Model, Camera, LightData),
+                new SceneComponentStaticColouredSurface(Device, "../../HLSL_Lines.fx", Model, Camera, LightData),
                 new SceneComponentTexture(Device, "../../HLSL_Textured_Unshaded.fx", Model, Camera, LightData),
                 new SceneComponentLines(Device, "../../HLSL_Lines.fx", Model, Camera, LightData),
-                new SceneComponentPoints(Device, "../../HLSL_Lines.fx", Model, Camera, LightData)
+                new SceneComponentPoints(Device, "../../HLSL_Lines.fx", Model, Camera, LightData),
             };
 
         }

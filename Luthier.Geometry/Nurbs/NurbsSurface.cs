@@ -240,7 +240,7 @@ namespace Luthier.Geometry.Nurbs
 
 
 
-        public NurbsSurface InsertKnot(int direction, double t)
+        public NurbsSurface InsertKnot(int direction, double[] t)
         {
            
             if (direction == 0)
@@ -280,14 +280,20 @@ namespace Luthier.Geometry.Nurbs
 
        
 
+        public NurbsSurface ScaleSurface(double scaleFactor)
+        {
+            var result = Clone();
+            result.controlPoints = controlPoints.Scale(scaleFactor);
+            return result;
+        }
+
 
         public NurbsSurface Clone()
         {
-            //var result = new NurbsSurface(Dimension, IsRational, Order0, Order1, CvCount0, CvCount1);
-            //Array.Copy(cvArray, result.cvArray, cvArray.Length);
             var result = new NurbsSurface(Dimension, IsRational, Order0, Order1, controlPoints.CvCount[0], controlPoints.CvCount[1]);
             Array.Copy(knotArray0, result.knotArray0, knotArray0.Length);
             Array.Copy(knotArray1, result.knotArray1, knotArray1.Length);
+            result.controlPoints = controlPoints.Clone();
             return result;
         }
     }

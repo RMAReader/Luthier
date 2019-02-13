@@ -68,6 +68,8 @@
     <Compile Include="Extensions\ArrayExtensions.cs" />
     <Compile Include="GraphicObjects\GraphicPointCloud.cs" />
     <Compile Include="GraphicObjects\Interfaces\IDrawablePoints.cs" />
+    <Compile Include="GraphicObjects\Interfaces\IDrawableStaticColouredSurface.cs" />
+    <Compile Include="GraphicObjects\Interfaces\IScalable.cs" />
     <Compile Include="Helpers\Convert.cs" />
     <Compile Include="GraphicObjectFactory\BSplineFactory.cs" />
     <Compile Include="GraphicObjectFactory\CompositePolygonFactory.cs" />
@@ -107,6 +109,7 @@
     <Compile Include="GraphicObjects\Interfaces\IDraggable.cs" />
     <Compile Include="KeyController3D\IKeyController3D.cs" />
     <Compile Include="KeyController3D\OrbitZoom.cs" />
+    <Compile Include="MouseController3D\CalibrateDistanceController3D.cs" />
     <Compile Include="MouseController3D\ControlPointDraggerBase.cs" />
     <Compile Include="MouseController3D\ControlPointDraggerNormalToPlane.cs" />
     <Compile Include="MouseController3D\ControlPointDraggerParallelToPlane.cs" />
@@ -155,6 +158,7 @@
     <Compile Include="Scene3D\SceneComponentLines.cs" />
     <Compile Include="Scene3D\SceneComponentPhongShaded.cs" />
     <Compile Include="Scene3D\SceneComponentPoints.cs" />
+    <Compile Include="Scene3D\SceneComponentStaticColouredSurface.cs" />
     <Compile Include="Scene3D\SceneComponentTexture.cs" />
     <Compile Include="Scene3D\SceneUpdater.cs" />
     <Compile Include="Settings.cs" />
@@ -171,6 +175,12 @@
     <Compile Include="ToolPathSpecification\CurveSpecification.cs" />
     <Compile Include="ToolPathSpecification\PocketSpecification.cs" />
     <Compile Include="ToolPathSpecification\ToolPathSpecificationBase.cs" />
+    <Compile Include="UIForms\CoordinateDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\CoordinateDialog.Designer.cs">
+      <DependentUpon>CoordinateDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="UIForms\LightingOptions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -200,6 +210,12 @@
     </Compile>
     <Compile Include="UIForms\RenderForm3d.Designer.cs">
       <DependentUpon>RenderForm3d.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIForms\ScaleModelDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\ScaleModelDialog.Designer.cs">
+      <DependentUpon>ScaleModelDialog.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -233,6 +249,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="UIForms\CoordinateDialog.resx">
+      <DependentUpon>CoordinateDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UIForms\LightingOptions.resx">
       <DependentUpon>LightingOptions.cs</DependentUpon>
     </EmbeddedResource>
@@ -247,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UIForms\RenderForm3d.resx">
       <DependentUpon>RenderForm3d.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIForms\ScaleModelDialog.resx">
+      <DependentUpon>ScaleModelDialog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

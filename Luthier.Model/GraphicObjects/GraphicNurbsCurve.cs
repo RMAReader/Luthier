@@ -8,11 +8,15 @@ using Luthier.Geometry.Nurbs;
 using SharpHelper;
 using System.Xml.Serialization;
 using Luthier.Model.Properties;
+using Luthier.Model.GraphicObjects.Interfaces;
 
 namespace Luthier.Model.GraphicObjects
 {
     [Serializable]
-    public class GraphicNurbsCurve : GraphicObjectBase, IDrawableLines
+    public class GraphicNurbsCurve : 
+        GraphicObjectBase, 
+        IDrawableLines,
+        IScalable
     {
         public NurbsCurve Curve { get; set; }
        
@@ -78,6 +82,13 @@ namespace Luthier.Model.GraphicObjects
 
 
         #endregion
+
+        public void ScaleObject(double scaleFactor)
+        {
+            Curve = Curve.Scale(scaleFactor);
+        }
+
+
     }
 
     public class DraggableCurveCV : IDraggable

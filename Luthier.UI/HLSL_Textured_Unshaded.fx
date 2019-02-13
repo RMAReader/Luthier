@@ -65,5 +65,5 @@ float4 PS(PS_IN input) : SV_Target
     //return float4(1, 1, 1, 1);
     float4 color = textureMap.Sample(textureSampler, input.texcoord);
 
-    return float4(color.x, color.y, color.z, 0.6);
+    return float4(color.x, color.y, color.z, 1.0);
 }

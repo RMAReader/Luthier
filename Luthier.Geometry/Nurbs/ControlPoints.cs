@@ -129,5 +129,33 @@ namespace Luthier.Geometry.Nurbs
         }
 
      
+        public ControlPoints Clone()
+        {
+            var result = new ControlPoints
+            {
+                Data = new double[Data.Length],
+                Dimension = Dimension,
+                DimensionStride = DimensionStride,
+                CvCount = new int[CvCount.Length],
+                CvStride = new int[CvCount.Length],
+            };
+
+            Array.Copy(Data, result.Data, Data.Length);
+            Array.Copy(CvCount, result.CvCount, CvCount.Length);
+            Array.Copy(CvStride, result.CvStride, CvStride.Length);
+
+            return result;
+        }
+
+
+        public ControlPoints Scale(double scaleFactor)
+        {
+            var result = Clone();
+
+            for (int i = 0; i < result.Data.Length; i++)
+                result.Data[i] *= scaleFactor;
+
+            return result;
+        }
     }
 }

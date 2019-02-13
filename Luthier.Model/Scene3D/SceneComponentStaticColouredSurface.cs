@@ -1,35 +1,33 @@
-﻿using Luthier.Model.GraphicObjects;
-using Luthier.Model.Presenter;
-using SharpDX;
+﻿using System;
 using SharpDX.Direct3D11;
 using SharpDX.DXGI;
 using SharpHelper;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SharpDX.Direct3D;
+using Luthier.Model.Presenter;
+using Luthier.Model.GraphicObjects;
+using Luthier.Model.GraphicObjects.Interfaces;
 
 namespace Luthier.Model.Scene3D
 {
-    class SceneComponentPhongShaded : SceneComponentBase
+    class SceneComponentStaticColouredSurface : SceneComponentBase
     {
-      
-        public SceneComponentPhongShaded(SharpDevice device, string shaderPath, IApplicationDocumentModel model, Camera camera, LightData lightData) : base(device, model, camera, lightData)
+        public SceneComponentStaticColouredSurface(SharpDevice device, string shaderPath, IApplicationDocumentModel model, Camera camera, LightData lightData) : base(device, model, camera, lightData)
         {
-         
+
             Shader = new SharpShader(device, shaderPath,
-               new SharpShaderDescription() { VertexShaderFunction = "VS", PixelShaderFunction = "PS" },
-               new InputElement[] {
+                  new SharpShaderDescription() { VertexShaderFunction = "VS", PixelShaderFunction = "PS" },
+                  new InputElement[] {
                         new InputElement("POSITION", 0, Format.R32G32B32_Float, 0, 0),
                         new InputElement("NORMAL", 0, Format.R32G32B32_Float, 12, 0),
-                        new InputElement("TANGENT", 0, Format.R32G32B32_Float, 24, 0),
-                        new InputElement("BINORMAL", 0, Format.R32G32B32_Float, 36, 0),
-                        new InputElement("TEXCOORD", 0, Format.R32G32_Float, 48, 0)
-               });
+                        new InputElement("COLOR", 0, Format.R32G32B32A32_Float, 24, 0)
+                  });
 
-            
         }
+
 
         public override void Draw()
         {
@@ -44,17 +42,16 @@ namespace Luthier.Model.Scene3D
 
             Device.DeviceContext.VertexShader.SetConstantBuffer(0, _constantBuffer);
             Device.DeviceContext.PixelShader.SetConstantBuffer(0, _constantBuffer);
-            
+
             Mesh?.Draw();
         }
 
-
         public override void UpdateMesh()
         {
-            var vertices = new List<TangentVertex>();
+            var vertices = new List<StaticColouredVertex>();
             var indices = new List<int>();
 
-            foreach (IDrawablePhongSurface obj in _model.Model.VisibleObjects().Where(x => x is IDrawablePhongSurface))
+            foreach (IDrawableStaticColouredSurface obj in _model.Model.VisibleObjects().Where(x => x is IDrawableStaticColouredSurface))
             {
                 obj.GetVertexAndIndexLists(ref vertices, ref indices);
             }
@@ -62,9 +59,8 @@ namespace Luthier.Model.Scene3D
             if (Mesh != null) Mesh.Dispose();
             if (vertices.Count > 0)
             {
-                Mesh = SharpMesh.Create<TangentVertex>(Device, vertices.ToArray(), indices.ToArray());
+                Mesh = SharpMesh.Create<StaticColouredVertex>(Device, vertices.ToArray(), indices.ToArray());
             }
         }
-
     }
 }

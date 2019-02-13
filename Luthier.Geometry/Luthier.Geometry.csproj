@@ -84,6 +84,7 @@
     <Compile Include="LineSegment2D.cs" />
     <Compile Include="LinkedLine2D.cs" />
     <Compile Include="MeshHelper.cs" />
+    <Compile Include="Nurbs\NurbsSurfaceJoiner.cs" />
     <Compile Include="Nurbs\NurbsSurfaceNearestPoint.cs" />
     <Compile Include="Optimization\INurbsCurveFitter.cs" />
     <Compile Include="Optimization\INurbsSurfaceFitter.cs" />

@@ -1,0 +1,714 @@
+<?xml version="1.0"?>
+<GraphicModelStorage>
+  <Objects>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="fbdd25d8-f558-44f9-a3c8-d537fe7aff9d" />
+      <Name>Belly</Name>
+      <IsVisible>true</IsVisible>
+      <Objects data="88b63cb2-5d20-40ff-91b9-e4650335461c" />
+      <Objects data="0bc58809-65dc-430f-8425-8b5c64d181cc" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="ef84f660-e61f-47cc-a3b2-88ecacb91348" />
+      <LayerKey data="3ae7b260-16ff-4e9e-900d-be88bf93ebdc" />
+      <Name>GraphicPlane1</Name>
+      <IsVisible>false</IsVisible>
+      <_origin>
+        <double>0</double>
+        <double>0</double>
+        <double>0</double>
+      </_origin>
+      <_normal>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_normal>
+      <_unitU>
+        <double>1</double>
+        <double>0</double>
+        <double>0</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>1</double>
+        <double>0</double>
+      </_unitV>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="edd284e1-539e-49f5-b90e-fd6e27f333a8" />
+      <LayerKey data="3ae7b260-16ff-4e9e-900d-be88bf93ebdc" />
+      <Name>GraphicImage3d1</Name>
+      <IsVisible>true</IsVisible>
+      <UpperLeft>
+        <double>196.59275817871094</double>
+        <double>126.16944885253906</double>
+        <double>2.4351200409000739E-05</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>195.99997585975413</double>
+        <double>-105.00525095066561</double>
+        <double>2.4351200750061253E-05</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>-193.999987141657</double>
+        <double>-104.00518509704438</double>
+        <double>4.1893361071743129E-05</double>
+      </LowerRight>
+      <Normal>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </Normal>
+      <FileName>..\..\..\TestData\Messiah Stradivarious\Belly profile.bmp</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="3ae7b260-16ff-4e9e-900d-be88bf93ebdc" />
+      <LayerKey data="0bc58809-65dc-430f-8425-8b5c64d181cc" />
+      <Name>Outline</Name>
+      <IsVisible>true</IsVisible>
+      <Objects data="edd284e1-539e-49f5-b90e-fd6e27f333a8" />
+      <Objects data="ef84f660-e61f-47cc-a3b2-88ecacb91348" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="98adda25-5cc2-4140-b93b-aab01e134ab4" />
+      <LayerKey data="068ef393-68de-4ad1-9895-78c0acfe2b56" />
+      <Name>GraphicPlane2</Name>
+      <IsVisible>false</IsVisible>
+      <_origin>
+        <double>6.4218631816067244</double>
+        <double>13.101890900049959</double>
+        <double>1.0298423688936964E-05</double>
+      </_origin>
+      <_normal>
+        <double>0.0056509537379982426</double>
+        <double>0.99998403323345464</double>
+        <double>-0</double>
+      </_normal>
+      <_unitU>
+        <double>-0.99998403323345464</double>
+        <double>0.0056509537379982426</double>
+        <double>-6.3415133029848033E-08</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_unitV>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="9ceb43b1-55cd-460b-8011-d5674fb62850" />
+      <LayerKey data="068ef393-68de-4ad1-9895-78c0acfe2b56" />
+      <Name>GraphicImage3d2</Name>
+      <IsVisible>true</IsVisible>
+      <UpperLeft>
+        <double>193.18379211425781</double>
+        <double>12.046394348144531</double>
+        <double>17.269895553588867</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>193.25817922048788</double>
+        <double>12.045973663661883</double>
+        <double>-6.754324170403553</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>-174.36386187062857</double>
+        <double>14.123527745214688</double>
+        <double>-7.8926943238135223</double>
+      </LowerRight>
+      <Normal>
+        <double>0.0056509537379982426</double>
+        <double>0.99998403323345464</double>
+        <double>-0</double>
+      </Normal>
+      <FileName>..\..\..\TestData\Messiah Stradivarious\Belly Arch Long.bmp</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="068ef393-68de-4ad1-9895-78c0acfe2b56" />
+      <LayerKey data="0bc58809-65dc-430f-8425-8b5c64d181cc" />
+      <Name>Long Arch</Name>
+      <IsVisible>true</IsVisible>
+      <Objects data="9ceb43b1-55cd-460b-8011-d5674fb62850" />
+      <Objects data="98adda25-5cc2-4140-b93b-aab01e134ab4" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="a64d77ee-cf00-4828-8b8a-d5651a9103eb" />
+      <LayerKey data="2c5b0597-4178-4735-84c7-81b0b59ca6a0" />
+      <Name>GraphicPlane3</Name>
+      <IsVisible>false</IsVisible>
+      <_origin>
+        <double>25.725772513784669</double>
+        <double>13.242176665930025</double>
+        <double>1.1272996772504484E-05</double>
+      </_origin>
+      <_normal>
+        <double>-0.999990975584531</double>
+        <double>0.0042483819858539409</double>
+        <double>0</double>
+      </_normal>
+      <_unitU>
+        <double>-0.0042483819858539409</double>
+        <double>-0.999990975584531</double>
+        <double>1.5589556576656259E-08</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_unitV>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="2c5b0597-4178-4735-84c7-81b0b59ca6a0" />
+      <LayerKey data="0bc58809-65dc-430f-8425-8b5c64d181cc" />
+      <Name>Arch C</Name>
+      <IsVisible>true</IsVisible>
+      <Objects data="a64d77ee-cf00-4828-8b8a-d5651a9103eb" />
+      <Objects data="2d7cb6df-4b6a-4f8b-9676-c38220cd6f77" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="2d7cb6df-4b6a-4f8b-9676-c38220cd6f77" />
+      <LayerKey data="2c5b0597-4178-4735-84c7-81b0b59ca6a0" />
+      <Name>GraphicImage3d3</Name>
+      <IsVisible>true</IsVisible>
+      <UpperLeft>
+        <double>25.978118896484375</double>
+        <double>72.6519546508789</double>
+        <double>12.489778518676758</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>25.978666903350373</double>
+        <double>72.781004653637</double>
+        <double>-6.6780051888539553</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>25.492536508205831</double>
+        <double>-41.651531258785425</double>
+        <double>-7.44846644597235</double>
+      </LowerRight>
+      <Normal>
+        <double>-0.999990975584531</double>
+        <double>0.0042483819858539409</double>
+        <double>0</double>
+      </Normal>
+      <FileName>..\..\..\TestData\Messiah Stradivarious\Belly Arch C.bmp</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsSurface" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="88b63cb2-5d20-40ff-91b9-e4650335461c" />
+      <LayerKey data="fbdd25d8-f558-44f9-a3c8-d537fe7aff9d" />
+      <Name>GraphicNurbsSurface1</Name>
+      <IsVisible>false</IsVisible>
+      <Surface>
+        <Dimension>3</Dimension>
+        <IsRational>false</IsRational>
+        <Order0>3</Order0>
+        <Order1>3</Order1>
+        <knotArray0>
+          <double>0</double>
+          <double>0</double>
+          <double>0</double>
+          <double>0.16666666666666666</double>
+          <double>0.33333333333333331</double>
+          <double>0.5</double>
+          <double>0.66666666666666663</double>
+          <double>0.83333333333333337</double>
+          <double>1</double>
+          <double>1</double>
+          <double>1</double>
+        </knotArray0>
+        <knotArray1>
+          <double>0</double>
+          <double>0</double>
+          <double>0</double>
+          <double>0.16666666666666666</double>
+          <double>0.33333333333333331</double>
+          <double>0.5</double>
+          <double>0.66666666666666663</double>
+          <double>0.83333333333333337</double>
+          <double>1</double>
+          <double>1</double>
+          <double>1</double>
+        </knotArray1>
+        <controlPoints>
+          <Data>
+            <double>65.092272086151951</double>
+            <double>65.038162923174752</double>
+            <double>56.463115170338156</double>
+            <double>28.691430130234593</double>
+            <double>-1.7355726630360095</double>
+            <double>-17.761967755091717</double>
+            <double>-25.787882587085434</double>
+            <double>-24.189953160564386</double>
+            <double>89.936493230606743</double>
+            <double>79.706058239423072</double>
+            <double>69.19416712117453</double>
+            <double>28.595000679334646</double>
+            <double>-44.02215204584332</double>
+            <double>-50.725333864376267</double>
+            <double>-41.822482446118144</double>
+            <double>-44.787496088013086</double>
+            <double>143.73271635474214</double>
+            <double>134.87844625636325</double>
+            <double>106.77079804046096</double>
+            <double>29.047888847660118</double>
+            <double>-63.963603903641967</double>
+            <double>-82.864220650634621</double>
+            <double>-98.487108877121614</double>
+            <double>-114.09874965512006</double>
+            <double>185.78378766588509</double>
+            <double>150.22647882534358</double>
+            <double>122.12533953077063</double>
+            <double>29.502252333339072</double>
+            <double>-68.590080134688748</double>
+            <double>-101.65979694479793</double>
+            <double>-137.53299727057595</double>
+            <double>-168.7916887843258</double>
+            <double>182.8731875135785</double>
+            <double>150.9003924266996</double>
+            <double>120.95731130662402</double>
+            <double>29.964775280154754</double>
+            <double>-69.3322347386906</double>
+            <double>-101.77879071899025</double>
+            <double>-140.73861085976535</double>
+            <double>-166.67966658052811</double>
+            <double>131.91303416232984</double>
+            <double>119.65134404879497</double>
+            <double>102.50977558886173</double>
+            <double>30.422019520775279</double>
+            <double>-63.720142898617027</double>
+            <double>-85.980091521984548</double>
+            <double>-103.05092281114537</double>
+            <double>-116.37476953849114</double>
+            <double>79.7390496009996</double>
+            <double>74.2432582029003</double>
+            <double>64.999351397214184</double>
+            <double>30.965744559693121</double>
+            <double>-45.9523272667751</double>
+            <double>-48.97641053171936</double>
+            <double>-44.716677830107827</double>
+            <double>-43.623327238998577</double>
+            <double>64.85732211619748</double>
+            <double>65.452100008010973</double>
+            <double>52.454636675365066</double>
+            <double>31.657728951370288</double>
+            <double>-0.92455783389645774</double>
+            <double>-16.064396335637127</double>
+            <double>-23.742877618985318</double>
+            <double>-21.856532022416019</double>
+            <double>92.2791795091427</double>
+            <double>78.255864314935536</double>
+            <double>70.452274311108837</double>
+            <double>63.657120007365833</double>
+            <double>66.247858938476952</double>
+            <double>74.714864705492417</double>
+            <double>87.170661849096732</double>
+            <double>100.38124321578965</double>
+            <double>86.011441730122129</double>
+            <double>80.2230348778063</double>
+            <double>68.46812320390282</double>
+            <double>50.000698920988128</double>
+            <double>50.425231414544783</double>
+            <double>68.915957747763031</double>
+            <double>84.718144242344849</double>
+            <double>95.997102155924424</double>
+            <double>97.609394981718808</double>
+            <double>53.900696324025105</double>
+            <double>35.434947675203389</double>
+            <double>35.80417564499124</double>
+            <double>34.673050181277105</double>
+            <double>55.218069821654005</double>
+            <double>88.1834287194578</double>
+            <double>118.34703120157087</double>
+            <double>47.748672508791024</double>
+            <double>37.058596735650738</double>
+            <double>19.445132277955572</double>
+            <double>21.314278455239716</double>
+            <double>20.24507856367547</double>
+            <double>28.552932356273772</double>
+            <double>51.432536771741766</double>
+            <double>57.248365399075666</double>
+            <double>-36.124901128459896</double>
+            <double>-14.359522123667963</double>
+            <double>2.6614582593951197</double>
+            <double>4.3993394040293783</double>
+            <double>3.9924655043268689</double>
+            <double>-2.32462607050444</double>
+            <double>-22.139111279496447</double>
+            <double>-32.333368710744253</double>
+            <double>-70.268736077360217</double>
+            <double>-37.185401331442293</double>
+            <double>-8.7457120459366973</double>
+            <double>-10.837639172488089</double>
+            <double>-9.7600843736676453</double>
+            <double>-27.366543028181564</double>
+            <double>-61.7749870102739</double>
+            <double>-96.379523287735182</double>
+            <double>-55.196502528755907</double>
+            <double>-40.80244835598392</double>
+            <double>-27.531624960537862</double>
+            <double>-23.368031267914112</double>
+            <double>-22.695850634503365</double>
+            <double>-36.764072610035257</double>
+            <double>-53.153154387668486</double>
+            <double>-67.626145914822146</double>
+            <double>-64.522604987980458</double>
+            <double>-52.928373115097834</double>
+            <double>-38.048301173123164</double>
+            <double>-35.33876764946806</double>
+            <double>-41.653853162962633</double>
+            <double>-48.17660804261687</double>
+            <double>-61.080883373985166</double>
+            <double>-78.201488143934611</double>
+            <double>4.6996404289928364</double>
+            <double>1.3062137954311481</double>
+            <double>4.3914069639859434</double>
+            <double>4.0693166378578667</double>
+            <double>4.63168805959221</double>
+            <double>5.1312195410148433</double>
+            <double>4.5894983121058743</double>
+            <double>7.5145513257187844</double>
+            <double>3.6349642606054466</double>
+            <double>3.586713013810467</double>
+            <double>0.041145393233520622</double>
+            <double>9.8371890354920382</double>
+            <double>10.032187558186905</double>
+            <double>7.6505369991834584</double>
+            <double>-5.2532961376527965E-06</double>
+            <double>-2.1287395810531962E-05</double>
+            <double>1.8564405223742142E-05</double>
+            <double>6.753617753929575E-06</double>
+            <double>6.744535214816775</double>
+            <double>13.736420867367443</double>
+            <double>13.329578245861455</double>
+            <double>12.18787967535684</double>
+            <double>6.5530709105910177</double>
+            <double>7.5952382320797511</double>
+            <double>8.4077697124484985E-06</double>
+            <double>-6.2673635738974554E-06</double>
+            <double>14.000010808041395</double>
+            <double>16.069906154020266</double>
+            <double>13.999968582446769</double>
+            <double>9.9507624278597</double>
+            <double>4.0420711072910933</double>
+            <double>0.83950868930804745</double>
+            <double>1.7730893745238063E-05</double>
+            <double>8.8016324752970831E-06</double>
+            <double>14.000004981231541</double>
+            <double>15.83954220580064</double>
+            <double>14.999986775749221</double>
+            <double>10.111532948367312</double>
+            <double>1.3546250471121368</double>
+            <double>2.6229143324933091</double>
+            <double>-6.8451495280896779E-06</double>
+            <double>4.5094650147348148E-06</double>
+            <double>8.043273370659783</double>
+            <double>12.39095444272531</double>
+            <double>13.506342742460163</double>
+            <double>10.710053134178807</double>
+            <double>4.6184243143140833</double>
+            <double>4.3077925512127564</double>
+            <double>-2.7085225127621015E-05</double>
+            <double>-0.11618289714439811</double>
+            <double>3.5403547923464345</double>
+            <double>7.9745537173116148</double>
+            <double>10.173960923989398</double>
+            <double>5.9337578239507138</double>
+            <double>1.2129160345465451</double>
+            <double>-1.402066763489529E-05</double>
+            <double>4.1592588647759641</double>
+            <double>2.1483941563679565</double>
+            <double>4.9119530276819745</double>
+            <double>4.636206682823655</double>
+            <double>1.7650997837274289</double>
+            <double>2.8720389219840214</double>
+            <double>2.0315070555178423</double>
+            <double>3.5606018807986644</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>8</int>
+            <int>8</int>
+          </CvCount>
+          <DimensionStride>64</DimensionStride>
+          <CvStride>
+            <int>1</int>
+            <int>8</int>
+          </CvStride>
+        </controlPoints>
+      </Surface>
+      <DrawControlNet>false</DrawControlNet>
+      <DrawKnotSpans>false</DrawKnotSpans>
+      <DrawSurface>true</DrawSurface>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="24e75ae1-0797-4f8c-820f-74a91053850c" />
+      <LayerKey data="e67ac8be-8551-42b7-a3b2-735f623ce756" />
+      <Name>GraphicPlane4</Name>
+      <IsVisible>false</IsVisible>
+      <_origin>
+        <double>64.610110992238049</double>
+        <double>14.094313431811408</double>
+        <double>5.7102151629351283E-07</double>
+      </_origin>
+      <_normal>
+        <double>-0.99999790520559939</double>
+        <double>-0.00204684743267725</double>
+        <double>0</double>
+      </_normal>
+      <_unitU>
+        <double>0.00204684743267725</double>
+        <double>-0.99999790520559939</double>
+        <double>-1.6544020498450817E-08</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_unitV>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="e67ac8be-8551-42b7-a3b2-735f623ce756" />
+      <LayerKey data="0bc58809-65dc-430f-8425-8b5c64d181cc" />
+      <Name>Arch B</Name>
+      <IsVisible>true</IsVisible>
+      <Objects data="24e75ae1-0797-4f8c-820f-74a91053850c" />
+      <Objects data="e77fde57-e588-4310-a600-109f94222b5d" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="e77fde57-e588-4310-a600-109f94222b5d" />
+      <LayerKey data="e67ac8be-8551-42b7-a3b2-735f623ce756" />
+      <Name>GraphicImage3d4</Name>
+      <IsVisible>true</IsVisible>
+      <UpperLeft>
+        <double>64.435028076171875</double>
+        <double>99.607315063476562</double>
+        <double>11.36419677734375</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>64.4348178461687</double>
+        <double>99.713038155747455</double>
+        <double>-5.6974566455939364</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>64.7777634425006</double>
+        <double>-67.541553908077077</double>
+        <double>-6.7338068712767551</double>
+      </LowerRight>
+      <Normal>
+        <double>-0.99999790520559939</double>
+        <double>-0.00204684743267725</double>
+        <double>0</double>
+      </Normal>
+      <FileName>..\..\..\TestData\Messiah Stradivarious\Belly Arch B.bmp</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="0bc58809-65dc-430f-8425-8b5c64d181cc" />
+      <LayerKey data="fbdd25d8-f558-44f9-a3c8-d537fe7aff9d" />
+      <Name>Template</Name>
+      <IsVisible>true</IsVisible>
+      <Objects data="3ae7b260-16ff-4e9e-900d-be88bf93ebdc" />
+      <Objects data="068ef393-68de-4ad1-9895-78c0acfe2b56" />
+      <Objects data="2c5b0597-4178-4735-84c7-81b0b59ca6a0" />
+      <Objects data="e67ac8be-8551-42b7-a3b2-735f623ce756" />
+      <Objects data="e1315850-cf99-4803-ab3a-bebb752411de" />
+      <Objects data="5286d1e1-be67-43bd-a37d-49dad6869072" />
+      <Objects data="68e8fa49-31ac-41fc-a668-3f34748bf5bb" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="95e303fd-cd23-4f7a-8c97-8eac0da36838" />
+      <LayerKey data="e1315850-cf99-4803-ab3a-bebb752411de" />
+      <Name>GraphicPlane5</Name>
+      <IsVisible>false</IsVisible>
+      <_origin>
+        <double>-23.38001232716249</double>
+        <double>13.176012457685722</double>
+        <double>-1.2536151601238998E-05</double>
+      </_origin>
+      <_normal>
+        <double>-0.99998864551862621</double>
+        <double>-0.0047653786650738959</double>
+        <double>0</double>
+      </_normal>
+      <_unitU>
+        <double>0.0047653786650738959</double>
+        <double>-0.99998864551862621</double>
+        <double>-4.4324189098887541E-08</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_unitV>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="78eff045-f41a-48ae-9dcf-84af9b57cc70" />
+      <LayerKey data="e1315850-cf99-4803-ab3a-bebb752411de" />
+      <Name>GraphicImage3d5</Name>
+      <IsVisible>true</IsVisible>
+      <UpperLeft>
+        <double>-23.849733352661133</double>
+        <double>111.745361328125</double>
+        <double>12.855039596557617</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>-23.850383564963266</double>
+        <double>111.88183560862227</double>
+        <double>-6.4561503328962075</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>-22.930536122050626</double>
+        <double>-81.164550533293124</double>
+        <double>-7.8204360657869216</double>
+      </LowerRight>
+      <Normal>
+        <double>-0.99998864551862621</double>
+        <double>-0.0047653786650738959</double>
+        <double>0</double>
+      </Normal>
+      <FileName>..\..\..\TestData\Messiah Stradivarious\Belly Arch D.bmp</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="e1315850-cf99-4803-ab3a-bebb752411de" />
+      <LayerKey data="0bc58809-65dc-430f-8425-8b5c64d181cc" />
+      <Name>Arch D</Name>
+      <IsVisible>true</IsVisible>
+      <Objects data="78eff045-f41a-48ae-9dcf-84af9b57cc70" />
+      <Objects data="95e303fd-cd23-4f7a-8c97-8eac0da36838" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="e3ef2f10-3d46-4895-bf03-ce673b2fc6b5" />
+      <LayerKey data="5286d1e1-be67-43bd-a37d-49dad6869072" />
+      <Name>GraphicPlane6</Name>
+      <IsVisible>false</IsVisible>
+      <_origin>
+        <double>-97.344669374888241</double>
+        <double>12.006046602816404</double>
+        <double>6.4709696090403668E-06</double>
+      </_origin>
+      <_normal>
+        <double>-0.999993587686348</double>
+        <double>0.0035811431395488215</double>
+        <double>0</double>
+      </_normal>
+      <_unitU>
+        <double>-0.0035811431395488215</double>
+        <double>-0.999993587686348</double>
+        <double>-4.66643641191135E-09</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_unitV>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="cfe5db2f-e2b6-47b8-a90c-93c5a446a3e6" />
+      <LayerKey data="5286d1e1-be67-43bd-a37d-49dad6869072" />
+      <Name>GraphicImage3d6</Name>
+      <IsVisible>true</IsVisible>
+      <UpperLeft>
+        <double>-96.954139709472656</double>
+        <double>121.07927703857422</double>
+        <double>9.1783905029296875</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>-96.953902592955558</double>
+        <double>121.1461509053448</double>
+        <double>-6.69070489556168</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>-97.724546745601785</double>
+        <double>-94.0731038362459</double>
+        <double>-7.5976902042387096</double>
+      </LowerRight>
+      <Normal>
+        <double>-0.999993587686348</double>
+        <double>0.0035811431395488215</double>
+        <double>0</double>
+      </Normal>
+      <FileName>..\..\..\TestData\Messiah Stradivarious\Belly Arch E.bmp</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="5286d1e1-be67-43bd-a37d-49dad6869072" />
+      <LayerKey data="0bc58809-65dc-430f-8425-8b5c64d181cc" />
+      <Name>Arch E</Name>
+      <IsVisible>true</IsVisible>
+      <Objects data="cfe5db2f-e2b6-47b8-a90c-93c5a446a3e6" />
+      <Objects data="e3ef2f10-3d46-4895-bf03-ce673b2fc6b5" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="bd216d81-810d-4116-be21-05193457c7de" />
+      <LayerKey data="68e8fa49-31ac-41fc-a668-3f34748bf5bb" />
+      <Name>GraphicPlane7</Name>
+      <IsVisible>false</IsVisible>
+      <_origin>
+        <double>123.80981834414524</double>
+        <double>13.675516611753153</double>
+        <double>7.5369137277903064E-06</double>
+      </_origin>
+      <_normal>
+        <double>-0.99998884119561182</double>
+        <double>0.0047241384659842045</double>
+        <double>0</double>
+      </_normal>
+      <_unitU>
+        <double>-0.0047241384659842045</double>
+        <double>-0.99998884119561182</double>
+        <double>-1.0845160436074153E-07</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_unitV>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="68e8fa49-31ac-41fc-a668-3f34748bf5bb" />
+      <LayerKey data="0bc58809-65dc-430f-8425-8b5c64d181cc" />
+      <Name>Arch A</Name>
+      <IsVisible>true</IsVisible>
+      <Objects data="bd216d81-810d-4116-be21-05193457c7de" />
+      <Objects data="45ca252d-ec3b-4dfc-88f2-bb96317525d0" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="45ca252d-ec3b-4dfc-88f2-bb96317525d0" />
+      <LayerKey data="68e8fa49-31ac-41fc-a668-3f34748bf5bb" />
+      <Name>GraphicImage3d7</Name>
+      <IsVisible>true</IsVisible>
+      <UpperLeft>
+        <double>124.24210357666016</double>
+        <double>105.15777587890625</double>
+        <double>7.9325456619262695</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>124.24229133302529</double>
+        <double>105.1978102592542</double>
+        <double>-6.8025255618545453</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>123.41153616890375</double>
+        <double>-70.67246589819041</double>
+        <double>-7.280302262459827</double>
+      </LowerRight>
+      <Normal>
+        <double>-0.99998884119561182</double>
+        <double>0.0047241384659842045</double>
+        <double>0</double>
+      </Normal>
+      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\Messiah Stradivarious\Belly Arch A.bmp</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+  </Objects>
+  <Name>NewModel</Name>
+</GraphicModelStorage>

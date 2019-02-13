@@ -56,7 +56,7 @@ PS_IN VS(VS_IN IN)
     OUT.WorldNormal = mul(WorldView, IN.Normal).xyz;
     
     OUT.LightVec = mul(WorldView, LightDirection).xyz;
-    
+        
     OUT.HPosition = mul(WorldViewProj, float4(IN.Position, 1));
 	
     return OUT;

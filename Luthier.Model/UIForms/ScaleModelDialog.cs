@@ -10,19 +10,19 @@ using System.Windows.Forms;
 
 namespace Luthier.Model.UIForms
 {
-    public partial class NewBSplineSurface : Form
+    public partial class ScaleModelDialog : Form
     {
-        public NewBSplineSurface()
+        public ScaleModelDialog()
         {
             InitializeComponent();
         }
 
-        public int NumberOfControlPointsU => (int)numericUpDownUControlPoints.Value;
-        public int NumberOfControlPointsV => (int)numericUpDownVControlPoints.Value;
-
-        private void button1_Click(object sender, EventArgs e)
+        public double GetResult()
         {
+            if (Double.TryParse(textBox1.Text, out double result))
+                return result;
 
+            return 1;
         }
     }
 }

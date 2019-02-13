@@ -35,9 +35,10 @@ namespace Luthier.Model.Scene3D
 
             Shader.Apply();
 
-            Device.UpdateAllStates();
             Device.SetDefaultBlendState();
             Device.SetWireframeRasterState();
+            Device.SetDepthStateDepthDisabled();
+            Device.UpdateAllStates();
 
             Device.DeviceContext.VertexShader.SetConstantBuffer(0, _constantBuffer);
             Device.DeviceContext.PixelShader.SetConstantBuffer(0, _constantBuffer);

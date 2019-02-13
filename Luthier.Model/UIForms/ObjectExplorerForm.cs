@@ -373,9 +373,13 @@ namespace Luthier.Model.UIForms
             var surface = mySelectedNode.Tag as GraphicNurbsSurface;
             if (surface != null)
             {
-                var domain = surface.Surface.Domain0();
-                surface.Surface = surface.Surface.InsertKnot(0, 0.5 * domain.Min + 0.5 * domain.Max);
+                //var domain = surface.Surface.Domain0();
+                //surface.Surface = surface.Surface.InsertKnot(0, 0.5 * domain.Min + 0.5 * domain.Max);
 
+                var middleKnot = surface.Surface.knotArray0[surface.Surface.knotArray0.Length / 2];
+
+                surface.Surface = surface.Surface.InsertKnot(0, new double[] { middleKnot });
+                
                 _model.Model.HasChanged = true;
             }
         }

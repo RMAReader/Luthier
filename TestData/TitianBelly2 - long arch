@@ -1,0 +1,673 @@
+<?xml version="1.0"?>
+<GraphicModelStorage>
+  <Objects>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="cdc8f1c2-39ef-438f-a4a4-d852f2c6f728" />
+      <Name>Template</Name>
+      <IsVisible>false</IsVisible>
+      <Objects data="e13d77f5-1807-405e-b95b-e254b7e07226" />
+      <Objects data="1a243e17-5cc5-4609-8ea9-75f359151cd0" />
+      <Objects data="1baea981-7e48-41fa-a1e3-784eacc1be6f" />
+      <Objects data="f8592281-138a-413b-b236-c68a0bb816c8" />
+      <Objects data="6573a3e0-fad2-475e-b950-8030c2086579" />
+      <Objects data="9e8a3e65-5157-4591-a6d2-cb878593e4ca" />
+      <Objects data="b8a8b6f5-4514-4c16-878b-b6850a253f99" />
+      <Objects data="ffc5e02c-dcf6-4432-a2e1-f213416cfe0b" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="d8f3242d-ce5b-4b82-81ad-a5586327fe11" />
+      <LayerKey data="e13d77f5-1807-405e-b95b-e254b7e07226" />
+      <Name>GraphicPlane1</Name>
+      <IsVisible>true</IsVisible>
+      <_origin>
+        <double>0</double>
+        <double>0</double>
+        <double>0</double>
+      </_origin>
+      <_normal>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_normal>
+      <_unitU>
+        <double>1</double>
+        <double>0</double>
+        <double>0</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>1</double>
+        <double>0</double>
+      </_unitV>
+      <IsSelected>true</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="236cef4e-2bd9-4919-9b4a-9fa73f74036e" />
+      <LayerKey data="e13d77f5-1807-405e-b95b-e254b7e07226" />
+      <Name>GraphicImage3d1</Name>
+      <IsVisible>true</IsVisible>
+      <UpperLeft>
+        <double>203.70120239257813</double>
+        <double>119.27381896972656</double>
+        <double>0.00015090977831277996</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>197.97716842566788</double>
+        <double>-97.317702779995969</double>
+        <double>0.00015090978013176937</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>-200.610475452494</double>
+        <double>-86.78391143460631</double>
+        <double>9.0346143849728833E-05</double>
+      </LowerRight>
+      <Normal>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </Normal>
+      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\TitianStradScroll\Ribs outline.png</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="e13d77f5-1807-405e-b95b-e254b7e07226" />
+      <LayerKey data="cdc8f1c2-39ef-438f-a4a4-d852f2c6f728" />
+      <Name>Ribs Outline</Name>
+      <IsVisible>false</IsVisible>
+      <Objects data="d8f3242d-ce5b-4b82-81ad-a5586327fe11" />
+      <Objects data="236cef4e-2bd9-4919-9b4a-9fa73f74036e" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="98b3f132-b7d1-44c9-a2a5-8fb770309949" />
+      <LayerKey data="1a243e17-5cc5-4609-8ea9-75f359151cd0" />
+      <Name>GraphicPlane2</Name>
+      <IsVisible>false</IsVisible>
+      <_origin>
+        <double>0.11969504714032553</double>
+        <double>20.229630038865665</double>
+        <double>1.9257309986642213E-06</double>
+      </_origin>
+      <_normal>
+        <double>4.37113864689843E-08</double>
+        <double>0.999999999999999</double>
+        <double>-0</double>
+      </_normal>
+      <_unitU>
+        <double>-0.999999999999999</double>
+        <double>4.37113864689843E-08</double>
+        <double>0</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_unitV>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="caf0fe84-63ee-46f0-9c7d-82244f025cdd" />
+      <LayerKey data="1a243e17-5cc5-4609-8ea9-75f359151cd0" />
+      <Name>GraphicImage3d2</Name>
+      <IsVisible>true</IsVisible>
+      <UpperLeft>
+        <double>190.73782348632813</double>
+        <double>20.230052947998047</double>
+        <double>49.514572143554688</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>190.80902165157676</double>
+        <double>20.230052688133682</double>
+        <double>-52.094026439395236</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>-195.89423766468508</double>
+        <double>20.235413548789751</double>
+        <double>-52.365003935609437</double>
+      </LowerRight>
+      <Normal>
+        <double>4.37113864689843E-08</double>
+        <double>0.999999999999999</double>
+        <double>-0</double>
+      </Normal>
+      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\TitianStradScroll\Arch length.png</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="1a243e17-5cc5-4609-8ea9-75f359151cd0" />
+      <LayerKey data="cdc8f1c2-39ef-438f-a4a4-d852f2c6f728" />
+      <Name>Long Arch</Name>
+      <IsVisible>false</IsVisible>
+      <Objects data="98b3f132-b7d1-44c9-a2a5-8fb770309949" />
+      <Objects data="caf0fe84-63ee-46f0-9c7d-82244f025cdd" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="b1214a8e-4653-4e55-b756-7f89aa993a3b" />
+      <LayerKey data="1baea981-7e48-41fa-a1e3-784eacc1be6f" />
+      <Name>GraphicPlane3</Name>
+      <IsVisible>false</IsVisible>
+      <_origin>
+        <double>20.049962268352445</double>
+        <double>19.981582583493775</double>
+        <double>-4.8075497716126847E-07</double>
+      </_origin>
+      <_normal>
+        <double>-0.999992972137169</double>
+        <double>-0.00374909005434406</double>
+        <double>0</double>
+      </_normal>
+      <_unitU>
+        <double>0.00374909005434406</double>
+        <double>-0.999992972137169</double>
+        <double>1.887403136264939E-07</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_unitV>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="1baea981-7e48-41fa-a1e3-784eacc1be6f" />
+      <LayerKey data="cdc8f1c2-39ef-438f-a4a4-d852f2c6f728" />
+      <Name>Arch C-Bout</Name>
+      <IsVisible>false</IsVisible>
+      <Objects data="b1214a8e-4653-4e55-b756-7f89aa993a3b" />
+      <Objects data="f2f4f5ef-d019-437c-8f41-c0624ba4536e" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="f2f4f5ef-d019-437c-8f41-c0624ba4536e" />
+      <LayerKey data="1baea981-7e48-41fa-a1e3-784eacc1be6f" />
+      <Name>GraphicImage3d3</Name>
+      <IsVisible>false</IsVisible>
+      <UpperLeft>
+        <double>20.272365570068359</double>
+        <double>-39.335403442382812</double>
+        <double>15.967151641845703</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>20.276153298745982</double>
+        <double>-40.34577719845845</double>
+        <double>-54.177007336536263</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>19.834637646970208</double>
+        <double>77.457884138781708</double>
+        <double>-55.873898061755867</double>
+      </LowerRight>
+      <Normal>
+        <double>-0.999992972137169</double>
+        <double>-0.00374909005434406</double>
+        <double>0</double>
+      </Normal>
+      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\TitianStradScroll\Arch centre bout.png</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="d6f5bcd5-60c5-4988-a493-a776c745b384" />
+      <LayerKey data="f8592281-138a-413b-b236-c68a0bb816c8" />
+      <Name>GraphicPlane4</Name>
+      <IsVisible>false</IsVisible>
+      <_origin>
+        <double>112.70579799310032</double>
+        <double>19.869473327994292</double>
+        <double>-7.6847443608585309E-07</double>
+      </_origin>
+      <_normal>
+        <double>-0.999999765466026</double>
+        <double>-0.000684885304732277</double>
+        <double>0</double>
+      </_normal>
+      <_unitU>
+        <double>0.000684885304732277</double>
+        <double>-0.999999765466026</double>
+        <double>-1.1056759803897016E-07</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_unitV>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="2db401e9-a0e0-4bb1-91be-f86d8324675c" />
+      <LayerKey data="f8592281-138a-413b-b236-c68a0bb816c8" />
+      <Name>GraphicImage3d4</Name>
+      <IsVisible>false</IsVisible>
+      <UpperLeft>
+        <double>112.76789855957031</double>
+        <double>-70.803962707519531</double>
+        <double>13.614967346191406</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>112.7685754439007</double>
+        <double>-71.7954181848012</double>
+        <double>-51.000756539887163</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>112.64450870906971</double>
+        <double>108.7204416421241</double>
+        <double>-53.770570613735778</double>
+      </LowerRight>
+      <Normal>
+        <double>-0.999999765466026</double>
+        <double>-0.000684885304732277</double>
+        <double>0</double>
+      </Normal>
+      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\TitianStradScroll\Arch upper bout.png</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="f8592281-138a-413b-b236-c68a0bb816c8" />
+      <LayerKey data="cdc8f1c2-39ef-438f-a4a4-d852f2c6f728" />
+      <Name>Arch Upper Bout</Name>
+      <IsVisible>false</IsVisible>
+      <Objects data="d6f5bcd5-60c5-4988-a493-a776c745b384" />
+      <Objects data="2db401e9-a0e0-4bb1-91be-f86d8324675c" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="9d29f40d-75f6-4b73-8cff-17b5a6ecc7e6" />
+      <LayerKey data="6573a3e0-fad2-475e-b950-8030c2086579" />
+      <Name>GraphicPlane5</Name>
+      <IsVisible>false</IsVisible>
+      <_origin>
+        <double>-114.93381503273207</double>
+        <double>20.104676967467718</double>
+        <double>1.325185945688645E-05</double>
+      </_origin>
+      <_normal>
+        <double>-0.99999988557731956</double>
+        <double>-0.00047837782092785753</double>
+        <double>0</double>
+      </_normal>
+      <_unitU>
+        <double>0.00047837782092785753</double>
+        <double>-0.99999988557731956</double>
+        <double>9.0188845272309546E-08</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_unitV>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="d2015797-bec0-4ee1-8768-de328cee3067" />
+      <LayerKey data="6573a3e0-fad2-475e-b950-8030c2086579" />
+      <Name>GraphicImage3d5</Name>
+      <IsVisible>false</IsVisible>
+      <UpperLeft>
+        <double>-114.88055419921875</double>
+        <double>-91.151252746582031</double>
+        <double>15.965293884277344</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>-114.87995001677896</double>
+        <double>-92.4033470325511</double>
+        <double>-51.731361546962937</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>-114.98617645120066</double>
+        <double>129.79777859568705</double>
+        <double>-55.84112425210315</double>
+      </LowerRight>
+      <Normal>
+        <double>-0.99999988557731956</double>
+        <double>-0.00047837782092785753</double>
+        <double>0</double>
+      </Normal>
+      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\TitianStradScroll\Arch lower bout.png</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="6573a3e0-fad2-475e-b950-8030c2086579" />
+      <LayerKey data="cdc8f1c2-39ef-438f-a4a4-d852f2c6f728" />
+      <Name>Arch Lower Bout</Name>
+      <IsVisible>false</IsVisible>
+      <Objects data="9d29f40d-75f6-4b73-8cff-17b5a6ecc7e6" />
+      <Objects data="d2015797-bec0-4ee1-8768-de328cee3067" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="fd7bc0c9-aa5e-4ad6-9890-75814ab240b3" />
+      <LayerKey data="9e8a3e65-5157-4591-a6d2-cb878593e4ca" />
+      <Name>GraphicPlane6</Name>
+      <IsVisible>false</IsVisible>
+      <_origin>
+        <double>67.613054936557617</double>
+        <double>20.055382807255658</double>
+        <double>-9.8834447328499664E-06</double>
+      </_origin>
+      <_normal>
+        <double>-0.999993765380702</double>
+        <double>-0.0035311754011585561</double>
+        <double>0</double>
+      </_normal>
+      <_unitU>
+        <double>0.0035311754011585561</double>
+        <double>-0.999993765380702</double>
+        <double>-1.0776104697149195E-07</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_unitV>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="ef993139-6105-44ea-9a0b-606fa99ed76e" />
+      <LayerKey data="9e8a3e65-5157-4591-a6d2-cb878593e4ca" />
+      <Name>GraphicImage3d6</Name>
+      <IsVisible>false</IsVisible>
+      <UpperLeft>
+        <double>67.908538818359375</double>
+        <double>-63.658340454101562</double>
+        <double>15.547645568847656</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>67.911844463269716</double>
+        <double>-64.5932505587172</double>
+        <double>-55.6605383363894</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>67.325157868956353</double>
+        <double>101.64788313207293</double>
+        <double>-57.843197121701166</double>
+      </LowerRight>
+      <Normal>
+        <double>-0.999993765380702</double>
+        <double>-0.0035311754011585561</double>
+        <double>0</double>
+      </Normal>
+      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\TitianStradScroll\Arch upper corners.png</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="9e8a3e65-5157-4591-a6d2-cb878593e4ca" />
+      <LayerKey data="cdc8f1c2-39ef-438f-a4a4-d852f2c6f728" />
+      <Name>Arch Upper Corners</Name>
+      <IsVisible>false</IsVisible>
+      <Objects data="fd7bc0c9-aa5e-4ad6-9890-75814ab240b3" />
+      <Objects data="ef993139-6105-44ea-9a0b-606fa99ed76e" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="4d5557e7-2c7f-457b-b993-2a42573c1edd" />
+      <LayerKey data="b8a8b6f5-4514-4c16-878b-b6850a253f99" />
+      <Name>GraphicImage3d7</Name>
+      <IsVisible>false</IsVisible>
+      <UpperLeft>
+        <double>40.734718322753906</double>
+        <double>-83.8291015625</double>
+        <double>0.00025640975218266249</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>-78.322765713592</double>
+        <double>-85.096321111269688</double>
+        <double>0.00025640973777285581</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>-80.52889054145605</double>
+        <double>122.17258029776569</double>
+        <double>-0.0004328640778510362</double>
+      </LowerRight>
+      <Normal>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </Normal>
+      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\TitianStradScroll\F holes.png</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="b8a8b6f5-4514-4c16-878b-b6850a253f99" />
+      <LayerKey data="cdc8f1c2-39ef-438f-a4a4-d852f2c6f728" />
+      <Name>F Holes</Name>
+      <IsVisible>false</IsVisible>
+      <Objects data="4d5557e7-2c7f-457b-b993-2a42573c1edd" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="66e56481-0639-46e8-800c-181adeca0c72" />
+      <LayerKey data="ffc5e02c-dcf6-4432-a2e1-f213416cfe0b" />
+      <Name>GraphicPlane7</Name>
+      <IsVisible>false</IsVisible>
+      <_origin>
+        <double>-59.825090764473785</double>
+        <double>20.068904195695183</double>
+        <double>-7.5196274877953329E-06</double>
+      </_origin>
+      <_normal>
+        <double>-0.99999949101662011</double>
+        <double>-0.0010089432588762189</double>
+        <double>0</double>
+      </_normal>
+      <_unitU>
+        <double>0.0010089432588762189</double>
+        <double>-0.99999949101662011</double>
+        <double>-3.2818968880023882E-08</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_unitV>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="f9b5cdc5-9fe7-420c-b6e2-1e74850a25e6" />
+      <LayerKey data="ffc5e02c-dcf6-4432-a2e1-f213416cfe0b" />
+      <Name>GraphicImage3d8</Name>
+      <IsVisible>false</IsVisible>
+      <UpperLeft>
+        <double>-59.726531982421875</double>
+        <double>-77.666854858398438</double>
+        <double>15.802642822265625</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>-59.725941429053876</double>
+        <double>-78.254291079796587</double>
+        <double>-55.49002734155053</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>-59.920356921095305</double>
+        <double>114.75749553771156</double>
+        <double>-57.08038703172808</double>
+      </LowerRight>
+      <Normal>
+        <double>-0.99999949101662011</double>
+        <double>-0.0010089432588762189</double>
+        <double>0</double>
+      </Normal>
+      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\TitianStradScroll\Arch below f-holes.png</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="ffc5e02c-dcf6-4432-a2e1-f213416cfe0b" />
+      <LayerKey data="cdc8f1c2-39ef-438f-a4a4-d852f2c6f728" />
+      <Name>Arch Below F Holes</Name>
+      <IsVisible>false</IsVisible>
+      <Objects data="66e56481-0639-46e8-800c-181adeca0c72" />
+      <Objects data="f9b5cdc5-9fe7-420c-b6e2-1e74850a25e6" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsSurface" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="5cf2f4c8-80e6-41be-9bdc-0f1e6e685c05" />
+      <LayerKey data="e314f67e-0da1-424a-a862-d7bfd9e14b59" />
+      <Name>GraphicNurbsSurface1</Name>
+      <IsVisible>true</IsVisible>
+      <Surface>
+        <Dimension>3</Dimension>
+        <IsRational>false</IsRational>
+        <Order0>3</Order0>
+        <Order1>3</Order1>
+        <knotArray0>
+          <double>0</double>
+          <double>0</double>
+          <double>0</double>
+          <double>0.16666666666666666</double>
+          <double>0.33333333333333331</double>
+          <double>0.5</double>
+          <double>0.66666666666666663</double>
+          <double>0.83333333333333337</double>
+          <double>1</double>
+          <double>1</double>
+          <double>1</double>
+        </knotArray0>
+        <knotArray1>
+          <double>0</double>
+          <double>0</double>
+          <double>0</double>
+          <double>0.33333333333333331</double>
+          <double>0.66666666666666663</double>
+          <double>1</double>
+          <double>1</double>
+          <double>1</double>
+        </knotArray1>
+        <controlPoints>
+          <Data>
+            <double>180.2462473270075</double>
+            <double>168.00617223330585</double>
+            <double>120.3157101764232</double>
+            <double>56.725110592729507</double>
+            <double>-65.524077884311453</double>
+            <double>-132.9476891502548</double>
+            <double>-177.67769937499648</double>
+            <double>-186.58120498604546</double>
+            <double>180.14095077152945</double>
+            <double>165.96212933808135</double>
+            <double>122.86867877329772</double>
+            <double>60.2047997855287</double>
+            <double>-29.474736264500791</double>
+            <double>-81.8786580235084</double>
+            <double>-134.28257978251594</double>
+            <double>-186.68650154152351</double>
+            <double>180.0356542160514</double>
+            <double>127.63173245704385</double>
+            <double>102.87898152140701</double>
+            <double>60.168475770078089</double>
+            <double>-29.580032819978854</double>
+            <double>-81.983954578986442</double>
+            <double>-134.387876337994</double>
+            <double>-186.79179809700156</double>
+            <double>179.93035766057335</double>
+            <double>127.5264359015658</double>
+            <double>86.234876047355073</double>
+            <double>52.085861200879648</double>
+            <double>-29.685329375456888</double>
+            <double>-82.08925113446449</double>
+            <double>-134.49317289347204</double>
+            <double>-186.89709465247961</double>
+            <double>179.8250611050953</double>
+            <double>127.42113934608776</double>
+            <double>75.017217587080182</double>
+            <double>22.613295828072609</double>
+            <double>-29.790625930934937</double>
+            <double>-82.19454768994251</double>
+            <double>-134.59846944895008</double>
+            <double>-187.00239120795766</double>
+            <double>20.192896308628946</double>
+            <double>20.192900647934692</double>
+            <double>20.192905990006352</double>
+            <double>20.192903068120813</double>
+            <double>20.192908845137282</double>
+            <double>20.192901631089626</double>
+            <double>20.192900218727857</double>
+            <double>20.192896308628946</double>
+            <double>-2.3864599342871671</double>
+            <double>-1.7248276020995235</double>
+            <double>-1.4410639201813069</double>
+            <double>12.232927408013154</double>
+            <double>-2.3864599342871671</double>
+            <double>-2.3864599342871671</double>
+            <double>-2.3864599342871671</double>
+            <double>-2.3864599342871671</double>
+            <double>-24.96581617720328</double>
+            <double>-24.96581617720328</double>
+            <double>-21.303601329653446</double>
+            <double>-7.28717856475015</double>
+            <double>-24.96581617720328</double>
+            <double>-24.96581617720328</double>
+            <double>-24.96581617720328</double>
+            <double>-24.96581617720328</double>
+            <double>-47.545172420119393</double>
+            <double>-47.545172420119393</double>
+            <double>-38.433447983405173</double>
+            <double>-30.606681662206213</double>
+            <double>-47.545172420119393</double>
+            <double>-47.545172420119393</double>
+            <double>-47.545172420119393</double>
+            <double>-47.545172420119393</double>
+            <double>-70.1245286630355</double>
+            <double>-70.1245286630355</double>
+            <double>-70.1245286630355</double>
+            <double>-70.1245286630355</double>
+            <double>-70.1245286630355</double>
+            <double>-70.1245286630355</double>
+            <double>-70.1245286630355</double>
+            <double>-70.1245286630355</double>
+            <double>1.9018547504856542E-05</double>
+            <double>-0.0696189733596384</double>
+            <double>8.9953131275782</double>
+            <double>12.024137608972254</double>
+            <double>12.024137609234714</double>
+            <double>8.4866583952591981</double>
+            <double>-0.06961084253282479</double>
+            <double>1.9018547504856542E-05</double>
+            <double>7.6226617267138863E-06</double>
+            <double>-1.1893293731191079E-05</double>
+            <double>-8.498913501853167E-06</double>
+            <double>-1.0482984436066545E-05</double>
+            <double>7.6226617267138863E-06</double>
+            <double>7.6226617267138863E-06</double>
+            <double>7.6226617267138846E-06</double>
+            <double>7.6226617267138863E-06</double>
+            <double>-3.7732240514287696E-06</double>
+            <double>-3.7732240514287696E-06</double>
+            <double>-1.9995407171791157E-05</double>
+            <double>-7.1708644497903151E-06</double>
+            <double>-3.7732240514287696E-06</double>
+            <double>-3.7732240514287696E-06</double>
+            <double>-3.7732240514287713E-06</double>
+            <double>-3.7732240514287696E-06</double>
+            <double>-1.5169109829571426E-05</double>
+            <double>-1.5169109829571424E-05</double>
+            <double>-8.4941739544319717E-06</double>
+            <double>-6.3409514723389293E-06</double>
+            <double>-1.5169109829571426E-05</double>
+            <double>-1.5169109829571426E-05</double>
+            <double>-1.5169109829571427E-05</double>
+            <double>-1.5169109829571426E-05</double>
+            <double>-2.6564995607714081E-05</double>
+            <double>-2.6564995607714081E-05</double>
+            <double>-2.6564995607714081E-05</double>
+            <double>-2.6564995607714081E-05</double>
+            <double>-2.6564995607714081E-05</double>
+            <double>-2.6564995607714081E-05</double>
+            <double>-2.6564995607714081E-05</double>
+            <double>-2.6564995607714081E-05</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>8</int>
+            <int>5</int>
+          </CvCount>
+          <DimensionStride>40</DimensionStride>
+          <CvStride>
+            <int>1</int>
+            <int>8</int>
+          </CvStride>
+        </controlPoints>
+      </Surface>
+      <DrawControlNet>true</DrawControlNet>
+      <DrawKnotSpans>false</DrawKnotSpans>
+      <DrawSurface>true</DrawSurface>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="e314f67e-0da1-424a-a862-d7bfd9e14b59" />
+      <Name>Belly</Name>
+      <IsVisible>true</IsVisible>
+      <Objects data="5cf2f4c8-80e6-41be-9bdc-0f1e6e685c05" />
+    </GraphicObjectBase>
+  </Objects>
+  <Name>NewModel</Name>
+</GraphicModelStorage>

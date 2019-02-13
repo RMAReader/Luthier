@@ -47,11 +47,11 @@ namespace Luthier.Model.Scene3D
 
                 Shader.Apply();
 
-                Device.UpdateAllStates();
                 Device.SetDefaultBlendState();
                 Device.SetDefaultRasterState();
-
                 Device.SetBlend(BlendOperation.Add, BlendOption.SourceAlpha, BlendOption.InverseSourceAlpha);
+                Device.UpdateAllStates();
+
                 Device.DeviceContext.VertexShader.SetConstantBuffer(0, _constantBuffer);
                 Device.DeviceContext.PixelShader.SetConstantBuffer(0, _constantBuffer);
                             

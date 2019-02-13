@@ -71,6 +71,8 @@ namespace Luthier.Model.Presenter
             form.DoSelectCanvasToolStripMenuItem_Click = DoSelectCanvasToolStripMenuItem_Click;
             form.DoObjectExplorerToolStripMenuItem_Click = DoObjectExplorerToolStripMenuItem_Click;
             form.DoPanToolStripMenuItem_Click = DoPanToolStripMenuItem_Click;
+            form.DoScaleModelStripMenuItem_Click = DoScaleModelStripMenuItem_Click;
+            form.DoSurfaceDrawingStyleToolStripMenuItem_Click = DoSurfaceDrawingStyleToolStripMenuItem_Click;
 
             _camera.ViewWidth = form.ClientSize.Width;
             _camera.ViewHeight = form.ClientSize.Height;
@@ -271,6 +273,43 @@ namespace Luthier.Model.Presenter
             SetMouseController(new PanZoomMouseWheelController());
         }
 
+        private void DoScaleModelStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_selectPlaneController.Plane != null)
+            {
+                var dialog = new ScaleModelDialog();
+                dialog.StartPosition = FormStartPosition.CenterParent;
+                dialog.ShowDialog();
+                if (dialog.DialogResult == DialogResult.OK)
+                {
+                    SetMouseController(new CalibrateDistanceController3D(dialog.GetResult()));
+                }
+            }
+            else
+            {
+                MessageBox.Show("Must set reference plane before calibrating scale of model.");
+            }
+        }
+
+
+        private SurfaceDrawingStyle _surfaceDrawingStyle = SurfaceDrawingStyle.PhongShadedColour;
+        private void DoSurfaceDrawingStyleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_surfaceDrawingStyle == SurfaceDrawingStyle.PhongShadedColour)
+            {
+                _surfaceDrawingStyle = SurfaceDrawingStyle.HeatmapColour;
+            }
+            else if (_surfaceDrawingStyle == SurfaceDrawingStyle.HeatmapColour)
+            {
+                _surfaceDrawingStyle = SurfaceDrawingStyle.PhongShadedColour;
+            }
+            
+            foreach (GraphicNurbsSurface s in model.Model.Where(x => x is GraphicNurbsSurface))
+            {
+                s.SurfaceDrawingStyle = _surfaceDrawingStyle;
+            }
+            model.Model.HasChanged = true;
+        }
 
 
         public void ShowRenderForm()
