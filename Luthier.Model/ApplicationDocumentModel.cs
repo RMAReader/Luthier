@@ -48,7 +48,32 @@ namespace Luthier.Model
             
             model.Add(layer);
             model.Add(plane);
-            
+
+            var s1 = new GraphicNurbsSurface(3, false, 3, 3, 3, 3);
+            var s2 = new GraphicNurbsSurface(3, false, 3, 3, 3, 3);
+            s1.Surface.knotArray0 = Knot.CreateUniformClosed(2, 6).data.ToArray();
+            s1.Surface.knotArray1 = Knot.CreateUniformClosed(2, 6).data.ToArray();
+            s2.Surface.knotArray0 = Knot.CreateUniformClosed(2, 6).data.ToArray();
+            s2.Surface.knotArray1 = Knot.CreateUniformClosed(2, 6).data.ToArray();
+            for (int i=0; i<3; i++)
+            {
+                for(int j=0; j<3; j++)
+                {
+                    s1.Surface.SetCV(i, j, new double[] { i + j*j, j, 0 });
+                    s2.Surface.SetCV(i, j, new double[] { i-3, j, 0 });
+                }
+            }
+            model.Add(s1);
+            model.Add(s2);
+            s1.Surface=s1.Surface.InsertKnot(1, new double[] { 0.5 });
+            s2.Surface=s2.Surface.InsertKnot(1, new double[] { 0.333333333, 0.66666666 });
+
+            var s3 = new GraphicNurbsSurface(3, false, 3, 3, 3, 3);
+            s3.Surface = NurbsSurfaceJoiner.CreateBridgingSurface(
+                new NurbsSurfaceEdge(s1.Surface, EnumSurfaceEdge.North), 
+                new NurbsSurfaceEdge(s2.Surface, EnumSurfaceEdge.South));
+
+            model.Add(s3);
             //GetFittedSurface(out PointCloud cloud);
             //for(int i=0; i<_fittingHistory.Count; i++)
             //{
@@ -195,7 +220,7 @@ namespace Luthier.Model
 
         private void Fitter_IterationCompleteEvent(object sender, IterationCompleteEventArgs e)
         {
-            var newSurface = _fittingHistory.Last().Clone();
+            var newSurface = _fittingHistory.Last().DeepCopy();
             Array.Copy(e.Parameters, newSurface.controlPoints.Data, e.Parameters.Length);
             _fittingHistory.Add(newSurface);
         }

@@ -16,51 +16,31 @@ namespace Luthier.Geometry.Nurbs
     {
 
 
-        public NurbsSurface CreateBridgingSurface(NurbsSurface s1, EnumSurfaceEdge edge1, NurbsSurface s2, EnumSurfaceEdge edge2)
+        public static NurbsSurface CreateBridgingSurface(NurbsSurfaceEdge edge1, NurbsSurfaceEdge edge2)
         {
-
-            var knot1 = GetKnot(s1, edge1);
-            var knot2 = GetKnot(s2, edge2);
-
-            VerifyKnotIsNormalised(knot1);
-            VerifyKnotIsNormalised(knot2);
-
-            var newKnots1 = new List<double>();
-            var newKnots2 = new List<double>();
-
-            int i = 0;
-            int j = 0;
-            while(i < knot1.Length || j < knot2.Length)
-            {
-                if(knot1[i] == knot2[j])
-                {
-                    i++;
-                    j++;
-                }
-                else if(knot1[i] < knot2[j])
-                {
-                    newKnots2.Add(knot1[i]);
-                    i++;
-                }
-                else if(knot1[i] > knot2[j])
-                {
-                    newKnots1.Add(knot2[j]);
-                    j++;
-                }
-            }
-
-            var s1Compatible = s1.InsertKnot(Direction(edge1), newKnots1.ToArray());
-            var s2Compatible = s2.InsertKnot(Direction(edge2), newKnots2.ToArray());
-
+            TryGetCompatibleEdges(edge1, edge2, out NurbsSurfaceEdge top, out NurbsSurfaceEdge bottom);
+           
             int cvCountbridge = 3;
 
-            var result = new NurbsSurface(s1.Dimension, s1.IsRational, s1.Order0, s1.Order1, s1Compatible.controlPoints.CvCount[Direction(edge1)], cvCountbridge);
+            var result = new NurbsSurface(top.Surface.Dimension, 
+                top.Surface.IsRational, 
+                top.Order, 
+                top.Order, 
+                top.CvCount, 
+                cvCountbridge);
 
-            double[] cv = new double[s1.Dimension];
-            for(i = 0; i < result.CvCount0; i++)
+            Array.Copy(top.Knot, result.knotArray0, top.Knot.Length);
+            result.knotArray1 = Knot.CreateUniformClosed(2, cvCountbridge + top.Order).data.ToArray();
+
+            for(int i = 0; i < result.CvCount0; i++)
             {
-                s1Compatible.controlPoints.
-                result.controlPoints.SetCV()
+                var topCv = top.GetCV(i);
+                var bottomCv = bottom.GetCV(i);
+                var midCv = topCv.Add(bottomCv).Multiply(0.5);
+
+                result.SetCV(i, 0, bottomCv);
+                result.SetCV(i,1, midCv);
+                result.SetCV(i,2, topCv);
             }
 
 
@@ -75,30 +55,94 @@ namespace Luthier.Geometry.Nurbs
                 throw new ArgumentException();
         }
 
-
-
-        private double[] GetKnot(NurbsSurface s, EnumSurfaceEdge edge)
+        private static bool TryGetCompatibleEdges(NurbsSurfaceEdge e1, NurbsSurfaceEdge e2, out NurbsSurfaceEdge c1, out NurbsSurfaceEdge c2)
         {
-            int d = Direction(edge);
+            var newKnots1 = new List<double>();
+            var newKnots2 = new List<double>();
 
-            return d == 0 ? s.knotArray0 :
-                d == 1 ? s.knotArray1 :
-                null;
+            int i = 0;
+            int j = 0;
+            while (i < e1.Knot.Length || j < e2.Knot.Length)
+            {
+                if (e1.Knot[i] == e2.Knot[j])
+                {
+                    i++;
+                    j++;
+                }
+                else if (e1.Knot[i] < e2.Knot[j])
+                {
+                    newKnots2.Add(e1.Knot[i]);
+                    i++;
+                }
+                else if (e1.Knot[i] > e2.Knot[j])
+                {
+                    newKnots1.Add(e2.Knot[j]);
+                    j++;
+                }
+            }
 
+            c1 = e1.DeepCopy();
+            c1.InsertKnots(newKnots1.ToArray());
+
+            c2 = e2.DeepCopy();
+            c2.InsertKnots(newKnots2.ToArray());
+
+            return true;
         }
 
 
-        private int Direction(EnumSurfaceEdge edge)
+    }
+
+
+    public class NurbsSurfaceEdge
+    {
+        public NurbsSurface Surface { get; private set; }
+
+        public EnumSurfaceEdge Edge { get; private set; }
+
+        public int Direction => (Edge == EnumSurfaceEdge.North || Edge == EnumSurfaceEdge.South) ? 1 : 0;
+
+        public double[] Knot => Direction == 0 ? Surface.knotArray0 : Surface.knotArray1;
+
+        public int Order => Direction == 0 ? Surface.Order0 : Surface.Order1;
+
+        public int CvCount => Surface.controlPoints.CvCount[Direction];
+        
+        public double[] GetCV(int i)
         {
-            if (edge == EnumSurfaceEdge.North || edge == EnumSurfaceEdge.South)
-            {
-                return 0;
-            }
-            if (edge == EnumSurfaceEdge.East || edge == EnumSurfaceEdge.West)
-            {
-                return 1;
-            }
-            return -1;
+            if(Edge == EnumSurfaceEdge.North)
+                return Surface.GetCV(0, i);
+
+            if (Edge == EnumSurfaceEdge.South)
+                return Surface.GetCV(CvCount - 1, i);
+
+            if (Edge == EnumSurfaceEdge.West)
+                return Surface.GetCV(i, 0);
+
+            if (Edge == EnumSurfaceEdge.East)
+                return Surface.GetCV(i, CvCount - 1);
+
+            return null;
+        }
+
+        public void InsertKnots(double[] newKnots)
+        {
+            Surface = Surface.InsertKnot(Direction, newKnots);
+        }
+
+        public NurbsSurfaceEdge DeepCopy()
+        {
+            return new NurbsSurfaceEdge(Surface.DeepCopy(), Edge);
+        }
+
+
+
+
+
+        public NurbsSurfaceEdge(NurbsSurface surface, EnumSurfaceEdge edge)
+        {
+            Surface = surface;
+            Edge = edge;
         }
     }
 }

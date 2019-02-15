@@ -245,7 +245,7 @@ namespace Luthier.Geometry.Nurbs
            
             if (direction == 0)
             {
-                var result = new NurbsSurface(Dimension, IsRational, Order0, Order1, controlPoints.CvCount[0] + 1, controlPoints.CvCount[1]);
+                var result = new NurbsSurface(Dimension, IsRational, Order0, Order1, controlPoints.CvCount[0] + t.Length, controlPoints.CvCount[1]);
                 result.knotArray0 = Knot.Insert(knotArray0, t);
                 Array.Copy(knotArray1, result.knotArray1, result.knotArray1.Length);
                 for (int d = 0; d < controlPoints.Dimension; d++)
@@ -261,7 +261,7 @@ namespace Luthier.Geometry.Nurbs
             }
             else if (direction == 1)
             {
-                var result = new NurbsSurface(Dimension, IsRational, Order0, Order1, controlPoints.CvCount[0], controlPoints.CvCount[1] + 1);
+                var result = new NurbsSurface(Dimension, IsRational, Order0, Order1, controlPoints.CvCount[0], controlPoints.CvCount[1] + t.Length);
                 Array.Copy(knotArray0, result.knotArray0, result.knotArray0.Length);
                 result.knotArray1 = Knot.Insert(knotArray1, t);
                 for (int d = 0; d < controlPoints.Dimension; d++)
@@ -282,13 +282,13 @@ namespace Luthier.Geometry.Nurbs
 
         public NurbsSurface ScaleSurface(double scaleFactor)
         {
-            var result = Clone();
+            var result = DeepCopy();
             result.controlPoints = controlPoints.Scale(scaleFactor);
             return result;
         }
 
 
-        public NurbsSurface Clone()
+        public NurbsSurface DeepCopy()
         {
             var result = new NurbsSurface(Dimension, IsRational, Order0, Order1, controlPoints.CvCount[0], controlPoints.CvCount[1]);
             Array.Copy(knotArray0, result.knotArray0, knotArray0.Length);
