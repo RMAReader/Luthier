@@ -27,11 +27,19 @@ namespace Luthier.Model.GraphicObjects
         {
             Surface = new NurbsSurface(dimension, bIsRational, order0, order1, cv_count0, cv_count1);
             DrawControlNet = false;
-            DrawKnotSpans = false;
+            DrawKnotSpans = true;
             DrawSurface = true;
             SurfaceDrawingStyle = SurfaceDrawingStyle.PhongShadedColour;
         }
-        
+        public GraphicNurbsSurface(NurbsSurface surface)
+        {
+            Surface = surface;
+            DrawControlNet = false;
+            DrawKnotSpans = true;
+            DrawSurface = true;
+            SurfaceDrawingStyle = SurfaceDrawingStyle.PhongShadedColour;
+        }
+
         public IEnumerable<IDraggable2d> GetDraggableObjects2d()
         {
             if (!DrawControlNet) yield break;
@@ -53,6 +61,28 @@ namespace Luthier.Model.GraphicObjects
                 {
                     yield return new DraggableSurfaceCV(this, i, j);
                 }
+            }
+        }
+
+        public IEnumerable<SelectableKnot> GetEdgeKnots()
+        {
+            if (!DrawKnotSpans) yield break;
+
+            int minI = Knot.MinIndex(Surface.knotArray0, Surface.Order0);
+            int maxI = Knot.MaxIndex(Surface.knotArray0, Surface.Order0);
+            int minJ = Knot.MinIndex(Surface.knotArray1, Surface.Order1);
+            int maxJ = Knot.MaxIndex(Surface.knotArray1, Surface.Order1);
+
+            for (int i = minI; i <= maxI; i++)
+            {
+                yield return new SelectableKnot(this, i, minJ);
+                yield return new SelectableKnot(this, i, maxJ);
+            }
+
+            for (int j = minJ + 1; j < maxJ; j++)
+            {
+                yield return new SelectableKnot(this, minI, j);
+                yield return new SelectableKnot(this, maxI, j);
             }
         }
 
@@ -362,6 +392,20 @@ namespace Luthier.Model.GraphicObjects
         {
             get => surface.Surface.GetCV(i, j);
             set => surface.Surface.SetCV(i, j, value);
+        }
+    }
+
+    public class SelectableKnot
+    {
+        public GraphicNurbsSurface Surface { get; private set; }
+        public int[] KnotIndices { get; private set; }
+        public double[] Parameters => new double[] { Surface.Surface.knotArray0[KnotIndices[0]], Surface.Surface.knotArray1[KnotIndices[1]] };
+        public double[] Coords => Surface.Surface.Evaluate(Parameters[0], Parameters[1]);
+
+        public SelectableKnot(GraphicNurbsSurface surface, int i, int j)
+        {
+            Surface = surface;
+            KnotIndices = new int[] { i, j };
         }
     }
 

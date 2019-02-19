@@ -14,7 +14,11 @@ namespace Luthier.Geometry.Nurbs
         public double minParam { get => data[p]; }
         public double maxParam { get => data[data.Count-1-p]; }
         public int size { get => data.Count; }
-        
+
+        public static int MinIndex(double[] knot, int order) => order - 1;
+        public static int MaxIndex(double[] knot, int order) => knot.Length - order;
+
+
         public static Knot CreateUniformOpen(int p, int n)
         {
             Knot output = new Knot();
@@ -72,6 +76,11 @@ namespace Luthier.Geometry.Nurbs
         //rescales knot vector so parameter is in range [0, 1]
         public void Normalise() => data = data.Select(x => x = (x - minParam) / (maxParam - minParam)).ToList();
         
+        public static double[] Reverse(double[] knot)
+        {
+            return knot.Reverse().ToArray();
+        }
+
 
         public Knot DeepCopy()
         {

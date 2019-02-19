@@ -73,6 +73,7 @@ namespace Luthier.Model.Presenter
             form.DoPanToolStripMenuItem_Click = DoPanToolStripMenuItem_Click;
             form.DoScaleModelStripMenuItem_Click = DoScaleModelStripMenuItem_Click;
             form.DoSurfaceDrawingStyleToolStripMenuItem_Click = DoSurfaceDrawingStyleToolStripMenuItem_Click;
+            form.DoCreateJoiningSurfaceToolStripMenuItem_Click = DoCreateJoiningSurfaceToolStripMenuItem_Click;
 
             _camera.ViewWidth = form.ClientSize.Width;
             _camera.ViewHeight = form.ClientSize.Height;
@@ -310,6 +311,18 @@ namespace Luthier.Model.Presenter
             }
             model.Model.HasChanged = true;
         }
+
+
+        private KnotSelectorController _knotSelectorController;
+        private void DoCreateJoiningSurfaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(_knotSelectorController == null)
+            {
+                _knotSelectorController = new KnotSelectorController();
+            }
+            SetMouseController(_knotSelectorController);
+        }
+
 
 
         public void ShowRenderForm()

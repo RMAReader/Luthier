@@ -46,9 +46,10 @@
             this.lightingOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.objectExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.surfaceDrawingStyleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scaleModelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.surfaceDrawingStyleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createJoiningSurfaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -197,10 +198,18 @@
             this.panToolStripMenuItem.Text = "Pan...";
             this.panToolStripMenuItem.Click += new System.EventHandler(this.panToolStripMenuItem_Click);
             // 
+            // surfaceDrawingStyleToolStripMenuItem
+            // 
+            this.surfaceDrawingStyleToolStripMenuItem.Name = "surfaceDrawingStyleToolStripMenuItem";
+            this.surfaceDrawingStyleToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.surfaceDrawingStyleToolStripMenuItem.Text = "Surface drawing style...";
+            this.surfaceDrawingStyleToolStripMenuItem.Click += new System.EventHandler(this.surfaceDrawingStyleToolStripMenuItem_Click);
+            // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.scaleModelToolStripMenuItem});
+            this.scaleModelToolStripMenuItem,
+            this.createJoiningSurfaceToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
@@ -208,16 +217,16 @@
             // scaleModelToolStripMenuItem
             // 
             this.scaleModelToolStripMenuItem.Name = "scaleModelToolStripMenuItem";
-            this.scaleModelToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.scaleModelToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.scaleModelToolStripMenuItem.Text = "Scale model...";
             this.scaleModelToolStripMenuItem.Click += new System.EventHandler(this.scaleModelToolStripMenuItem_Click);
             // 
-            // surfaceDrawingStyleToolStripMenuItem
+            // createJoiningSurfaceToolStripMenuItem
             // 
-            this.surfaceDrawingStyleToolStripMenuItem.Name = "surfaceDrawingStyleToolStripMenuItem";
-            this.surfaceDrawingStyleToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.surfaceDrawingStyleToolStripMenuItem.Text = "Surface drawing style...";
-            this.surfaceDrawingStyleToolStripMenuItem.Click += new System.EventHandler(this.surfaceDrawingStyleToolStripMenuItem_Click);
+            this.createJoiningSurfaceToolStripMenuItem.Name = "createJoiningSurfaceToolStripMenuItem";
+            this.createJoiningSurfaceToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.createJoiningSurfaceToolStripMenuItem.Text = "Create joining surface...";
+            this.createJoiningSurfaceToolStripMenuItem.Click += new System.EventHandler(this.createJoiningSurfaceToolStripMenuItem_Click);
             // 
             // RenderForm3d
             // 
@@ -259,5 +268,6 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scaleModelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem surfaceDrawingStyleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createJoiningSurfaceToolStripMenuItem;
     }
 }

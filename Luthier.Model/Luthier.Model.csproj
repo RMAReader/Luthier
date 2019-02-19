@@ -116,6 +116,7 @@
     <Compile Include="MouseController3D\EditImageController3d.cs" />
     <Compile Include="MouseController3D\InsertImage.cs" />
     <Compile Include="MouseController3D\InsertPlane.cs" />
+    <Compile Include="MouseController3D\KnotSelectorController.cs" />
     <Compile Include="MouseController3D\PanZoomMouseWheelController.cs" />
     <Compile Include="MouseController3D\SelectPlaneController.cs" />
     <Compile Include="MouseController3D\SketchObjectBase.cs" />

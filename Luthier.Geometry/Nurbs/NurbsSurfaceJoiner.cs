@@ -43,6 +43,15 @@ namespace Luthier.Geometry.Nurbs
                 result.SetCV(i,2, topCv);
             }
 
+            var t = 0.5 * (top.Domain.Min + top.Domain.Max);
+            var topNormal = top.EvaluateNormal(t);
+            var resultNormal = result.EvaluateNormal(result.Domain1().Max, t);
+
+            if(topNormal.DotProduct(resultNormal) < 0)
+            {
+                //flip paraity of result
+                result = result.ReverseKnot(0);
+            }
 
             return result;
         }
@@ -100,30 +109,63 @@ namespace Luthier.Geometry.Nurbs
 
         public EnumSurfaceEdge Edge { get; private set; }
 
-        public int Direction => (Edge == EnumSurfaceEdge.North || Edge == EnumSurfaceEdge.South) ? 1 : 0;
+        public int Direction => (Edge == EnumSurfaceEdge.North || Edge == EnumSurfaceEdge.South) ? 0 : 1;
 
         public double[] Knot => Direction == 0 ? Surface.knotArray0 : Surface.knotArray1;
 
         public int Order => Direction == 0 ? Surface.Order0 : Surface.Order1;
 
         public int CvCount => Surface.controlPoints.CvCount[Direction];
-        
+
+        public Interval Domain => Direction == 0 ? Surface.Domain0() : Surface.Domain1();
+
         public double[] GetCV(int i)
         {
-            if(Edge == EnumSurfaceEdge.North)
-                return Surface.GetCV(0, i);
+            int[] coords = GetSurfaceCVCoords(i);
+            return Surface.GetCV(coords[0], coords[1]);
+        }
+
+        public double[] EvaluateNormal(double t)
+        {
+            double[] uv = GetSurfaceParameterCoords(t);
+            return Surface.EvaluateNormal(uv[0], uv[1]);
+        }
+
+
+        private int[] GetSurfaceCVCoords(int i)
+        {
+            if (Edge == EnumSurfaceEdge.North)
+                return new int[] { i, Surface.controlPoints.CvCount[1] - 1 };
 
             if (Edge == EnumSurfaceEdge.South)
-                return Surface.GetCV(CvCount - 1, i);
-
-            if (Edge == EnumSurfaceEdge.West)
-                return Surface.GetCV(i, 0);
+                return new int[] { i, 0 };
 
             if (Edge == EnumSurfaceEdge.East)
-                return Surface.GetCV(i, CvCount - 1);
+                return new int[] { Surface.controlPoints.CvCount[0] - 1, i };
+
+            if (Edge == EnumSurfaceEdge.West)
+                return new int[] { 0, i };
 
             return null;
         }
+
+        private double[] GetSurfaceParameterCoords(double t)
+        {
+            if (Edge == EnumSurfaceEdge.North)
+                return new double[] { t, Surface.Domain1().Max };
+
+            if (Edge == EnumSurfaceEdge.South)
+                return new double[] { t, Surface.Domain1().Min };
+
+            if (Edge == EnumSurfaceEdge.East)
+                return new double[] { Surface.Domain1().Max, t };
+
+            if (Edge == EnumSurfaceEdge.West)
+                return new double[] { Surface.Domain1().Min, t };
+
+            return null;
+        }
+
 
         public void InsertKnots(double[] newKnots)
         {

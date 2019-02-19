@@ -25,6 +25,7 @@ namespace Luthier.Model.UIForms
         public EventHandler DoPanToolStripMenuItem_Click;
         public EventHandler DoScaleModelStripMenuItem_Click;
         public EventHandler DoSurfaceDrawingStyleToolStripMenuItem_Click;
+        public EventHandler DoCreateJoiningSurfaceToolStripMenuItem_Click;
 
         private void curveToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -99,6 +100,11 @@ namespace Luthier.Model.UIForms
         private void surfaceDrawingStyleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DoSurfaceDrawingStyleToolStripMenuItem_Click(sender, e);
+        }
+
+        private void createJoiningSurfaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DoCreateJoiningSurfaceToolStripMenuItem_Click(sender, e);
         }
     }
 }

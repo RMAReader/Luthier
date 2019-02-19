@@ -70,8 +70,8 @@ namespace Luthier.Model
 
             var s3 = new GraphicNurbsSurface(3, false, 3, 3, 3, 3);
             s3.Surface = NurbsSurfaceJoiner.CreateBridgingSurface(
-                new NurbsSurfaceEdge(s1.Surface, EnumSurfaceEdge.North), 
-                new NurbsSurfaceEdge(s2.Surface, EnumSurfaceEdge.South));
+                new NurbsSurfaceEdge(s2.Surface, EnumSurfaceEdge.East),
+                new NurbsSurfaceEdge(s1.Surface, EnumSurfaceEdge.West));
 
             model.Add(s3);
             //GetFittedSurface(out PointCloud cloud);

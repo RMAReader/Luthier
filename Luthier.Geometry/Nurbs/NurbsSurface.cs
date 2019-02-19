@@ -288,6 +288,20 @@ namespace Luthier.Geometry.Nurbs
         }
 
 
+        public NurbsSurface ReverseKnot(int direction)
+        {
+            var result = DeepCopy();
+            if(direction == 0)
+            {
+                result.knotArray0 = knotArray0.Reverse().ToArray();
+            }
+            else
+            {
+                result.knotArray1 = knotArray1.Reverse().ToArray();
+            }
+            return result;
+        }
+
         public NurbsSurface DeepCopy()
         {
             var result = new NurbsSurface(Dimension, IsRational, Order0, Order1, controlPoints.CvCount[0], controlPoints.CvCount[1]);
