@@ -18,6 +18,15 @@ namespace Luthier.Geometry.Nurbs
         public static int MinIndex(double[] knot, int order) => order - 1;
         public static int MaxIndex(double[] knot, int order) => knot.Length - order;
 
+        public static double GetParameterGivenControlPolygonIntersect(double[] knot, int cvIx, double alpha, int order)
+        {
+            double t = 0;
+            for (int i = cvIx; i < cvIx + order; i++)
+            {
+                t += alpha * knot[i] + (1 - alpha) * knot[i + 1];
+            }
+            return t / order;
+        }
 
         public static Knot CreateUniformOpen(int p, int n)
         {

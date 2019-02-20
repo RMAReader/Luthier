@@ -68,6 +68,8 @@
     <Compile Include="ArrayExtensions.cs" />
     <Compile Include="Curvature.cs" />
     <Compile Include="Image\LockBitmap.cs" />
+    <Compile Include="Intersections\RayNurbsSurfaceIntersection.cs" />
+    <Compile Include="Intersections\RayTriangleIntersection.cs" />
     <Compile Include="Nurbs\Algorithm.cs" />
     <Compile Include="Nurbs\BSplineCurve.cs" />
     <Compile Include="Nurbs\ControlPoints.cs" />
@@ -78,7 +80,7 @@
     <Compile Include="Nurbs\NurbsCurveNearestPoint.cs" />
     <Compile Include="Nurbs\NurbsSurface.cs" />
     <Compile Include="ClipperWrapper.cs" />
-    <Compile Include="Intersection.cs" />
+    <Compile Include="Intersections\Intersection.cs" />
     <Compile Include="Interval.cs" />
     <Compile Include="LineSegment1D.cs" />
     <Compile Include="LineSegment2D.cs" />

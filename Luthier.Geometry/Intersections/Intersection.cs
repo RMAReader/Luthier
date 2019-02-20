@@ -29,8 +29,7 @@ namespace Luthier.Geometry
             public Point2D Point;
         }
 
-
-
+       
         public static LineSegmentIntersection GetIntersection(Point2D p1, Point2D p2, Point2D q1, Point2D q2)
         {
             double a = p1.x - p2.x;

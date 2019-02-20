@@ -45,7 +45,6 @@ namespace Luthier.Model
             layer.Objects = new List<UniqueKey> { plane.Key };
             plane.LayerKey = layer.Key;
 
-            
             model.Add(layer);
             model.Add(plane);
 
