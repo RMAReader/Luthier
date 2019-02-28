@@ -106,5 +106,10 @@ namespace Luthier.Model.UIForms
         {
             DoCreateJoiningSurfaceToolStripMenuItem_Click(sender, e);
         }
+
+        private void menuStrip1_ItemClicked(object sender, System.Windows.Forms.ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }

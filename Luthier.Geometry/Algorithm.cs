@@ -10,6 +10,18 @@ namespace Luthier.Geometry
 
     public static class Algorithm
     {
+        public static double DistancePointToLine(double[] p1, double[] l1, double[] l2)
+        {
+            double[] tangent = l2.Subtract(l1);
+            tangent.Normalise();
+
+            double[] v = p1.Subtract(l1);
+            double t = v.DotProduct(tangent);
+            double[] p = l1.Add(tangent.Multiply(t));
+            
+            return p1.Subtract(p).L2Norm();
+        }
+
 
         public static double? intersection_line_y(double y, Point2D p1, Point2D p2)
         {

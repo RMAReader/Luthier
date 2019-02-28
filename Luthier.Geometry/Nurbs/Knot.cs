@@ -21,11 +21,11 @@ namespace Luthier.Geometry.Nurbs
         public static double GetParameterGivenControlPolygonIntersect(double[] knot, int cvIx, double alpha, int order)
         {
             double t = 0;
-            for (int i = cvIx; i < cvIx + order; i++)
+            for (int i = cvIx + 1; i < cvIx + order; i++)
             {
                 t += alpha * knot[i] + (1 - alpha) * knot[i + 1];
             }
-            return t / order;
+            return t / (order - 1);
         }
 
         public static Knot CreateUniformOpen(int p, int n)

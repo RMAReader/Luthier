@@ -175,6 +175,7 @@ namespace Luthier.Model.Presenter
             }
         }
 
+     
         private void DoSurfaceToolStripMenuItem(object sender, EventArgs e)
         {
             if (_selectPlaneController.Plane != null)

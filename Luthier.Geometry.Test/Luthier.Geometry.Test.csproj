@@ -76,6 +76,7 @@
     <Compile Include="PointCloudTests.cs" />
     <Compile Include="Polygon2DTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RayIntersectionTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

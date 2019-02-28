@@ -1,4 +1,5 @@
-﻿using Luthier.Geometry.Nurbs;
+﻿using Luthier.Geometry.Intersections;
+using Luthier.Geometry.Nurbs;
 using Luthier.Model.GraphicObjects.Interfaces;
 using SharpHelper;
 using System;
@@ -13,7 +14,8 @@ namespace Luthier.Model.GraphicObjects
         IDrawablePhongSurface, 
         IDrawableStaticColouredSurface,
         IDrawableLines,
-        IScalable
+        IScalable,
+        ISelectable
     {
         public NurbsSurface Surface;
        
@@ -21,6 +23,7 @@ namespace Luthier.Model.GraphicObjects
         public bool DrawKnotSpans { get; set; }
         public bool DrawSurface { get; set; }
         public SurfaceDrawingStyle SurfaceDrawingStyle { get; set; }
+        public bool IsSelected { get; set; }
 
         public GraphicNurbsSurface()  { SurfaceDrawingStyle = SurfaceDrawingStyle.PhongShadedColour; }
         public GraphicNurbsSurface(int dimension, bool bIsRational, int order0, int order1, int cv_count0, int cv_count1)
@@ -85,6 +88,20 @@ namespace Luthier.Model.GraphicObjects
                 yield return new SelectableKnot(this, maxI, j);
             }
         }
+
+        public RayIntersection GetRayIntersection(double[] from, double[] to)
+        {
+            var i = IntersectionCalculatorRayNurbsSurface.GetIntersect(from, to, Surface);
+
+            return new RayIntersection {
+                Object = this,
+                IntersectInWorldCoords = i.Coordinates,
+                ObjectParameters = i.SurfaceParameters,
+                RayParameter = i.RayParameter,
+                ObjectHit = i.IsHit };
+        }
+
+
 
         public override double GetDistance(ApplicationDocumentModel model, double x, double y)
         {
@@ -341,7 +358,7 @@ namespace Luthier.Model.GraphicObjects
 
         }
 
-
+       
         #endregion
     }
 

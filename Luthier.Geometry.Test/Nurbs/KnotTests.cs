@@ -14,19 +14,40 @@ namespace Luthier.Geometry.Test.Nurbs
     {
 
         [TestMethod]
-        public void Knot_GetParameterGivenControlPolygonIntersect()
+        public void Knot_GetParameterGivenControlPolygonIntersect_SimpleKnot()
         {
-            double[] knot = new double[] { 0, 0, 0, 1, 1, 1 };
+            double[] knot = new double[] { 0, 0, 0, 0.3, 0.7, 1, 1, 1 };
             int order = 3;
 
-            Assert.AreEqual(0.0, Knot.GetParameterGivenControlPolygonIntersect(knot, 0, 1.0, order), 0.0000001);
-            Assert.AreEqual(0.166666666666667, Knot.GetParameterGivenControlPolygonIntersect(knot, 0, 0.5, order), 0.0000001);
-            Assert.AreEqual(0.5, Knot.GetParameterGivenControlPolygonIntersect(knot, 0, 0.0, order), 0.0000001);
+            var inputs = new List<(int, double)>
+            {
+                (0, 1.00),
+                (0, 0.75),
+                (0, 0.50),
+                (0, 0.25),
+                (0, 0.00),
+                (1, 1.00),
+                (1, 0.75),
+                (1, 0.50),
+                (1, 0.25),
+                (1, 0.00),
+                (2, 1.00),
+                (2, 0.75),
+                (2, 0.50),
+                (2, 0.25),
+                (2, 0.00),
+                (3, 1.00),
+                (3, 0.75),
+                (3, 0.50),
+                (3, 0.25),
+                (3, 0.00),
+            };
 
-            Assert.AreEqual(0.5, Knot.GetParameterGivenControlPolygonIntersect(knot, 1, 1.0, order), 0.0000001);
-            Assert.AreEqual(0.833333333333333, Knot.GetParameterGivenControlPolygonIntersect(knot, 0, 0.5, order), 0.0000001);
-            Assert.AreEqual(1.0, Knot.GetParameterGivenControlPolygonIntersect(knot, 0, 0.0, order), 0.0000001);
+            var parameters = inputs.Select(x => (x.Item1, x.Item2, Knot.GetParameterGivenControlPolygonIntersect(knot, x.Item1, x.Item2, order)));
 
+          
         }
+
+     
     }
 }
