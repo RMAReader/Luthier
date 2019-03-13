@@ -129,7 +129,7 @@ namespace Luthier.Geometry.Nurbs
         }
 
      
-        public ControlPoints Clone()
+        public ControlPoints DeepCopy()
         {
             var result = new ControlPoints
             {
@@ -150,12 +150,84 @@ namespace Luthier.Geometry.Nurbs
 
         public ControlPoints Scale(double scaleFactor)
         {
-            var result = Clone();
+            var result = DeepCopy();
 
             for (int i = 0; i < result.Data.Length; i++)
                 result.Data[i] *= scaleFactor;
 
             return result;
+        }
+
+        public ControlPoints Transform(double[,] transform)
+        {
+            var result = new ControlPoints(dimension: transform.GetLength(0), cvCount: CvCount);
+
+            double[] cv = new double[Dimension];
+            foreach (var cvIx in EnumerateCVIndices())
+            {
+                GetCV(cv, cvIx);
+                var Tcv = transform.DotProduct(cv);
+                result.SetCV(Tcv, cvIx);
+            }
+
+            return result;
+        }
+
+        public ControlPoints Apply(Func<double[], double[]> function)
+        {
+            double[] cv = new double[Dimension];
+            var imageDimension = function(cv).Length;
+            var result = new ControlPoints(dimension: imageDimension, cvCount: CvCount);
+            
+            foreach (var cvIx in EnumerateCVIndices())
+            {
+                GetCV(cv, cvIx);
+                var Tcv = function(cv);
+                result.SetCV(Tcv, cvIx);
+            }
+
+            return result;
+        }
+
+        public IEnumerable<(int[], double[])> EnumerateControlPoints()
+        {
+            double[] cv = new double[Dimension];
+
+            foreach(var cvIx in EnumerateCVIndices())
+            {
+                GetCV(cv, cvIx);
+                var result = (new int[cvIx.Length], new double[cv.Length]);
+                Array.Copy(cvIx, result.Item1, cvIx.Length);
+                Array.Copy(cv, result.Item2, cv.Length);
+                yield return result;
+            }
+        }
+
+        private IEnumerable<int[]> EnumerateCVIndices()
+        {
+            int[] cvIx = new int[CvCount.Length];
+
+            while (true)
+            {
+                yield return cvIx;
+
+                int i = CvCount.Length - 1;
+                
+                while (i >= 0 && cvIx[i] == CvCount[i] - 1)
+                {
+                    cvIx[i] = 0;
+                    i--;
+                }
+                if (i >= 0)
+                {
+                    cvIx[i]++;
+                }
+                else
+                {
+                    yield break;
+                }
+            }
+
         }
     }
 }

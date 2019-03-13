@@ -19,7 +19,7 @@ namespace Luthier.Geometry
         {
             ClipperOffset clipper = new ClipperOffset();
             double s = 10000;
-            clipper.AddPath(polygon.GetPoints().Select(p => new IntPoint((long)(p.x * s),(long)(p.y * s))).ToList(), JoinType.jtSquare, EndType.etClosedPolygon);
+            clipper.AddPath(polygon.GetPoints().Select(p => new IntPoint((long)(p.X * s),(long)(p.Y * s))).ToList(), JoinType.jtSquare, EndType.etClosedPolygon);
 
             var solution = new List<List<IntPoint>>();
             clipper.Execute(ref solution, radius * s);

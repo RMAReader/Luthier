@@ -60,11 +60,11 @@ namespace Luthier.Model.ToolPathCalculator
             foreach(var section in scanLinePath.Sections)
             {
                 path.MoveToPoint(null, null, specification.SafeHeight, null);
-                path.MoveToPoint(section.First().x, section.First().y, null, null);
+                path.MoveToPoint(section.First().X, section.First().Y, null, null);
 
                 foreach (var point in section.Points)
                 {
-                    path.MoveToPoint(point.x, point.y, specification.CutHeight, null);
+                    path.MoveToPoint(point.X, point.Y, specification.CutHeight, null);
                 }
 
                 path.MoveToPoint(null, null, specification.SafeHeight, null);
@@ -75,13 +75,13 @@ namespace Luthier.Model.ToolPathCalculator
             foreach(var polygon in boundary)
             {
                 path.MoveToPoint(null, null, specification.SafeHeight, null);
-                path.MoveToPoint(polygon.GetPoints().First().x, polygon.GetPoints().First().y, null, null);
-                path.MoveToPoint(polygon.GetPoints().First().x, polygon.GetPoints().First().y, specification.CutHeight, null);
+                path.MoveToPoint(polygon.GetPoints().First().X, polygon.GetPoints().First().Y, null, null);
+                path.MoveToPoint(polygon.GetPoints().First().X, polygon.GetPoints().First().Y, specification.CutHeight, null);
                 foreach (var point in polygon.GetPoints())
                 {
-                    path.MoveToPoint(point.x, point.y, null, null);
+                    path.MoveToPoint(point.X, point.Y, null, null);
                 }
-                path.MoveToPoint(polygon.GetPoints().First().x, polygon.GetPoints().First().y, null, null);
+                path.MoveToPoint(polygon.GetPoints().First().X, polygon.GetPoints().First().Y, null, null);
                 path.MoveToPoint(null, null, specification.SafeHeight, null);
             }
 

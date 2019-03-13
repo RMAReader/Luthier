@@ -23,11 +23,11 @@ namespace Luthier.Geometry
         public void Add(Point2D p) => points.Add(p);
         public void Add(IEnumerable<Point2D> p) => points.AddRange(p);
 
-        public double MinX { get => points.Min(p => p.x); }
-        public double MaxX { get => points.Max(p => p.x); }
+        public double MinX { get => points.Min(p => p.X); }
+        public double MaxX { get => points.Max(p => p.X); }
 
-        public double MinY { get => points.Min(p => p.y); }
-        public double MaxY { get => points.Max(p => p.y); }
+        public double MinY { get => points.Min(p => p.Y); }
+        public double MaxY { get => points.Max(p => p.Y); }
 
         public List<double> IntersectYAxis()
         {
@@ -73,7 +73,7 @@ namespace Luthier.Geometry
             {
                 j = i + 1;
                 if (j == points.Count) j = 0;
-                sa += (points[j].x - points[i].x) * (points[j].y + points[i].y);
+                sa += (points[j].X - points[i].X) * (points[j].Y + points[i].Y);
             }
             return sa / 2;
         }

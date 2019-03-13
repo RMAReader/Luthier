@@ -45,9 +45,9 @@ namespace Luthier.Geometry.Optimization
 
             EvaluationCount = 0;
             CurrentValue = double.MaxValue;
-            CurrentGradient = new double[_curve.cvDataBlock.Length];
-            CurrentHessian = new double[_curve.cvDataBlock.Length * _curve.cvDataBlock.Length];
-            Parameters = new double[_curve.cvDataBlock.Length];
+            CurrentGradient = new double[_curve.ControlPoints.Data.Length];
+            CurrentHessian = new double[_curve.ControlPoints.Data.Length * _curve.ControlPoints.Data.Length];
+            Parameters = new double[_curve.ControlPoints.Data.Length];
         }
 
         public double Value(double[] point)
@@ -99,7 +99,7 @@ namespace Luthier.Geometry.Optimization
             EvaluationCount += 1;
 
             Array.Copy(parameters, Parameters, parameters.Length);
-            Array.Copy(parameters, _curve.cvDataBlock, parameters.Length);
+            Array.Copy(parameters, _curve.ControlPoints.Data, parameters.Length);
 
             var nearestPoints = _curve.NearestSquaredDistance(_cloud, 32);
 
@@ -151,7 +151,7 @@ namespace Luthier.Geometry.Optimization
                     CurrentGradient[vectorIx] += 2 * beta * normal[0] * basis[i];
 
                     //y-coordinates
-                    vectorIx = indices[i] + _curve._cvCount;
+                    vectorIx = indices[i] + _curve.ControlPoints.CvCount[0];
                     CurrentGradient[vectorIx] += 2 * beta * normal[1] * basis[i];
                 }
 
@@ -175,31 +175,31 @@ namespace Luthier.Geometry.Optimization
                             //x-coordinates to x-coordinates
                             int vectorIx = indices[i];
                             int vectorIy = indices[j];
-                            int hessianPos = vectorIx + _curve.cvDataBlock.Length * vectorIy;
+                            int hessianPos = vectorIx + _curve.ControlPoints.Data.Length * vectorIy;
 
                             CurrentHessian[hessianPos] += basisFunctions * (tangentCoeff * tangent[0] * tangent[0] + normal[0] * normal[0]);
 
 
                             //x-coordinates to y-coordinates
                             vectorIx = indices[i];
-                            vectorIy = indices[j] + _curve._cvCount;
-                            hessianPos = vectorIx + _curve.cvDataBlock.Length * vectorIy;
+                            vectorIy = indices[j] + _curve.ControlPoints.CvCount[0];
+                            hessianPos = vectorIx + _curve.ControlPoints.Data.Length * vectorIy;
 
                             CurrentHessian[hessianPos] += basisFunctions * (tangentCoeff * tangent[0] * tangent[1] + normal[0] * normal[1]);
 
 
                             //y-coordinates to x-coordinates
-                            vectorIx = indices[i] + _curve._cvCount;
+                            vectorIx = indices[i] + _curve.ControlPoints.CvCount[0];
                             vectorIy = indices[j];
-                            hessianPos = vectorIx + _curve.cvDataBlock.Length * vectorIy;
+                            hessianPos = vectorIx + _curve.ControlPoints.Data.Length * vectorIy;
 
                             CurrentHessian[hessianPos] += basisFunctions * (tangentCoeff * tangent[1] * tangent[0] + normal[1] * normal[0]);
 
 
                             //y-coordinates to y-coordinates
-                            vectorIx = indices[i] + _curve._cvCount;
-                            vectorIy = indices[j] + _curve._cvCount;
-                            hessianPos = vectorIx + _curve.cvDataBlock.Length * vectorIy;
+                            vectorIx = indices[i] + _curve.ControlPoints.CvCount[0];
+                            vectorIy = indices[j] + _curve.ControlPoints.CvCount[0];
+                            hessianPos = vectorIx + _curve.ControlPoints.Data.Length * vectorIy;
 
                             CurrentHessian[hessianPos] += basisFunctions * (tangentCoeff * tangent[1] * tangent[1] + normal[1] * normal[1]);
                         }
@@ -234,7 +234,7 @@ namespace Luthier.Geometry.Optimization
 
         private void UpdateCurveVariablePositionVariableTangent(double[] point)
         {
-            _curve.cvDataBlock = point;
+            _curve.ControlPoints.Data = point;
         }
 
 
@@ -245,7 +245,7 @@ namespace Luthier.Geometry.Optimization
             double[] start = _curve.Evaluate(_curve.Domain.Min);
             double[] end = _curve.Evaluate(_curve.Domain.Max);
 
-            _curve.cvDataBlock = point;
+            _curve.ControlPoints.Data = point;
 
             var cv1 = _curve.GetCV(1);
             double[] cv0 = new double[] {2 * start[0] - cv1[0], 2 * start[1] - cv1[1] };
@@ -283,7 +283,7 @@ namespace Luthier.Geometry.Optimization
             endTangent[1] /= endLength;
 
 
-            _curve.cvDataBlock = point;
+            _curve.ControlPoints.Data = point;
 
             var cv1 = _curve.GetCV(1);
             double proj1 = ((cv1[0] - start[0]) * startTangent[0] + (cv1[1] - start[1]) * startTangent[1]);

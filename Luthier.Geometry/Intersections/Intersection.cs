@@ -16,7 +16,7 @@ namespace Luthier.Geometry
             public double Parameter2;
             public Point2D Point;
 
-            public bool LineSegmentsIntersect() => (0 <= Parameter1 && Parameter1 <= 1 && 0 <= Parameter2 && Parameter2 <= 1);
+            public bool LineSegmentsIntersect => (0 <= Parameter1 && Parameter1 <= 1 && 0 <= Parameter2 && Parameter2 <= 1);
         }
 
 
@@ -32,16 +32,16 @@ namespace Luthier.Geometry
        
         public static LineSegmentIntersection GetIntersection(Point2D p1, Point2D p2, Point2D q1, Point2D q2)
         {
-            double a = p1.x - p2.x;
-            double b = p1.y - p2.y;
-            double c = q1.x - q2.x;
-            double d = q1.y - q2.y;
+            double a = p1.X - p2.X;
+            double b = p1.Y - p2.Y;
+            double c = q1.X - q2.X;
+            double d = q1.Y - q2.Y;
 
             double det = a * d - b * c;
             if (det == 0) { return null; }
 
-            double e = q2.x - p2.x;
-            double f = q2.y - p2.y;
+            double e = q2.X - p2.X;
+            double f = q2.Y - p2.Y;
 
             double g = (d * e - c * f) / det;
             double h = (b * e - a * f) / det;
@@ -50,7 +50,32 @@ namespace Luthier.Geometry
             {
                 Parameter1 = g,
                 Parameter2 = h,
-                Point = new Point2D(g * p1.x + (1 - g) * p2.x, g * p1.y + (1 - g) * p2.y)
+                Point = new Point2D(g * p1.X + (1 - g) * p2.X, g * p1.Y + (1 - g) * p2.Y)
+            };
+
+        }
+
+        public static LineSegmentIntersection GetIntersection2D(double[] p1, double[] p2, double[] q1, double[] q2)
+        {
+            double a = p1[0] - p2[0];
+            double b = p1[1] - p2[1];
+            double c = q1[0] - q2[0];
+            double d = q1[1] - q2[1];
+
+            double det = a * d - b * c;
+            if (det == 0) { return null; }
+
+            double e = q2[0] - p2[0];
+            double f = q2[1] - p2[1];
+
+            double g = (d * e - c * f) / det;
+            double h = (b * e - a * f) / det;
+
+            return new LineSegmentIntersection()
+            {
+                Parameter1 = g,
+                Parameter2 = h,
+                Point = new Point2D(g * p1[0] + (1 - g) * p2[0], g * p1[1] + (1 - g) * p2[1])
             };
 
         }
@@ -81,7 +106,7 @@ namespace Luthier.Geometry
                     for (int j = 0; j < d2.NumberOfPoints - 1; j++)
                     {
                         var intersection = GetIntersection(d1.GetPoint(i), d1.GetPoint(i + 1), d2.GetPoint(j), d2.GetPoint(j + 1));
-                        if (intersection != null && intersection.LineSegmentsIntersect())
+                        if (intersection != null && intersection.LineSegmentsIntersect)
                         {
                             intersections.Add(new Tuple<LineSegmentIntersection, int, int>(intersection, i, j));
                         }
@@ -163,7 +188,7 @@ namespace Luthier.Geometry
                     for (int j = 0; j < d2.NumberOfPoints - 1; j++)
                     {
                         var intersection = GetIntersection(d1.GetPoint(i), d1.GetPoint(i + 1), d2.GetPoint(j), d2.GetPoint(j + 1));
-                        if (intersection != null && intersection.LineSegmentsIntersect())
+                        if (intersection != null && intersection.LineSegmentsIntersect)
                         {
                             intersections.Add(new Tuple<LineSegmentIntersection, int, int>(intersection,i,j));
                         }

@@ -74,6 +74,7 @@ namespace Luthier.Model.Presenter
             form.DoScaleModelStripMenuItem_Click = DoScaleModelStripMenuItem_Click;
             form.DoSurfaceDrawingStyleToolStripMenuItem_Click = DoSurfaceDrawingStyleToolStripMenuItem_Click;
             form.DoCreateJoiningSurfaceToolStripMenuItem_Click = DoCreateJoiningSurfaceToolStripMenuItem_Click;
+            form.DoCreateOffsetCurveToolStripMenuItem_Click = DoCreateOffsetCurveToolStripMenuItem_Click;
 
             _camera.ViewWidth = form.ClientSize.Width;
             _camera.ViewHeight = form.ClientSize.Height;
@@ -322,6 +323,21 @@ namespace Luthier.Model.Presenter
                 _knotSelectorController = new KnotSelectorController();
             }
             SetMouseController(_knotSelectorController);
+        }
+
+
+        private void DoCreateOffsetCurveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_selectPlaneController.Plane != null)
+            {
+                var controller = new CreateOffsetCurveController();
+                controller.ReferencePlane = _selectPlaneController.Plane;
+                SetMouseController(controller);
+            }
+            else
+            {
+                MessageBox.Show("Must set reference plane before creating offset curve.");
+            }
         }
 
 

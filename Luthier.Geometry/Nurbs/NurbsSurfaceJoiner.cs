@@ -16,21 +16,21 @@ namespace Luthier.Geometry.Nurbs
     {
 
 
-        public static NurbsSurface CreateBridgingSurface(NurbsSurfaceEdge edge1, NurbsSurfaceEdge edge2)
+        public static NurbsSurface CreateBridgingSurface(INurbsSurfaceEdge edge1, INurbsSurfaceEdge edge2)
         {
-            TryGetCompatibleEdges(edge1, edge2, out NurbsSurfaceEdge top, out NurbsSurfaceEdge bottom);
+            TryGetCompatibleEdges(edge1, edge2, out INurbsSurfaceEdge top, out INurbsSurfaceEdge bottom);
            
             int cvCountbridge = 3;
 
-            var result = new NurbsSurface(top.Surface.Dimension, 
-                top.Surface.IsRational, 
+            var result = new NurbsSurface(top.Dimension, 
+                top.IsRational, 
                 top.Order, 
                 top.Order, 
                 top.CvCount, 
                 cvCountbridge);
 
             Array.Copy(top.Knot, result.knotArray0, top.Knot.Length);
-            result.knotArray1 = Knot.CreateUniformClosed(2, cvCountbridge + top.Order).data.ToArray();
+            result.knotArray1 = Knot.CreateUniformClosed(top.Order - 1, cvCountbridge + top.Order).data.ToArray();
 
             for(int i = 0; i < result.CvCount0; i++)
             {
@@ -49,8 +49,8 @@ namespace Luthier.Geometry.Nurbs
 
             if(topNormal.DotProduct(resultNormal) < 0)
             {
-                //flip paraity of result
-                result = result.ReverseKnot(0);
+                //flip parity of result
+                result = result.SwapParity();
             }
 
             return result;
@@ -64,7 +64,7 @@ namespace Luthier.Geometry.Nurbs
                 throw new ArgumentException();
         }
 
-        private static bool TryGetCompatibleEdges(NurbsSurfaceEdge e1, NurbsSurfaceEdge e2, out NurbsSurfaceEdge c1, out NurbsSurfaceEdge c2)
+        private static bool TryGetCompatibleEdges(INurbsSurfaceEdge e1, INurbsSurfaceEdge e2, out INurbsSurfaceEdge c1, out INurbsSurfaceEdge c2)
         {
             var newKnots1 = new List<double>();
             var newKnots2 = new List<double>();
@@ -103,47 +103,66 @@ namespace Luthier.Geometry.Nurbs
     }
 
 
-    public class NurbsSurfaceEdge
+
+
+    public interface INurbsSurfaceEdge
     {
-        public NurbsSurface Surface { get; private set; }
+        bool IsRational { get; }
+        int Dimension { get; }
+        double[] Knot { get; }
+        int Order { get; }
+        int CvCount { get; }
+        Interval Domain { get; }
+        double[] GetCV(int i);
+        double[] EvaluateNormal(double t);
+        void InsertKnots(double[] newKnots);
+        INurbsSurfaceEdge DeepCopy();
+    }
 
-        public EnumSurfaceEdge Edge { get; private set; }
+    public class NurbsSurfaceEdge : INurbsSurfaceEdge
+    {
+        private NurbsSurface _surface;
+        private EnumSurfaceEdge _edge;
 
-        public int Direction => (Edge == EnumSurfaceEdge.North || Edge == EnumSurfaceEdge.South) ? 0 : 1;
+        private int _direction => (_edge == EnumSurfaceEdge.North || _edge == EnumSurfaceEdge.South) ? 0 : 1;
+               
+        public bool IsRational => _surface.IsRational;
 
-        public double[] Knot => Direction == 0 ? Surface.knotArray0 : Surface.knotArray1;
+        public int Dimension => _surface.Dimension;
 
-        public int Order => Direction == 0 ? Surface.Order0 : Surface.Order1;
+        public double[] Knot => _direction == 0 ? _surface.knotArray0 : _surface.knotArray1;
 
-        public int CvCount => Surface.controlPoints.CvCount[Direction];
+        public int Order => _direction == 0 ? _surface.Order0 : _surface.Order1;
+        
+        public int CvCount => _surface.controlPoints.CvCount[_direction];
 
-        public Interval Domain => Direction == 0 ? Surface.Domain0() : Surface.Domain1();
+        public Interval Domain => _direction == 0 ? _surface.Domain0() : _surface.Domain1();
 
         public double[] GetCV(int i)
         {
             int[] coords = GetSurfaceCVCoords(i);
-            return Surface.GetCV(coords[0], coords[1]);
+            return _surface.GetCV(coords[0], coords[1]);
         }
 
         public double[] EvaluateNormal(double t)
         {
             double[] uv = GetSurfaceParameterCoords(t);
-            return Surface.EvaluateNormal(uv[0], uv[1]);
+            return _surface.EvaluateNormal(uv[0], uv[1]);
         }
 
 
         private int[] GetSurfaceCVCoords(int i)
         {
-            if (Edge == EnumSurfaceEdge.North)
-                return new int[] { i, Surface.controlPoints.CvCount[1] - 1 };
+            if (_edge == EnumSurfaceEdge.North)
+                return new int[] { i, _surface.controlPoints.CvCount[1] - 1 };
 
-            if (Edge == EnumSurfaceEdge.South)
+            if (_edge == EnumSurfaceEdge.South)
                 return new int[] { i, 0 };
 
-            if (Edge == EnumSurfaceEdge.East)
-                return new int[] { Surface.controlPoints.CvCount[0] - 1, i };
+            if (_edge == EnumSurfaceEdge.East)
+                return new int[] { _surface.controlPoints.CvCount[0] - 1, i };
 
-            if (Edge == EnumSurfaceEdge.West)
+            if (_edge == EnumSurfaceEdge.West)
                 return new int[] { 0, i };
 
             return null;
@@ -151,40 +170,71 @@ namespace Luthier.Geometry.Nurbs
 
         private double[] GetSurfaceParameterCoords(double t)
         {
-            if (Edge == EnumSurfaceEdge.North)
-                return new double[] { t, Surface.Domain1().Max };
+            if (_edge == EnumSurfaceEdge.North)
+                return new double[] { t, _surface.Domain1().Max };
 
-            if (Edge == EnumSurfaceEdge.South)
-                return new double[] { t, Surface.Domain1().Min };
+            if (_edge == EnumSurfaceEdge.South)
+                return new double[] { t, _surface.Domain1().Min };
 
-            if (Edge == EnumSurfaceEdge.East)
-                return new double[] { Surface.Domain1().Max, t };
+            if (_edge == EnumSurfaceEdge.East)
+                return new double[] { _surface.Domain1().Max, t };
 
-            if (Edge == EnumSurfaceEdge.West)
-                return new double[] { Surface.Domain1().Min, t };
+            if (_edge == EnumSurfaceEdge.West)
+                return new double[] { _surface.Domain1().Min, t };
 
             return null;
         }
 
-
         public void InsertKnots(double[] newKnots)
         {
-            Surface = Surface.InsertKnot(Direction, newKnots);
+            _surface = _surface.InsertKnot(_direction, newKnots);
         }
 
-        public NurbsSurfaceEdge DeepCopy()
+        public INurbsSurfaceEdge DeepCopy()
         {
-            return new NurbsSurfaceEdge(Surface.DeepCopy(), Edge);
+            return new NurbsSurfaceEdge(_surface.DeepCopy(), _edge);
         }
-
-
-
-
 
         public NurbsSurfaceEdge(NurbsSurface surface, EnumSurfaceEdge edge)
         {
-            Surface = surface;
-            Edge = edge;
+            _surface = surface;
+            _edge = edge;
+        }
+    }
+
+    public class NurbsCurveEdge : INurbsSurfaceEdge
+    {
+        private NurbsCurve _curve;
+
+        public bool IsRational => _curve._isRational;
+
+        public int Dimension => _curve._dimension;
+
+        public double[] Knot => _curve.knot;
+
+        public int Order => _curve._order;
+
+        public int CvCount => _curve.ControlPoints.CvCount[0];
+
+        public Interval Domain => _curve.Domain;
+
+        public double[] GetCV(int i) => _curve.GetCV(i);
+
+        public double[] EvaluateNormal(double t) => null;
+       
+        public void InsertKnots(double[] newKnots)
+        {
+            _curve = _curve.InsertKnot(newKnots);
+        }
+
+        public INurbsSurfaceEdge DeepCopy()
+        {
+            return new NurbsCurveEdge(_curve.DeepCopy());
+        }
+        
+        public NurbsCurveEdge(NurbsCurve curve)
+        {
+            _curve = curve;
         }
     }
 }

@@ -50,6 +50,7 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scaleModelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createJoiningSurfaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.offsetCurveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -125,7 +126,8 @@
             this.constructToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.planeToolStripMenuItem,
             this.surfaceToolStripMenuItem,
-            this.insertImageToolStripMenuItem});
+            this.insertImageToolStripMenuItem,
+            this.offsetCurveToolStripMenuItem});
             this.constructToolStripMenuItem.Name = "constructToolStripMenuItem";
             this.constructToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.constructToolStripMenuItem.Text = "Construct";
@@ -133,21 +135,21 @@
             // planeToolStripMenuItem
             // 
             this.planeToolStripMenuItem.Name = "planeToolStripMenuItem";
-            this.planeToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.planeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.planeToolStripMenuItem.Text = "Plane";
             this.planeToolStripMenuItem.Click += new System.EventHandler(this.planeToolStripMenuItem_Click);
             // 
             // surfaceToolStripMenuItem
             // 
             this.surfaceToolStripMenuItem.Name = "surfaceToolStripMenuItem";
-            this.surfaceToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.surfaceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.surfaceToolStripMenuItem.Text = "Surface";
             this.surfaceToolStripMenuItem.Click += new System.EventHandler(this.surfaceToolStripMenuItem_Click);
             // 
             // insertImageToolStripMenuItem
             // 
             this.insertImageToolStripMenuItem.Name = "insertImageToolStripMenuItem";
-            this.insertImageToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.insertImageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.insertImageToolStripMenuItem.Text = "Insert Image";
             this.insertImageToolStripMenuItem.Click += new System.EventHandler(this.insertImageToolStripMenuItem_Click);
             // 
@@ -229,6 +231,13 @@
             this.createJoiningSurfaceToolStripMenuItem.Text = "Create joining surface...";
             this.createJoiningSurfaceToolStripMenuItem.Click += new System.EventHandler(this.createJoiningSurfaceToolStripMenuItem_Click);
             // 
+            // offsetCurveToolStripMenuItem
+            // 
+            this.offsetCurveToolStripMenuItem.Name = "offsetCurveToolStripMenuItem";
+            this.offsetCurveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.offsetCurveToolStripMenuItem.Text = "Offset Curve";
+            this.offsetCurveToolStripMenuItem.Click += new System.EventHandler(this.offsetCurveToolStripMenuItem_Click);
+            // 
             // RenderForm3d
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -270,5 +279,6 @@
         private System.Windows.Forms.ToolStripMenuItem scaleModelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem surfaceDrawingStyleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createJoiningSurfaceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem offsetCurveToolStripMenuItem;
     }
 }

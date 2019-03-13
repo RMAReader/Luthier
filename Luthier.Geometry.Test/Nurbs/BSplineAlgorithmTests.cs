@@ -121,8 +121,8 @@ namespace Luthier.Geometry.Test
             var p2 = curve.ToLines(10);
             for (int i = 0; i < 10; i++)
             {
-                Assert.AreEqual(points[i].x, p2[i].x, 0.000001);
-                Assert.AreEqual(points[i].y, p2[i].y, 0.000001);
+                Assert.AreEqual(points[i].X, p2[i].X, 0.000001);
+                Assert.AreEqual(points[i].Y, p2[i].Y, 0.000001);
             }
 
         }
@@ -149,11 +149,11 @@ namespace Luthier.Geometry.Test
             var p2 = curve.ToLines(10);
             for (int i = 0; i < 10; i++)
             {
-                Assert.AreEqual(points[i].x, p2[i].x, 0.000001);
-                Assert.AreEqual(points[i].y, p2[i].y, 0.000001);
+                Assert.AreEqual(points[i].X, p2[i].X, 0.000001);
+                Assert.AreEqual(points[i].Y, p2[i].Y, 0.000001);
             }
-            Assert.AreEqual(curve.Evaluate(2).x, p2[0].x, 0.000001);
-            Assert.AreEqual(curve.Evaluate(2).y, p2[0].y, 0.000001);
+            Assert.AreEqual(curve.Evaluate(2).X, p2[0].X, 0.000001);
+            Assert.AreEqual(curve.Evaluate(2).Y, p2[0].Y, 0.000001);
         }
 
 
@@ -177,8 +177,8 @@ namespace Luthier.Geometry.Test
             var p2 = curve.ToLines(10);
             for (int i = 0; i < 10; i++)
             {
-                Assert.AreEqual(points[i].x, p2[i].x, 0.000001);
-                Assert.AreEqual(points[i].y, p2[i].y, 0.000001);
+                Assert.AreEqual(points[i].X, p2[i].X, 0.000001);
+                Assert.AreEqual(points[i].Y, p2[i].Y, 0.000001);
             }
         }
 

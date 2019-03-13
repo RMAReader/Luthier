@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Luthier.Geometry;
 using Luthier.Geometry.Nurbs;
 using Luthier.Model.GraphicObjects;
 using Luthier.Model.Presenter;
@@ -156,13 +157,47 @@ namespace Luthier.Model.MouseController3D
 
             if (p1.KnotIndices[0] == p2.KnotIndices[0])
             {
-                if (p1.KnotIndices[0] == minI) return new NurbsSurfaceEdge(p1.Surface.Surface, EnumSurfaceEdge.West);
-                if (p1.KnotIndices[0] == maxI) return new NurbsSurfaceEdge(p1.Surface.Surface, EnumSurfaceEdge.East);
+                if (p1.KnotIndices[0] == minI)
+                {
+                    int minJIx = Math.Min(p1.KnotIndices[1], p2.KnotIndices[1]);
+                    int maxJIx = Math.Max(p1.KnotIndices[1], p2.KnotIndices[1]);
+
+                    var edgeSurface = p1.Surface.Surface.SubSurface(minI,minI + 1, minJIx, maxJIx);
+
+                    return new NurbsSurfaceEdge(edgeSurface, EnumSurfaceEdge.West);
+                }
+                if (p1.KnotIndices[0] == maxI)
+                {
+                    int minJIx = Math.Min(p1.KnotIndices[1], p2.KnotIndices[1]);
+                    int maxJIx = Math.Max(p1.KnotIndices[1], p2.KnotIndices[1]);
+
+                    var edgeSurface = p1.Surface.Surface.SubSurface(maxI - 1, maxI, minJIx, maxJIx);
+
+                    return new NurbsSurfaceEdge(edgeSurface, EnumSurfaceEdge.East);
+                }
             }
             if (p1.KnotIndices[1] == p2.KnotIndices[1])
             {
-                if (p1.KnotIndices[1] == minJ) return new NurbsSurfaceEdge(p1.Surface.Surface, EnumSurfaceEdge.South);
-                if (p1.KnotIndices[1] == maxJ) return new NurbsSurfaceEdge(p1.Surface.Surface, EnumSurfaceEdge.North);
+                if (p1.KnotIndices[1] == minJ)
+                {
+                    double minU = Math.Min(p1.Parameters[0], p2.Parameters[0]);
+                    double maxU = Math.Max(p1.Parameters[0], p2.Parameters[0]);
+                    Interval domain = p1.Surface.Surface.Domain1();
+
+                    var edgeSurface = p1.Surface.Surface.SubSurface(minU, maxU, domain.Min, domain.Max);
+
+                    return new NurbsSurfaceEdge(edgeSurface, EnumSurfaceEdge.South);
+                }
+                if (p1.KnotIndices[1] == maxJ)
+                {
+                    double minU = Math.Min(p1.Parameters[0], p2.Parameters[0]);
+                    double maxU = Math.Max(p1.Parameters[0], p2.Parameters[0]);
+                    Interval domain = p1.Surface.Surface.Domain1();
+
+                    var edgeSurface = p1.Surface.Surface.SubSurface(minU, maxU, domain.Min, domain.Max);
+
+                    return new NurbsSurfaceEdge(edgeSurface, EnumSurfaceEdge.North);
+                }
             }
 
             return null;

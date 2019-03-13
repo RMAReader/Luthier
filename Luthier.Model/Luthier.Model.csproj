@@ -113,6 +113,7 @@
     <Compile Include="MouseController3D\ControlPointDraggerBase.cs" />
     <Compile Include="MouseController3D\ControlPointDraggerNormalToPlane.cs" />
     <Compile Include="MouseController3D\ControlPointDraggerParallelToPlane.cs" />
+    <Compile Include="MouseController3D\CreateOffsetCurveController.cs" />
     <Compile Include="MouseController3D\EditImageController3d.cs" />
     <Compile Include="MouseController3D\InsertImage.cs" />
     <Compile Include="MouseController3D\InsertPlane.cs" />

@@ -119,6 +119,10 @@ namespace Luthier.Model.GraphicObjects
             {
                 foreach (IDraggable2d o in s.GetDraggableObjects2d()) yield return o;
             }
+            foreach (GraphicNurbsCurve c in _data.Values.Where(p => p is GraphicNurbsCurve))
+            {
+                foreach (IDraggable2d o in c.GetDraggableObjects()) yield return o;
+            }
         }
         public IEnumerable<IDraggable> GetDraggableObjects()
         {
@@ -126,6 +130,10 @@ namespace Luthier.Model.GraphicObjects
             foreach (GraphicNurbsSurface s in _data.Values.Where(p => p is GraphicNurbsSurface))
             {
                 foreach (IDraggable o in s.GetDraggableObjects()) yield return o;
+            }
+            foreach (GraphicNurbsCurve c in _data.Values.Where(p => p is GraphicNurbsCurve))
+            {
+                foreach (IDraggable o in c.GetDraggableObjects()) yield return o;
             }
         }
         public IEnumerable<GraphicObjectBase> VisibleObjects()

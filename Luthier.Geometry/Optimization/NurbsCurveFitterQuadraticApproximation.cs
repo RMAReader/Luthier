@@ -34,19 +34,19 @@ namespace Luthier.Geometry.Optimization
 
             for (int i=0; i< 10; i++)
             {
-                values.Add(squaredDistanceFunction.Value(_curve.cvDataBlock));
+                values.Add(squaredDistanceFunction.Value(_curve.ControlPoints.Data));
 
-                var H = squaredDistanceFunction.Hessian(_curve.cvDataBlock);
-                var D = squaredDistanceFunction.Gradient(_curve.cvDataBlock);
+                var H = squaredDistanceFunction.Hessian(_curve.ControlPoints.Data);
+                var D = squaredDistanceFunction.Gradient(_curve.ControlPoints.Data);
 
-                var M = Matrix<double>.Build.Dense(_curve.cvDataBlock.Length, _curve.cvDataBlock.Length, H);
+                var M = Matrix<double>.Build.Dense(_curve.ControlPoints.Data.Length, _curve.ControlPoints.Data.Length, H);
                 var V = Vector<double>.Build.Dense(D);
 
                 var d = M.Solve(-V);
 
                 for(int j=0; j<d.Count;j++ )
                 {
-                    _curve.cvDataBlock[i] -= d[i];
+                    _curve.ControlPoints.Data[i] -= d[i];
                 }
             }
 

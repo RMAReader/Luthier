@@ -25,6 +25,10 @@ namespace Luthier.Model.GraphicObjects
         {
             Curve = new NurbsCurve(dimension, isRational, order, cvCount);
         }
+        public GraphicNurbsCurve(NurbsCurve curve)
+        {
+            this.Curve = curve.DeepCopy();
+        }
 
         public override double GetDistance(ApplicationDocumentModel model, double x, double y)
         {
@@ -88,6 +92,13 @@ namespace Luthier.Model.GraphicObjects
             Curve = Curve.Scale(scaleFactor);
         }
 
+        public IEnumerable<IDraggable> GetDraggableObjects()
+        {
+            for(int i = 0; i < Curve.ControlPoints.CvCount[0]; i++)
+            {
+                yield return new DraggableCurveCV(this, i);
+            }
+        }
 
     }
 

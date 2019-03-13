@@ -558,7 +558,7 @@ namespace Luthier.Geometry.Nurbs
             int degree,
             int knotIX,
             ref double[] knot,
-            ref double[] cv,
+            double[] cv,
             int cvIX,
             int cvStride,
             double t)
@@ -579,7 +579,7 @@ namespace Luthier.Geometry.Nurbs
             int degree,
             int knotIX,
             ref double[] knot,
-            ref double[] cv,
+            double[] cv,
             int cvIX,
             int cvStride,
             double t)

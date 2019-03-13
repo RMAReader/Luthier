@@ -69,12 +69,12 @@ namespace Luthier.Geometry.Optimization
             };
 
             // Finally, we can create the L-BFGS solver, passing the functions as arguments
-            var lbfgs = new BroydenFletcherGoldfarbShanno(numberOfVariables: _curve.cvDataBlock.Length, function: f, gradient: g);
+            var lbfgs = new BroydenFletcherGoldfarbShanno(numberOfVariables: _curve.ControlPoints.Data.Length, function: f, gradient: g);
 
             // And then minimize the function:
             sw.Restart();
 
-            bool success = lbfgs.Minimize(_initialGuess.cvDataBlock);
+            bool success = lbfgs.Minimize(_initialGuess.ControlPoints.Data);
 
             long t3 = sw.ElapsedMilliseconds;
 

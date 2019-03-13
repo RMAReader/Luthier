@@ -11,23 +11,19 @@ namespace Luthier.Geometry.Nurbs
 {
 
     [Serializable]
-    public class NurbsCurve
+    public class NurbsCurve 
     {
-
-        [XmlElement]
-        public int _dimension;
         [XmlElement]
         public int _order;
         [XmlElement]
         public bool _isRational;
         [XmlElement]
-        public int _cvSize;
+        public int _dimension;
         [XmlArray]
         public double[] knot;
-        [XmlArray]
-        public double[] cvDataBlock;
         [XmlElement]
-        public int _cvCount;
+        public ControlPoints ControlPoints;
+
 
         private NurbsCurveBulkEvaluator _bulkEvaluator;
 
@@ -35,36 +31,54 @@ namespace Luthier.Geometry.Nurbs
         public NurbsCurve() { }
         public NurbsCurve(int dimension, bool isRational, int order, int cvCount)
         {
-            _dimension = dimension;
             _isRational = isRational;
             _order = order;
-            _cvSize = (isRational) ? dimension + 1 : dimension;
-            _cvCount = cvCount;
+            _dimension = dimension;
 
-            knot = new double[_cvCount + _order];
+            ControlPoints = new ControlPoints((isRational) ? dimension + 1 : dimension, cvCount);
+            knot = new double[cvCount + _order];
             for (int i = 0; i < knot.Length; i++) knot[i] = i;
 
-            cvDataBlock = new double[_cvSize * _cvCount];
         }
 
 
         public double[] GetCV(int IX)
         {
-            double[] cv = new double[_cvSize];
-            for (int i = 0; i < _cvSize; i++) cv[i] = cvDataBlock[IX + i * _cvCount];
+            double[] cv = new double[ControlPoints.Dimension];
+            ControlPoints.GetCV(cv, IX);
             return cv;
+        }
+        public T GetCV<T>(int IX) where T : Point
+        {
+            Point cv;
+            if (_dimension == 2)
+            {
+                cv = new Point2D();
+                ControlPoints.GetCV(cv.Data, IX);
+            }
+            else if (_dimension == 3)
+            {
+                cv = new Point3D();
+                ControlPoints.GetCV(cv.Data, IX);
+            }
+            else
+            {
+                cv = new Point(_dimension);
+                ControlPoints.GetCV(cv.Data, IX);
+            }
+            return (T)cv;
         }
 
         public void SetCV(int IX, double[] cv)
         {
-            for (int i = 0; i < _cvSize; i++) cvDataBlock[IX + i * _cvCount] = cv[i];
+            ControlPoints.SetCV(cv, IX);
         }
         public double GetKnot(int IX)
         {
             return knot[IX];
         }
         public int GetDegree() => _order - 1;
-        public int NumberOfPoints { get => _cvCount; }
+        public int NumberOfPoints => ControlPoints.CvCount[0]; 
 
         public Interval Domain
         {
@@ -73,7 +87,7 @@ namespace Luthier.Geometry.Nurbs
 
         public double[] Evaluate(double t)
         {
-            double[] p = new double[_cvSize];
+            double[] p = new double[ControlPoints.Dimension];
             Evaluate(t, p);
             return p;
         }
@@ -86,7 +100,7 @@ namespace Luthier.Geometry.Nurbs
                 double[] values = new double[3];
                 Algorithm.BasisFunction_EvaluateAllNonZero_DegreeTwo(knot, t, ref values, ref indices);
 
-                Algorithm.Curve_EvaluateGivenBasisFunctions(_order - 1, _dimension, indices[0], values, cvDataBlock, 1, _cvCount, ref point);
+                Algorithm.Curve_EvaluateGivenBasisFunctions(_order - 1, _dimension, indices[0], values, ControlPoints.Data, ControlPoints.CvStride[0], ControlPoints.CvCount[0], ref point);
 
             }
             else throw new NotImplementedException();
@@ -103,7 +117,7 @@ namespace Luthier.Geometry.Nurbs
 
         public double[] EvaluateDerivative(int derivative, double t)
         {
-            double[] p = new double[_cvSize];
+            double[] p = new double[ControlPoints.Dimension];
             EvaluateDerivative(derivative, t, p);
             return p;
         }
@@ -112,15 +126,16 @@ namespace Luthier.Geometry.Nurbs
         {
             int knotIX = Algorithm.Find_Knot_Span(_order - 1, knot, t);
             int cvIX = knotIX - _order + 1;
-            for (int i = 0; i < _cvSize; i++)
+            for (int i = 0; i < ControlPoints.Dimension; i++)
             {
-                if(derivative == 1)
+                int startIx = ControlPoints.GetDataIndex(i, cvIX);
+                if (derivative == 1)
                 {
-                    point[i] = Geometry.Nurbs.Algorithm.CurveSpan_EvaluateFirstDerivative_Deboor(_order - 1, knotIX, ref knot, ref cvDataBlock, i * _cvCount + cvIX, cvStride: 1, t: t);
+                    point[i] = Geometry.Nurbs.Algorithm.CurveSpan_EvaluateFirstDerivative_Deboor(_order - 1, knotIX, ref knot, ControlPoints.Data, startIx, cvStride: ControlPoints.CvStride[0], t: t);
                 }
                 else
                 {
-                    point[i] = Geometry.Nurbs.Algorithm.CurveSpan_EvaluateDerivative_Deboor(derivative, _order - 1, knotIX, ref knot, ref cvDataBlock, i * _cvCount + cvIX, cvStride: 1, t: t);
+                    point[i] = Geometry.Nurbs.Algorithm.CurveSpan_EvaluateDerivative_Deboor(derivative, _order - 1, knotIX, ref knot, ControlPoints.Data, startIx, cvStride: ControlPoints.CvStride[0], t: t);
                 }
             }
         }
@@ -139,19 +154,19 @@ namespace Luthier.Geometry.Nurbs
                 double[] basis = new double[9];
                 Algorithm.BasisFunction_EvaluateAllNonZero_AllDerivatives_DegreeTwo(knot, t, ref basis, ref indices);
 
-                for (int i = 0; i < _cvSize; i++)
+                for (int d = 0; d < ControlPoints.Dimension; d++)
                 {
-                    values[i] = 0;
-                    values[i + _dimension] = 0;
-                    values[i + 2 * _dimension] = 0;
+                    values[d] = 0;
+                    values[d + _dimension] = 0;
+                    values[d + 2 * _dimension] = 0;
 
                     for (int j = 0; j < _order; j++)
                     {
-                        int cvIX = indices[j] + i * _cvCount;
+                        int cvIX = ControlPoints.GetDataIndex(d, indices[j]);
 
-                        values[i] += cvDataBlock[cvIX] * basis[j];
-                        values[i + _dimension] += cvDataBlock[cvIX] * basis[j + _order];
-                        values[i + 2 * _dimension] += cvDataBlock[cvIX] * basis[j + 2 * _order];
+                        values[d] += ControlPoints.Data[cvIX] * basis[j];
+                        values[d + _dimension] += ControlPoints.Data[cvIX] * basis[j + _order];
+                        values[d + 2 * _dimension] += ControlPoints.Data[cvIX] * basis[j + 2 * _order];
                     }
                 }
                 
@@ -167,19 +182,19 @@ namespace Luthier.Geometry.Nurbs
         {
             if (_order == 3)
             {
-                for (int i = 0; i < _cvSize; i++)
+                for (int d = 0; d < ControlPoints.Dimension; d++)
                 {
-                    d0[i] = 0;
-                    d1[i] = 0;
-                    d2[i] = 0;
+                    d0[d] = 0;
+                    d1[d] = 0;
+                    d2[d] = 0;
 
                     for (int j = 0; j < _order; j++)
                     {
-                        int cvIX = indices[j] + i * _cvCount;
+                        int cvIX = ControlPoints.GetDataIndex(d, indices[j]);
 
-                        d0[i] += cvDataBlock[cvIX] * basis[j];
-                        d1[i] += cvDataBlock[cvIX] * basis[j + _order];
-                        d2[i] += cvDataBlock[cvIX] * basis[j + 2 * _order];
+                        d0[d] += ControlPoints.Data[cvIX] * basis[j];
+                        d1[d] += ControlPoints.Data[cvIX] * basis[j + _order];
+                        d2[d] += ControlPoints.Data[cvIX] * basis[j + 2 * _order];
                     }
                 }
             }
@@ -242,8 +257,9 @@ namespace Luthier.Geometry.Nurbs
             return result;
         }
 
-        public void InsertKnots(List<double> knots)
+        public NurbsCurve InsertKnot(double[] knots)
         {
+            return null;
             //var newKnot = new Knot { p = knot.p, data = new List<double>(knot.data) };
             //newKnot.data.AddRange(knots);
             //newKnot.data.Sort();
@@ -274,8 +290,8 @@ namespace Luthier.Geometry.Nurbs
 
         public NurbsCurve DeepCopy()
         {
-            var copy = new NurbsCurve(_dimension, _isRational, _order, _cvCount);
-            Array.Copy(cvDataBlock, copy.cvDataBlock, cvDataBlock.Length);
+            var copy = new NurbsCurve(_dimension, _isRational, _order, ControlPoints.CvCount[0]);
+            copy.ControlPoints = ControlPoints.DeepCopy();
             Array.Copy(knot, copy.knot, knot.Length);
             return copy;
         }
@@ -284,46 +300,43 @@ namespace Luthier.Geometry.Nurbs
 
         public void ExtendFront(double[] cv)
         {
-            if (cv.Length != _cvSize) return;
+            if (cv.Length != ControlPoints.Dimension) return;
 
             var newKnot = new double[knot.Length + 1];
             Array.Copy(knot, 0, newKnot, 1, knot.Length);
             newKnot[0] = 2 * newKnot[1] - newKnot[2];
 
-            var newCvDataBlock = new double[cvDataBlock.Length + _cvSize];
-            Array.Copy(cvDataBlock, 0, newCvDataBlock, _cvSize, cvDataBlock.Length);
-            Array.Copy(cv, 0, newCvDataBlock, 0, _cvSize);
+            double[] cp = new double[ControlPoints.Dimension];
+            var newControlPoints = new ControlPoints(ControlPoints.Dimension, ControlPoints.CvCount[0] + 1);
+            for (int i = 0; i < ControlPoints.CvCount[0]; i++)
+            {
+                ControlPoints.GetCV(cp, i);
+                newControlPoints.SetCV(cp, i + 1);
+            }
+            newControlPoints.SetCV(cv, 0);
 
-            _cvCount++;
-
-            cvDataBlock = newCvDataBlock;
+            ControlPoints = newControlPoints;
             knot = newKnot;
         }
 
         public void ExtendBack(double[] cv)
         {
-            if (cv.Length != _cvSize) return;
+            if (cv.Length != ControlPoints.Dimension) return;
 
             var newKnot = new double[knot.Length + 1];
             Array.Copy(knot, 0, newKnot, 0, knot.Length);
             newKnot[newKnot.Length - 1] = 2 * newKnot[newKnot.Length - 2] - newKnot[newKnot.Length - 3];
 
-            var newCvDataBlock = new double[cvDataBlock.Length + _cvSize];
-            for (int i = 0; i < _cvCount; i++)
+            double[] cp = new double[ControlPoints.Dimension];
+            var newControlPoints = new ControlPoints(ControlPoints.Dimension, ControlPoints.CvCount[0] + 1);
+            for (int i = 0; i < ControlPoints.CvCount[0]; i++)
             {
-                for (int j = 0; j < _cvSize; j++)
-                {
-                    newCvDataBlock[i + j * (_cvCount + 1)] = cvDataBlock[i + j * _cvCount];
-                }
+                ControlPoints.GetCV(cp, i);
+                newControlPoints.SetCV(cp, i);
             }
-            for (int j = 0; j < _cvSize; j++)
-            {
-                newCvDataBlock[_cvCount + j * (_cvCount + 1)] = cv[j];
-            }
+            newControlPoints.SetCV(cv, ControlPoints.CvCount[0]);
 
-            _cvCount++;
-
-            cvDataBlock = newCvDataBlock;
+            ControlPoints = newControlPoints;
             knot = newKnot;
         }
 
@@ -559,9 +572,14 @@ namespace Luthier.Geometry.Nurbs
         public NurbsCurve Scale(double scaleFactor)
         {
             var result = DeepCopy();
-            for (int i = 0; i < result.cvDataBlock.Length; i++)
-                result.cvDataBlock[i] *= scaleFactor;
+            result.ControlPoints = ControlPoints.Scale(scaleFactor);
+            return result;
+        }
 
+        public NurbsCurve Apply(Func<double[], double[]> function)
+        {
+            var result = DeepCopy();
+            result.ControlPoints = ControlPoints.Apply(function);
             return result;
         }
     }

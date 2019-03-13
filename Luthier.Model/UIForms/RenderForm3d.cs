@@ -26,6 +26,7 @@ namespace Luthier.Model.UIForms
         public EventHandler DoScaleModelStripMenuItem_Click;
         public EventHandler DoSurfaceDrawingStyleToolStripMenuItem_Click;
         public EventHandler DoCreateJoiningSurfaceToolStripMenuItem_Click;
+        public EventHandler DoCreateOffsetCurveToolStripMenuItem_Click;
 
         private void curveToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -110,6 +111,11 @@ namespace Luthier.Model.UIForms
         private void menuStrip1_ItemClicked(object sender, System.Windows.Forms.ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void offsetCurveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DoCreateOffsetCurveToolStripMenuItem_Click(sender, e);
         }
     }
 }

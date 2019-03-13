@@ -23,6 +23,10 @@ namespace Luthier.Geometry.Nurbs
         [XmlArray]
         public double[] knotArray1;
 
+        public double[] KnotArray(int direction) => direction == 0 ? knotArray0 : knotArray1;
+        public int Order(int direction) => direction == 0 ? Order0 : Order1;
+        public int Degree(int direction) => Order(direction) - 1;
+        public Interval Domain(int direction) => direction == 0 ? Domain0() : Domain1();
 
         public ControlPoints controlPoints;
 
@@ -72,12 +76,29 @@ namespace Luthier.Geometry.Nurbs
             return cv;
         }
 
+        public T GetCV<T>(int i, int j) where T : Point
+        {
+            Point cv;
+            if (Dimension == 2)
+            {
+                cv = new Point2D();
+                controlPoints.GetCV(cv.Data, i, j);
+            }
+            else if (Dimension == 3)
+            {
+                cv = new Point3D();
+                controlPoints.GetCV(cv.Data, i, j);
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+            return (T)cv;
+        }
+
         public void SetCV(int i, int j, double[] cv)
         {
-            //int startIndex = (CvCount1 * i + j) * CvSize;
-            //Array.Copy(cv, 0, cvArray, startIndex, CvSize);
-
-            controlPoints.SetCV(cv, i, j);
+             controlPoints.SetCV(cv, i, j);
         }
 
         public double[] Evaluate(double u, double v)
@@ -287,6 +308,14 @@ namespace Luthier.Geometry.Nurbs
             return result;
         }
 
+        //creates a new surface whose control points are the result of applying the given function to every control point in current surface 
+        public NurbsSurface Apply(Func<double[], double[]> function)
+        {
+            var result = DeepCopy();
+            result.controlPoints = controlPoints.Apply(function);
+            return result;
+        }
+
 
         public NurbsSurface ReverseKnot(int direction)
         {
@@ -302,12 +331,100 @@ namespace Luthier.Geometry.Nurbs
             return result;
         }
 
+
+        public NurbsSurface SwapParity()
+        {
+            var result = new NurbsSurface(Dimension, IsRational, Order1, Order0, controlPoints.CvCount[1], controlPoints.CvCount[0]);
+
+            result.knotArray0 = knotArray1;
+            result.knotArray1 = knotArray0;
+
+            for(int i=0; i< controlPoints.CvCount[0]; i++)
+            {
+                for (int j = 0; j < controlPoints.CvCount[1]; j++)
+                {
+                    result.SetCV(j, i, GetCV(i, j));
+                }
+            }
+
+            return result;
+        }
+
+
+        public NurbsSurface SubSurface(double u1, double u2, double v1, double v2)
+        {
+            if(!ParametersInDomain(0, u1, u2) || !ParametersInDomain(1, v1, v2))
+            {
+                throw new ArgumentException($"parameters outside domain of surface");
+            }
+            
+            var s = this.GetSurfaceWithUnitContinutyAtParameterValues(0, u1, u2, out int firstU1Ix, out int lastU2Ix);
+            s = s.GetSurfaceWithUnitContinutyAtParameterValues(1, v1,v2, out int firstV1Ix, out int lastV2Ix);
+
+            int cvCount0 = lastU2Ix - firstU1Ix + 1 - Order0;
+            int cvCount1 = lastV2Ix - firstV1Ix + 1 - Order1;
+
+            var result = new NurbsSurface(Dimension, IsRational, Order0, Order1, cvCount0, cvCount1);
+
+            for (int i = firstU1Ix; i < firstU1Ix + cvCount0; i++)
+            {
+                for (int j = firstV1Ix; j < firstV1Ix + cvCount1; j++)
+                {
+                    result.SetCV(i - firstU1Ix, j - firstV1Ix, s.GetCV(i, j));
+                }
+            }
+
+            Array.Copy(s.knotArray0, firstU1Ix, result.knotArray0, 0, result.knotArray0.Length);
+            Array.Copy(s.knotArray1, firstV1Ix, result.knotArray1, 0, result.knotArray1.Length);
+
+            result.knotArray0 = Knot.Normalise(result.knotArray0, result.Order0 - 1);
+            result.knotArray1 = Knot.Normalise(result.knotArray1, result.Order1 - 1);
+
+            return result;
+        }
+  
+
+        private NurbsSurface GetSurfaceWithUnitContinutyAtParameterValues(int direction, double k1, double k2, out int firstK1Ix, out int lastK2Ix)
+        {
+            var newKnots = new List<double>();
+            int continuity = Knot.Continuity(KnotArray(direction), Order(direction) - 1, k1);
+            while(continuity-- > 0)
+                newKnots.Add(k1);
+
+            continuity = Knot.Continuity(KnotArray(direction), Order(direction) - 1, k2);
+            while (continuity-- > 0)
+                newKnots.Add(k2);
+
+            var s1 = (newKnots.Count > 0) ? InsertKnot(direction, newKnots.ToArray()) : this;
+
+            firstK1Ix = 0;
+            while (s1.KnotArray(direction)[firstK1Ix] < k1) firstK1Ix++;
+
+            lastK2Ix = s1.KnotArray(direction).Length- 1;
+            while (k2 < s1.KnotArray(direction)[lastK2Ix]) lastK2Ix--;
+
+            return s1;
+        }
+
+        private bool ParametersInDomain(int direction, params double[] t)
+        {
+            Interval domain = Domain(direction);
+            foreach (double u in t)
+            {
+                if(u < domain.Min || domain.Max < u)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public NurbsSurface DeepCopy()
         {
             var result = new NurbsSurface(Dimension, IsRational, Order0, Order1, controlPoints.CvCount[0], controlPoints.CvCount[1]);
             Array.Copy(knotArray0, result.knotArray0, knotArray0.Length);
             Array.Copy(knotArray1, result.knotArray1, knotArray1.Length);
-            result.controlPoints = controlPoints.Clone();
+            result.controlPoints = controlPoints.DeepCopy();
             return result;
         }
     }

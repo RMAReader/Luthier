@@ -90,8 +90,8 @@ namespace Luthier.Test.Geometry
 
             Assert.AreEqual(0.666666,res.Parameter1,0.000001);
             Assert.AreEqual(0.75, res.Parameter2, 0.000001);
-            Assert.AreEqual(0, res.Point.x, 0.000001);
-            Assert.AreEqual(1, res.Point.y, 0.000001);
+            Assert.AreEqual(0, res.Point.X, 0.000001);
+            Assert.AreEqual(1, res.Point.Y, 0.000001);
         }
 
         [TestMethod]
@@ -305,8 +305,8 @@ namespace Luthier.Test.Geometry
 
         void AssertAreEqual(Point2D expected, Point2D actual, double precision)
         {
-            Assert.AreEqual(expected.x, actual.x, precision);
-            Assert.AreEqual(expected.y, actual.y, precision);
+            Assert.AreEqual(expected.X, actual.X, precision);
+            Assert.AreEqual(expected.Y, actual.Y, precision);
         }
         void AssertAreEqual(List<Point2D> expected, List<Point2D> actual, double precision)
         {

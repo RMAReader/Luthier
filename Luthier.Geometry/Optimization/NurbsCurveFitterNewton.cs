@@ -92,7 +92,7 @@ namespace Luthier.Geometry.Optimization
             sw.Restart();
 
             //var result1 = lbfgs.FindMinimum(objvalue, Vector<double>.Build.Dense(_initialGuess.cvDataBlock));
-            var result2 = minimizer.FindMinimum(objvalue, Vector<double>.Build.Dense(_initialGuess.cvDataBlock));
+            var result2 = minimizer.FindMinimum(objvalue, Vector<double>.Build.Dense(_initialGuess.ControlPoints.Data));
 
             long t4 = sw.ElapsedMilliseconds;
 

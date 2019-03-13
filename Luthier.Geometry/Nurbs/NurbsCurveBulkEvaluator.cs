@@ -83,10 +83,10 @@ namespace Luthier.Geometry.Nurbs
                     for (int i = 0; i < _curve._order; i++)
                     {
                         int basisFuncIx = t * _curve._order + i;
-                        int cvIx = (d * _curve._cvCount) + (_knotIX[t] - _curve._order + 1 + i);
+                        int cvIx = _curve.ControlPoints.GetDataIndex(d, _knotIX[t] - _curve._order + 1 + i);
                         int resultIx = t * _curve._dimension + d;
 
-                        result[resultIx] += _basisFunctions[basisFuncIx] * _curve.cvDataBlock[cvIx];
+                        result[resultIx] += _basisFunctions[basisFuncIx] * _curve.ControlPoints.Data[cvIx];
                     }
                 }
             }

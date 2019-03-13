@@ -250,7 +250,7 @@ namespace Luthier.Model.Presenter
             {
                 foreach (var polygon in ((PolygonSelector) MouseController).selectedPolygons)
                 {
-                    var polygonPoints = polygon.ToPolygon2D(model).GetPoints().Select(p => new PointF((float)p.x, (float)p.y)).ToArray();
+                    var polygonPoints = polygon.ToPolygon2D(model).GetPoints().Select(p => new PointF((float)p.X, (float)p.Y)).ToArray();
                     g.FillPolygon(selectedPolygonBrush, ViewMapper.TransformModelToViewCoordinates(polygonPoints));
                 }
             }

@@ -70,7 +70,7 @@ namespace Luthier
                 var p1 = new Point2D(segment.X[0].p1, segment.Y);
                 var p2 = new Point2D(segment.X[0].p2, segment.Y);
 
-                if (region.Count > 0 && Math.Abs(region.Last().x - p1.x) < Math.Abs(region.Last().x - p2.x))
+                if (region.Count > 0 && Math.Abs(region.Last().X - p1.X) < Math.Abs(region.Last().X - p2.X))
                 {
                     region.Add(p1);
                     region.Add(p2);

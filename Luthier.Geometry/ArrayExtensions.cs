@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Accord.Math;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,11 @@ namespace Luthier.Geometry
                     }
                     return result;
             }
+        }
+
+        public static double[] DotProduct(this double[,] lhs, double[] rhs)
+        {
+            return lhs.Dot(rhs);
         }
 
         public static double[] VectorProduct(this double[] lhs, double[] rhs)
@@ -106,13 +112,24 @@ namespace Luthier.Geometry
             return Math.Sqrt(l2norm);
         }
 
-        public static void Normalise(this double[] array)
+        public static void NormaliseThis(this double[] array)
         {
             var l2norm = array.L2Norm();
             for (int i = 0; i < array.Length; i++)
             {
                 array[i] /= l2norm;
             }
+        }
+
+        public static double[] Normalise(this double[] array)
+        {
+            var l2norm = array.L2Norm();
+            var result = new double[array.Length];
+            for (int i = 0; i < array.Length; i++)
+            {
+                result[i] = array[i] / l2norm;
+            }
+            return result;
         }
 
         public static double[] Multiply(this double[] array, double a)
@@ -125,9 +142,25 @@ namespace Luthier.Geometry
             return result;
         }
 
+        public static double[] Transform(this double[] array, double[] translation, double[][] rotation)
+        {
+            if (array.Length != 3 || translation.Length != 3 || rotation.Length != 3) throw new Exception();
 
+            var result = new double[array.Length];
+
+            var a1 = array.Subtract(translation);
+            for(int i=0; i<3; i++)
+            {
+                result[i] = a1.DotProduct(rotation[i]);
+            }
+
+            return result;
+        }
+
+        
 
     }
+
 
 
 }

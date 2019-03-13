@@ -24,6 +24,7 @@ namespace Luthier.Model.GraphicObjects
         public bool DrawSurface { get; set; }
         public SurfaceDrawingStyle SurfaceDrawingStyle { get; set; }
         public bool IsSelected { get; set; }
+        public bool HasChanged { get; set; }
 
         public GraphicNurbsSurface()  { SurfaceDrawingStyle = SurfaceDrawingStyle.PhongShadedColour; }
         public GraphicNurbsSurface(int dimension, bool bIsRational, int order0, int order1, int cv_count0, int cv_count1)
@@ -112,10 +113,15 @@ namespace Luthier.Model.GraphicObjects
         public void ScaleObject(double scaleFactor)
         {
             Surface = Surface.ScaleSurface(scaleFactor);
+            HasChanged = true;
         }
 
 
         #region "IDrawableXXX implementations"
+
+        private List<TangentVertex> _drawablePhongSurfaceVertices;
+        private int nU = 200;
+        private int nV = 200;
 
         void IDrawablePhongSurface.GetVertexAndIndexLists(ref List<TangentVertex> vertices, ref List<int> indices)
         {
@@ -125,11 +131,20 @@ namespace Luthier.Model.GraphicObjects
 
         private void GetVertexAndIndexListsFullSurfaceDomain(ref List<TangentVertex> vertices, ref List<int> indices)
         {
-            int nU = 200;
-            int nV = 200;
-
             int indexOffset = vertices.Count;
 
+            if(_drawablePhongSurfaceVertices == null || HasChanged)
+            {
+                _drawablePhongSurfaceVertices = new List<TangentVertex>();
+                GetVertexListFullSurfaceDomain(ref _drawablePhongSurfaceVertices);
+            }
+            vertices.AddRange(_drawablePhongSurfaceVertices);
+
+            GetIndexListFullSurfaceDomain(indexOffset, ref indices);
+        }
+
+        private void GetVertexListFullSurfaceDomain(ref List<TangentVertex> vertices)
+        {
             for (int i = 0; i < nU; i++)
             {
                 double u = (1 - (double)i / (nU - 1)) * Surface.Domain0().Min + (double)i / (nU - 1) * Surface.Domain0().Max;
@@ -150,7 +165,9 @@ namespace Luthier.Model.GraphicObjects
                     });
                 }
             }
-
+        }
+        private void GetIndexListFullSurfaceDomain(int indexOffset, ref List<int> indices)
+        {
             for (int i = 0; i < nU - 1; i++)
             {
                 for (int j = 0; j < nV - 1; j++)
@@ -164,6 +181,7 @@ namespace Luthier.Model.GraphicObjects
                 }
             }
         }
+
 
         void IDrawableStaticColouredSurface.GetVertexAndIndexLists(ref List<StaticColouredVertex> vertices, ref List<int> indices)
         {
@@ -408,7 +426,11 @@ namespace Luthier.Model.GraphicObjects
         public double[] Values
         {
             get => surface.Surface.GetCV(i, j);
-            set => surface.Surface.SetCV(i, j, value);
+            set
+            {
+                surface.Surface.SetCV(i, j, value);
+                surface.HasChanged = true;
+            }
         }
     }
 

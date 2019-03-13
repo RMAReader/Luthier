@@ -24,6 +24,7 @@ namespace Luthier.Model.MouseController3D
                 {
                     point.Values = intersectPoint;
                     _model.Model.HasChanged = true;
+                    
                 }
             }
         }

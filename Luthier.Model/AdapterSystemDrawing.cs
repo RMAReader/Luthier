@@ -70,7 +70,7 @@ namespace Luthier.Model
 
                 var approxCurve = new Geometry.Nurbs.BSplineCurve(points, curve.GetKnot()).ToLines(100);
 
-                result.Add(approxCurve.Select(p => new PointF((float)p.x, (float)p.y)).ToArray());
+                result.Add(approxCurve.Select(p => new PointF((float)p.X, (float)p.Y)).ToArray());
             }
             return result;
         }
@@ -185,7 +185,7 @@ namespace Luthier.Model
             var result = new List<PointF[]>();
             foreach (GraphicCompositePolygon polygon in model.Model.VisibleObjects().Where(x => x is GraphicCompositePolygon))
             {
-                result.Add(polygon.ToPolygon2D(model).GetPoints().Select(p => new PointF((float)p.x, (float)p.y)).ToArray());
+                result.Add(polygon.ToPolygon2D(model).GetPoints().Select(p => new PointF((float)p.X, (float)p.Y)).ToArray());
             }
             return result;
         }

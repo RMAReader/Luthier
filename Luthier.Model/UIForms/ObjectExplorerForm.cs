@@ -384,8 +384,8 @@ namespace Luthier.Model.UIForms
             if (surface != null)
             {
                 surface.DrawControlNet = true;
-                _presenter.DoDragParallelToPlaneToolStripMenuItem_Click(sender, e);
             }
+            _presenter.DoDragParallelToPlaneToolStripMenuItem_Click(sender, e);
         }
 
         private void normalToPlaneToolStripMenuItem_Click(object sender, EventArgs e)
@@ -394,8 +394,8 @@ namespace Luthier.Model.UIForms
             if (surface != null)
             {
                 surface.DrawControlNet = true;
-                _presenter.DoDragNormalToPlaneToolStripMenuItem_Click(sender, e);
             }
+            _presenter.DoDragNormalToPlaneToolStripMenuItem_Click(sender, e);
         }
     }
 

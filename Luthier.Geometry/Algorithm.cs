@@ -13,7 +13,7 @@ namespace Luthier.Geometry
         public static double DistancePointToLine(double[] p1, double[] l1, double[] l2)
         {
             double[] tangent = l2.Subtract(l1);
-            tangent.Normalise();
+            tangent.NormaliseThis();
 
             double[] v = p1.Subtract(l1);
             double t = v.DotProduct(tangent);
@@ -25,10 +25,10 @@ namespace Luthier.Geometry
 
         public static double? intersection_line_y(double y, Point2D p1, Point2D p2)
         {
-            if((p1.y != p2.y && p1.y <= y && y <= p2.y) || (p1.y != p2.y && p2.y <= y && y <= p1.y))
+            if((p1.Y != p2.Y && p1.Y <= y && y <= p2.Y) || (p1.Y != p2.Y && p2.Y <= y && y <= p1.Y))
             {
-                double s = (y - p1.y) / (p2.y - p1.y);
-                return (1 - s) * p1.x + s * p2.x;
+                double s = (y - p1.Y) / (p2.Y - p1.Y);
+                return (1 - s) * p1.X + s * p2.X;
             }
             return null;
         }
@@ -39,12 +39,12 @@ namespace Luthier.Geometry
             var d = direction.ToNormalised();
             var p_1 = (p1 - centre);
             var p_2 = (p2 - centre);
-            var q1 = new Point2D(d.x * p_1.x + d.y * p_1.y, -d.y * p_1.x + d.x * p_1.y);
-            var q2 = new Point2D(d.x * p_2.x + d.y * p_2.y, -d.y * p_2.x + d.x * p_2.y);
+            var q1 = new Point2D(d.X * p_1.X + d.Y * p_1.Y, -d.Y * p_1.X + d.X * p_1.Y);
+            var q2 = new Point2D(d.X * p_2.X + d.Y * p_2.Y, -d.Y * p_2.X + d.X * p_2.Y);
 
             var t = (q2 - q1).ToNormalised();
-            var d1 = intersection_line_y(t.x, q1, q2) + t.y * radius;
-            var d2 = intersection_line_y(-t.x, q1, q2) - t.y * radius;
+            var d1 = intersection_line_y(t.X, q1, q2) + t.Y * radius;
+            var d2 = intersection_line_y(-t.X, q1, q2) - t.Y * radius;
 
             if (d1 >= 0 && d2 >= 0)
             {
@@ -62,56 +62,59 @@ namespace Luthier.Geometry
         }
 
 
-        //public static List<Point2D> offset_path(List<Point2D> path, double tool_radius, bool deep_corners, bool open)
-        //{
-        //    int j, k;
-        //    var offset_path = new List<Point2D>(path.Count);
+        public static List<double[]> offset_path(List<double[]> path, double offsetDistance, bool deep_corners, bool open)
+        {
+            int j, k;
 
-        //    int count = open ? path.Count - 2 : path.Count;
+            var offset_path = new List<double[]>(path.Count);
 
-        //    for (int i = 0; i < count; i++)
-        //    {
-        //        j = (i + 1) % path.Count;
-        //        k = (i + 2) % path.Count;
+            int count = open ? path.Count - 2 : path.Count;
 
-        //        var v1 = path[i];
-		      //  var v2 = path[j];
-		      //  var v3 = path[k];
+            for (int i = 0; i < count; i++)
+            {
+                j = (i + 1) % path.Count;
+                k = (i + 2) % path.Count;
 
-		      //  var n1 = new Point2D(v1.y - v2.y, v2.x - v1.x).ToNormalised() * tool_radius; 
-        //        var n2 = new Point2D(v2.y - v3.y, v3.x - v2.x).ToNormalised() * tool_radius;
+                var v1 = new double[] { path[i][0], path[i][1] };
+                var v2 = new double[] { path[j][0], path[j][1] };
+                var v3 = new double[] { path[k][0], path[k][1] };
 
-		      //  var p1 = new Point2D(v1.x + n1.x, v1.y + n1.y);
-		      //  var p2 = new Point2D(v2.x + n1.x, v2.y + n1.y);
-		      //  var q1 = new Point2D(v2.x + n2.x, v2.y + n2.y);
-		      //  var q2 = new Point2D(v3.x + n2.x, v3.y + n2.y);
+                var n1 = new double[] { v1[1] - v2[1], v2[0] - v1[0] }.Normalise().Multiply(offsetDistance);
+                var n2 = new double[] { v2[1] - v3[1], v3[0] - v2[0] }.Normalise().Multiply(offsetDistance);
 
-		      //  var intersect = Intersection.GetIntersection(p1, p2, q1, q2);
+                var p1 = v1.Add(n1); 
+                var p2 = v2.Add(n1); 
+                var q1 = v2.Add(n2); 
+                var q2 = v3.Add(n2);
 
-		      //  if (i == 0 && open) offset_path.Add(p1);
+                var intersect = Intersection.GetIntersection2D(p1, p2, q1, q2);
 
-        //        if (intersect != null)
-        //        {
-        //            offset_path.Add(intersect.Point);
-        //            if (deep_corners && IsInsideCorner(n1, q2 - q1))
-        //            {
-        //                var corner = v2 + (intersect.Point - v2).ToNormalised() * tool_radius;
-        //                offset_path.Add(corner);
-        //                offset_path.Add(intersect.Point);
-        //            }
-        //        }
-		      //  if (k == path.Count - 1 && open){
-			     //   offset_path.Add(q2);
-		      //  }
-	       // }
-        //    return offset_path;
+                if (i == 0 && open) offset_path.Add(p1);
 
-        //}
+                if (intersect != null)
+                {
+                    var ip = new double[] { intersect.Point.X, intersect.Point.Y };
+                    offset_path.Add(ip);
+                    if (deep_corners && IsInsideCorner(n1, q2.Subtract(q1)))
+                    {
+                        var corner = v2.Add(ip.Subtract(v2).Normalise().Multiply(offsetDistance));
+                        offset_path.Add(corner);
+                        offset_path.Add(ip);
+                    }
+                }
+                if (k == path.Count - 1 && open)
+                {
+                    offset_path.Add(q2);
+                }
+            }
+            return offset_path;
 
-        //private static bool IsInsideCorner(Point2D n1, Point2D t2)
-        //{
-        //    return (n1.x * t2.x + n1.y * t2.y > 0);
-        //}
+        }
+
+        private static bool IsInsideCorner(double[] n1, double[] t2)
+        {
+            return (n1[0] * t2[0] + n1[1] * t2[1] > 0);
+        }
 
         //public static List<List<Point2D>> SplitPathRemoveOverLaps(List<Point2D> polygon)
         //{

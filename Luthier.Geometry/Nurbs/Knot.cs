@@ -78,13 +78,22 @@ namespace Luthier.Geometry.Nurbs
 
         //returns continuity of curve at parameter x
         public int Continuity(double x) => p + 1 - data.Where(y => y == x).Count();
-           
+        public static int Continuity(double[] knot, int p, double x) => p + 1 - knot.Where(y => y == x).Count();
+
+
         //returns multiplicity of knot i
         public int Multiplicity(int knotIX) => data.Where(x => x == data[knotIX]).Count();
-        
+        public static int Multiplicity(double[] knot, int p, int knotIX) => knot.Where(x => x == knot[knotIX]).Count();
+
         //rescales knot vector so parameter is in range [0, 1]
         public void Normalise() => data = data.Select(x => x = (x - minParam) / (maxParam - minParam)).ToList();
-        
+        public static double[] Normalise(double[] knot, int p)
+        {
+            double minK = knot[p];
+            double maxK = knot[knot.Length - 1 - p];
+            return knot.Select(x => x = (x - minK) / (maxK - minK)).ToArray();
+        }
+
         public static double[] Reverse(double[] knot)
         {
             return knot.Reverse().ToArray();
