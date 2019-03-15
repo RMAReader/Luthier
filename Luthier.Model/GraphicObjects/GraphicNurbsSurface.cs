@@ -68,7 +68,7 @@ namespace Luthier.Model.GraphicObjects
             }
         }
 
-        public IEnumerable<SelectableKnot> GetEdgeKnots()
+        public IEnumerable<SelectableSurfaceKnot> GetEdgeKnots()
         {
             if (!DrawKnotSpans) yield break;
 
@@ -79,14 +79,14 @@ namespace Luthier.Model.GraphicObjects
 
             for (int i = minI; i <= maxI; i++)
             {
-                yield return new SelectableKnot(this, i, minJ);
-                yield return new SelectableKnot(this, i, maxJ);
+                yield return new SelectableSurfaceKnot(this, i, minJ);
+                yield return new SelectableSurfaceKnot(this, i, maxJ);
             }
 
             for (int j = minJ + 1; j < maxJ; j++)
             {
-                yield return new SelectableKnot(this, minI, j);
-                yield return new SelectableKnot(this, maxI, j);
+                yield return new SelectableSurfaceKnot(this, minI, j);
+                yield return new SelectableSurfaceKnot(this, maxI, j);
             }
         }
 
@@ -434,19 +434,9 @@ namespace Luthier.Model.GraphicObjects
         }
     }
 
-    public class SelectableKnot
-    {
-        public GraphicNurbsSurface Surface { get; private set; }
-        public int[] KnotIndices { get; private set; }
-        public double[] Parameters => new double[] { Surface.Surface.knotArray0[KnotIndices[0]], Surface.Surface.knotArray1[KnotIndices[1]] };
-        public double[] Coords => Surface.Surface.Evaluate(Parameters[0], Parameters[1]);
 
-        public SelectableKnot(GraphicNurbsSurface surface, int i, int j)
-        {
-            Surface = surface;
-            KnotIndices = new int[] { i, j };
-        }
-    }
+
+ 
 
     public enum SurfaceDrawingStyle
     {

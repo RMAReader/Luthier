@@ -70,6 +70,7 @@
     <Compile Include="GraphicObjects\Interfaces\IDrawablePoints.cs" />
     <Compile Include="GraphicObjects\Interfaces\IDrawableStaticColouredSurface.cs" />
     <Compile Include="GraphicObjects\Interfaces\IScalable.cs" />
+    <Compile Include="GraphicObjects\Interfaces\ISelectableKnot.cs" />
     <Compile Include="Helpers\Convert.cs" />
     <Compile Include="GraphicObjectFactory\BSplineFactory.cs" />
     <Compile Include="GraphicObjectFactory\CompositePolygonFactory.cs" />

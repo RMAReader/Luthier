@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using Luthier.Geometry;
 using Luthier.Geometry.Nurbs;
 using Luthier.Model.GraphicObjects;
+using Luthier.Model.GraphicObjects.Interfaces;
 using Luthier.Model.Presenter;
 
 namespace Luthier.Model.MouseController3D
@@ -16,7 +17,7 @@ namespace Luthier.Model.MouseController3D
         protected IApplicationDocumentModel _model;
         protected Camera _camera;
         protected double selectionRadius = 20;
-        protected List<SelectableKnot> selectedPoints = new List<SelectableKnot>();
+        protected List<ISelectableKnot> selectedPoints = new List<ISelectableKnot>();
 
         public int X {get; private set;}
 
@@ -53,10 +54,10 @@ namespace Luthier.Model.MouseController3D
             if(e.Button == MouseButtons.Left)
             {
                 double distance = double.MaxValue;
-                SelectableKnot point = null;
+                SelectableSurfaceKnot point = null;
                 foreach (GraphicNurbsSurface surface in _model.Model.Where(x => x is GraphicNurbsSurface))
                 {
-                    foreach(SelectableKnot k in surface.GetEdgeKnots())
+                    foreach(SelectableSurfaceKnot k in surface.GetEdgeKnots())
                     {
                         var p = _camera.ConvertFromWorldToScreen(k.Coords);
                         double d = Math.Sqrt((p[0] - e.X) * (p[0] - e.X) + (p[1] - e.Y) * (p[1] - e.Y));
@@ -69,7 +70,22 @@ namespace Luthier.Model.MouseController3D
                     }
 
                 }
-                if(point != null)
+                foreach (GraphicNurbsCurve surface in _model.Model.Where(x => x is GraphicNurbsCurve))
+                {
+                    foreach (SelectableSurfaceKnot k in surface.Knot)
+                    {
+                        var p = _camera.ConvertFromWorldToScreen(k.Coords);
+                        double d = Math.Sqrt((p[0] - e.X) * (p[0] - e.X) + (p[1] - e.Y) * (p[1] - e.Y));
+
+                        if (d < selectionRadius && d < distance && !selectedPoints.Contains(k))
+                        {
+                            point = k;
+                            distance = d;
+                        }
+                    }
+
+                }
+                if (point != null)
                 {
                     selectedPoints.Add(point);
                 }
@@ -129,26 +145,43 @@ namespace Luthier.Model.MouseController3D
 
         private bool SelectionIsValid()
         {
-            if (selectedPoints[0].Surface == selectedPoints[2].Surface) return false;
+            if (selectedPoints[0].Object == selectedPoints[2].Object) return false;
             if (!PointsAreOnSurfaceEdge(selectedPoints[0], selectedPoints[1])) return false;
             if (!PointsAreOnSurfaceEdge(selectedPoints[2], selectedPoints[3])) return false;
 
             return true;
         }
 
-        private bool PointsAreOnSurfaceEdge(SelectableKnot p1, SelectableKnot p2)
+        private bool PointsAreOnSurfaceEdge(ISelectableKnot p1, ISelectableKnot p2)
         {
             //selected points on different surfaces
-            if (p1.Surface != p2.Surface) return false;
+            if (p1.Object != p2.Object) return false;
 
             //selected points not on same edge of surface
-            if (p1.KnotIndices[0] != p2.KnotIndices[0] && p1.KnotIndices[1] != p2.KnotIndices[1]) return false;
+            if (p1.Object is GraphicNurbsCurve && p1.KnotIndices[0] != p2.KnotIndices[0]) return false;
+            if (p1.Object is GraphicNurbsSurface && p1.KnotIndices[0] != p2.KnotIndices[0] && p1.KnotIndices[1] != p2.KnotIndices[1]) return false;
 
             return true;
         }
 
         
-        private NurbsSurfaceEdge CreateEdge(SelectableKnot p1, SelectableKnot p2)
+        private INurbsSurfaceEdge CreateEdge(ISelectableKnot p1, ISelectableKnot p2)
+        {
+            if (p1.Object is GraphicNurbsCurve)
+                return CreateEdgeFromSurface((SelectableSurfaceKnot)p1, (SelectableSurfaceKnot)p2);
+
+            if (p1.Object is GraphicNurbsCurve)
+                return CreateEdgeFromCurve((SelectableCurveKnot)p1, (SelectableCurveKnot)p2);
+
+            return null;
+        }
+
+        private NurbsCurveEdge CreateEdgeFromCurve(SelectableCurveKnot p1, SelectableCurveKnot p2)
+        {
+            return new NurbsCurveEdge(p1.Curve.Curve);
+        }
+
+        private NurbsSurfaceEdge CreateEdgeFromSurface(SelectableSurfaceKnot p1, SelectableSurfaceKnot p2)
         {
             int minI = Knot.MinIndex(p1.Surface.Surface.knotArray0, p1.Surface.Surface.Order0);
             int maxI = Knot.MaxIndex(p1.Surface.Surface.knotArray0, p1.Surface.Surface.Order0);

@@ -71,8 +71,8 @@ namespace Luthier.Geometry.Test
             double t = 3.2;
             int knotIX = 1;
 
-            var cxt = Luthier.Geometry.Nurbs.Algorithm.CurveSpan_EvaluateFirstDerivative_Deboor(degree, knotIX, ref knot, ref cvDataBlock, 0, cvStride, t);
-            var cyt = Luthier.Geometry.Nurbs.Algorithm.CurveSpan_EvaluateFirstDerivative_Deboor(degree, knotIX, ref knot, ref cvDataBlock, 1, cvStride, t);
+            var cxt = Luthier.Geometry.Nurbs.Algorithm.CurveSpan_EvaluateFirstDerivative_Deboor(degree, knotIX, ref knot,  cvDataBlock, 0, cvStride, t);
+            var cyt = Luthier.Geometry.Nurbs.Algorithm.CurveSpan_EvaluateFirstDerivative_Deboor(degree, knotIX, ref knot,  cvDataBlock, 1, cvStride, t);
 
             Assert.AreEqual(0.38285714285714284, cxt);
             Assert.AreEqual(0.019047619047619063, cyt);
@@ -90,9 +90,9 @@ namespace Luthier.Geometry.Test
             double t = 3.2;
             int knotIX = 1;
 
-            var cxtder0 = Luthier.Geometry.Nurbs.Algorithm.CurveSpan_EvaluateDerivative_Deboor(0, degree, knotIX, ref knot, ref cvDataBlock, 0, cvStride, t);
-            var cxtder1 = Luthier.Geometry.Nurbs.Algorithm.CurveSpan_EvaluateDerivative_Deboor(1, degree, knotIX, ref knot, ref cvDataBlock, 0, cvStride, t);
-            var cxtder2 = Luthier.Geometry.Nurbs.Algorithm.CurveSpan_EvaluateDerivative_Deboor(2, degree, knotIX, ref knot, ref cvDataBlock, 0, cvStride, t);
+            var cxtder0 = Luthier.Geometry.Nurbs.Algorithm.CurveSpan_EvaluateDerivative_Deboor(0, degree, knotIX, ref knot, cvDataBlock, 0, cvStride, t);
+            var cxtder1 = Luthier.Geometry.Nurbs.Algorithm.CurveSpan_EvaluateDerivative_Deboor(1, degree, knotIX, ref knot, cvDataBlock, 0, cvStride, t);
+            var cxtder2 = Luthier.Geometry.Nurbs.Algorithm.CurveSpan_EvaluateDerivative_Deboor(2, degree, knotIX, ref knot, cvDataBlock, 0, cvStride, t);
 
             Assert.AreEqual(0.47828571428571437, cxtder0);
             Assert.AreEqual(0.38285714285714284, cxtder1);
@@ -691,8 +691,8 @@ namespace Luthier.Geometry.Test
             curve.SetCV(4, new double[] { 4, 2 });
             curve.SetCV(5, new double[] { 4, -2 });
 
-            var cvDataBlock = new double[curve.cvDataBlock.Length];
-            Array.Copy(curve.cvDataBlock, cvDataBlock, cvDataBlock.Length);
+            var cvDataBlock = new double[curve.ControlPoints.Data.Length];
+            Array.Copy(curve.ControlPoints.Data, cvDataBlock, cvDataBlock.Length);
 
             var cloudPoints = new List<double[]>();
             int numberOfPoints = 5000;
@@ -709,7 +709,7 @@ namespace Luthier.Geometry.Test
 
             try
             {
-                Array.Copy(cvDataBlock, curve.cvDataBlock, cvDataBlock.Length);
+                Array.Copy(cvDataBlock, curve.ControlPoints.Data, cvDataBlock.Length);
                 var fitter = new NurbsCurveFitterAccordNet();
 
                 fitter.Fit(curve, cloud);
@@ -720,7 +720,7 @@ namespace Luthier.Geometry.Test
 
             try
             {
-                Array.Copy(cvDataBlock, curve.cvDataBlock, cvDataBlock.Length);
+                Array.Copy(cvDataBlock, curve.ControlPoints.Data, cvDataBlock.Length);
                 var fitter2 = new NurbsCurveFitterQuadraticApproximation();
 
                 fitter2.Fit(curve, cloud);
@@ -729,7 +729,7 @@ namespace Luthier.Geometry.Test
 
             try
             {
-                Array.Copy(cvDataBlock, curve.cvDataBlock, cvDataBlock.Length);
+                Array.Copy(cvDataBlock, curve.ControlPoints.Data, cvDataBlock.Length);
                 var fitter3 = new NurbsCurveFitterNewton();
 
                 fitter3.Fit(curve, cloud);

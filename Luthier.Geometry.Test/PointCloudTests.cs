@@ -64,8 +64,8 @@ namespace Luthier.Geometry.Test
 
             fitter.Fit(curve, cloud);
 
-            var lowerBound = DenseVector.Build.Dense(curve.cvDataBlock.Length, -5000);
-            var upperBound = DenseVector.Build.Dense(curve.cvDataBlock.Length, 5000);
+            var lowerBound = DenseVector.Build.Dense(curve.ControlPoints.Data.Length, -5000);
+            var upperBound = DenseVector.Build.Dense(curve.ControlPoints.Data.Length, 5000);
 
             var objFunc = new NurbsCurveSquaredDistance(curve, cloud, EndConstraint.VariablePositionVariableTangent);
             //var objvalue = ObjectiveFunction.Value(objFunc.Value);
@@ -77,7 +77,7 @@ namespace Luthier.Geometry.Test
             {
                 try
                 {
-                    var initialGuess = new DenseVector(curve.cvDataBlock);
+                    var initialGuess = new DenseVector(curve.ControlPoints.Data);
                     //var cgresult = ConjugateGradientMinimizer.Minimum(fdgof, initialGuess, gradientTolerance: 1e-2, maxIterations: 1);
                 }
                 catch

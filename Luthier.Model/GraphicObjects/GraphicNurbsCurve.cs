@@ -100,6 +100,27 @@ namespace Luthier.Model.GraphicObjects
             }
         }
 
+        public IEnumerable<SelectableCurveKnot> GetSelectableKnots()
+        {
+            if (!DrawKnotSpans) yield break;
+
+            int minI = Knot.MinIndex(Surface.knotArray0, Surface.Order0);
+            int maxI = Knot.MaxIndex(Surface.knotArray0, Surface.Order0);
+            int minJ = Knot.MinIndex(Surface.knotArray1, Surface.Order1);
+            int maxJ = Knot.MaxIndex(Surface.knotArray1, Surface.Order1);
+
+            for (int i = minI; i <= maxI; i++)
+            {
+                yield return new SelectableSurfaceKnot(this, i, minJ);
+                yield return new SelectableSurfaceKnot(this, i, maxJ);
+            }
+
+            for (int j = minJ + 1; j < maxJ; j++)
+            {
+                yield return new SelectableSurfaceKnot(this, minI, j);
+                yield return new SelectableSurfaceKnot(this, maxI, j);
+            }
+        }
     }
 
     public class DraggableCurveCV : IDraggable
