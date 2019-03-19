@@ -9,6 +9,25 @@ using System.Xml.Serialization;
 
 namespace Luthier.Geometry.Nurbs
 {
+    [Serializable]
+    public class NurbsCurve2D : NurbsCurve
+    {
+        public NurbsCurve2D(bool isRational, int order, int cvCount) : base(2, isRational, order, cvCount) { }
+
+        public new Point2D GetCV(int IX) => new Point2D(base.GetCV(IX));
+        public void SetCV(int IX, Point2D p) => base.SetCV(IX, p.Data);
+        public new Point2D Evaluate(double t) => new Point2D(base.Evaluate(t));
+    }
+
+    [Serializable]
+    public class NurbsCurve3D : NurbsCurve
+    {
+        public NurbsCurve3D(bool isRational, int order, int cvCount) : base(3, isRational, order, cvCount) { }
+
+        public new Point3D GetCV(int IX) => new Point3D(base.GetCV(IX));
+        public void SetCV(int IX, Point3D p) => base.SetCV(IX, p.Data);
+        public new Point3D Evaluate(double t) => new Point3D(base.Evaluate(t));
+    }
 
     [Serializable]
     public class NurbsCurve 
@@ -94,16 +113,20 @@ namespace Luthier.Geometry.Nurbs
 
         public void Evaluate(double t, double[] point)
         {
-            if (_order == 3)
+            int[] indices = new int[_order];
+            double[] values = new double[_order];
+            if (_order == 2 )
             {
-                int[] indices = new int[3];
-                double[] values = new double[3];
-                Algorithm.BasisFunction_EvaluateAllNonZero_DegreeTwo(knot, t, ref values, ref indices);
-
+                Algorithm.BasisFunction_EvaluateAllNonZero_DegreeOne(knot, t, ref values, ref indices);
                 Algorithm.Curve_EvaluateGivenBasisFunctions(_order - 1, _dimension, indices[0], values, ControlPoints.Data, ControlPoints.CvStride[0], ControlPoints.CvCount[0], ref point);
-
+            }
+            else if (_order == 3)
+            {
+                Algorithm.BasisFunction_EvaluateAllNonZero_DegreeTwo(knot, t, ref values, ref indices);
+                Algorithm.Curve_EvaluateGivenBasisFunctions(_order - 1, _dimension, indices[0], values, ControlPoints.Data, ControlPoints.CvStride[0], ControlPoints.CvCount[0], ref point);
             }
             else throw new NotImplementedException();
+            
         }
 
         public void SetEvaluationPoints(double[] t)
@@ -248,36 +271,85 @@ namespace Luthier.Geometry.Nurbs
             to = Math.Min(to, Domain.Max);
             var result = new List<double[]>();
 
-            for (int i = 0; i <= numberOfLines; i++)
-            {
-                var t = ((double)i / numberOfLines) * to + (1 - (double)i / numberOfLines) * from;
-                var point = Evaluate(t);
-                if (point != null) result.Add(point);
-            }
+            //if (_order > 2)
+            //{
+                for (int i = 0; i <= numberOfLines; i++)
+                {
+                    var t = ((double)i / numberOfLines) * to + (1 - (double)i / numberOfLines) * from;
+                    var point = Evaluate(t);
+                    if (point != null) result.Add(point);
+                }
+            //}
+            //else
+            //{
+            //    int minIndex = Knot.MinIndex(knot, _order);
+            //    int maxIndex = Knot.MaxIndex(knot, _order);
+
+            //    var point = new double[_dimension];
+
+            //    point = Evaluate(from);
+            //    if (point != null) result.Add(point);
+
+            //    for (int i = minIndex; i <= maxIndex; i++)
+            //    {
+            //        if (from < knot[i] && knot[i] < to)
+            //        {
+            //            point = Evaluate(knot[i]);
+            //            if (point != null) result.Add(point);
+            //        }
+            //    }
+
+            //    point = Evaluate(to);
+            //    if (point != null) result.Add(point);
+            //}
             return result;
         }
 
         public NurbsCurve InsertKnot(double[] knots)
         {
-            return null;
-            //var newKnot = new Knot { p = knot.p, data = new List<double>(knot.data) };
-            //newKnot.data.AddRange(knots);
-            //newKnot.data.Sort();
-            //points = BSpline.Algorithm.olso_insertion(points, knot.p, knot.data, newKnot.data);
-            //knot = newKnot;
+            if (knots.Length == 0)
+            {
+                return DeepCopy();
+            }
+            else
+            {
+                var result = new NurbsCurve(_dimension, _isRational, _order, ControlPoints.CvCount[0] + knots.Length);
+                result.knot = Knot.Insert(knot, knots);
+                for (int d = 0; d < ControlPoints.Dimension; d++)
+                {
+                    for (int v = 0; v < ControlPoints.CvCount[0]; v++)
+                    {
+                        double[] cv = ControlPoints.GetCVSliceThroughPoint(d, 0, v);
+                        double[] newCv = Algorithm.KnotInsertionOslo(cv, _order - 1, knot, result.knot);
+                        result.ControlPoints.SetCVSliceThroughPoint(newCv, d, 0, v);
+                    }
+                }
+                return result;
+            }
         }
 
-        public void CloseFront()
+        public NurbsCurve CloseFront()
         {
-            //var newknot = new List<double>();
-            //var minParam = knot.minParam;
-            //for (int i = 0; i < knot.Continuity(minParam); i++) newknot.Add(minParam);
-            //InsertKnots(newknot);
-            //points = points.GetRange(newknot.Count, points.Count - newknot.Count);
-            //knot.data = knot.data.GetRange(newknot.Count, knot.data.Count - newknot.Count);
+            var continuity = Knot.Continuity(knot, _order - 1, Domain.Min);
+            double[] newKnots = new double[continuity];
+
+            for (int i = 0; i < continuity; i++)
+                newKnots[i] = Domain.Min;
+
+            var longCurve = InsertKnot(newKnots);
+
+            var result = new NurbsCurve(_dimension, _isRational, _order, NumberOfPoints);
+            Array.Copy(longCurve.knot, newKnots.Length, result.knot, 0, result.knot.Length);
+
+            for(int i=0; i< result.NumberOfPoints; i++)
+            {
+                result.SetCV(i, longCurve.GetCV(i + newKnots.Length));
+            }
+
+            return result;
         }
 
-        public void CloseBack()
+        public NurbsCurve CloseBack()
         {
             //var newknots = new List<double>();
             //var maxParam = knot.maxParam;
@@ -285,6 +357,24 @@ namespace Luthier.Geometry.Nurbs
             //InsertKnots(newknots);
             //points = points.GetRange(0, points.Count - newknots.Count);
             //knot.data = knot.data.GetRange(0, knot.data.Count - newknots.Count);
+
+            var continuity = Knot.Continuity(knot, _order - 1, Domain.Max);
+            double[] newKnots = new double[continuity];
+
+            for (int i = 0; i < continuity; i++)
+                newKnots[i] = Domain.Max;
+
+            var longCurve = InsertKnot(newKnots);
+
+            var result = new NurbsCurve(_dimension, _isRational, _order, NumberOfPoints);
+            Array.Copy(longCurve.knot, 0, result.knot, 0, result.knot.Length);
+
+            for (int i = 0; i < result.NumberOfPoints; i++)
+            {
+                result.SetCV(i, longCurve.GetCV(i));
+            }
+
+            return result;
         }
 
 

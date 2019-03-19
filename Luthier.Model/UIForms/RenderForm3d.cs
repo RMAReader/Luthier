@@ -11,7 +11,8 @@ namespace Luthier.Model.UIForms
             InitializeComponent();
         }
 
-        public EventHandler DoCurveToolStripItem_Click;
+        public EventHandler DoCurveDegree1ToolStripItem_Click;
+        public EventHandler DoCurveDegree2ToolStripItem_Click;
         public EventHandler DoPlaneToolStripMenuItem_Click;
         public EventHandler DoSurfaceToolStripMenuItem_Click;
         public EventHandler DoPerspectiveToolStripMenuItem_Click;
@@ -27,10 +28,12 @@ namespace Luthier.Model.UIForms
         public EventHandler DoSurfaceDrawingStyleToolStripMenuItem_Click;
         public EventHandler DoCreateJoiningSurfaceToolStripMenuItem_Click;
         public EventHandler DoCreateOffsetCurveToolStripMenuItem_Click;
+        public EventHandler DoDiscToolStripMenuItem_Click;
+        public EventHandler DoCompositeCurveToolStripMenuItem_Click;
 
-        private void curveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void curveDegree2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DoCurveToolStripItem_Click(sender, e);
+            DoCurveDegree2ToolStripItem_Click(sender, e);
         }
 
         private void planeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -116,6 +119,21 @@ namespace Luthier.Model.UIForms
         private void offsetCurveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DoCreateOffsetCurveToolStripMenuItem_Click(sender, e);
+        }
+
+        private void curveDegree1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DoCurveDegree1ToolStripItem_Click(sender, e);
+        }
+
+        private void discToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DoDiscToolStripMenuItem_Click(sender, e);
+        }
+
+        private void compositeCurveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DoCompositeCurveToolStripMenuItem_Click(sender, e);
         }
     }
 }

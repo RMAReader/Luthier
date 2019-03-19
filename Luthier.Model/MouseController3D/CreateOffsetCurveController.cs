@@ -23,12 +23,15 @@ namespace Luthier.Model.MouseController3D
         protected double[] startBiNormal;
         protected GraphicNurbsCurve startCurve;
         protected GraphicNurbsCurve offsetCurve;
+        protected double offsetDistance;
 
         public GraphicPlane ReferencePlane { get; set; }
 
         public int X { get; private set; }
 
         public int Y { get; private set; }
+
+        public double? OffsetDistance => offsetCurve != null ? (double?)offsetDistance : null;
 
         public void Bind(IApplicationDocumentModel model)
         {
@@ -65,7 +68,7 @@ namespace Luthier.Model.MouseController3D
                     GraphicNurbsCurve nearestCurve = null;
                     int nearestCvIx = -1;
                     double distance = double.MaxValue;
-                    foreach (GraphicNurbsCurve curve in _model.Model.Where(x => x is GraphicNurbsCurve))
+                    foreach (GraphicNurbsCurve curve in _model.Model.VisibleObjects().Where(x => x is GraphicNurbsCurve))
                     {
                         for (int i = 0; i < curve.Curve.NumberOfPoints; i++)
                         {
@@ -87,8 +90,9 @@ namespace Luthier.Model.MouseController3D
                         offsetCurve = new GraphicNurbsCurve(nearestCurve.Curve.DeepCopy());
                         startCv = nearestCurve.Curve.GetCV(nearestCvIx);
                         startBiNormal = GetBiNormalThroughCv(nearestCurve.Curve, nearestCvIx);
+                        offsetDistance = 0;
 
-                        offsetCurve.Curve = NurbsCurveBuilder.GetOffsetCurveInPlane(offsetCurve.Curve, ReferencePlane._normal, 0);
+                        offsetCurve.Curve = NurbsCurveBuilder.GetOffsetCurveInPlane(offsetCurve.Curve, ReferencePlane._unitU, ReferencePlane._unitV, ReferencePlane._normal, offsetDistance);
                         _model.Model.Add(offsetCurve);
                         _model.Model.HasChanged = true;                        
                     }
@@ -117,9 +121,9 @@ namespace Luthier.Model.MouseController3D
                 var intersectPoint = dragPlane.GetPointOfIntersectionWorld(from, to);
 
                 //var offsetDistance = startCv.Subtract(intersectPoint).L2Norm();
-                var offsetDistance = startBiNormal.DotProduct(startCv.Subtract(intersectPoint));
+                offsetDistance = startBiNormal.DotProduct(startCv.Subtract(intersectPoint));
                 
-                offsetCurve.Curve = NurbsCurveBuilder.GetOffsetCurveInPlane(startCurve.Curve, ReferencePlane._normal, offsetDistance);
+                offsetCurve.Curve = NurbsCurveBuilder.GetOffsetCurveInPlane(startCurve.Curve, ReferencePlane._unitU, ReferencePlane._unitV, ReferencePlane._normal, offsetDistance);
                 _model.Model.HasChanged = true;
 
             }

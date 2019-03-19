@@ -48,6 +48,10 @@ namespace Luthier.Model.MouseController3D
             {
                 surface.DrawControlNet = false;
             }
+            foreach (GraphicNurbsCurve curve in _model.Model.Where(x => x is GraphicNurbsCurve))
+            {
+                curve.DrawControlNet = false;
+            }
             _model.Model.HasChanged = true;
         }
 

@@ -114,6 +114,9 @@ namespace SharpHelper
 
         private void InitFont()
         {
+            Utilities.Dispose(ref _directWriteTextFormat);
+            Utilities.Dispose(ref _directWriteFontColor);
+
             var directWriteFactory = new SharpDX.DirectWrite.Factory();
             _directWriteTextFormat = new SharpDX.DirectWrite.TextFormat(directWriteFactory, _fontName, _fontSize) { TextAlignment = SharpDX.DirectWrite.TextAlignment.Leading, ParagraphAlignment = SharpDX.DirectWrite.ParagraphAlignment.Near };
             _directWriteFontColor = new SharpDX.Direct2D1.SolidColorBrush(_direct2DRenderTarget, _fontColor);

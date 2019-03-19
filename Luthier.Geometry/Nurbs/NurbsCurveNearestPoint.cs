@@ -117,7 +117,7 @@ namespace Luthier.Geometry.Nurbs
             _curve.EvaluateAllDerivatives(t, values);
 
             int firstOffset = _curve._dimension;
-            int secondOffset = _curve._dimension;
+            int secondOffset = 2 * _curve._dimension;
 
             for (int i = 0; i < _curve._dimension; i++)
             {

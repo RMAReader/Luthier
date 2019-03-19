@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<GraphicModelStorage>
+  <Objects>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="d59e4e8e-d3a0-42ec-bcc1-abcf51ea5e42" />
+      <Name>GraphicLayer1</Name>
+      <IsVisible>true</IsVisible>
+      <Objects data="89984d9d-d619-40dc-8121-86c12152cbd1" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="89984d9d-d619-40dc-8121-86c12152cbd1" />
+      <LayerKey data="d59e4e8e-d3a0-42ec-bcc1-abcf51ea5e42" />
+      <Name>GraphicPlane1</Name>
+      <IsVisible>true</IsVisible>
+      <_origin>
+        <double>0</double>
+        <double>0</double>
+        <double>0</double>
+      </_origin>
+      <_normal>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_normal>
+      <_unitU>
+        <double>1</double>
+        <double>0</double>
+        <double>0</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>1</double>
+        <double>0</double>
+      </_unitV>
+      <IsSelected>true</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="fd400911-0043-4558-8236-b033cadb5efd" />
+      <Name>GraphicDisc1</Name>
+      <IsVisible>true</IsVisible>
+      <Disc>
+        <Centre>
+          <Data>147.99999095255146</Data>
+          <Data>153.00762922724317</Data>
+          <Data>8.2964760849790764E-05</Data>
+        </Centre>
+        <Normal>
+          <Data>0</Data>
+          <Data>0</Data>
+          <Data>1</Data>
+        </Normal>
+        <Radius>124.81015372090788</Radius>
+      </Disc>
+    </GraphicObjectBase>
+  </Objects>
+  <Name>NewModel</Name>
+</GraphicModelStorage>

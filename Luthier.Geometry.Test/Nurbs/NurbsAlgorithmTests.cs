@@ -132,6 +132,26 @@ namespace Luthier.Geometry.Test
         }
 
         [TestMethod]
+        public void BasisFunction_EvaluateAllNonZero_DegreeOne()
+        {
+            BasisFunctionEvaluation handler = (expected, i, degree, knot, t) =>
+            {
+                double[] values = new double[2];
+                int[] indices = new int[2];
+                Luthier.Geometry.Nurbs.Algorithm.BasisFunction_EvaluateAllNonZero_DegreeOne(knot, t, ref values, ref indices);
+
+                if(indices.Contains(i) && t < 1.0)
+                {
+                    int j = Array.IndexOf(indices, i);
+                    Assert.AreEqual(expected, values[j], 1E-12);
+                }
+            };
+
+            BasisFunction_Evaluate_ComplexKnot_DegreeOne(handler);
+
+        }
+
+        [TestMethod]
         public void BasisFunction_EvaluateAllNonZero_DegreeTwo()
         {
             BasisFunctionEvaluation handler = (expected, i, degree, knot, t) =>
@@ -140,7 +160,7 @@ namespace Luthier.Geometry.Test
                 int[] indices = new int[3];
                 Luthier.Geometry.Nurbs.Algorithm.BasisFunction_EvaluateAllNonZero_DegreeTwo(knot, t, ref values, ref indices);
 
-                if(indices.Contains(i) && t < 1.0)
+                if (indices.Contains(i) && t < 1.0)
                 {
                     int j = Array.IndexOf(indices, i);
                     Assert.AreEqual(expected, values[j], 1E-12);

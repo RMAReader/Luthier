@@ -38,6 +38,14 @@ namespace Luthier.Geometry
         {
             return lhs.Dot(rhs);
         }
+        public static double[] DotProduct(this double[][] lhs, double[] rhs)
+        {
+            return lhs.Dot(rhs);
+        }
+        public static double[][] Inverse(this double[][] lhs)
+        {
+            return Accord.Math.Matrix.Inverse(lhs);
+        }
 
         public static double[] VectorProduct(this double[] lhs, double[] rhs)
         {
@@ -157,7 +165,12 @@ namespace Luthier.Geometry
             return result;
         }
 
-        
+        public static double[] DeepCopy(this double[] array)
+        {
+            var result = new double[array.Length];
+            Array.Copy(array, result, array.Length);
+            return result;
+        }
 
     }
 

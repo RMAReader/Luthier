@@ -378,6 +378,27 @@ namespace Luthier.Geometry.Nurbs
 
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void BasisFunction_EvaluateAllNonZero_DegreeOne(
+            double[] knot,
+            double t,
+            ref double[] values,
+            ref int[] indices)
+        {
+            //we know that knot knot[knotIX] <= t < knot[knotIX + 1] (or t is outside of valid domain)
+            int knotIX = Find_Knot_Span(1, knot, t);
+
+            indices[0] = knotIX - 1;
+            indices[1] = knotIX;
+
+            double a = 1 / (knot[knotIX + 1] - knot[knotIX]);
+
+            values[0] = (knot[knotIX + 1] - t) * a;
+            values[1] = (t - knot[knotIX]) * a;
+            
+        }
+
+
 
         /// <summary>
         /// returns all derivatives for all non-zero basis functions at t as follows:

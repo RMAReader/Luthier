@@ -54,7 +54,7 @@ namespace Luthier.Model.MouseController3D
             if(e.Button == MouseButtons.Left)
             {
                 double distance = double.MaxValue;
-                SelectableSurfaceKnot point = null;
+                ISelectableKnot point = null;
                 foreach (GraphicNurbsSurface surface in _model.Model.Where(x => x is GraphicNurbsSurface))
                 {
                     foreach(SelectableSurfaceKnot k in surface.GetEdgeKnots())
@@ -70,9 +70,9 @@ namespace Luthier.Model.MouseController3D
                     }
 
                 }
-                foreach (GraphicNurbsCurve surface in _model.Model.Where(x => x is GraphicNurbsCurve))
+                foreach (GraphicNurbsCurve curve in _model.Model.Where(x => x is GraphicNurbsCurve))
                 {
-                    foreach (SelectableSurfaceKnot k in surface.Knot)
+                    foreach (SelectableCurveKnot k in curve.GetSelectableKnots())
                     {
                         var p = _camera.ConvertFromWorldToScreen(k.Coords);
                         double d = Math.Sqrt((p[0] - e.X) * (p[0] - e.X) + (p[1] - e.Y) * (p[1] - e.Y));
@@ -158,7 +158,7 @@ namespace Luthier.Model.MouseController3D
             if (p1.Object != p2.Object) return false;
 
             //selected points not on same edge of surface
-            if (p1.Object is GraphicNurbsCurve && p1.KnotIndices[0] != p2.KnotIndices[0]) return false;
+            if (p1.Object is GraphicNurbsCurve && p1.KnotIndices[0] == p2.KnotIndices[0]) return false;
             if (p1.Object is GraphicNurbsSurface && p1.KnotIndices[0] != p2.KnotIndices[0] && p1.KnotIndices[1] != p2.KnotIndices[1]) return false;
 
             return true;
@@ -167,7 +167,7 @@ namespace Luthier.Model.MouseController3D
         
         private INurbsSurfaceEdge CreateEdge(ISelectableKnot p1, ISelectableKnot p2)
         {
-            if (p1.Object is GraphicNurbsCurve)
+            if (p1.Object is GraphicNurbsSurface)
                 return CreateEdgeFromSurface((SelectableSurfaceKnot)p1, (SelectableSurfaceKnot)p2);
 
             if (p1.Object is GraphicNurbsCurve)

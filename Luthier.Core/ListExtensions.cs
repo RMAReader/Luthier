@@ -19,6 +19,7 @@ namespace Luthier.Core
 
         public static IEnumerable<Tuple<T, T>> EnumeratePairsClosed<T>(this List<T> list)
         {
+            if (list.Count < 2) yield break;
             for (int i = 0; i < list.Count - 1; i++)
             {
                 yield return new Tuple<T, T>(list[i], list[i + 1]);

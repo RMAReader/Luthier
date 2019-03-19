@@ -29,7 +29,16 @@ namespace Luthier.Geometry
             public Point2D Point;
         }
 
-       
+        public class NurbsCurveIntersection
+        {
+            public double Parameter1;
+            public NurbsCurve curve1;
+            public double Parameter2;
+            public NurbsCurve curve2;
+            public Point2D Point;
+        }
+
+
         public static LineSegmentIntersection GetIntersection(Point2D p1, Point2D p2, Point2D q1, Point2D q2)
         {
             double a = p1.X - p2.X;
@@ -236,7 +245,79 @@ namespace Luthier.Geometry
         }
 
 
+        public static NurbsCurveIntersection GetIntersection(NurbsCurve c1, NurbsCurve c2, Point2D centre, double Error)
+        {
+            if (c1 == null || c2 == null) return null;
 
-        
+            int max_itr = 100;
+
+            var d1 = c1.DeepCopy();
+            var d2 = c2.DeepCopy();
+
+            d1 = d1.CloseFront();
+            d1 = d1.CloseBack();
+
+            d2 = d2.CloseFront();
+            d2 = d2.CloseBack();
+
+            for (int itr = 1; itr <= max_itr; itr++)
+            {
+                var intersections = new List<Tuple<LineSegmentIntersection, int, int>>();
+                for (int i = 0; i < d1.NumberOfPoints - 1; i++)
+                {
+                    for (int j = 0; j < d2.NumberOfPoints - 1; j++)
+                    {
+                        var intersection = GetIntersection2D(d1.GetCV(i), d1.GetCV(i + 1), d2.GetCV(j), d2.GetCV(j + 1));
+                        if (intersection != null && intersection.LineSegmentsIntersect)
+                        {
+                            intersections.Add(new Tuple<LineSegmentIntersection, int, int>(intersection, i, j));
+                        }
+                    }
+                }
+
+                if (intersections.Count == 0) return null;
+
+                var closestIntersection = intersections.Select(x => new { x, distance = (centre - x.Item1.Point).L2Norm() }).OrderBy(x => x.distance).First().x;
+
+
+                double t1 = 0;
+                for (int k = closestIntersection.Item2; k < closestIntersection.Item2 + d1.GetDegree() + 1; k++)
+                {
+                    t1 += closestIntersection.Item1.Parameter1 * d1.GetKnot(k) + (1 - closestIntersection.Item1.Parameter1) * d1.GetKnot(k + 1);
+                }
+                t1 /= (d1.GetDegree() + 1);
+
+                t1 = Knot.GetParameterGivenControlPolygonIntersect(d1.knot, closestIntersection.Item2, closestIntersection.Item1.Parameter1, d1._order);
+
+                double t2 = 0;
+                for (int k = closestIntersection.Item3; k < closestIntersection.Item3 + d2.GetDegree() + 1; k++)
+                {
+                    t2 += closestIntersection.Item1.Parameter2 * d2.GetKnot(k) + (1 - closestIntersection.Item1.Parameter2) * d2.GetKnot(k + 1);
+                }
+                t2 /= (d2.GetDegree() + 1);
+
+                t2 = Knot.GetParameterGivenControlPolygonIntersect(d2.knot, closestIntersection.Item3, closestIntersection.Item1.Parameter2, d2._order);
+
+                d1 = d1.InsertKnot(new double[] { t1 });
+                d2 = d2.InsertKnot(new double[] { t2 });
+
+                var p1 = new Point2D(d1.Evaluate(t1));
+                var p2 = new Point2D(d2.Evaluate(t2));
+
+                if ((p2 - p1).L2Norm() < Error)
+                {
+                    return new NurbsCurveIntersection
+                    {
+                        Point = p1,
+                        Parameter1 = t1,
+                        curve1 = c1,
+                        Parameter2 = t2,
+                        curve2 = c2
+                    };
+                }
+            }
+            return null;
+        }
+
     }
 }

@@ -59,7 +59,8 @@ namespace Luthier.Model.Presenter
 
             _selectPlaneController = new SelectPlaneController();
 
-            form.DoCurveToolStripItem_Click = DoCurveToolStripItem;
+            form.DoCurveDegree1ToolStripItem_Click = DoCurveDegree1ToolStripItem;
+            form.DoCurveDegree2ToolStripItem_Click = DoCurveDegree2ToolStripItem;
             form.DoPlaneToolStripMenuItem_Click = DoPlaneToolStripMenuItem;
             form.DoSurfaceToolStripMenuItem_Click = DoSurfaceToolStripMenuItem;
             form.DoOrthonormalToolStripMenuItem_Click = DoOrthonormalToolStripMenuItem_Click;
@@ -75,6 +76,8 @@ namespace Luthier.Model.Presenter
             form.DoSurfaceDrawingStyleToolStripMenuItem_Click = DoSurfaceDrawingStyleToolStripMenuItem_Click;
             form.DoCreateJoiningSurfaceToolStripMenuItem_Click = DoCreateJoiningSurfaceToolStripMenuItem_Click;
             form.DoCreateOffsetCurveToolStripMenuItem_Click = DoCreateOffsetCurveToolStripMenuItem_Click;
+            form.DoDiscToolStripMenuItem_Click = DoDiscToolStripMenuItem_Click;
+            form.DoCompositeCurveToolStripMenuItem_Click = DoCompositeCurveToolStripMenuItem_Click; 
 
             _camera.ViewWidth = form.ClientSize.Width;
             _camera.ViewHeight = form.ClientSize.Height;
@@ -131,12 +134,26 @@ namespace Luthier.Model.Presenter
             
         }
 
+        private void DoCurveDegree1ToolStripItem(object sender, EventArgs e)
+        {
+            if (_selectPlaneController.Plane != null)
+            {
+                var controller = new SketchNurbsCurve(degree: 1);
+                controller.Canvas = _selectPlaneController.Plane;
+                SetMouseController(controller);
+            }
+            else
+            {
+                MessageBox.Show("Must set canvas before sketching curve.");
+            }
 
-        private void DoCurveToolStripItem(object sender, EventArgs e)
+        }
+
+        private void DoCurveDegree2ToolStripItem(object sender, EventArgs e)
         {
             if(_selectPlaneController.Plane != null)
             {
-                var controller = new SketchNurbsCurve();
+                var controller = new SketchNurbsCurve(degree: 2);
                 controller.Canvas = _selectPlaneController.Plane;
                 SetMouseController(controller);
             }
@@ -145,6 +162,20 @@ namespace Luthier.Model.Presenter
                 MessageBox.Show("Must set canvas before sketching curve.");
             }
             
+        }
+
+        private void DoDiscToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_selectPlaneController.Plane != null)
+            {
+                var controller = new SketchDiscController();
+                controller.Canvas = _selectPlaneController.Plane;
+                SetMouseController(controller);
+            }
+            else
+            {
+                MessageBox.Show("Must set canvas before sketching curve.");
+            }
         }
 
         public void DoDragParallelToPlaneToolStripMenuItem_Click(object sender, EventArgs e)
@@ -340,6 +371,19 @@ namespace Luthier.Model.Presenter
             }
         }
 
+        private void DoCompositeCurveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_selectPlaneController.Plane != null)
+            {
+                var controller = new CreateNurbsCurveCompositeController();
+                controller.ReferencePlane = _selectPlaneController.Plane;
+                SetMouseController(controller);
+            }
+            else
+            {
+                MessageBox.Show("Must set reference plane before creating composite curve.");
+            }
+        }
 
 
         public void ShowRenderForm()
@@ -362,50 +406,50 @@ namespace Luthier.Model.Presenter
 
                     model.Model.HasChanged = true;
 
-                    //main loop
-                    RenderLoop.Run(form, () =>
+                //main loop
+                RenderLoop.Run(form, () =>
+                {
+                    //Resizing
+                    if (device.MustResize)
                     {
-                        //Resizing
-                        if (device.MustResize)
+                        device.Resize();
+                        _camera.ViewWidth = form.ClientSize.Width;
+                        _camera.ViewHeight = form.ClientSize.Height;
+                    }
+
+                    if (_camera.ViewWidth > 10)
+                    {
+
+                        if (model.Model.HasChanged)
                         {
-                            device.Resize();
-                            _camera.ViewWidth = form.ClientSize.Width;
-                            _camera.ViewHeight = form.ClientSize.Height;
+                            scene.Update();
+                            model.Model.HasChanged = false;
                         }
 
-                        if (_camera.ViewWidth > 10)
+                        scene.Draw();
+
+                        //begin drawing text
+                        device.Font.Begin();
+
+                        //draw string
+                        fpsCounter.Update();
+                        device.Font.SetFont(Color.Black,"Calibri", 14);
+                        device.Font.DrawString("FPS: " + fpsCounter.FPS, 0, 30);
+                        device.Font.DrawString($"X = {mouseController.X}, Y = {mouseController.Y}", 0, 45);
+
+                        var offsetController = mouseController as CreateOffsetCurveController;
+                        if (offsetController != null && offsetController.OffsetDistance != null)
                         {
-
-                            if (model.Model.HasChanged)
-                            {
-                                scene.Update();
-                                model.Model.HasChanged = false;
-                            }
-
-                            scene.Draw();
-
-                            //begin drawing text
-                            device.Font.Begin();
-
-                            //draw string
-                            fpsCounter.Update();
-                            device.Font.DrawString("FPS: " + fpsCounter.FPS, 0, 30);
-                            device.Font.DrawString($"X = {mouseController.X}, Y = {mouseController.Y}", 0, 45);
-
-                            //flush text to view
-                            device.Font.End();
-                            //present
-                            device.Present();
+                            device.Font.DrawString($"Offset: {offsetController.OffsetDistance:0.0}mm", offsetController.X, offsetController.Y - 15);
                         }
-                    });
+                        
+                        //flush text to view
+                        device.Font.End();
+                        //present
+                        device.Present();
+                    }
+                });
 
-                //release resources
-                //if (mesh_NurbsSurface != null) mesh_NurbsSurface.Dispose();
-                //if (mesh_NurbsControl != null) mesh_NurbsControl.Dispose();
-                //if (mesh_NurbsCurve != null) mesh_NurbsCurve.Dispose();
-                //mesh_XYPlane.Dispose();
-                //buffer.Dispose();
-                //texture.Dispose();
                 _lightingOptionsForm?.Close();
             }
           

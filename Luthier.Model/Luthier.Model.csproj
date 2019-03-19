@@ -66,6 +66,8 @@
     <Compile Include="CustomSettings\GraphicNurbsCurveAppearance.cs" />
     <Compile Include="CustomSettings\GraphicPlaneGridAppearence.cs" />
     <Compile Include="Extensions\ArrayExtensions.cs" />
+    <Compile Include="GraphicObjects\GraphicDisc.cs" />
+    <Compile Include="GraphicObjects\GraphicNurbsCurveComposite.cs" />
     <Compile Include="GraphicObjects\GraphicPointCloud.cs" />
     <Compile Include="GraphicObjects\Interfaces\IDrawablePoints.cs" />
     <Compile Include="GraphicObjects\Interfaces\IDrawableStaticColouredSurface.cs" />
@@ -114,6 +116,7 @@
     <Compile Include="MouseController3D\ControlPointDraggerBase.cs" />
     <Compile Include="MouseController3D\ControlPointDraggerNormalToPlane.cs" />
     <Compile Include="MouseController3D\ControlPointDraggerParallelToPlane.cs" />
+    <Compile Include="MouseController3D\CreateNurbsCurveCompositeController.cs" />
     <Compile Include="MouseController3D\CreateOffsetCurveController.cs" />
     <Compile Include="MouseController3D\EditImageController3d.cs" />
     <Compile Include="MouseController3D\InsertImage.cs" />
@@ -122,6 +125,7 @@
     <Compile Include="MouseController3D\KnotSelectorController.cs" />
     <Compile Include="MouseController3D\PanZoomMouseWheelController.cs" />
     <Compile Include="MouseController3D\SelectPlaneController.cs" />
+    <Compile Include="MouseController3D\SketchDiscController.cs" />
     <Compile Include="MouseController3D\SketchObjectBase.cs" />
     <Compile Include="MouseController3D\SketchSurface.cs" />
     <Compile Include="MouseController3D\IMouseController3D.cs" />
@@ -184,6 +188,12 @@
     </Compile>
     <Compile Include="UIForms\CoordinateDialog.Designer.cs">
       <DependentUpon>CoordinateDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIForms\DiscDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIForms\DiscDialog.Designer.cs">
+      <DependentUpon>DiscDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="UIForms\LightingOptions.cs">
       <SubType>Form</SubType>
@@ -255,6 +265,9 @@
   <ItemGroup>
     <EmbeddedResource Include="UIForms\CoordinateDialog.resx">
       <DependentUpon>CoordinateDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIForms\DiscDialog.resx">
+      <DependentUpon>DiscDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UIForms\LightingOptions.resx">
       <DependentUpon>LightingOptions.cs</DependentUpon>

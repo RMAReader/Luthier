@@ -47,7 +47,7 @@ namespace Luthier.Geometry.Nurbs
             var topNormal = top.EvaluateNormal(t);
             var resultNormal = result.EvaluateNormal(result.Domain1().Max, t);
 
-            if(topNormal.DotProduct(resultNormal) < 0)
+            if(topNormal?.DotProduct(resultNormal) < 0)
             {
                 //flip parity of result
                 result = result.SwapParity();

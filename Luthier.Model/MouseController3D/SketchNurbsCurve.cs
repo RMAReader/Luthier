@@ -13,8 +13,14 @@ namespace Luthier.Model.MouseController3D
     {
         private bool curveInProgress = false;
         private GraphicNurbsCurve _nurbsCurve;
+        private int _degree;
 
-    
+        public SketchNurbsCurve(int degree)
+        {
+            _degree = degree;
+        }
+
+
         public override void MouseDown(object sender, MouseEventArgs e)
         {
             switch (e.Button)
@@ -31,9 +37,10 @@ namespace Luthier.Model.MouseController3D
                     }
                     else
                     {
-                        _nurbsCurve = new GraphicNurbsCurve(dimension: 3, isRational: false, order: 3, cvCount: 2);
+                        _nurbsCurve = new GraphicNurbsCurve(dimension: 3, isRational: false, order: _degree + 1, cvCount: 2);
                         _nurbsCurve.Curve.SetCV(0, p);
                         _nurbsCurve.Curve.SetCV(1, p);
+                        _nurbsCurve.DrawControlNet = true;
 
                         _model.Model.Add(_nurbsCurve);
                         curveInProgress = true;
@@ -42,6 +49,7 @@ namespace Luthier.Model.MouseController3D
 
                 case MouseButtons.Right:
                     curveInProgress = false;
+                    _nurbsCurve.DrawControlNet = false;
                     break;
             }
             _model.Model.HasChanged = true;

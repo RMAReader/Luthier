@@ -385,6 +385,11 @@ namespace Luthier.Model.UIForms
             {
                 surface.DrawControlNet = true;
             }
+            var curve = mySelectedNode.Tag as GraphicNurbsCurve;
+            if (curve != null)
+            {
+                curve.DrawControlNet = true;
+            }
             _presenter.DoDragParallelToPlaneToolStripMenuItem_Click(sender, e);
         }
 
@@ -394,6 +399,11 @@ namespace Luthier.Model.UIForms
             if (surface != null)
             {
                 surface.DrawControlNet = true;
+            }
+            var curve = mySelectedNode.Tag as GraphicNurbsCurve;
+            if (curve != null)
+            {
+                curve.DrawControlNet = true;
             }
             _presenter.DoDragNormalToPlaneToolStripMenuItem_Click(sender, e);
         }
