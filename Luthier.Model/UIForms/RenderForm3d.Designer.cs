@@ -43,6 +43,7 @@
             this.surfaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.insertImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.offsetCurveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.compositeCurveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.perspectiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.orthonormalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,7 +54,8 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scaleModelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createJoiningSurfaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.compositeCurveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newMouldOutlineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,7 +65,8 @@
             this.sketchToolStripMenuItem,
             this.constructToolStripMenuItem,
             this.viewToolStripMenuItem,
-            this.editToolStripMenuItem});
+            this.editToolStripMenuItem,
+            this.toolPathToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -155,30 +158,37 @@
             // planeToolStripMenuItem
             // 
             this.planeToolStripMenuItem.Name = "planeToolStripMenuItem";
-            this.planeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.planeToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.planeToolStripMenuItem.Text = "Plane";
             this.planeToolStripMenuItem.Click += new System.EventHandler(this.planeToolStripMenuItem_Click);
             // 
             // surfaceToolStripMenuItem
             // 
             this.surfaceToolStripMenuItem.Name = "surfaceToolStripMenuItem";
-            this.surfaceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.surfaceToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.surfaceToolStripMenuItem.Text = "Surface";
             this.surfaceToolStripMenuItem.Click += new System.EventHandler(this.surfaceToolStripMenuItem_Click);
             // 
             // insertImageToolStripMenuItem
             // 
             this.insertImageToolStripMenuItem.Name = "insertImageToolStripMenuItem";
-            this.insertImageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.insertImageToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.insertImageToolStripMenuItem.Text = "Insert Image";
             this.insertImageToolStripMenuItem.Click += new System.EventHandler(this.insertImageToolStripMenuItem_Click);
             // 
             // offsetCurveToolStripMenuItem
             // 
             this.offsetCurveToolStripMenuItem.Name = "offsetCurveToolStripMenuItem";
-            this.offsetCurveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.offsetCurveToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.offsetCurveToolStripMenuItem.Text = "Offset Curve";
             this.offsetCurveToolStripMenuItem.Click += new System.EventHandler(this.offsetCurveToolStripMenuItem_Click);
+            // 
+            // compositeCurveToolStripMenuItem
+            // 
+            this.compositeCurveToolStripMenuItem.Name = "compositeCurveToolStripMenuItem";
+            this.compositeCurveToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.compositeCurveToolStripMenuItem.Text = "Composite Curve";
+            this.compositeCurveToolStripMenuItem.Click += new System.EventHandler(this.compositeCurveToolStripMenuItem_Click);
             // 
             // viewToolStripMenuItem
             // 
@@ -258,12 +268,20 @@
             this.createJoiningSurfaceToolStripMenuItem.Text = "Create joining surface...";
             this.createJoiningSurfaceToolStripMenuItem.Click += new System.EventHandler(this.createJoiningSurfaceToolStripMenuItem_Click);
             // 
-            // compositeCurveToolStripMenuItem
+            // toolPathToolStripMenuItem
             // 
-            this.compositeCurveToolStripMenuItem.Name = "compositeCurveToolStripMenuItem";
-            this.compositeCurveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.compositeCurveToolStripMenuItem.Text = "Composite Curve";
-            this.compositeCurveToolStripMenuItem.Click += new System.EventHandler(this.compositeCurveToolStripMenuItem_Click);
+            this.toolPathToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newMouldOutlineToolStripMenuItem});
+            this.toolPathToolStripMenuItem.Name = "toolPathToolStripMenuItem";
+            this.toolPathToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
+            this.toolPathToolStripMenuItem.Text = "Tool Path";
+            // 
+            // newMouldOutlineToolStripMenuItem
+            // 
+            this.newMouldOutlineToolStripMenuItem.Name = "newMouldOutlineToolStripMenuItem";
+            this.newMouldOutlineToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newMouldOutlineToolStripMenuItem.Text = "New mould outline";
+            this.newMouldOutlineToolStripMenuItem.Click += new System.EventHandler(this.newMouldOutlineToolStripMenuItem_Click);
             // 
             // RenderForm3d
             // 
@@ -310,5 +328,7 @@
         private System.Windows.Forms.ToolStripMenuItem curveDegree1ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem discToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem compositeCurveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolPathToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newMouldOutlineToolStripMenuItem;
     }
 }

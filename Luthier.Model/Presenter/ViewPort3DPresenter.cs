@@ -19,7 +19,6 @@ namespace Luthier.Model.Presenter
     public class ViewPort3DPresenter
     {
         private readonly IApplicationDocumentModel model;
-        private SplitContainer splitContainer;
         private RenderForm3d form;
         private IMouseController3D mouseController;
         private IKeyController3D keyController;
@@ -77,7 +76,8 @@ namespace Luthier.Model.Presenter
             form.DoCreateJoiningSurfaceToolStripMenuItem_Click = DoCreateJoiningSurfaceToolStripMenuItem_Click;
             form.DoCreateOffsetCurveToolStripMenuItem_Click = DoCreateOffsetCurveToolStripMenuItem_Click;
             form.DoDiscToolStripMenuItem_Click = DoDiscToolStripMenuItem_Click;
-            form.DoCompositeCurveToolStripMenuItem_Click = DoCompositeCurveToolStripMenuItem_Click; 
+            form.DoCompositeCurveToolStripMenuItem_Click = DoCompositeCurveToolStripMenuItem_Click;
+            form.DoMouldOutlineToolStripMenuItem_Click = DoMouldOutlineToolStripMenuItem_Click;
 
             _camera.ViewWidth = form.ClientSize.Width;
             _camera.ViewHeight = form.ClientSize.Height;
@@ -384,6 +384,22 @@ namespace Luthier.Model.Presenter
                 MessageBox.Show("Must set reference plane before creating composite curve.");
             }
         }
+
+        private void DoMouldOutlineToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_selectPlaneController.Plane != null)
+            {
+                var controller = new SelectToolPathBoundaryCurvesController();
+                controller.ReferencePlane = _selectPlaneController.Plane;
+                SetMouseController(controller);
+            }
+            else
+            {
+                MessageBox.Show("Must set reference plane before creating toolpath.");
+            }
+        }
+
+
 
 
         public void ShowRenderForm()

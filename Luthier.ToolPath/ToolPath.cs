@@ -43,6 +43,17 @@ namespace Luthier.ToolPath
             }
         }
 
+        public string ToGCode()
+        {
+            var gcode = new System.Text.StringBuilder();
+            var language = new CncOperationLanguageVisitorGCode();
+            foreach (CncOperationBase op in operations)
+            {
+                gcode.AppendLine(language.visit(op));
+            }
+            return gcode.ToString();
+        }
+
 
         public IEnumerator GetEnumerator()
         {

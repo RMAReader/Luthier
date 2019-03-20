@@ -155,7 +155,7 @@ namespace Luthier.Geometry
 
 
 
-        public static List<Point2D> RemoveRedundantPointsClosed(List<Point2D> path, double radius)
+        public static List<Point2D> RemoveDuplicatePointsClosed(List<Point2D> path, double radius)
         {
             var result = new List<Point2D>();
             int j = 0;
@@ -173,6 +173,64 @@ namespace Luthier.Geometry
                 result.RemoveAt(result.Count - 1);
             }
             return result;
+        }
+
+        public static List<Point2D> RemoveRedundantPointsClosed2(List<Point2D> path, double maxDistance, double minAngle)
+        {
+            int numberOfPoints = path.Count;
+            List<Point2D> result = RemoveDuplicatePointsClosed(path, 0.002);
+
+            for(int i = 0; i < 10; i++)
+            { 
+                numberOfPoints = result.Count;
+                result = RemoveRedundantMidPoints(result, maxDistance, minAngle);
+
+                if (result.Count == numberOfPoints)
+                    break;
+            }
+            
+            return result;
+        }
+
+        public static List<Point2D> RemoveRedundantMidPoints(List<Point2D> path, double maxDistance, double minAngle)
+        {
+            var result = new List<Point2D>();
+
+            result.Add(path[0]);
+
+            for(int i = 0; i < path.Count - 2; i++)
+            {
+                if(KeepMiddlePoint(path[i], path[i+1], path[i+2], maxDistance, minAngle))
+                {
+                    result.Add(path[i + 1]);
+                }
+                else
+                {
+                    result.Add(path[i + 2]);
+                    i++;
+                }
+            }
+
+            result.Add(path.Last());
+
+            return result;
+        }
+
+
+        private static bool KeepMiddlePoint(Point2D p1, Point2D p2, Point2D p3, double maxDistance, double minAngle)
+        {
+            var a = (p2 - p1);
+            var b = (p2 - p3);
+            var c = (p3 - p1);
+
+            var t = c.ToNormalised();
+            var n = new Point2D(-t.Y, t.X);
+
+            double d = Math.Abs((p2 - p1).Dot(n));
+
+            double angle = Math.Acos((a.Dot(a) + b.Dot(b) - c.Dot(c)) / (2 * a.L2Norm() * b.L2Norm()));
+
+            return d > maxDistance || angle < minAngle;
         }
     }
 

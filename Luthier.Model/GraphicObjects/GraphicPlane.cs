@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
+using Luthier.Geometry;
 
 namespace Luthier.Model.GraphicObjects
 {
@@ -18,16 +19,29 @@ namespace Luthier.Model.GraphicObjects
     [Serializable]
     public class GraphicPlane : GraphicObjectBase, ISketchCanvas, IDrawableLines, ISelectable
     {
-        
-        public double[] _origin { get; set; }
-        public double[] _normal { get; set; }
-        public double[] _unitU { get; set; }
-        public double[] _unitV { get; set; }
+
+        [XmlIgnore] protected Point3D u = new Point3D(0, 0, 0);
+        [XmlIgnore] protected Point3D v = new Point3D(0, 0, 0);
+        [XmlIgnore] protected Point3D n = new Point3D(0, 0, 0);
+        [XmlIgnore] protected Point3D o = new Point3D(0, 0, 0);
+        [XmlIgnore] protected double[][] worldToPlaneCoordMap;
+        [XmlIgnore] protected double[][] planeToWorldCoordMap;
+
+        public double[] _origin { get => o.Data; set { o = new Point3D(value); UpdateMaps(); } }
+        public double[] _normal { get => n.Data; set { n = new Point3D(value); UpdateMaps(); } }
+        public double[] _unitU { get => u.Data; set { u = new Point3D(value); UpdateMaps(); } }
+        public double[] _unitV { get => v.Data; set { v = new Point3D(value); UpdateMaps(); } }
 
         protected double _minU = -200;
         protected double _minV = -200;
         protected double _maxU = 200;
         protected double _maxV = 200;
+
+        private void UpdateMaps()
+        {
+            worldToPlaneCoordMap = new double[][] { u.Data, v.Data, n.Data };
+            planeToWorldCoordMap = worldToPlaneCoordMap.Inverse();
+        }
 
         private bool _isVisible;
         public override bool IsVisible
@@ -57,6 +71,16 @@ namespace Luthier.Model.GraphicObjects
                 _unitV = this._unitV,
             };
         }
+
+        public Point3D MapWorldToPlaneCoordinates(Point3D p)
+        {
+            return new Point3D(worldToPlaneCoordMap.DotProduct((p - o).Data));
+        }
+        public Point3D MapPlaneToWorldCoordinates(Point3D p)
+        {
+            return new Point3D(planeToWorldCoordMap.DotProduct(p.Data)) + o;
+        }
+
 
 
         public static GraphicPlane CreateRightHandedXY(double[] origin)
@@ -94,10 +118,10 @@ namespace Luthier.Model.GraphicObjects
         public static GraphicPlane CreateRightHandedThroughPoints(double[] origin, double[] pu, double[] pv)
         {
             var unitU = pu.Subtract(origin);
-            unitU.Normalise();
+            unitU.NormaliseThis();
             
             var unitV = pv.Subtract(origin);
-            unitV.Normalise();
+            unitV.NormaliseThis();
 
             var normal = unitU.VectorProduct(unitV);
 

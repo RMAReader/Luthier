@@ -56,7 +56,7 @@ namespace Luthier.Model.GraphicObjects
             if (Curve.NumberOfPoints > 2)
             {
                 var points = Curve.ToLines(numberOfLineSegments, from, to);
-                int startIndex = vertices.Count();
+                int startIndex = vertices.Count;
                 foreach (var pos in points)
                 {
                     vertices.Add(new StaticColouredVertex

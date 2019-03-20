@@ -75,6 +75,11 @@ namespace Luthier.Model.GraphicObjects
 
             return new Polygon2D(points);
         }
+
+        public Polygon2D ToPolygon2D()
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

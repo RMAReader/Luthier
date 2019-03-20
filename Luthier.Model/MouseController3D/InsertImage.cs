@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Numerics;
+using Luthier.Geometry;
 
 namespace Luthier.Model.MouseController3D
 {

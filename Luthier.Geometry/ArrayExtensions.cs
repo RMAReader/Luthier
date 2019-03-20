@@ -44,7 +44,14 @@ namespace Luthier.Geometry
         }
         public static double[][] Inverse(this double[][] lhs)
         {
-            return Accord.Math.Matrix.Inverse(lhs);
+            try
+            {
+                return Accord.Math.Matrix.Inverse(lhs);
+            }
+            catch(Exception e)
+            {
+                return null;
+            }
         }
 
         public static double[] VectorProduct(this double[] lhs, double[] rhs)

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Luthier.Geometry;
 using Luthier.Model.Extensions;
 using Luthier.Model.GraphicObjects;
 using Luthier.Model.MouseController;

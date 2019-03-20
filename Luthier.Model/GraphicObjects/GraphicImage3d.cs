@@ -6,6 +6,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using Luthier.Geometry;
 using Luthier.Model.Extensions;
 using Luthier.Model.GraphicObjects.Interfaces;
 using SharpDX;

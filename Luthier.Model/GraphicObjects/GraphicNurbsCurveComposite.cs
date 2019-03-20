@@ -14,6 +14,7 @@ namespace Luthier.Model.GraphicObjects
     [Serializable]
     public class GraphicNurbsCurveComposite : 
         GraphicObjectBase,
+        IPolygon2D,
         IDrawableLines
     {
         public UniqueKey ReferencePlaneKey { get; set; }
@@ -110,10 +111,32 @@ namespace Luthier.Model.GraphicObjects
 
 
 
+
         public override double GetDistance(ApplicationDocumentModel model, double x, double y)
         {
             return double.MaxValue;
         }
+
+
+        #region "IPolygon2D implementation"
+
+        UniqueKey IPolygon2D.Key()
+        {
+            return Key;
+        }
+
+        public Polygon2D ToPolygon2D(IApplicationDocumentModel model)
+        {
+            throw new NotSupportedException();
+        }
+
+        public Polygon2D ToPolygon2D()
+        {
+            GraphicPlane referencePlane = Model[ReferencePlaneKey] as GraphicPlane;
+            return new Polygon2D(ToLines().Select(p => referencePlane.MapWorldToPlaneCoordinates(p)).Select(p => new Point2D(p.X, p.Y)).ToList());
+        }
+
+        #endregion
     }
 
     [Serializable]

@@ -30,6 +30,7 @@ namespace Luthier.Model.UIForms
         public EventHandler DoCreateOffsetCurveToolStripMenuItem_Click;
         public EventHandler DoDiscToolStripMenuItem_Click;
         public EventHandler DoCompositeCurveToolStripMenuItem_Click;
+        public EventHandler DoMouldOutlineToolStripMenuItem_Click;
 
         private void curveDegree2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -134,6 +135,11 @@ namespace Luthier.Model.UIForms
         private void compositeCurveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DoCompositeCurveToolStripMenuItem_Click(sender, e);
+        }
+
+        private void newMouldOutlineToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DoMouldOutlineToolStripMenuItem_Click(sender, e);
         }
     }
 }

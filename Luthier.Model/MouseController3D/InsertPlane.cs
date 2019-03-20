@@ -1,5 +1,6 @@
 ﻿using Luthier.Model.Extensions;
 using Luthier.Model.GraphicObjects;
+using Luthier.Geometry;
 using System;
 using System.Collections.Generic;
 using System.Linq;

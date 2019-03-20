@@ -9,7 +9,10 @@ using System.Threading.Tasks;
 namespace Luthier.Model.GraphicObjects
 {
     [Serializable]
-    public class GraphicDisc : GraphicObjectBase, IDrawableLines
+    public class GraphicDisc : 
+        GraphicObjectBase, 
+        IDrawableLines,
+        IPolygon2D
     {
         public Disc Disc { get; set; }
 
@@ -43,6 +46,27 @@ namespace Luthier.Model.GraphicObjects
                 indices.Add(i + startIndex);
                 indices.Add((i + 1) % numberOfLines + startIndex);
             }
+        }
+
+
+        #endregion
+
+
+        #region "IPolygon2D implementation"
+
+        public Polygon2D ToPolygon2D(IApplicationDocumentModel model)
+        {
+            throw new NotSupportedException();
+        }
+
+        public Polygon2D ToPolygon2D()
+        {
+            return new Polygon2D(Disc.PerimeterToLines(1000).Select(p => new Point2D(p.X, p.Y)).ToList());
+        }
+
+        UniqueKey IPolygon2D.Key()
+        {
+            return Key;
         }
 
         #endregion

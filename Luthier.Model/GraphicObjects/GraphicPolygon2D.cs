@@ -47,6 +47,10 @@ namespace Luthier.Model.GraphicObjects
         }
 
         UniqueKey IPolygon2D.Key() => base.Key;
-        
+
+        public Polygon2D ToPolygon2D()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

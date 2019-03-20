@@ -299,7 +299,7 @@ namespace Luthier.Test.Geometry
                 new Point2D(0.01, 0.01),
             };
 
-            var actual = Algorithm.RemoveRedundantPointsClosed(path, 0.2);
+            var actual = Algorithm.RemoveDuplicatePointsClosed(path, 0.2);
 
         }
 

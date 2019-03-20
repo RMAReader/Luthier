@@ -1,4 +1,5 @@
-﻿using Luthier.Model.Extensions;
+﻿using Luthier.Geometry;
+using Luthier.Model.Extensions;
 using Luthier.Model.GraphicObjects;
 using Luthier.Model.Presenter;
 using System;

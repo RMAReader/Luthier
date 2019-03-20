@@ -40,6 +40,8 @@ namespace Luthier.Geometry
 
         public Point2D ToNormalised() => this * (1 / L2Norm());
 
+        public double Dot(Point2D p) => p.X * X + p.Y * Y;
+
         public double Distance(Point2D other) => (this - other).L2Norm();
 
         public static Point2D operator +(Point2D left, Point2D right) => new Point2D (left.X + right.X, left.Y + right.Y);
@@ -92,6 +94,8 @@ namespace Luthier.Geometry
         public Point3D Normalise() => new Point3D(Data.Normalise());
 
         public double L2Norm() => (double)Math.Sqrt(X * X + Y * Y + Z * Z);
+
+        public double Dot(Point3D p) => p.X * X + p.Y * Y + p.Z * Z;
 
         public static Point3D operator +(Point3D left, Point3D right) => new Point3D(left.X + right.X, left.Y + right.Y, left.Z + right.Z);
 

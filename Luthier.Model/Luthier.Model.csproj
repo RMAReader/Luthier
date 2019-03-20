@@ -125,6 +125,7 @@
     <Compile Include="MouseController3D\KnotSelectorController.cs" />
     <Compile Include="MouseController3D\PanZoomMouseWheelController.cs" />
     <Compile Include="MouseController3D\SelectPlaneController.cs" />
+    <Compile Include="MouseController3D\SelectToolPathBoundaryCurvesController.cs" />
     <Compile Include="MouseController3D\SketchDiscController.cs" />
     <Compile Include="MouseController3D\SketchObjectBase.cs" />
     <Compile Include="MouseController3D\SketchSurface.cs" />
@@ -170,6 +171,7 @@
     <Compile Include="Scene3D\SceneComponentTexture.cs" />
     <Compile Include="Scene3D\SceneUpdater.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="ToolPathCalculator\MouldEdgeCalculator.cs" />
     <Compile Include="ToolPathCalculator\PocketCalculator.cs" />
     <Compile Include="ToolPathCalculator\ToolPathCalculatorBase.cs" />
     <Compile Include="Presenter\ToolPathPocketPresenter.cs" />
@@ -181,6 +183,7 @@
     <Compile Include="ToolPathSpecificationFactory\ToolPathFactory.cs" />
     <Compile Include="ToolPathSpecification\CommandBase.cs" />
     <Compile Include="ToolPathSpecification\CurveSpecification.cs" />
+    <Compile Include="ToolPathSpecification\MouldEdgeSpecification.cs" />
     <Compile Include="ToolPathSpecification\PocketSpecification.cs" />
     <Compile Include="ToolPathSpecification\ToolPathSpecificationBase.cs" />
     <Compile Include="UIForms\CoordinateDialog.cs">

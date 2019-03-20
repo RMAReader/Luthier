@@ -60,6 +60,28 @@ namespace Luthier.Geometry
         }
 
 
+        /// <summary>
+        /// Returns true if the point p is inside the polygon
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public bool IsInternal(Point2D p1)
+        {
+            var p2 = new Point2D(p1.X, MaxY + 1);
+
+            int counter = 0;
+            foreach (var pair in points.EnumeratePairsClosed())
+            {
+                var intersection = Intersection.GetIntersection(p1, p2, pair.Item1, pair.Item2);
+
+                if (intersection != null && intersection.LineSegmentsIntersect)
+                    counter++;
+            }
+
+            return counter % 2 == 1;
+        }
+
+
 
         /*
             The signed area can be used to determine whether points are clockwise or anti-clockwise - its sign indicates direction
@@ -89,9 +111,9 @@ namespace Luthier.Geometry
             for (int i = 0; i < points.Count; i++) points[i] += p;
         }
 
-        public void RemoveRedundantPoints(double radius)
+        public void RemoveRedundantPoints(double maxDistance, double minAngle)
         {
-            points = Algorithm.RemoveRedundantPointsClosed(points, radius);
+            points = Algorithm.RemoveRedundantPointsClosed2(points, maxDistance, minAngle);
         }
 
     }

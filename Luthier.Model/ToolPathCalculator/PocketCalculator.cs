@@ -41,7 +41,7 @@ namespace Luthier.Model.ToolPathCalculator
                 if (polygon != null)
                 {
                     var poly2D = polygon.ToPolygon2D(model);
-                    poly2D.RemoveRedundantPoints(0.01);
+                    poly2D.RemoveRedundantPoints(maxDistance: 0.005, minAngle: Math.PI * 0.95);
                     polygonList.Add(poly2D);
                 }
             }
@@ -53,7 +53,7 @@ namespace Luthier.Model.ToolPathCalculator
                 boundary.AddRange(ClipperWrapper.OffsetPolygon(polygon, specification.Tool.Diameter * 0.5));
             }
 
-            foreach (var polygon in boundary) polygon.RemoveRedundantPoints(0.01);
+            foreach (var polygon in boundary) polygon.RemoveRedundantPoints(maxDistance: 0.005, minAngle: Math.PI * 0.95);
 
             ScanLinePath2D scanLinePath = new ScanLinePath2D(boundary, specification.StepLength);
 
