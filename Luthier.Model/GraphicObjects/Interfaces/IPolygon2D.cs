@@ -12,5 +12,6 @@ namespace Luthier.Model.GraphicObjects
         UniqueKey Key();
         Polygon2D ToPolygon2D(IApplicationDocumentModel model);
         Polygon2D ToPolygon2D();
+        Polygon2D ToPolygon2D(GraphicPlane referencePlane);
     }
 }

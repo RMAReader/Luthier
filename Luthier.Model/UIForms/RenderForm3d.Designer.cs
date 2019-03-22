@@ -56,6 +56,9 @@
             this.createJoiningSurfaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newMouldOutlineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.recalculateAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportGcodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -271,7 +274,10 @@
             // toolPathToolStripMenuItem
             // 
             this.toolPathToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newMouldOutlineToolStripMenuItem});
+            this.newMouldOutlineToolStripMenuItem,
+            this.toolStripMenuItem2,
+            this.recalculateAllToolStripMenuItem,
+            this.exportGcodeToolStripMenuItem});
             this.toolPathToolStripMenuItem.Name = "toolPathToolStripMenuItem";
             this.toolPathToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.toolPathToolStripMenuItem.Text = "Tool Path";
@@ -282,6 +288,25 @@
             this.newMouldOutlineToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.newMouldOutlineToolStripMenuItem.Text = "New mould outline";
             this.newMouldOutlineToolStripMenuItem.Click += new System.EventHandler(this.newMouldOutlineToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // recalculateAllToolStripMenuItem
+            // 
+            this.recalculateAllToolStripMenuItem.Name = "recalculateAllToolStripMenuItem";
+            this.recalculateAllToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.recalculateAllToolStripMenuItem.Text = "Recalculate all";
+            this.recalculateAllToolStripMenuItem.Click += new System.EventHandler(this.recalculateAllToolStripMenuItem_Click);
+            // 
+            // exportGcodeToolStripMenuItem
+            // 
+            this.exportGcodeToolStripMenuItem.Name = "exportGcodeToolStripMenuItem";
+            this.exportGcodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportGcodeToolStripMenuItem.Text = "Export gcode";
+            this.exportGcodeToolStripMenuItem.Click += new System.EventHandler(this.exportGcodeToolStripMenuItem_Click);
             // 
             // RenderForm3d
             // 
@@ -330,5 +355,8 @@
         private System.Windows.Forms.ToolStripMenuItem compositeCurveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolPathToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newMouldOutlineToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem recalculateAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportGcodeToolStripMenuItem;
     }
 }

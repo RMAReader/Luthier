@@ -15,7 +15,8 @@ namespace Luthier.Model.GraphicObjects
         IDrawableStaticColouredSurface,
         IDrawableLines,
         IScalable,
-        ISelectable
+        ISelectable,
+        IHasDraggable
     {
         public NurbsSurface Surface;
        

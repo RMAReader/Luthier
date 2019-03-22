@@ -16,11 +16,37 @@ namespace Luthier.Model.ToolPathSpecification
     {
         public UniqueKey ReferencePlaneKey { get; set; }
 
-        [XmlIgnore]
-        public ToolPath.ToolPath ToolPath { get; set; }
+        private GraphicPlane _referencePlane;
+        [XmlIgnore] public GraphicPlane ReferencePlane
+        {
+            get
+            {
+                if (_referencePlane == null)
+                {
+                    //_referencePlane = Model[ReferencePlaneKey] as GraphicPlane;
+
+                    //hardcode reference plane to map x => -x, y => y, z => z, which is required for coords to align properly with cnc machine
+                    //_referencePlane = GraphicPlane.CreateLeftHandedXY(new double[] { 0, 0, 0 });
+                    _referencePlane = new GraphicPlane
+                    {
+                        _origin = new double[] { 0,0,0},
+                        _normal = new double[] { 0,0,1},
+                        _unitU = new double[] { 0, -1, 0 },
+                        _unitV = new double[] { -1, 0, 0 },
+                    };
+                }
+                return _referencePlane;
+            }
+        }
+
+
+        [XmlIgnore] public ToolPath.ToolPath ToolPath { get; set; }
 
 
         public virtual ToolPathCalculatorBase GetCalculator(IApplicationDocumentModel model) => new ToolPathCalculatorBase();
+
+        public virtual void Calculate() { }
+
 
         public override double GetDistance(ApplicationDocumentModel model, double x, double y)
         {
@@ -34,8 +60,6 @@ namespace Luthier.Model.ToolPathSpecification
         {
             if(IsVisible && ToolPath != null)
             {
-                var referencePlane = Model[ReferencePlaneKey] as GraphicPlane;
-
                 var pathColour = new SharpDX.Vector4(1, 0, 0, 1);
 
                 double? x = 0;
@@ -55,7 +79,7 @@ namespace Luthier.Model.ToolPathSpecification
 
                         if( x.HasValue && y.HasValue && z.HasValue )
                         {
-                            var p = referencePlane.MapPlaneToWorldCoordinates(new Geometry.Point3D(x.Value, y.Value, z.Value));
+                            var p = ReferencePlane.MapPlaneToWorldCoordinates(new Geometry.Point3D(x.Value, y.Value, z.Value));
 
                             vertices.Add(new StaticColouredVertex
                             {

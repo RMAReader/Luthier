@@ -136,6 +136,11 @@ namespace Luthier.Model.GraphicObjects
             return new Polygon2D(ToLines().Select(p => referencePlane.MapWorldToPlaneCoordinates(p)).Select(p => new Point2D(p.X, p.Y)).ToList());
         }
 
+        public Polygon2D ToPolygon2D(GraphicPlane referencePlane)
+        {
+            return new Polygon2D(ToLines().Select(p => referencePlane.MapWorldToPlaneCoordinates(p)).Select(p => new Point2D(p.X, p.Y)).ToList());
+        }
+
         #endregion
     }
 

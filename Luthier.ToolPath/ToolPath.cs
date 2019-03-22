@@ -54,6 +54,75 @@ namespace Luthier.ToolPath
             return gcode.ToString();
         }
 
+        public double GetDuration()
+        {
+            return GetFeedRateDistances().Sum(x => (x.Key > 0) ? x.Value / x.Key : 0);
+        }
+
+        public double GetDistance()
+        {
+            return GetFeedRateDistances().Sum(x => x.Value);
+        }
+
+        public Dictionary<int, double> GetFeedRateDurations()
+        {
+            return GetFeedRateDistances().ToDictionary(x => x.Key, y => (y.Key > 0) ? y.Value / y.Key : 0);
+        }
+
+        public Dictionary<int, double> GetFeedRateDistances()
+        {
+            var result = new Dictionary<int, double>();
+            int feedRate = 0;
+            double x = 0;
+            double y = 0;
+            double z = 0;
+
+            foreach (CncOperationBase op in operations)
+            {
+                double dx = 0;
+                double dy = 0;
+                double dz = 0;
+
+                SetFeedRate newFeedRate = op as SetFeedRate;
+                if (newFeedRate != null)
+                {
+                    feedRate = newFeedRate.feedRate;
+                }
+
+                MoveToPoint newPoint = op as MoveToPoint;
+                if (newPoint != null)
+                {
+                    if (newPoint.GetX().HasValue)
+                    {
+                        dx = newPoint.GetX().Value - x;
+                        x = newPoint.GetX().Value;
+                    }
+                    if (newPoint.GetY().HasValue)
+                    {
+                        dy = newPoint.GetY().Value - y;
+                        y = newPoint.GetY().Value;
+                    }
+                    if (newPoint.GetZ().HasValue)
+                    {
+                        dz = newPoint.GetZ().Value - z;
+                        z = newPoint.GetZ().Value;
+                    }
+
+                    if (newPoint.GetFeedRate().HasValue) feedRate = newPoint.GetFeedRate().Value;
+
+                }
+
+                if (!result.ContainsKey(feedRate))
+                {
+                    result.Add(feedRate, 0);
+                }
+
+                result[feedRate] = result[feedRate] + Math.Sqrt(dx * dx + dy * dy + dz * dz);
+
+            }
+            return result;
+        }
+
 
         public IEnumerator GetEnumerator()
         {
@@ -65,4 +134,7 @@ namespace Luthier.ToolPath
             return operations.GetEnumerator();
         }
     }
+
+
+    
 }

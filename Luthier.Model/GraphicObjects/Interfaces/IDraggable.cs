@@ -22,4 +22,9 @@ namespace Luthier.Model.GraphicObjects
     {
         double[] Values { get; set; }
     }
+
+    public interface IHasDraggable
+    {
+        IEnumerable<IDraggable> GetDraggableObjects();
+    }
 }

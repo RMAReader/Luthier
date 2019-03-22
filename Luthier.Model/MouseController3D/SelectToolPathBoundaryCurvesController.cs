@@ -56,10 +56,14 @@ namespace Luthier.Model.MouseController3D
                 TopHeight = 20,
                 BottomHeight = 0,
                 MaximumCutDepth = 5,
+                CutHeights = new List<double> { 8.5, 7.5, 5.0, 2.5, -1.0},
                 SpindleState = CncOperation.EnumSpindleState.OnClockwise,
                 SpindleSpeed = 22000,
-                FeedRate = 500,
-                Tool = new CncTool.EndMill { Diameter = 6.35 }
+                CuttingHorizontalFeedRate = 1000,
+                CuttingVerticalFeedRate = 500,
+                FreeHorizontalFeedRate = 3000,
+                FreeVerticalFeedRate = 1500,
+                Tool = new CncTool.EndMill { Diameter = 5.00 }
             };
 
             foreach (var obj in _model.Model.VisibleObjects().Where(x => x is IPolygon2D))

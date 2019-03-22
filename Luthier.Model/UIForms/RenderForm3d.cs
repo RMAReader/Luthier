@@ -31,6 +31,8 @@ namespace Luthier.Model.UIForms
         public EventHandler DoDiscToolStripMenuItem_Click;
         public EventHandler DoCompositeCurveToolStripMenuItem_Click;
         public EventHandler DoMouldOutlineToolStripMenuItem_Click;
+        public EventHandler DoRecalculateAllToolStripMenuItem_Click;
+        public EventHandler DoExportGcodeToolStripMenuItem_Click;
 
         private void curveDegree2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -140,6 +142,16 @@ namespace Luthier.Model.UIForms
         private void newMouldOutlineToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DoMouldOutlineToolStripMenuItem_Click(sender, e);
+        }
+
+        private void recalculateAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DoRecalculateAllToolStripMenuItem_Click(sender, e);
+        }
+
+        private void exportGcodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DoExportGcodeToolStripMenuItem_Click(sender, e);
         }
     }
 }

@@ -16,7 +16,8 @@ namespace Luthier.Model.GraphicObjects
     public class GraphicNurbsCurve : 
         GraphicObjectBase, 
         IDrawableLines,
-        IScalable
+        IScalable,
+        IHasDraggable
     {
         public NurbsCurve Curve { get; set; }
         public bool DrawControlNet { get; set; }

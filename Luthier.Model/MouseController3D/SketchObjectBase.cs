@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Luthier.Geometry;
 using Luthier.Model.GraphicObjects;
 using Luthier.Model.Presenter;
 
@@ -20,6 +21,8 @@ namespace Luthier.Model.MouseController3D
         public int X { get; private set; }
 
         public int Y { get; private set; }
+
+        public Point3D WorldIntersection { get; private set; }
 
         public void Bind(IApplicationDocumentModel model)
         {
@@ -55,6 +58,9 @@ namespace Luthier.Model.MouseController3D
         {
             X = e.X;
             Y = e.Y;
+
+            WorldIntersection = new Point3D(CalculateIntersection(e.X, e.Y));
+
             OnMouseMove(sender, e);
         }
 

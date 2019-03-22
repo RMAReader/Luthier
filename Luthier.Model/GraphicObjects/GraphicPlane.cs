@@ -80,6 +80,14 @@ namespace Luthier.Model.GraphicObjects
         {
             return new Point3D(planeToWorldCoordMap.DotProduct(p.Data)) + o;
         }
+        public Point3D RotateWorldToPlaneCoordinates(Point3D p)
+        {
+            return new Point3D(worldToPlaneCoordMap.DotProduct(p.Data));
+        }
+        public Point3D RotatePlaneToWorldCoordinates(Point3D p)
+        {
+            return new Point3D(planeToWorldCoordMap.DotProduct(p.Data));
+        }
 
 
 
@@ -90,6 +98,16 @@ namespace Luthier.Model.GraphicObjects
                 _origin = origin,
                 _normal = new double[] { 0, 0, 1.0 },
                 _unitU = new double[] { 1.0, 0, 0 },
+                _unitV = new double[] { 0, 1.0, 0 },
+            };
+        }
+        public static GraphicPlane CreateLeftHandedXY(double[] origin)
+        {
+            return new GraphicPlane
+            {
+                _origin = origin,
+                _normal = new double[] { 0, 0, 1.0 },
+                _unitU = new double[] { -1.0, 0, 0 },
                 _unitV = new double[] { 0, 1.0, 0 },
             };
         }

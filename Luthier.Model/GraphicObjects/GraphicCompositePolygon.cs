@@ -80,6 +80,10 @@ namespace Luthier.Model.GraphicObjects
         {
             throw new NotImplementedException();
         }
+        public Polygon2D ToPolygon2D(GraphicPlane plane)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

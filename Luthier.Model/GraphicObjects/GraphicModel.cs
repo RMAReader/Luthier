@@ -25,6 +25,7 @@ namespace Luthier.Model.GraphicObjects
     [XmlInclude(typeof(GraphicImage3d))]
     [XmlInclude(typeof(GraphicDisc))]
     [XmlInclude(typeof(PocketSpecification))]
+    [XmlInclude(typeof(MouldEdgeSpecification))]
     [XmlInclude(typeof(EndMill))]
     [XmlInclude(typeof(BallNose))]
     public class GraphicModelStorage
@@ -128,16 +129,13 @@ namespace Luthier.Model.GraphicObjects
         }
         public IEnumerable<IDraggable> GetDraggableObjects()
         {
-            foreach (IDraggable o in _data.Values.Where(p => p is IDraggable)) yield return o;
-            foreach (GraphicNurbsSurface s in _data.Values.Where(p => p is GraphicNurbsSurface))
+            foreach (IDraggable o in _data.Values.Where(p => p.IsVisible && p is IDraggable)) yield return o;
+            foreach (IHasDraggable s in _data.Values.Where(p => p.IsVisible && p is IHasDraggable))
             {
                 foreach (IDraggable o in s.GetDraggableObjects()) yield return o;
             }
-            foreach (GraphicNurbsCurve c in _data.Values.Where(p => p is GraphicNurbsCurve))
-            {
-                foreach (IDraggable o in c.GetDraggableObjects()) yield return o;
-            }
         }
+
         public IEnumerable<GraphicObjectBase> VisibleObjects()
         {
             return _data.Values.Where(p => p.IsVisible);

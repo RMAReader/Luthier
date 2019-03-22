@@ -10,6 +10,8 @@ using System.Runtime.InteropServices;
 using Luthier.Model.Scene3D;
 using Luthier.Model.GraphicObjects;
 using System.Linq;
+using Luthier.Model.ToolPathSpecification;
+using System.IO;
 
 namespace Luthier.Model.Presenter
 {
@@ -78,6 +80,8 @@ namespace Luthier.Model.Presenter
             form.DoDiscToolStripMenuItem_Click = DoDiscToolStripMenuItem_Click;
             form.DoCompositeCurveToolStripMenuItem_Click = DoCompositeCurveToolStripMenuItem_Click;
             form.DoMouldOutlineToolStripMenuItem_Click = DoMouldOutlineToolStripMenuItem_Click;
+            form.DoRecalculateAllToolStripMenuItem_Click = DoRecalculateAllToolStripMenuItem_Click;
+            form.DoExportGcodeToolStripMenuItem_Click = DoExportGcodeToolStripMenuItem_Click;
 
             _camera.ViewWidth = form.ClientSize.Width;
             _camera.ViewHeight = form.ClientSize.Height;
@@ -399,6 +403,34 @@ namespace Luthier.Model.Presenter
             }
         }
 
+        private void DoRecalculateAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach(ToolPathSpecificationBase toolPath in model.Model.Where(x => x is ToolPathSpecificationBase))
+            {
+                toolPath.Calculate();
+
+                if(toolPath.IsVisible)
+                    model.Model.HasChanged = true;
+            }
+        }
+
+        private void DoExportGcodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog chooseFolderDialog = new FolderBrowserDialog())
+            {
+                chooseFolderDialog.ShowNewFolderButton = true;
+
+                if (chooseFolderDialog.ShowDialog() == DialogResult.OK)
+                {
+                    foreach (ToolPathSpecificationBase toolPath in model.Model.Where(x => x is ToolPathSpecificationBase))
+                    {
+                        var path = $"{chooseFolderDialog.SelectedPath}\\{toolPath.Name}_{toolPath.Key}.txt";
+
+                        File.WriteAllText(path, toolPath.ToolPath.ToGCode());
+                    }
+                }
+            }
+        }
 
 
 
@@ -459,6 +491,13 @@ namespace Luthier.Model.Presenter
                             device.Font.DrawString($"Offset: {offsetController.OffsetDistance:0.0}mm", offsetController.X, offsetController.Y - 15);
                         }
                         
+                        var sketchObjectController = mouseController as SketchObjectBase;
+                        if(sketchObjectController != null && sketchObjectController.WorldIntersection != null)
+                        {
+                            var p = sketchObjectController.WorldIntersection;
+                            device.Font.DrawString($"World Coordinates: X = {p.X:0.000}, Y = {p.Y:0.000}, Z = {p.Z:0.000}", 0, 60);
+                        }
+
                         //flush text to view
                         device.Font.End();
                         //present

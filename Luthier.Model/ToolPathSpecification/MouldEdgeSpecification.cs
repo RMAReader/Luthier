@@ -16,14 +16,18 @@ namespace Luthier.Model.ToolPathSpecification
         public double TopHeight { get; set; }
         public double BottomHeight { get; set; }
         public double MaximumCutDepth { get; set; }
+        public List<double> CutHeights { get; set; }
         public string Description { get; set; }
         public double SafeHeight { get; set; }
         public EnumSpindleState SpindleState { get; set; }
         public int SpindleSpeed { get; set; }
-        public int FeedRate { get; set; }
+        public int CuttingHorizontalFeedRate { get; set; }
+        public int CuttingVerticalFeedRate { get; set; }
+        public int FreeHorizontalFeedRate { get; set; }
+        public int FreeVerticalFeedRate { get; set; }
         public BaseTool Tool { get; set; }
 
-        public ToolPath.ToolPath Calculate()
+        public override void Calculate()
         {
             var path = new ToolPath.ToolPath();
 
@@ -32,17 +36,20 @@ namespace Luthier.Model.ToolPathSpecification
             path.SetAbsolutePositioning();
             path.SetSpindleState(SpindleState);
             path.SetSpindleSpeed(SpindleSpeed);
-            path.SetFeedRate(FeedRate);
+            path.SetFeedRate(FreeVerticalFeedRate);
             path.SetTool(Tool);
             path.MoveToPoint(null, null, SafeHeight, null);
 
-            foreach (double height in GetCutHeights())
+            var cutHeights = (CutHeights != null) ? CutHeights : GetCutHeights();
+
+            foreach (var polygon in boundary)
             {
-                foreach (var polygon in boundary)
+                path.MoveToPoint(polygon.GetPoints().First().X, polygon.GetPoints().First().Y, null, FreeHorizontalFeedRate);
+
+                foreach (double height in cutHeights)
                 {
-                    path.MoveToPoint(null, null, SafeHeight, null);
-                    path.MoveToPoint(polygon.GetPoints().First().X, polygon.GetPoints().First().Y, null, null);
-                    path.MoveToPoint(polygon.GetPoints().First().X, polygon.GetPoints().First().Y, height, null);
+                    path.MoveToPoint(null, null, height, CuttingVerticalFeedRate);
+                    path.SetFeedRate(CuttingHorizontalFeedRate);
 
                     foreach (var point in polygon.GetPoints())
                     {
@@ -50,15 +57,18 @@ namespace Luthier.Model.ToolPathSpecification
                     }
 
                     path.MoveToPoint(polygon.GetPoints().First().X, polygon.GetPoints().First().Y, null, null);
-                    path.MoveToPoint(null, null, SafeHeight, null);
                 }
+
+                path.MoveToPoint(null, null, SafeHeight, FreeVerticalFeedRate);
             }
 
             path.SetSpindleState(EnumSpindleState.Off);
             
             ToolPath = path;
 
-            return path;
+            var duration = path.GetDuration();
+            var distance = path.GetDistance();
+            var feedRateDurations = path.GetFeedRateDurations();
         }
 
         private List<double> GetCutHeights()
@@ -86,13 +96,12 @@ namespace Luthier.Model.ToolPathSpecification
                 var curve = Model[key] as IPolygon2D;
                 if (curve != null)
                 {
-                    var poly2D = curve.ToPolygon2D();
+                    var poly2D = curve.ToPolygon2D(ReferencePlane);
                     poly2D.RemoveRedundantPoints(maxDistance: 0.005, minAngle: Math.PI * 0.95);
                     polygonList.Add(poly2D);
                 }
             }
 
-            //TODO: must determine if each polygon is internal or external, and make sure the orientation(clockwise/anti) is opposite for internal/external
             foreach(var poly1 in polygonList)
             {
                 int numberOfSurroundingPolygons = 0;
@@ -119,14 +128,49 @@ namespace Luthier.Model.ToolPathSpecification
             foreach (var polygon in boundary)
                 polygon.RemoveRedundantPoints(maxDistance: 0.005, minAngle: Math.PI * 0.95);
 
+            boundary = OptimizeCuttingOrder(boundary);
+
             return boundary;
         }
     
-
+ 
         private List<Polygon2D> GetOffsetPolygons(List<Polygon2D> polygons, double offset)
         {
             return ClipperWrapper.OffsetPolygons(polygons, Tool.Diameter * 0.5);
         }
+
+
+
+        private List<Polygon2D> OptimizeCuttingOrder(List<Polygon2D> boundary)
+        {
+            if (boundary.Count < 2)
+                return boundary;
+
+            var result = new List<Polygon2D> { boundary[0]};
+            boundary.RemoveAt(0);
+
+            while (boundary.Count > 0)
+            {
+                double minDistance = double.MaxValue;
+                Polygon2D closestPolygon = null;
+                foreach (var polygon in boundary)
+                {
+                    double d = polygon.GetPoints()[0].Distance(result.Last().GetPoints()[0]);
+                    if (d < minDistance)
+                    {
+                        minDistance = d;
+                        closestPolygon = polygon;
+                    }
+                }
+                result.Add(closestPolygon);
+                boundary.Remove(closestPolygon);
+            }
+
+            return result;
+        }
+
+     
+
 
     }
 }

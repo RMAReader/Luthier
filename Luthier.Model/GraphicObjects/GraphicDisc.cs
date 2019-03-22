@@ -12,7 +12,8 @@ namespace Luthier.Model.GraphicObjects
     public class GraphicDisc : 
         GraphicObjectBase, 
         IDrawableLines,
-        IPolygon2D
+        IPolygon2D,
+        IHasDraggable
     {
         public Disc Disc { get; set; }
 
@@ -21,6 +22,14 @@ namespace Luthier.Model.GraphicObjects
         {
             return double.MaxValue;
         }
+        #region "IHasDraggable implementation"
+
+        public IEnumerable<IDraggable> GetDraggableObjects()
+        {
+            yield return new DraggableDiscCentre(Disc);
+        }
+
+        #endregion
 
         #region "IDrawableLines implementation"
 
@@ -32,7 +41,17 @@ namespace Luthier.Model.GraphicObjects
 
             var colour = new SharpDX.Vector4(1, 0, 1, 1);
 
-            foreach (var p in Disc.PerimeterToLines(numberOfLines))
+            //add centre point
+            vertices.Add(new StaticColouredVertex
+            {
+                Position = new SharpDX.Vector3((float)Disc.Centre.X, (float)Disc.Centre.Y, (float)Disc.Centre.Z),
+                Color = colour,
+            });
+
+            //add perimeter points
+            var perimeter = Disc.PerimeterToLines(numberOfLines);
+            perimeter.Add(perimeter[0]);
+            foreach (var p in perimeter)
             {
                 vertices.Add(new StaticColouredVertex
                 {
@@ -41,10 +60,11 @@ namespace Luthier.Model.GraphicObjects
                 });
             }
 
-            for(int i = 0; i < numberOfLines; i++ )
+            for (int i = 0; i <= numberOfLines; i++ )
             {
                 indices.Add(i + startIndex);
-                indices.Add((i + 1) % numberOfLines + startIndex);
+                //indices.Add((i + 1) % numberOfLines + startIndex);
+                indices.Add(i + 1 + startIndex);
             }
         }
 
@@ -64,6 +84,17 @@ namespace Luthier.Model.GraphicObjects
             return new Polygon2D(Disc.PerimeterToLines(1000).Select(p => new Point2D(p.X, p.Y)).ToList());
         }
 
+        public Polygon2D ToPolygon2D(GraphicPlane plane)
+        {
+            var mappedDisc = new Disc
+            {
+                Centre = plane.MapWorldToPlaneCoordinates(Disc.Centre),
+                Normal = plane.RotateWorldToPlaneCoordinates(Disc.Normal),
+                Radius = Disc.Radius
+            };
+            return new Polygon2D(mappedDisc.PerimeterToLines(1000).Select(p => new Point2D(p.X, p.Y)).ToList());
+        }
+
         UniqueKey IPolygon2D.Key()
         {
             return Key;
@@ -71,4 +102,25 @@ namespace Luthier.Model.GraphicObjects
 
         #endregion
     }
+
+
+    public class DraggableDiscCentre : IDraggable
+    {
+        private Disc _disc;
+
+        public DraggableDiscCentre(Disc disc)
+        {
+            _disc = disc;
+        }
+
+        public double[] Values
+        {
+            get => _disc.Centre.Data;
+            set
+            {
+                _disc.Centre = new Point3D(value);
+            }
+        }
+    }
+
 }
