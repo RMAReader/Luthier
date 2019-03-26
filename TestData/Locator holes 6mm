@@ -1,0 +1,389 @@
+<?xml version="1.0"?>
+<GraphicModelStorage>
+  <Objects>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="8bafdcf3-6830-40c3-b076-407ba5c440c7" />
+      <Name>GraphicLayer1</Name>
+      <IsVisible>true</IsVisible>
+      <Objects data="6e62e3a1-c961-4b85-bcb4-ae6d229bf0c8" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="6e62e3a1-c961-4b85-bcb4-ae6d229bf0c8" />
+      <LayerKey data="8bafdcf3-6830-40c3-b076-407ba5c440c7" />
+      <Name>GraphicPlane1</Name>
+      <IsVisible>true</IsVisible>
+      <_origin>
+        <double>0</double>
+        <double>0</double>
+        <double>0</double>
+      </_origin>
+      <_normal>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_normal>
+      <_unitU>
+        <double>1</double>
+        <double>0</double>
+        <double>0</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>1</double>
+        <double>0</double>
+      </_unitV>
+      <IsSelected>true</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="02395460-c23c-40dc-933f-6ffa971fc98a" />
+      <Name>GraphicNurbsCurve1</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>2</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>160.02832154606824</double>
+            <double>46.569088261066454</double>
+            <double>50.2406741375588</double>
+            <double>49.676178191375051</double>
+            <double>1.8959296312459628E-05</double>
+            <double>3.5919480751545052E-05</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>2</int>
+          </CvCount>
+          <DimensionStride>2</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="d964bb8d-2845-497b-882e-8a7677db468a" />
+      <Name>GraphicNurbsCurve2</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>2</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>49.955929601316626</double>
+            <double>49.9559269610736</double>
+            <double>55.321197216869109</double>
+            <double>-5.0805207197176063</double>
+            <double>1.5422967180711566E-05</double>
+            <double>3.6514164776235702E-06</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>2</int>
+          </CvCount>
+          <DimensionStride>2</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="8592f541-697d-43c8-bf5a-7171f6cc3120" />
+      <Name>GraphicNurbsCurve3</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>2</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>46.569086114326723</double>
+            <double>155.51253122531352</double>
+            <double>0.56449917175178665</double>
+            <double>-7.0658504078835449E-06</double>
+            <double>5.7662680546854972E-05</double>
+            <double>1.1508734587550862E-07</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>2</int>
+          </CvCount>
+          <DimensionStride>2</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="c4124394-f3a4-444d-8ec9-385e9b61f5c0" />
+      <Name>GraphicNurbsCurve4</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>2</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>150.43226217699859</double>
+            <double>150.43226469386559</double>
+            <double>-3.3870191497972657</double>
+            <double>54.192185210102529</double>
+            <double>2.7305391995469108E-05</double>
+            <double>4.9285299041912367E-05</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>2</int>
+          </CvCount>
+          <DimensionStride>2</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="c18ae219-c89d-4349-b463-26cf8c1e2e20" />
+      <Name>Diameter 6_0mm</Name>
+      <IsVisible>true</IsVisible>
+      <Disc>
+        <Centre>
+          <Data>140</Data>
+          <Data>35</Data>
+          <Data>0</Data>
+        </Centre>
+        <Normal>
+          <Data>0</Data>
+          <Data>0</Data>
+          <Data>1</Data>
+        </Normal>
+        <Radius>3</Radius>
+      </Disc>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="66a87b47-6642-40a4-9d45-4e9e4580ce2c" />
+      <Name>Diameter 5_98mm</Name>
+      <IsVisible>true</IsVisible>
+      <Disc>
+        <Centre>
+          <Data>130</Data>
+          <Data>33</Data>
+          <Data>0</Data>
+        </Centre>
+        <Normal>
+          <Data>0</Data>
+          <Data>0</Data>
+          <Data>1</Data>
+        </Normal>
+        <Radius>2.99</Radius>
+      </Disc>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="9651c6c2-24fa-409d-a7f9-29ed7d5a1db9" />
+      <Name>Diameter 5_96mm</Name>
+      <IsVisible>true</IsVisible>
+      <Disc>
+        <Centre>
+          <Data>120</Data>
+          <Data>31</Data>
+          <Data>0</Data>
+        </Centre>
+        <Normal>
+          <Data>0</Data>
+          <Data>0</Data>
+          <Data>1</Data>
+        </Normal>
+        <Radius>2.98</Radius>
+      </Disc>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="0cf70752-edc7-4dd3-8765-a61f2d3b363e" />
+      <Name>Diameter 5_94mm</Name>
+      <IsVisible>true</IsVisible>
+      <Disc>
+        <Centre>
+          <Data>110</Data>
+          <Data>29</Data>
+          <Data>0</Data>
+        </Centre>
+        <Normal>
+          <Data>0</Data>
+          <Data>0</Data>
+          <Data>1</Data>
+        </Normal>
+        <Radius>2.97</Radius>
+      </Disc>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="49aad725-0827-4c1b-87d7-b1a827311c71" />
+      <Name>Diameter 5_92mm</Name>
+      <IsVisible>true</IsVisible>
+      <Disc>
+        <Centre>
+          <Data>100</Data>
+          <Data>27</Data>
+          <Data>0</Data>
+        </Centre>
+        <Normal>
+          <Data>0</Data>
+          <Data>0</Data>
+          <Data>1</Data>
+        </Normal>
+        <Radius>2.96</Radius>
+      </Disc>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="16d6f896-6c30-4aa7-b3fa-636c9c63c6bf" />
+      <Name>Diameter 5_90mm</Name>
+      <IsVisible>true</IsVisible>
+      <Disc>
+        <Centre>
+          <Data>90</Data>
+          <Data>25</Data>
+          <Data>0</Data>
+        </Centre>
+        <Normal>
+          <Data>0</Data>
+          <Data>0</Data>
+          <Data>1</Data>
+        </Normal>
+        <Radius>2.95</Radius>
+      </Disc>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="6abd7a00-6316-4511-86ae-d683e24d5edb" />
+      <Name>Diameter 5_88mm</Name>
+      <IsVisible>true</IsVisible>
+      <Disc>
+        <Centre>
+          <Data>80</Data>
+          <Data>23</Data>
+          <Data>0</Data>
+        </Centre>
+        <Normal>
+          <Data>0</Data>
+          <Data>0</Data>
+          <Data>1</Data>
+        </Normal>
+        <Radius>2.94</Radius>
+      </Disc>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="5b63eb67-94c1-4ad9-ac61-e9bee987915a" />
+      <Name>Diameter 5_86mm</Name>
+      <IsVisible>true</IsVisible>
+      <Disc>
+        <Centre>
+          <Data>70</Data>
+          <Data>21</Data>
+          <Data>0</Data>
+        </Centre>
+        <Normal>
+          <Data>0</Data>
+          <Data>0</Data>
+          <Data>1</Data>
+        </Normal>
+        <Radius>2.93</Radius>
+      </Disc>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="ac6054c6-eaba-4ca5-9805-8e0873c161c0" />
+      <Name>Diameter 5_84mm</Name>
+      <IsVisible>true</IsVisible>
+      <Disc>
+        <Centre>
+          <Data>60</Data>
+          <Data>19</Data>
+          <Data>0</Data>
+        </Centre>
+        <Normal>
+          <Data>0</Data>
+          <Data>0</Data>
+          <Data>1</Data>
+        </Normal>
+        <Radius>2.92</Radius>
+      </Disc>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurveComposite" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="1602633a-b8cd-439d-9271-806deec70588" />
+      <Name>GraphicNurbsCurveComposite1</Name>
+      <IsVisible>true</IsVisible>
+      <ReferencePlaneKey data="6e62e3a1-c961-4b85-bcb4-ae6d229bf0c8" />
+      <Components>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>149.02151037355634</Data>
+            <Data>49.317206375325611</Data>
+            <Data>-1.2439812735465239E-07</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="02395460-c23c-40dc-933f-6ffa971fc98a" />
+          <Curve2Key data="c4124394-f3a4-444d-8ec9-385e9b61f5c0" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>51.349588822577061</Data>
+            <Data>48.35959040904595</Data>
+            <Data>-3.0860790900533175E-06</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="02395460-c23c-40dc-933f-6ffa971fc98a" />
+          <Curve2Key data="d964bb8d-2845-497b-882e-8a7677db468a" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>51.828371302828373</Data>
+            <Data>3.5910547086957649</Data>
+            <Data>1.6879491397503443E-05</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="d964bb8d-2845-497b-882e-8a7677db468a" />
+          <Curve2Key data="8592f541-697d-43c8-bf5a-7171f6cc3120" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>148.78212036501282</Data>
+            <Data>1.9152274761421209</Data>
+            <Data>2.3908742434741725E-06</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="c4124394-f3a4-444d-8ec9-385e9b61f5c0" />
+          <Curve2Key data="8592f541-697d-43c8-bf5a-7171f6cc3120" />
+        </NurbsCurveCompositeJoin>
+      </Components>
+    </GraphicObjectBase>
+  </Objects>
+  <Name>NewModel</Name>
+</GraphicModelStorage>

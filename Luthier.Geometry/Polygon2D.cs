@@ -54,7 +54,10 @@ namespace Luthier.Geometry
             get
             {
                 var centre = new Point2D(0, 0);
-                points.Select(x => centre + x);
+                foreach(var point in points)
+                {
+                    centre += point;
+                }
                 return centre / points.Count;
             }
         }
@@ -110,6 +113,35 @@ namespace Luthier.Geometry
         {
             for (int i = 0; i < points.Count; i++) points[i] += p;
         }
+
+        public void CyclePointsToStartFrom(int index)
+        {
+            var result = new List<Point2D>();
+
+            for (int i = index; i < points.Count; i++)
+                result.Add(points[i]);
+
+            for (int i = 0; i < index; i++)
+                result.Add(points[i]);
+
+            points = result;           
+        }
+
+        public void CyclePointsToStartFrom(Point2D point)
+        {
+            var result = new List<Point2D>();
+
+            int index = points.IndexOf(point);
+
+            for (int i = index; i < points.Count; i++)
+                result.Add(points[i]);
+
+            for (int i = 0; i < index; i++)
+                result.Add(points[i]);
+
+            points = result;
+        }
+
 
         public void RemoveRedundantPoints(double maxDistance, double minAngle)
         {

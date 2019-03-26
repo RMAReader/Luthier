@@ -1,0 +1,3761 @@
+<?xml version="1.0"?>
+<GraphicModelStorage>
+  <Objects>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="cdc8f1c2-39ef-438f-a4a4-d852f2c6f728" />
+      <Name>Template</Name>
+      <IsVisible>false</IsVisible>
+      <Objects data="e13d77f5-1807-405e-b95b-e254b7e07226" />
+      <Objects data="1a243e17-5cc5-4609-8ea9-75f359151cd0" />
+      <Objects data="1baea981-7e48-41fa-a1e3-784eacc1be6f" />
+      <Objects data="f8592281-138a-413b-b236-c68a0bb816c8" />
+      <Objects data="6573a3e0-fad2-475e-b950-8030c2086579" />
+      <Objects data="9e8a3e65-5157-4591-a6d2-cb878593e4ca" />
+      <Objects data="b8a8b6f5-4514-4c16-878b-b6850a253f99" />
+      <Objects data="ffc5e02c-dcf6-4432-a2e1-f213416cfe0b" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="d8f3242d-ce5b-4b82-81ad-a5586327fe11" />
+      <LayerKey data="e13d77f5-1807-405e-b95b-e254b7e07226" />
+      <Name>GraphicPlane1</Name>
+      <IsVisible>true</IsVisible>
+      <_origin>
+        <double>0</double>
+        <double>0</double>
+        <double>0</double>
+      </_origin>
+      <_normal>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_normal>
+      <_unitU>
+        <double>1</double>
+        <double>0</double>
+        <double>0</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>1</double>
+        <double>0</double>
+      </_unitV>
+      <IsSelected>true</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="236cef4e-2bd9-4919-9b4a-9fa73f74036e" />
+      <LayerKey data="e13d77f5-1807-405e-b95b-e254b7e07226" />
+      <Name>GraphicImage3d1</Name>
+      <IsVisible>false</IsVisible>
+      <UpperLeft>
+        <double>192.21882489783724</double>
+        <double>112.55050561387134</double>
+        <double>0.00014240318619706185</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>186.81744743971927</double>
+        <double>-91.832027746584274</double>
+        <double>0.00014240318791351714</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>-189.30231830128753</double>
+        <double>-81.892012811240022</double>
+        <double>8.5253446719363E-05</double>
+      </LowerRight>
+      <Normal>
+        <double>0</double>
+        <double>0</double>
+        <double>0.94363127286498893</double>
+      </Normal>
+      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\TitianStradScroll\Ribs outline.png</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="e13d77f5-1807-405e-b95b-e254b7e07226" />
+      <LayerKey data="cdc8f1c2-39ef-438f-a4a4-d852f2c6f728" />
+      <Name>Ribs Outline</Name>
+      <IsVisible>false</IsVisible>
+      <Objects data="d8f3242d-ce5b-4b82-81ad-a5586327fe11" />
+      <Objects data="236cef4e-2bd9-4919-9b4a-9fa73f74036e" />
+      <Objects data="686e780e-52de-40dd-a88f-ab7cf1171f1b" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="98b3f132-b7d1-44c9-a2a5-8fb770309949" />
+      <LayerKey data="1a243e17-5cc5-4609-8ea9-75f359151cd0" />
+      <Name>GraphicPlane2</Name>
+      <IsVisible>false</IsVisible>
+      <_origin>
+        <double>0.11969504714032553</double>
+        <double>20.229630038865665</double>
+        <double>1.9257309986642213E-06</double>
+      </_origin>
+      <_normal>
+        <double>4.37113864689843E-08</double>
+        <double>0.999999999999999</double>
+        <double>-0</double>
+      </_normal>
+      <_unitU>
+        <double>-0.999999999999999</double>
+        <double>4.37113864689843E-08</double>
+        <double>0</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_unitV>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="caf0fe84-63ee-46f0-9c7d-82244f025cdd" />
+      <LayerKey data="1a243e17-5cc5-4609-8ea9-75f359151cd0" />
+      <Name>GraphicImage3d2</Name>
+      <IsVisible>false</IsVisible>
+      <UpperLeft>
+        <double>179.98617515990139</double>
+        <double>19.089710613445519</double>
+        <double>46.723498737187832</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>180.05335997520061</double>
+        <double>19.089710368229376</double>
+        <double>-49.157552477668915</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>-184.85192883444344</double>
+        <double>19.094769043993914</double>
+        <double>-49.413255317339285</double>
+      </LowerRight>
+      <Normal>
+        <double>4.1247431252421106E-08</double>
+        <double>0.943631272864988</double>
+        <double>-0</double>
+      </Normal>
+      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\TitianStradScroll\Arch length.png</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="1a243e17-5cc5-4609-8ea9-75f359151cd0" />
+      <LayerKey data="cdc8f1c2-39ef-438f-a4a4-d852f2c6f728" />
+      <Name>Long Arch</Name>
+      <IsVisible>false</IsVisible>
+      <Objects data="98b3f132-b7d1-44c9-a2a5-8fb770309949" />
+      <Objects data="caf0fe84-63ee-46f0-9c7d-82244f025cdd" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="b1214a8e-4653-4e55-b756-7f89aa993a3b" />
+      <LayerKey data="1baea981-7e48-41fa-a1e3-784eacc1be6f" />
+      <Name>GraphicPlane3</Name>
+      <IsVisible>false</IsVisible>
+      <_origin>
+        <double>20.049962268352445</double>
+        <double>19.981582583493775</double>
+        <double>-4.8075497716126847E-07</double>
+      </_origin>
+      <_normal>
+        <double>-0.999992972137169</double>
+        <double>-0.00374909005434406</double>
+        <double>0</double>
+      </_normal>
+      <_unitU>
+        <double>0.00374909005434406</double>
+        <double>-0.999992972137169</double>
+        <double>1.887403136264939E-07</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_unitV>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="1baea981-7e48-41fa-a1e3-784eacc1be6f" />
+      <LayerKey data="cdc8f1c2-39ef-438f-a4a4-d852f2c6f728" />
+      <Name>Arch C-Bout</Name>
+      <IsVisible>false</IsVisible>
+      <Objects data="b1214a8e-4653-4e55-b756-7f89aa993a3b" />
+      <Objects data="f2f4f5ef-d019-437c-8f41-c0624ba4536e" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="f2f4f5ef-d019-437c-8f41-c0624ba4536e" />
+      <LayerKey data="1baea981-7e48-41fa-a1e3-784eacc1be6f" />
+      <Name>GraphicImage3d3</Name>
+      <IsVisible>false</IsVisible>
+      <UpperLeft>
+        <double>19.129638126867984</double>
+        <double>-37.118116818993563</double>
+        <double>15.067103627823158</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>19.133212346101313</double>
+        <double>-38.071537092508592</double>
+        <double>-51.123118392991557</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>18.716584369626325</double>
+        <double>73.091681803307424</double>
+        <double>-52.724357547943328</double>
+      </LowerRight>
+      <Normal>
+        <double>-0.94362464115384015</double>
+        <double>-0.0035377586200661562</double>
+        <double>0</double>
+      </Normal>
+      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\TitianStradScroll\Arch centre bout.png</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="d6f5bcd5-60c5-4988-a493-a776c745b384" />
+      <LayerKey data="f8592281-138a-413b-b236-c68a0bb816c8" />
+      <Name>GraphicPlane4</Name>
+      <IsVisible>false</IsVisible>
+      <_origin>
+        <double>112.70579799310032</double>
+        <double>19.869473327994292</double>
+        <double>-7.6847443608585309E-07</double>
+      </_origin>
+      <_normal>
+        <double>-0.999999765466026</double>
+        <double>-0.000684885304732277</double>
+        <double>0</double>
+      </_normal>
+      <_unitU>
+        <double>0.000684885304732277</double>
+        <double>-0.999999765466026</double>
+        <double>-1.1056759803897016E-07</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_unitV>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="2db401e9-a0e0-4bb1-91be-f86d8324675c" />
+      <LayerKey data="f8592281-138a-413b-b236-c68a0bb816c8" />
+      <Name>GraphicImage3d4</Name>
+      <IsVisible>false</IsVisible>
+      <UpperLeft>
+        <double>106.41131565607729</double>
+        <double>-66.81283345358186</double>
+        <double>12.847508966901858</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>106.41195438529955</double>
+        <double>-67.748401847598132</double>
+        <double>-48.125908810811133</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>106.29488113439078</double>
+        <double>102.59200873320131</double>
+        <double>-50.73959199091626</double>
+      </LowerRight>
+      <Normal>
+        <double>-0.94363105155139648</double>
+        <double>-0.00064627919187104437</double>
+        <double>0</double>
+      </Normal>
+      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\TitianStradScroll\Arch upper bout.png</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="f8592281-138a-413b-b236-c68a0bb816c8" />
+      <LayerKey data="cdc8f1c2-39ef-438f-a4a4-d852f2c6f728" />
+      <Name>Arch Upper Bout</Name>
+      <IsVisible>false</IsVisible>
+      <Objects data="d6f5bcd5-60c5-4988-a493-a776c745b384" />
+      <Objects data="2db401e9-a0e0-4bb1-91be-f86d8324675c" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="9d29f40d-75f6-4b73-8cff-17b5a6ecc7e6" />
+      <LayerKey data="6573a3e0-fad2-475e-b950-8030c2086579" />
+      <Name>GraphicPlane5</Name>
+      <IsVisible>false</IsVisible>
+      <_origin>
+        <double>-114.93381503273207</double>
+        <double>20.104676967467718</double>
+        <double>1.325185945688645E-05</double>
+      </_origin>
+      <_normal>
+        <double>-0.99999988557731956</double>
+        <double>-0.00047837782092785753</double>
+        <double>0</double>
+      </_normal>
+      <_unitU>
+        <double>0.00047837782092785753</double>
+        <double>-0.99999988557731956</double>
+        <double>9.0188845272309546E-08</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_unitV>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="d2015797-bec0-4ee1-8768-de328cee3067" />
+      <LayerKey data="6573a3e0-fad2-475e-b950-8030c2086579" />
+      <Name>GraphicImage3d5</Name>
+      <IsVisible>false</IsVisible>
+      <UpperLeft>
+        <double>-108.40488358644414</double>
+        <double>-86.013172652495527</double>
+        <double>15.065350589684254</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>-108.40431346099945</double>
+        <double>-87.194687977311489</double>
+        <double>-48.815330543599579</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>-108.50455204652469</double>
+        <double>122.48124303129619</double>
+        <double>-52.6934311562241</double>
+      </LowerRight>
+      <Normal>
+        <double>-0.94363116489216936</double>
+        <double>-0.00045141227207253393</double>
+        <double>0</double>
+      </Normal>
+      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\TitianStradScroll\Arch lower bout.png</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="6573a3e0-fad2-475e-b950-8030c2086579" />
+      <LayerKey data="cdc8f1c2-39ef-438f-a4a4-d852f2c6f728" />
+      <Name>Arch Lower Bout</Name>
+      <IsVisible>false</IsVisible>
+      <Objects data="9d29f40d-75f6-4b73-8cff-17b5a6ecc7e6" />
+      <Objects data="d2015797-bec0-4ee1-8768-de328cee3067" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="fd7bc0c9-aa5e-4ad6-9890-75814ab240b3" />
+      <LayerKey data="9e8a3e65-5157-4591-a6d2-cb878593e4ca" />
+      <Name>GraphicPlane6</Name>
+      <IsVisible>false</IsVisible>
+      <_origin>
+        <double>67.613054936557617</double>
+        <double>20.055382807255658</double>
+        <double>-9.8834447328499664E-06</double>
+      </_origin>
+      <_normal>
+        <double>-0.999993765380702</double>
+        <double>-0.0035311754011585561</double>
+        <double>0</double>
+      </_normal>
+      <_unitU>
+        <double>0.0035311754011585561</double>
+        <double>-0.999993765380702</double>
+        <double>-1.0776104697149195E-07</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_unitV>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="ef993139-6105-44ea-9a0b-606fa99ed76e" />
+      <LayerKey data="9e8a3e65-5157-4591-a6d2-cb878593e4ca" />
+      <Name>GraphicImage3d6</Name>
+      <IsVisible>false</IsVisible>
+      <UpperLeft>
+        <double>64.080620923569967</double>
+        <double>-60.070000831176678</double>
+        <double>14.671244578185419</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>64.083740233484349</double>
+        <double>-60.952211243209469</double>
+        <double>-52.523024638717644</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>63.530124415719612</double>
+        <double>95.918121343949622</double>
+        <double>-54.582649726531336</double>
+      </LowerRight>
+      <Normal>
+        <double>-0.94362538968324483</double>
+        <double>-0.0033321275385047862</double>
+        <double>0</double>
+      </Normal>
+      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\TitianStradScroll\Arch upper corners.png</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="9e8a3e65-5157-4591-a6d2-cb878593e4ca" />
+      <LayerKey data="cdc8f1c2-39ef-438f-a4a4-d852f2c6f728" />
+      <Name>Arch Upper Corners</Name>
+      <IsVisible>false</IsVisible>
+      <Objects data="fd7bc0c9-aa5e-4ad6-9890-75814ab240b3" />
+      <Objects data="ef993139-6105-44ea-9a0b-606fa99ed76e" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="4d5557e7-2c7f-457b-b993-2a42573c1edd" />
+      <LayerKey data="b8a8b6f5-4514-4c16-878b-b6850a253f99" />
+      <Name>GraphicImage3d7</Name>
+      <IsVisible>false</IsVisible>
+      <UpperLeft>
+        <double>38.438554100697054</double>
+        <double>-79.10376181055031</double>
+        <double>0.00024195626082712217</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>-73.907811104623136</double>
+        <double>-80.299549806355245</double>
+        <double>0.00024195624722957797</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>-75.989579484039538</double>
+        <double>115.28586745558071</double>
+        <double>-0.00040846408076010296</double>
+      </LowerRight>
+      <Normal>
+        <double>0</double>
+        <double>0</double>
+        <double>0.94363127286498893</double>
+      </Normal>
+      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\TitianStradScroll\F holes.png</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="b8a8b6f5-4514-4c16-878b-b6850a253f99" />
+      <LayerKey data="cdc8f1c2-39ef-438f-a4a4-d852f2c6f728" />
+      <Name>F Holes</Name>
+      <IsVisible>false</IsVisible>
+      <Objects data="4d5557e7-2c7f-457b-b993-2a42573c1edd" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicPlane" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="66e56481-0639-46e8-800c-181adeca0c72" />
+      <LayerKey data="ffc5e02c-dcf6-4432-a2e1-f213416cfe0b" />
+      <Name>GraphicPlane7</Name>
+      <IsVisible>false</IsVisible>
+      <_origin>
+        <double>-59.825090764473785</double>
+        <double>20.068904195695183</double>
+        <double>-7.5196274877953329E-06</double>
+      </_origin>
+      <_normal>
+        <double>-0.99999949101662011</double>
+        <double>-0.0010089432588762189</double>
+        <double>0</double>
+      </_normal>
+      <_unitU>
+        <double>0.0010089432588762189</double>
+        <double>-0.99999949101662011</double>
+        <double>-3.2818968880023882E-08</double>
+      </_unitU>
+      <_unitV>
+        <double>0</double>
+        <double>0</double>
+        <double>1</double>
+      </_unitV>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="f9b5cdc5-9fe7-420c-b6e2-1e74850a25e6" />
+      <LayerKey data="ffc5e02c-dcf6-4432-a2e1-f213416cfe0b" />
+      <Name>GraphicImage3d8</Name>
+      <IsVisible>false</IsVisible>
+      <UpperLeft>
+        <double>-56.359823398384222</double>
+        <double>-73.288873109450861</double>
+        <double>14.911867961005292</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>-56.359266133757885</double>
+        <double>-73.843196298775808</double>
+        <double>-52.362125131620367</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>-56.542722671977614</double>
+        <double>108.28876158504905</double>
+        <double>-53.862838270375775</double>
+      </LowerRight>
+      <Normal>
+        <double>-0.94363079257235427</double>
+        <double>-0.00095207041162191641</double>
+        <double>0</double>
+      </Normal>
+      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\TitianStradScroll\Arch below f-holes.png</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="ffc5e02c-dcf6-4432-a2e1-f213416cfe0b" />
+      <LayerKey data="cdc8f1c2-39ef-438f-a4a4-d852f2c6f728" />
+      <Name>Arch Below F Holes</Name>
+      <IsVisible>false</IsVisible>
+      <Objects data="66e56481-0639-46e8-800c-181adeca0c72" />
+      <Objects data="f9b5cdc5-9fe7-420c-b6e2-1e74850a25e6" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsSurface" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="5cf2f4c8-80e6-41be-9bdc-0f1e6e685c05" />
+      <LayerKey data="e314f67e-0da1-424a-a862-d7bfd9e14b59" />
+      <Name>Arching1</Name>
+      <IsVisible>false</IsVisible>
+      <Surface>
+        <Dimension>3</Dimension>
+        <IsRational>false</IsRational>
+        <Order0>3</Order0>
+        <Order1>3</Order1>
+        <knotArray0>
+          <double>0</double>
+          <double>0</double>
+          <double>0</double>
+          <double>0.16666666666666666</double>
+          <double>0.33333333333333331</double>
+          <double>0.5</double>
+          <double>0.66666666666666663</double>
+          <double>0.83333333333333337</double>
+          <double>1</double>
+          <double>1</double>
+          <double>1</double>
+        </knotArray0>
+        <knotArray1>
+          <double>0</double>
+          <double>0</double>
+          <double>0</double>
+          <double>0.33333333333333331</double>
+          <double>0.66666666666666663</double>
+          <double>1</double>
+          <double>1</double>
+          <double>1</double>
+        </knotArray1>
+        <controlPoints>
+          <Data>
+            <double>169.94339903810396</double>
+            <double>158.53587815368897</double>
+            <double>113.53366673943333</double>
+            <double>53.527588312024612</double>
+            <double>-61.83056901727749</double>
+            <double>-125.45359713731382</double>
+            <double>-167.66223362095079</double>
+            <double>-176.06385995366551</double>
+            <double>170.01518630012023</double>
+            <double>157.98838455974104</double>
+            <double>113.98123782093187</double>
+            <double>53.027244645613671</double>
+            <double>-61.555464602189133</double>
+            <double>-125.89292192165918</double>
+            <double>-167.25479240727933</double>
+            <double>-174.67148217701725</double>
+            <double>169.46850536828708</double>
+            <double>156.3483752077797</double>
+            <double>116.44126535051981</double>
+            <double>52.207235571984931</double>
+            <double>-57.684026128872738</double>
+            <double>-112.98635870297595</double>
+            <double>-148.4222539404885</double>
+            <double>-159.56938313910766</double>
+            <double>162.90843961891693</double>
+            <double>156.62170716644249</double>
+            <double>95.394369351404663</double>
+            <double>55.487271260259895</double>
+            <double>-18.656736617335476</double>
+            <double>-47.967430298919204</double>
+            <double>-89.920303666832</double>
+            <double>-91.449456188740456</double>
+            <double>73.254128694307042</double>
+            <double>91.567664022269014</double>
+            <double>82.000890516439668</double>
+            <double>44.55381738306076</double>
+            <double>-14.34899411821308</double>
+            <double>-32.188259308361111</double>
+            <double>-42.108244963758338</double>
+            <double>-66.487071639436337</double>
+            <double>19.620596673507446</double>
+            <double>19.054652541246874</double>
+            <double>19.054657582192753</double>
+            <double>19.054654825010182</double>
+            <double>19.054660276383586</double>
+            <double>19.054653468982615</double>
+            <double>19.05465213623388</double>
+            <double>19.05464844654227</double>
+            <double>5.0569667416322543</double>
+            <double>5.3303171348245515</double>
+            <double>5.3303194099273954</double>
+            <double>11.499651559872381</double>
+            <double>11.714380722404837</double>
+            <double>13.777126930169121</double>
+            <double>1.4762982340402193</double>
+            <double>-1.9566381673853974</double>
+            <double>-18.177779978166438</double>
+            <double>-14.897579726744702</double>
+            <double>-13.2574780555157</double>
+            <double>-9.7679283302658444</double>
+            <double>-9.29459604167365</double>
+            <double>-30.413436283042195</double>
+            <double>-54.859835922949145</double>
+            <double>-66.04647969859802</double>
+            <double>-31.845276926814783</double>
+            <double>-18.997830064058341</double>
+            <double>-30.478525996838034</double>
+            <double>-28.019567686399551</double>
+            <double>-26.723471219122626</double>
+            <double>-44.091665167611879</double>
+            <double>-74.070693562256267</double>
+            <double>-85.041504625487448</double>
+            <double>-58.360219253772605</double>
+            <double>-45.512771395296909</double>
+            <double>-47.699572201670605</double>
+            <double>-33.212021978987345</double>
+            <double>-33.724721671221566</double>
+            <double>-44.685145620579121</double>
+            <double>-53.857902587547024</double>
+            <double>-68.920239542458262</double>
+            <double>1.8552039847463675E-05</double>
+            <double>-0.065694640446909341</double>
+            <double>8.488258776395762</double>
+            <double>11.346352277058273</double>
+            <double>11.346352277305938</double>
+            <double>8.0082762638887814</double>
+            <double>-0.065686967944453764</double>
+            <double>1.794649619005104E-05</double>
+            <double>-7.363811918550961E-06</double>
+            <double>1.9579691540597119E-05</double>
+            <double>-1.556804186198567E-05</double>
+            <double>11.771544860925095</double>
+            <double>11.955441990014188</double>
+            <double>8.30748679983417</double>
+            <double>1.135702912023623E-05</double>
+            <double>2.2124567493619907E-06</double>
+            <double>4.7650857954749438E-06</double>
+            <double>-5.8370508492266807E-06</double>
+            <double>-1.9925052535633E-05</double>
+            <double>6.3999944653659426</double>
+            <double>9.7932610242574274</double>
+            <double>5.5396947149487774</double>
+            <double>6.4585553852626663E-06</double>
+            <double>-1.3831773854256574E-05</double>
+            <double>-2.4276885575548744E-05</double>
+            <double>-2.3349002299563991E-05</double>
+            <double>-1.2602323867078681E-05</double>
+            <double>0.11939827414136039</double>
+            <double>0.11195464666475291</double>
+            <double>0.60643934834192981</double>
+            <double>0.40022935583657021</double>
+            <double>-1.8684458730705615E-05</double>
+            <double>-1.9119717837653767E-05</double>
+            <double>-1.8171123490350411E-05</double>
+            <double>-5.2588841808449852E-06</double>
+            <double>-1.8398291519947944E-05</double>
+            <double>-5.8701060876599483E-05</double>
+            <double>-3.0708946722519788E-05</double>
+            <double>-6.5170521519146473E-05</double>
+            <double>-2.6136058003919879E-05</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>8</int>
+            <int>5</int>
+          </CvCount>
+          <DimensionStride>40</DimensionStride>
+          <CvStride>
+            <int>1</int>
+            <int>8</int>
+          </CvStride>
+        </controlPoints>
+      </Surface>
+      <DrawControlNet>true</DrawControlNet>
+      <DrawKnotSpans>false</DrawKnotSpans>
+      <DrawSurface>true</DrawSurface>
+      <SurfaceDrawingStyle>PhongShadedColour</SurfaceDrawingStyle>
+      <IsSelected>false</IsSelected>
+      <HasChanged>true</HasChanged>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsSurface" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="0f944a4f-4545-40af-857a-f1ea32578819" />
+      <LayerKey data="e314f67e-0da1-424a-a862-d7bfd9e14b59" />
+      <Name>Arching2</Name>
+      <IsVisible>false</IsVisible>
+      <Surface>
+        <Dimension>3</Dimension>
+        <IsRational>false</IsRational>
+        <Order0>3</Order0>
+        <Order1>3</Order1>
+        <knotArray0>
+          <double>0</double>
+          <double>0</double>
+          <double>0</double>
+          <double>0.16666666666666666</double>
+          <double>0.33333333333333331</double>
+          <double>0.41</double>
+          <double>0.5</double>
+          <double>0.58</double>
+          <double>0.66666666666666663</double>
+          <double>0.83333333333333337</double>
+          <double>1</double>
+          <double>1</double>
+          <double>1</double>
+        </knotArray0>
+        <knotArray1>
+          <double>0</double>
+          <double>0</double>
+          <double>0</double>
+          <double>0.33333333333333331</double>
+          <double>0.66666666666666663</double>
+          <double>1</double>
+          <double>1</double>
+          <double>1</double>
+        </knotArray1>
+        <controlPoints>
+          <Data>
+            <double>170.08599579432169</double>
+            <double>158.53587815368897</double>
+            <double>113.53366673943333</double>
+            <double>69.729229487424959</double>
+            <double>26.995212126285136</double>
+            <double>-31.837</double>
+            <double>-77.1000957660862</double>
+            <double>-125.45359713731382</double>
+            <double>-167.66223362095079</double>
+            <double>-176.06385995366551</double>
+            <double>170.53502143351562</double>
+            <double>158.2617166976315</double>
+            <double>113.15733607765775</double>
+            <double>69.476760127888753</double>
+            <double>26.89659433752999</double>
+            <double>-31.683780672924122</double>
+            <double>-76.99467309298312</double>
+            <double>-125.88755918571282</double>
+            <double>-167.25479240727933</double>
+            <double>-176.16322107633954</double>
+            <double>169.78955603966998</double>
+            <double>157.84413460267265</double>
+            <double>113.7092981925037</double>
+            <double>69.62744899772018</double>
+            <double>27.098796333816367</double>
+            <double>-31.006749458712832</double>
+            <double>-76.32549595193295</double>
+            <double>-126.04011774911413</double>
+            <double>-166.46180628038667</double>
+            <double>-174.66189570781125</double>
+            <double>169.2925743709163</double>
+            <double>152.06887714590755</double>
+            <double>114.25057231245523</double>
+            <double>68.750181337302266</double>
+            <double>27.628035527312814</double>
+            <double>-29.895890717826685</double>
+            <double>-76.333366029075137</double>
+            <double>-126.71609636515888</double>
+            <double>-160.44842212019262</double>
+            <double>-171.65519595079439</double>
+            <double>162.82486281757264</double>
+            <double>155.80478786122362</double>
+            <double>114.2452993569737</double>
+            <double>65.430724520454632</double>
+            <double>27.855196561338527</double>
+            <double>-29.104539413714846</double>
+            <double>-73.443657639069485</double>
+            <double>-124.28586107903563</double>
+            <double>-159.02265771022726</double>
+            <double>-166.46180764251668</double>
+            <double>19.05464844654227</double>
+            <double>19.054652541246874</double>
+            <double>19.054657582192753</double>
+            <double>19.054655569449476</double>
+            <double>19.054656078826067</double>
+            <double>19.055</double>
+            <double>19.054658642607354</double>
+            <double>19.054653468982615</double>
+            <double>19.05465213623388</double>
+            <double>19.05464844654227</double>
+            <double>4.8875365383284342</double>
+            <double>5.3303171228768225</double>
+            <double>11.82153806162337</double>
+            <double>6.8261569922634147</double>
+            <double>6.98193439442242</double>
+            <double>8.0310225119496526</double>
+            <double>8.44279355487498</double>
+            <double>2.5389852752253286</double>
+            <double>1.4762982340402191</double>
+            <double>-2.2519382254326974</double>
+            <double>-4.8039613736816031</double>
+            <double>-7.8156951194983861</double>
+            <double>-14.743988523794272</double>
+            <double>-15.715832701713058</double>
+            <double>-11.212434467190501</double>
+            <double>-12.217124661232104</double>
+            <double>-20.287319543378903</double>
+            <double>-36.8130332193038</double>
+            <double>-12.71076698997517</double>
+            <double>-16.537665184657222</double>
+            <double>-11.513459954835195</double>
+            <double>-28.290289181663873</double>
+            <double>-55.357808044271948</double>
+            <double>-39.491247701134476</double>
+            <double>-27.003446633294825</double>
+            <double>-29.368086106531191</double>
+            <double>-63.731509649959563</double>
+            <double>-65.673950129429841</double>
+            <double>-37.316266276232284</double>
+            <double>-32.118614250562274</double>
+            <double>-27.778868220898925</double>
+            <double>-43.366524696595228</double>
+            <double>-65.815705280301387</double>
+            <double>-48.6937099719162</double>
+            <double>-33.562376858339327</double>
+            <double>-38.113046246607432</double>
+            <double>-76.639030865580224</double>
+            <double>-83.419332700061148</double>
+            <double>-58.677642593027365</double>
+            <double>-43.872662260666289</double>
+            <double>1.794649619005104E-05</double>
+            <double>-0.065694640446909341</double>
+            <double>8.488258776395762</double>
+            <double>10.574667031879395</double>
+            <double>11.346352277115237</double>
+            <double>11.346</double>
+            <double>10.545214034085822</double>
+            <double>8.0082762638887814</double>
+            <double>-0.065686967944453764</double>
+            <double>1.794649619005104E-05</double>
+            <double>6.2511779778365132E-06</double>
+            <double>1.9579691540597119E-05</double>
+            <double>8.8091014923395</double>
+            <double>10.254516073591102</double>
+            <double>11.455734730997223</double>
+            <double>11.724329203808578</double>
+            <double>10.395677703774124</double>
+            <double>7.898691146505322</double>
+            <double>1.1357029120236228E-05</double>
+            <double>7.1929819877982578E-06</double>
+            <double>8.3657348687803658E-09</double>
+            <double>4.9062404537670754E-06</double>
+            <double>6.0941383075283522</double>
+            <double>6.0104601445536181</double>
+            <double>6.4086949899413828</double>
+            <double>7.98693824803867</double>
+            <double>6.8798367716294067</double>
+            <double>3.9756604369146764</double>
+            <double>3.3951598900643089E-05</double>
+            <double>8.2509508908188647E-06</double>
+            <double>6.5019199652523471E-06</double>
+            <double>-4.9324775241454423E-05</double>
+            <double>1.0976030421767717</double>
+            <double>0.26807106372500983</double>
+            <double>-0.908600879366477</double>
+            <double>0.94393641271873763</double>
+            <double>-0.90417740435435745</double>
+            <double>0.47516538711935669</double>
+            <double>0.40024405164702159</double>
+            <double>1.4856778193276367E-06</double>
+            <double>3.6829960719818596E-05</double>
+            <double>-4.70067168063991E-06</double>
+            <double>2.6192991726158828E-05</double>
+            <double>0.16558977657769416</double>
+            <double>-1.1975373390395503</double>
+            <double>-0.045174014614059246</double>
+            <double>0.39384407891637369</double>
+            <double>0.61558922576797648</double>
+            <double>-5.8727111116183869E-05</double>
+            <double>-3.2279836248075331E-05</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>10</int>
+            <int>5</int>
+          </CvCount>
+          <DimensionStride>50</DimensionStride>
+          <CvStride>
+            <int>1</int>
+            <int>10</int>
+          </CvStride>
+        </controlPoints>
+      </Surface>
+      <DrawControlNet>true</DrawControlNet>
+      <DrawKnotSpans>false</DrawKnotSpans>
+      <DrawSurface>true</DrawSurface>
+      <SurfaceDrawingStyle>PhongShadedColour</SurfaceDrawingStyle>
+      <IsSelected>false</IsSelected>
+      <HasChanged>false</HasChanged>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="e314f67e-0da1-424a-a862-d7bfd9e14b59" />
+      <Name>Belly</Name>
+      <IsVisible>true</IsVisible>
+      <Objects data="5cf2f4c8-80e6-41be-9bdc-0f1e6e685c05" />
+      <Objects data="0f944a4f-4545-40af-857a-f1ea32578819" />
+      <Objects data="794c38d0-d4cb-41c1-a610-763ecc36ea07" />
+      <Objects data="72e72268-8c9a-43db-b1da-3d72f5f3ce71" />
+      <Objects data="23b6cb97-ee02-4ef5-a193-82aa4618aca2" />
+      <Objects data="3ff2a0b2-d5fd-4343-8367-58d9dc4df761" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsSurface" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="794c38d0-d4cb-41c1-a610-763ecc36ea07" />
+      <LayerKey data="e314f67e-0da1-424a-a862-d7bfd9e14b59" />
+      <Name>Edging C-Bout</Name>
+      <IsVisible>false</IsVisible>
+      <Surface>
+        <Dimension>3</Dimension>
+        <IsRational>false</IsRational>
+        <Order0>3</Order0>
+        <Order1>3</Order1>
+        <knotArray0>
+          <double>0</double>
+          <double>0</double>
+          <double>0</double>
+          <double>0.125</double>
+          <double>0.25</double>
+          <double>0.375</double>
+          <double>0.5</double>
+          <double>0.625</double>
+          <double>0.75</double>
+          <double>0.875</double>
+          <double>1</double>
+          <double>1</double>
+          <double>1</double>
+        </knotArray0>
+        <knotArray1>
+          <double>0</double>
+          <double>0</double>
+          <double>0</double>
+          <double>1</double>
+          <double>1</double>
+          <double>1</double>
+        </knotArray1>
+        <controlPoints>
+          <Data>
+            <double>51.447</double>
+            <double>59.902961739187667</double>
+            <double>47.638319041844518</double>
+            <double>32.3384122093749</double>
+            <double>11.181420211392704</double>
+            <double>-13.798474012196969</double>
+            <double>-32.644102578502128</double>
+            <double>-41.702728141678541</double>
+            <double>-45.877478836369725</double>
+            <double>-35.475</double>
+            <double>50.05</double>
+            <double>53.063080233075823</double>
+            <double>46.797526219805093</double>
+            <double>32.489011810286009</double>
+            <double>11.180282585729316</double>
+            <double>-13.272678102514842</double>
+            <double>-32.115673309033738</double>
+            <double>-38.90607852062076</double>
+            <double>-37.029403215413261</double>
+            <double>-34.326</double>
+            <double>48.33</double>
+            <double>50.759</double>
+            <double>45.381</double>
+            <double>32.352</double>
+            <double>11.353</double>
+            <double>-12.749</double>
+            <double>-28.771</double>
+            <double>-33.957</double>
+            <double>-34.726</double>
+            <double>-32.793</double>
+            <double>-59.756</double>
+            <double>-44.976149991821664</double>
+            <double>-36.219189640972694</double>
+            <double>-32.689049357752047</double>
+            <double>-32.23557351635467</double>
+            <double>-36.244654501673423</double>
+            <double>-44.778791040092763</double>
+            <double>-51.7384135638738</double>
+            <double>-56.084988646640213</double>
+            <double>-72.783</double>
+            <double>-59.728</double>
+            <double>-46.345261186603949</double>
+            <double>-38.350896792613689</double>
+            <double>-35.547577313721639</double>
+            <double>-33.804600375814815</double>
+            <double>-38.335523090984054</double>
+            <double>-47.041360971502236</double>
+            <double>-53.651213767054131</double>
+            <double>-63.413612249411074</double>
+            <double>-72.054</double>
+            <double>-58.621</double>
+            <double>-47.515</double>
+            <double>-40.116</double>
+            <double>-36.746</double>
+            <double>-35.281</double>
+            <double>-39.537</double>
+            <double>-47.204</double>
+            <double>-54.803</double>
+            <double>-63.951</double>
+            <double>-71.596</double>
+            <double>1</double>
+            <double>2.6718261158283588E-05</double>
+            <double>1.409475797624815E-05</double>
+            <double>1.9821875174677525E-05</double>
+            <double>1.7872819465640572E-05</double>
+            <double>2.8898384897885225E-05</double>
+            <double>7.2030990032218155E-06</double>
+            <double>3.1017955474261212E-05</double>
+            <double>2.5035439116110732E-05</double>
+            <double>1</double>
+            <double>1</double>
+            <double>7.0449062465470131E-06</double>
+            <double>-2.9325207573462494E-06</double>
+            <double>2.010072232049069E-05</double>
+            <double>-7.90868809757457E-06</double>
+            <double>2.3797743224098726E-05</double>
+            <double>2.5606940413141536E-05</double>
+            <double>1.3350068835064269E-05</double>
+            <double>7.6462912446673984E-06</double>
+            <double>1</double>
+            <double>1</double>
+            <double>1</double>
+            <double>1</double>
+            <double>1</double>
+            <double>1</double>
+            <double>1</double>
+            <double>1</double>
+            <double>1</double>
+            <double>1</double>
+            <double>1</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>10</int>
+            <int>3</int>
+          </CvCount>
+          <DimensionStride>30</DimensionStride>
+          <CvStride>
+            <int>1</int>
+            <int>10</int>
+          </CvStride>
+        </controlPoints>
+      </Surface>
+      <DrawControlNet>true</DrawControlNet>
+      <DrawKnotSpans>false</DrawKnotSpans>
+      <DrawSurface>true</DrawSurface>
+      <SurfaceDrawingStyle>PhongShadedColour</SurfaceDrawingStyle>
+      <IsSelected>false</IsSelected>
+      <HasChanged>false</HasChanged>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsSurface" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="72e72268-8c9a-43db-b1da-3d72f5f3ce71" />
+      <LayerKey data="e314f67e-0da1-424a-a862-d7bfd9e14b59" />
+      <Name>Edging Lower Bout</Name>
+      <IsVisible>false</IsVisible>
+      <Surface>
+        <Dimension>3</Dimension>
+        <IsRational>false</IsRational>
+        <Order0>3</Order0>
+        <Order1>3</Order1>
+        <knotArray0>
+          <double>0</double>
+          <double>0</double>
+          <double>0</double>
+          <double>0.25</double>
+          <double>0.5</double>
+          <double>0.75</double>
+          <double>1</double>
+          <double>1</double>
+          <double>1</double>
+        </knotArray0>
+        <knotArray1>
+          <double>0</double>
+          <double>0</double>
+          <double>0</double>
+          <double>1</double>
+          <double>1</double>
+          <double>1</double>
+        </knotArray1>
+        <controlPoints>
+          <Data>
+            <double>-47.698715522443443</double>
+            <double>-48.909255069055845</double>
+            <double>-67.0451065017003</double>
+            <double>-84.760345497141316</double>
+            <double>-115.13115495862417</double>
+            <double>-135.77127565444926</double>
+            <double>-41.991928772080207</double>
+            <double>-48.049899241077107</double>
+            <double>-65.6710855696636</double>
+            <double>-83.746889756540924</double>
+            <double>-113.65725571757699</double>
+            <double>-136.35456915365711</double>
+            <double>-36.084638898957166</double>
+            <double>-47.752160344907118</double>
+            <double>-64.87021359399003</double>
+            <double>-82.5144209498916</double>
+            <double>-112.56446339602475</double>
+            <double>-137.0894071374683</double>
+            <double>-55.660791738810943</double>
+            <double>-58.159428604138292</double>
+            <double>-70.154205555925969</double>
+            <double>-78.378462256210483</double>
+            <double>-80.901765254813057</double>
+            <double>-76.28437092558535</double>
+            <double>-63.736077481953259</double>
+            <double>-62.433019174379254</double>
+            <double>-71.871828447163779</double>
+            <double>-80.782507075935669</double>
+            <double>-83.908027172223939</double>
+            <double>-77.681756559959084</double>
+            <double>-73.381938994723484</double>
+            <double>-66.076281025114184</double>
+            <double>-73.525443291300661</double>
+            <double>-81.988557135717969</double>
+            <double>-86.136910136324559</double>
+            <double>-78.879208449888168</double>
+            <double>1.441616894884037E-06</double>
+            <double>2.7564429683850687E-05</double>
+            <double>-1.1046670269133755E-05</double>
+            <double>-1.7855611411364955E-05</double>
+            <double>1.1166913513591845E-05</double>
+            <double>6.0381155632240255E-06</double>
+            <double>2.2905110978063879E-06</double>
+            <double>-2.0958926389148069E-06</double>
+            <double>1.1865144727344569E-05</double>
+            <double>-4.4077289771968924E-07</double>
+            <double>-2.1710466895704872E-05</double>
+            <double>-1.1946121321530313E-05</double>
+            <double>-4.1681791901139279E-06</double>
+            <double>-5.8113706934937654E-06</double>
+            <double>-2.0882610856111602E-05</double>
+            <double>-6.0879174942076738E-06</double>
+            <double>-1.8847462094696506E-05</double>
+            <double>-2.72546164241527E-05</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>6</int>
+            <int>3</int>
+          </CvCount>
+          <DimensionStride>18</DimensionStride>
+          <CvStride>
+            <int>1</int>
+            <int>6</int>
+          </CvStride>
+        </controlPoints>
+      </Surface>
+      <DrawControlNet>true</DrawControlNet>
+      <DrawKnotSpans>false</DrawKnotSpans>
+      <DrawSurface>true</DrawSurface>
+      <SurfaceDrawingStyle>PhongShadedColour</SurfaceDrawingStyle>
+      <IsSelected>false</IsSelected>
+      <HasChanged>false</HasChanged>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicImage3d" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="686e780e-52de-40dd-a88f-ab7cf1171f1b" />
+      <LayerKey data="e13d77f5-1807-405e-b95b-e254b7e07226" />
+      <Name>LeMessie Outline</Name>
+      <IsVisible>false</IsVisible>
+      <UpperLeft>
+        <double>183.64476215612959</double>
+        <double>132.79682183588687</double>
+        <double>9.2199237784126634E-05</double>
+      </UpperLeft>
+      <LowerLeft>
+        <double>184.80558248850724</double>
+        <double>-97.603651636519018</double>
+        <double>9.21992348339691E-05</double>
+      </LowerLeft>
+      <LowerRight>
+        <double>-203.88819692404726</double>
+        <double>-99.562004144506318</double>
+        <double>-0.00024105758054360796</double>
+      </LowerRight>
+      <Normal>
+        <double>0</double>
+        <double>0</double>
+        <double>0.94363127286498893</double>
+      </Normal>
+      <FileName>C:\Users\Richard\Documents\Development\Luthier\TestData\Messiah Stradivarious\Belly profile.bmp</FileName>
+      <IsSelected>false</IsSelected>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="23b6cb97-ee02-4ef5-a193-82aa4618aca2" />
+      <LayerKey data="e314f67e-0da1-424a-a862-d7bfd9e14b59" />
+      <Name>Rib Outline Curves</Name>
+      <IsVisible>false</IsVisible>
+      <Objects data="4581b45e-0425-4e21-940b-8908e2e70b63" />
+      <Objects data="a79cbcfb-387c-4967-9a01-5af0ff414f8c" />
+      <Objects data="38ccee7c-59a3-4e1e-8469-d971c667ff78" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="bed44589-1b31-4538-817d-c02f9d36a28c" />
+      <LayerKey data="4581b45e-0425-4e21-940b-8908e2e70b63" />
+      <Name>Upper Bout Inside Curve</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+          <double>6</double>
+          <double>7</double>
+          <double>8</double>
+          <double>9</double>
+          <double>10</double>
+          <double>11</double>
+          <double>12</double>
+          <double>13</double>
+          <double>14</double>
+          <double>15</double>
+          <double>16</double>
+          <double>17</double>
+          <double>18</double>
+          <double>19</double>
+          <double>20</double>
+          <double>21</double>
+          <double>22</double>
+          <double>23</double>
+          <double>24</double>
+          <double>25</double>
+          <double>26</double>
+          <double>27</double>
+          <double>28</double>
+          <double>29</double>
+          <double>30</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>43.1599880796906</double>
+            <double>47.394457623433027</double>
+            <double>54.382793817731</double>
+            <double>66.510936431463051</double>
+            <double>75.130308884941769</double>
+            <double>89.699340117241263</double>
+            <double>105.94647668260905</double>
+            <double>123.33777726462199</double>
+            <double>141.56813214990962</double>
+            <double>154.00138720491304</double>
+            <double>162.54448318481445</double>
+            <double>168.03645664618125</double>
+            <double>169.64229822293737</double>
+            <double>170.13368146581433</double>
+            <double>170.13368146581433</double>
+            <double>168.26530952940993</double>
+            <double>163.45981749513521</double>
+            <double>155.63787367289933</double>
+            <double>145.81020178605968</double>
+            <double>131.58550125293027</double>
+            <double>116.47545049485171</double>
+            <double>98.417098745872352</double>
+            <double>83.798434314030544</double>
+            <double>70.531073576414315</double>
+            <double>60.580552364205232</double>
+            <double>54.077687092249107</double>
+            <double>47.975473183953</double>
+            <double>42.87031647901555</double>
+            <double>102.69113279732417</double>
+            <double>95.073337129187479</double>
+            <double>89.5706903243588</double>
+            <double>88.731594146557569</double>
+            <double>91.782852870383167</double>
+            <double>97.27511686958826</double>
+            <double>98.648183796539939</double>
+            <double>96.512301125863175</double>
+            <double>87.968779698404717</double>
+            <double>76.602844960741734</double>
+            <double>63.634998832936773</double>
+            <double>47.615886319579523</double>
+            <double>34.83994967663665</double>
+            <double>18.132067644265916</double>
+            <double>-0.050039040522975142</double>
+            <double>-15.545143382520207</double>
+            <double>-28.436707714899544</double>
+            <double>-40.222664952381386</double>
+            <double>-49.927977721259992</double>
+            <double>-57.200166267582986</double>
+            <double>-61.49999391695895</double>
+            <double>-61.622843977894753</double>
+            <double>-57.691573678247387</double>
+            <double>-53.268901303572726</double>
+            <double>-52.900343767599523</double>
+            <double>-55.287776349583282</double>
+            <double>-59.712101115707043</double>
+            <double>-70.247109440868968</double>
+            <double>1.2873019045400724E-05</double>
+            <double>2.6981356484157004E-05</double>
+            <double>1.480632835182405E-05</double>
+            <double>3.2983634866923239E-05</double>
+            <double>1.9373394835042745E-05</double>
+            <double>2.6521309408167326E-05</double>
+            <double>-6.6052901530611052E-06</double>
+            <double>2.0600481363430845E-05</double>
+            <double>1.3106622972713922E-05</double>
+            <double>-1.8101037255746633E-06</double>
+            <double>1.9134208173454681E-07</double>
+            <double>2.9997061176345596E-05</double>
+            <double>1.0691389761063874E-05</double>
+            <double>2.5071124753139884E-05</double>
+            <double>2.0179134921249897E-05</double>
+            <double>9.7252413411297312E-06</double>
+            <double>2.4893206557408121E-05</double>
+            <double>-3.1364473471739984E-06</double>
+            <double>2.5984615660945565E-05</double>
+            <double>2.9060456981255811E-05</double>
+            <double>1.1294862204636047E-05</double>
+            <double>1.2037947783483105E-05</double>
+            <double>4.0237852800828477E-06</double>
+            <double>3.3842659163951794E-05</double>
+            <double>4.0998993313223764E-05</double>
+            <double>4.7891967341229247E-05</double>
+            <double>6.1664337209776932E-06</double>
+            <double>-1.0206770809872978E-05</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>28</int>
+          </CvCount>
+          <DimensionStride>28</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="588d4b85-e888-4453-8078-ebbf2b59fa83" />
+      <LayerKey data="3ff2a0b2-d5fd-4343-8367-58d9dc4df761" />
+      <Name>C-Bout Bass</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+          <double>6</double>
+          <double>7</double>
+          <double>8</double>
+          <double>9</double>
+          <double>10</double>
+          <double>11</double>
+          <double>12</double>
+          <double>13</double>
+          <double>14</double>
+          <double>15</double>
+          <double>16</double>
+          <double>17</double>
+          <double>18</double>
+          <double>19</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>46.502619008657817</double>
+            <double>48.926538933146844</double>
+            <double>49.712448367228767</double>
+            <double>48.99974144675911</double>
+            <double>45.433487284496806</double>
+            <double>38.930295433582309</double>
+            <double>27.139410682122222</double>
+            <double>7.9981992154865811</double>
+            <double>-8.6264515785503058</double>
+            <double>-18.764452873041371</double>
+            <double>-25.434064933199878</double>
+            <double>-29.855908086426375</double>
+            <double>-32.882511575908538</double>
+            <double>-34.135541383295696</double>
+            <double>-34.086381242660948</double>
+            <double>-32.806829291012207</double>
+            <double>-30.352934357519651</double>
+            <double>-60.352643357546533</double>
+            <double>-55.34646965957279</double>
+            <double>-51.046873796124018</double>
+            <double>-45.567659799960722</double>
+            <double>-41.205514862973423</double>
+            <double>-38.155619349839363</double>
+            <double>-36.333300441346289</double>
+            <double>-36.722821716560965</double>
+            <double>-39.503002715993816</double>
+            <double>-42.735921481428193</double>
+            <double>-46.19753949479859</double>
+            <double>-49.908914275981346</double>
+            <double>-54.825957505073454</double>
+            <double>-60.031110547284527</double>
+            <double>-65.291589138504264</double>
+            <double>-70.347780719269167</double>
+            <double>-75.781674741001254</double>
+            <double>3.2123567308417478E-06</double>
+            <double>3.16035267786674E-05</double>
+            <double>-1.3244748089391578E-06</double>
+            <double>-3.7254155103028097E-06</double>
+            <double>7.2436607325698787E-06</double>
+            <double>5.4907755000499492E-06</double>
+            <double>3.6201123521095724E-07</double>
+            <double>2.2362446330248531E-06</double>
+            <double>1.0329875692605128E-05</double>
+            <double>3.6914714911517876E-06</double>
+            <double>1.5610965292012224E-05</double>
+            <double>2.4747925806423154E-06</double>
+            <double>1.4274354569465686E-06</double>
+            <double>1.9092788640762137E-05</double>
+            <double>-9.3030905645719031E-08</double>
+            <double>3.10110624468507E-06</double>
+            <double>1.8361323554927367E-06</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>17</int>
+          </CvCount>
+          <DimensionStride>17</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="c5c135e3-a8d5-4ac8-be06-43f28cf0a9ad" />
+      <LayerKey data="a79cbcfb-387c-4967-9a01-5af0ff414f8c" />
+      <Name>C-Bout Trebble Outside</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+          <double>6</double>
+          <double>7</double>
+          <double>8</double>
+          <double>9</double>
+          <double>10</double>
+          <double>11</double>
+          <double>12</double>
+          <double>13</double>
+          <double>14</double>
+          <double>15</double>
+          <double>16</double>
+          <double>17</double>
+          <double>18</double>
+          <double>19</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>45.319875025923956</double>
+            <double>48.030665717000673</double>
+            <double>49.765354525660008</double>
+            <double>49.897507491935457</double>
+            <double>48.350733068649063</double>
+            <double>44.217300748451187</double>
+            <double>35.595204829878256</double>
+            <double>20.294247361255007</double>
+            <double>3.8037457441830091</double>
+            <double>-12.388964407923625</double>
+            <double>-24.043045697745551</double>
+            <double>-30.625863480874997</double>
+            <double>-34.882514360903954</double>
+            <double>-37.340162262244036</double>
+            <double>-37.4731492986485</double>
+            <double>-36.206579150451837</double>
+            <double>-33.679684805981218</double>
+            <double>102.06052164081632</double>
+            <double>96.977537087749923</double>
+            <double>90.372044819873665</double>
+            <double>84.292588058800618</double>
+            <double>78.620795616097666</double>
+            <double>74.169188026732257</double>
+            <double>70.919158821644487</double>
+            <double>69.416311502176484</double>
+            <double>70.172165400059356</double>
+            <double>72.916831673325262</double>
+            <double>77.185691831081172</double>
+            <double>82.438910577730084</double>
+            <double>88.757693695704162</double>
+            <double>95.8653011884397</double>
+            <double>103.24638644052428</double>
+            <double>108.97956775241718</double>
+            <double>115.0580732711868</double>
+            <double>3.8799131090172523E-06</double>
+            <double>-7.3903879638237413E-07</double>
+            <double>2.0998325140908491E-06</double>
+            <double>2.7618634419468435E-06</double>
+            <double>2.1848644990996036E-06</double>
+            <double>6.6318797564690612E-07</double>
+            <double>6.583987655517376E-06</double>
+            <double>-5.5726917480569682E-07</double>
+            <double>6.80147820730781E-07</double>
+            <double>2.2208127177236747E-06</double>
+            <double>1.2581610064898996E-06</double>
+            <double>9.2966245262005032E-06</double>
+            <double>-1.6111049916389675E-06</double>
+            <double>-2.2786894362525345E-06</double>
+            <double>5.1173301187645848E-06</double>
+            <double>-2.9940440953168945E-06</double>
+            <double>-2.7287729551517259E-06</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>17</int>
+          </CvCount>
+          <DimensionStride>17</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="ff2de052-cc2e-4803-a37e-d37673f35350" />
+      <LayerKey data="4581b45e-0425-4e21-940b-8908e2e70b63" />
+      <Name>C-Bout Bass Inside Curve</Name>
+      <IsVisible>true</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+          <double>6</double>
+          <double>7</double>
+          <double>8</double>
+          <double>9</double>
+          <double>10</double>
+          <double>11</double>
+          <double>12</double>
+          <double>13</double>
+          <double>14</double>
+          <double>15</double>
+          <double>16</double>
+          <double>17</double>
+          <double>18</double>
+          <double>19</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>49.728812809720921</double>
+            <double>52.365003804044363</double>
+            <double>53.33925015541854</double>
+            <double>52.422314727692083</double>
+            <double>47.6929900217383</double>
+            <double>39.986365692077925</double>
+            <double>27.378490443960118</double>
+            <double>7.6643603022301647</double>
+            <double>-9.47088730940925</double>
+            <double>-20.144533566861128</double>
+            <double>-27.435911838959328</double>
+            <double>-32.604485316243881</double>
+            <double>-36.233965520128322</double>
+            <double>-37.723987229793693</double>
+            <double>-37.666679585365728</double>
+            <double>-36.204027842275082</double>
+            <double>-33.619741103632805</double>
+            <double>-61.914721684518092</double>
+            <double>-56.470140002885472</double>
+            <double>-51.140180339986429</double>
+            <double>-44.090879589733994</double>
+            <double>-38.306098448852481</double>
+            <double>-34.691811879537184</double>
+            <double>-32.743224479620324</double>
+            <double>-33.144404578692942</double>
+            <double>-36.009973932338838</double>
+            <double>-39.413705129342681</double>
+            <double>-43.198028136638072</double>
+            <double>-47.536154251375329</double>
+            <double>-53.432635611967171</double>
+            <double>-59.622265730342228</double>
+            <double>-65.7545841642219</double>
+            <double>-71.5343005872063</double>
+            <double>-77.256933642062975</double>
+            <double>3.2123567308417478E-06</double>
+            <double>3.16035267786674E-05</double>
+            <double>-1.3244748089391578E-06</double>
+            <double>-3.7254155103028097E-06</double>
+            <double>7.2436607325698787E-06</double>
+            <double>5.4907755000499492E-06</double>
+            <double>3.6201123521095724E-07</double>
+            <double>2.2362446330248531E-06</double>
+            <double>1.0329875692605128E-05</double>
+            <double>3.6914714911517876E-06</double>
+            <double>1.5610965292012224E-05</double>
+            <double>2.4747925806423154E-06</double>
+            <double>1.4274354569465686E-06</double>
+            <double>1.9092788640762137E-05</double>
+            <double>-9.3030905645719031E-08</double>
+            <double>3.10110624468507E-06</double>
+            <double>1.8361323554927367E-06</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>17</int>
+          </CvCount>
+          <DimensionStride>17</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="cde250f6-b731-41b2-880a-10bc99fc7e9c" />
+      <LayerKey data="3ff2a0b2-d5fd-4343-8367-58d9dc4df761" />
+      <Name>C-Bout Trebble</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+          <double>6</double>
+          <double>7</double>
+          <double>8</double>
+          <double>9</double>
+          <double>10</double>
+          <double>11</double>
+          <double>12</double>
+          <double>13</double>
+          <double>14</double>
+          <double>15</double>
+          <double>16</double>
+          <double>17</double>
+          <double>18</double>
+          <double>19</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>43.134432471381977</double>
+            <double>45.708750994916606</double>
+            <double>47.295487939366041</double>
+            <double>47.413480347126232</double>
+            <double>46.121392835474481</double>
+            <double>42.798625221280538</double>
+            <double>35.027621043047354</double>
+            <double>20.229565066482639</double>
+            <double>4.0683921571824433</double>
+            <double>-11.750717784898212</double>
+            <double>-22.812951324828674</double>
+            <double>-28.783965907608113</double>
+            <double>-32.64747684383731</double>
+            <double>-34.870840055161644</double>
+            <double>-34.9914666223303</double>
+            <double>-33.835373178345762</double>
+            <double>-31.392624587338648</double>
+            <double>100.89501006570021</double>
+            <double>96.067923513841862</double>
+            <double>90.025814655242144</double>
+            <double>84.597788623516081</double>
+            <double>79.859895318863</double>
+            <double>76.281354197779578</double>
+            <double>73.352137129141681</double>
+            <double>71.898684376049445</double>
+            <double>72.639443257829441</double>
+            <double>75.320784251601609</double>
+            <double>79.372852092903045</double>
+            <double>84.137839789077617</double>
+            <double>89.873026528138354</double>
+            <double>96.303074140436536</double>
+            <double>102.99812502667632</double>
+            <double>108.23122904171338</double>
+            <double>114.10731991345662</double>
+            <double>3.8799131090172523E-06</double>
+            <double>-7.3903879638237413E-07</double>
+            <double>2.0998325140908491E-06</double>
+            <double>2.7618634419468435E-06</double>
+            <double>2.1848644990996036E-06</double>
+            <double>6.6318797564690612E-07</double>
+            <double>6.583987655517376E-06</double>
+            <double>-5.5726917480569682E-07</double>
+            <double>6.80147820730781E-07</double>
+            <double>2.2208127177236747E-06</double>
+            <double>1.2581610064898996E-06</double>
+            <double>9.2966245262005032E-06</double>
+            <double>-1.6111049916389675E-06</double>
+            <double>-2.2786894362525345E-06</double>
+            <double>5.1173301187645848E-06</double>
+            <double>-2.9940440953168945E-06</double>
+            <double>-2.7287729551517259E-06</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>17</int>
+          </CvCount>
+          <DimensionStride>17</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="9987325d-89c6-4121-a592-c5aa093d63ec" />
+      <LayerKey data="a79cbcfb-387c-4967-9a01-5af0ff414f8c" />
+      <Name>Upper Bout Outside Curve</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+          <double>6</double>
+          <double>7</double>
+          <double>8</double>
+          <double>9</double>
+          <double>10</double>
+          <double>11</double>
+          <double>12</double>
+          <double>13</double>
+          <double>14</double>
+          <double>15</double>
+          <double>16</double>
+          <double>17</double>
+          <double>18</double>
+          <double>19</double>
+          <double>20</double>
+          <double>21</double>
+          <double>22</double>
+          <double>23</double>
+          <double>24</double>
+          <double>25</double>
+          <double>26</double>
+          <double>27</double>
+          <double>28</double>
+          <double>29</double>
+          <double>30</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>44.146554473409033</double>
+            <double>48.270871912817675</double>
+            <double>54.807756049082528</double>
+            <double>66.355119621223011</double>
+            <double>74.742853610168453</double>
+            <double>89.447969463123542</double>
+            <double>105.96797408483253</double>
+            <double>123.65389365175669</double>
+            <double>142.2028079454692</double>
+            <double>154.86667068790479</double>
+            <double>163.56580056091295</double>
+            <double>169.14188787950394</double>
+            <double>170.76896240421229</double>
+            <double>171.26242139276718</double>
+            <double>171.26242139276715</double>
+            <double>169.36985812120204</double>
+            <double>164.47210251052596</double>
+            <double>156.51390790482435</double>
+            <double>146.47925936106532</double>
+            <double>132.00082101834161</double>
+            <double>116.63668862122167</double>
+            <double>98.27175067974197</double>
+            <double>83.473109362353625</double>
+            <double>70.327610447655616</double>
+            <double>60.7609018504423</double>
+            <double>54.613573055319378</double>
+            <double>48.867583727419586</double>
+            <double>43.886075750361378</double>
+            <double>103.23953098612756</double>
+            <double>95.819898562421358</double>
+            <double>90.672727103311757</double>
+            <double>89.873812632591935</double>
+            <double>92.843071316449951</double>
+            <double>98.3866367818236</double>
+            <double>99.7827641478918</double>
+            <double>97.610698353281521</double>
+            <double>88.917886407403486</double>
+            <double>77.341140268079272</double>
+            <double>64.136445166402268</double>
+            <double>47.871987450216658</double>
+            <double>34.927123310497386</double>
+            <double>18.148662326934826</double>
+            <double>-0.11784419298180641</double>
+            <double>-15.813576287507255</double>
+            <double>-28.952653636707677</double>
+            <double>-40.943910981681434</double>
+            <double>-50.853623451159464</double>
+            <double>-58.255532070562609</double>
+            <double>-62.62766306783864</double>
+            <double>-62.752598819260172</double>
+            <double>-58.772928900887649</double>
+            <double>-54.390879143507156</double>
+            <double>-54.0365376499544</double>
+            <double>-56.2934401758203</double>
+            <double>-60.459489296902056</double>
+            <double>-70.739335938908667</double>
+            <double>1.2873019045400724E-05</double>
+            <double>2.6981356484157004E-05</double>
+            <double>1.480632835182405E-05</double>
+            <double>3.2983634866923239E-05</double>
+            <double>1.9373394835042745E-05</double>
+            <double>2.6521309408167326E-05</double>
+            <double>-6.6052901530611052E-06</double>
+            <double>2.0600481363430845E-05</double>
+            <double>1.3106622972713922E-05</double>
+            <double>-1.8101037255746633E-06</double>
+            <double>1.9134208173454681E-07</double>
+            <double>2.9997061176345596E-05</double>
+            <double>1.0691389761063874E-05</double>
+            <double>2.5071124753139884E-05</double>
+            <double>2.0179134921249897E-05</double>
+            <double>9.7252413411297312E-06</double>
+            <double>2.4893206557408121E-05</double>
+            <double>-3.1364473471739984E-06</double>
+            <double>2.5984615660945565E-05</double>
+            <double>2.9060456981255811E-05</double>
+            <double>1.1294862204636047E-05</double>
+            <double>1.2037947783483105E-05</double>
+            <double>4.0237852800828477E-06</double>
+            <double>3.3842659163951794E-05</double>
+            <double>4.0998993313223764E-05</double>
+            <double>4.7891967341229247E-05</double>
+            <double>6.1664337209776932E-06</double>
+            <double>-1.0206770809872978E-05</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>28</int>
+          </CvCount>
+          <DimensionStride>28</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="b0f69dd0-661b-4a95-bb40-db6ef65bb27e" />
+      <LayerKey data="4581b45e-0425-4e21-940b-8908e2e70b63" />
+      <Name>Lower Bout Inside Curve</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+          <double>6</double>
+          <double>7</double>
+          <double>8</double>
+          <double>9</double>
+          <double>10</double>
+          <double>11</double>
+          <double>12</double>
+          <double>13</double>
+          <double>14</double>
+          <double>15</double>
+          <double>16</double>
+          <double>17</double>
+          <double>18</double>
+          <double>19</double>
+          <double>20</double>
+          <double>21</double>
+          <double>22</double>
+          <double>23</double>
+          <double>24</double>
+          <double>25</double>
+          <double>26</double>
+          <double>27</double>
+          <double>28</double>
+          <double>29</double>
+          <double>30</double>
+          <double>31</double>
+          <double>32</double>
+          <double>33</double>
+          <double>34</double>
+          <double>35</double>
+          <double>36</double>
+          <double>37</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>-30.345247743877707</double>
+            <double>-33.36001745883695</double>
+            <double>-37.350694808983178</double>
+            <double>-42.841029990624975</double>
+            <double>-48.547329863926848</double>
+            <double>-55.104282097791639</double>
+            <double>-62.723071868405725</double>
+            <double>-76.922956471672208</double>
+            <double>-93.6551489354384</double>
+            <double>-109.78152697427765</double>
+            <double>-125.19688876428167</double>
+            <double>-141.93877993300265</double>
+            <double>-157.64530878456228</double>
+            <double>-167.58814774899537</double>
+            <double>-173.24473817155058</double>
+            <double>-175.09452803818147</double>
+            <double>-175.77012560374524</double>
+            <double>-175.73762233329487</double>
+            <double>-174.55962302991188</double>
+            <double>-172.99444791917048</double>
+            <double>-167.47900443888082</double>
+            <double>-159.72003697039847</double>
+            <double>-148.56931665016197</double>
+            <double>-136.0598809120342</double>
+            <double>-122.53482620662663</double>
+            <double>-109.33786975726754</double>
+            <double>-95.94912100964649</double>
+            <double>-82.7657940229234</double>
+            <double>-70.268067703240419</double>
+            <double>-58.647896917562491</double>
+            <double>-52.038211002983651</double>
+            <double>-45.638278725334558</double>
+            <double>-39.645152327386469</double>
+            <double>-34.13684207498406</double>
+            <double>-30.710366451195739</double>
+            <double>-75.387685421868284</double>
+            <double>-72.191637491281384</double>
+            <double>-68.803516643941478</double>
+            <double>-66.353049640122236</double>
+            <double>-65.695638083541979</double>
+            <double>-66.1584135416856</double>
+            <double>-69.370986576675563</double>
+            <double>-76.338772348203278</double>
+            <double>-81.062915118862136</double>
+            <double>-82.015235351819626</double>
+            <double>-79.598546519375631</double>
+            <double>-72.104284268861591</double>
+            <double>-58.618251451575155</double>
+            <double>-41.368041566166688</double>
+            <double>-20.433057450829292</double>
+            <double>0.39078850149035071</double>
+            <double>19.336859559084353</double>
+            <double>37.27906043395086</double>
+            <double>52.36113929847486</double>
+            <double>63.867858470420067</double>
+            <double>80.175112406964772</double>
+            <double>93.344411910059719</double>
+            <double>104.81691680951934</double>
+            <double>112.31720550621348</double>
+            <double>116.71514668714322</double>
+            <double>118.2960124338272</double>
+            <double>118.02780126099039</double>
+            <double>114.93895512940198</double>
+            <double>109.41218645228803</double>
+            <double>103.73868569240652</double>
+            <double>102.36610630685215</double>
+            <double>102.67076673876615</double>
+            <double>104.65579812390062</double>
+            <double>108.42075961646086</double>
+            <double>113.71873301803947</double>
+            <double>1.5595475701957184E-05</double>
+            <double>3.2528894877259518E-05</double>
+            <double>1.6540462041803039E-05</double>
+            <double>1.6451153868501933E-05</double>
+            <double>1.5465047908946872E-06</double>
+            <double>5.7826291595119983E-06</double>
+            <double>-4.2299131450818095E-06</double>
+            <double>1.445556050327923E-05</double>
+            <double>4.4913600731888437E-06</double>
+            <double>1.392392087495864E-05</double>
+            <double>2.8076479878791361E-06</double>
+            <double>3.7352691606429289E-07</double>
+            <double>1.1498088412054131E-05</double>
+            <double>-8.3496245082415044E-06</double>
+            <double>4.9666510903989547E-08</double>
+            <double>5.077601755942851E-06</double>
+            <double>2.942708093200963E-06</double>
+            <double>1.5119813312480801E-05</double>
+            <double>1.5057697027032191E-06</double>
+            <double>-5.661600539497158E-06</double>
+            <double>2.1834124481756589E-06</double>
+            <double>1.0625946814002418E-05</double>
+            <double>2.1324464341887506E-05</double>
+            <double>8.73949414881281E-06</double>
+            <double>5.0605449928298185E-06</double>
+            <double>1.2149513253234545E-05</double>
+            <double>-8.4122996213409351E-07</double>
+            <double>2.5619119554676217E-06</double>
+            <double>2.4011180954630618E-06</double>
+            <double>1.4680534832223202E-07</double>
+            <double>-3.897274439168541E-06</double>
+            <double>-4.3081695508817575E-06</double>
+            <double>2.7213211239995871E-06</double>
+            <double>6.6685812782907306E-06</double>
+            <double>4.5505688603952876E-06</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>35</int>
+          </CvCount>
+          <DimensionStride>35</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="d11db907-60cd-484c-b3a5-2575513ae656" />
+      <LayerKey data="a79cbcfb-387c-4967-9a01-5af0ff414f8c" />
+      <Name>C-Bout Bass Outside Curve</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+          <double>6</double>
+          <double>7</double>
+          <double>8</double>
+          <double>9</double>
+          <double>10</double>
+          <double>11</double>
+          <double>12</double>
+          <double>13</double>
+          <double>14</double>
+          <double>15</double>
+          <double>16</double>
+          <double>17</double>
+          <double>18</double>
+          <double>19</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>48.739770906745022</double>
+            <double>51.310886770496147</double>
+            <double>52.227395392965768</double>
+            <double>51.373069518141136</double>
+            <double>47.00030290347398</double>
+            <double>39.662610269265279</double>
+            <double>27.305196675144</double>
+            <double>7.7667040219241743</double>
+            <double>-9.21201187486023</double>
+            <double>-19.721447503269413</double>
+            <double>-26.82221328418364</double>
+            <double>-31.761864500048908</double>
+            <double>-35.206523093813153</double>
+            <double>-36.623891101787741</double>
+            <double>-36.569081206457646</double>
+            <double>-35.162561666616057</double>
+            <double>-32.618248645316889</double>
+            <double>-61.435841302131806</double>
+            <double>-56.125660680440141</double>
+            <double>-51.111575709455131</double>
+            <double>-44.543610454481936</double>
+            <double>-39.194961457267155</double>
+            <double>-35.753698096924651</double>
+            <double>-33.843820345821364</double>
+            <double>-34.241426243824257</double>
+            <double>-37.080818416076077</double>
+            <double>-40.432184298784257</double>
+            <double>-44.117576869480885</double>
+            <double>-48.263562223353993</double>
+            <double>-53.859780979415859</double>
+            <double>-59.747603723254279</double>
+            <double>-65.612645548769436</double>
+            <double>-71.170553726209761</double>
+            <double>-76.804669159251247</double>
+            <double>3.2123567308417478E-06</double>
+            <double>3.16035267786674E-05</double>
+            <double>-1.3244748089391578E-06</double>
+            <double>-3.7254155103028097E-06</double>
+            <double>7.2436607325698787E-06</double>
+            <double>5.4907755000499492E-06</double>
+            <double>3.6201123521095724E-07</double>
+            <double>2.2362446330248531E-06</double>
+            <double>1.0329875692605128E-05</double>
+            <double>3.6914714911517876E-06</double>
+            <double>1.5610965292012224E-05</double>
+            <double>2.4747925806423154E-06</double>
+            <double>1.4274354569465686E-06</double>
+            <double>1.9092788640762137E-05</double>
+            <double>-9.3030905645719031E-08</double>
+            <double>3.10110624468507E-06</double>
+            <double>1.8361323554927367E-06</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>17</int>
+          </CvCount>
+          <DimensionStride>17</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="401ac6aa-21fb-4f27-b8aa-dcecc297f974" />
+      <LayerKey data="3ff2a0b2-d5fd-4343-8367-58d9dc4df761" />
+      <Name>UpperBout</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+          <double>6</double>
+          <double>7</double>
+          <double>8</double>
+          <double>9</double>
+          <double>10</double>
+          <double>11</double>
+          <double>12</double>
+          <double>13</double>
+          <double>14</double>
+          <double>15</double>
+          <double>16</double>
+          <double>17</double>
+          <double>18</double>
+          <double>19</double>
+          <double>20</double>
+          <double>21</double>
+          <double>22</double>
+          <double>23</double>
+          <double>24</double>
+          <double>25</double>
+          <double>26</double>
+          <double>27</double>
+          <double>28</double>
+          <double>29</double>
+          <double>30</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>46.622525366601991</double>
+            <double>50.47039572055251</double>
+            <double>55.874277392432674</double>
+            <double>65.964068507703487</double>
+            <double>73.770462913648</double>
+            <double>88.817108299636544</double>
+            <double>106.0219257930234</double>
+            <double>124.44724621108799</double>
+            <double>143.79564427805173</double>
+            <double>157.03825967764661</double>
+            <double>166.12898547379155</double>
+            <double>171.91617207929039</double>
+            <double>173.5965346152681</double>
+            <double>174.09520307164272</double>
+            <double>174.09520307164269</double>
+            <double>172.14192716876684</double>
+            <double>167.01261904309945</double>
+            <double>158.71247788804837</double>
+            <double>148.15838313026305</double>
+            <double>133.04314280942813</double>
+            <double>117.04134553058609</double>
+            <double>97.9069728164252</double>
+            <double>82.656646206594218</double>
+            <double>69.816982082598685</double>
+            <double>61.21352225325397</double>
+            <double>55.958478025811814</double>
+            <double>51.106500188792815</double>
+            <double>46.43531157103839</double>
+            <double>104.6158377020286</double>
+            <double>97.693532603107144</double>
+            <double>93.438492291837349</double>
+            <double>92.740421249198818</double>
+            <double>95.5038856616397</double>
+            <double>101.17620164782944</double>
+            <double>102.63020345235447</double>
+            <double>100.3673294138646</double>
+            <double>91.299845291243116</double>
+            <double>79.194028936482852</double>
+            <double>65.39491751460281</double>
+            <double>48.5147206197314</double>
+            <double>35.1459016729753</double>
+            <double>18.190309753334461</double>
+            <double>-0.28801376794995753</double>
+            <double>-16.487258326298576</double>
+            <double>-30.247515384474671</double>
+            <double>-42.754011332502508</double>
+            <double>-53.176702667350149</double>
+            <double>-60.904167810119844</double>
+            <double>-65.457757436050613</double>
+            <double>-65.587927613627087</double>
+            <double>-61.486789897478225</double>
+            <double>-57.206690113932339</double>
+            <double>-56.888026408994243</double>
+            <double>-58.817339609202534</double>
+            <double>-62.335198214555945</double>
+            <double>-71.974669404313971</double>
+            <double>1.2873019045400724E-05</double>
+            <double>2.6981356484157004E-05</double>
+            <double>1.480632835182405E-05</double>
+            <double>3.2983634866923239E-05</double>
+            <double>1.9373394835042745E-05</double>
+            <double>2.6521309408167326E-05</double>
+            <double>-6.6052901530611052E-06</double>
+            <double>2.0600481363430845E-05</double>
+            <double>1.3106622972713922E-05</double>
+            <double>-1.8101037255746633E-06</double>
+            <double>1.9134208173454681E-07</double>
+            <double>2.9997061176345596E-05</double>
+            <double>1.0691389761063874E-05</double>
+            <double>2.5071124753139884E-05</double>
+            <double>2.0179134921249897E-05</double>
+            <double>9.7252413411297312E-06</double>
+            <double>2.4893206557408121E-05</double>
+            <double>-3.1364473471739984E-06</double>
+            <double>2.5984615660945565E-05</double>
+            <double>2.9060456981255811E-05</double>
+            <double>1.1294862204636047E-05</double>
+            <double>1.2037947783483105E-05</double>
+            <double>4.0237852800828477E-06</double>
+            <double>3.3842659163951794E-05</double>
+            <double>4.0998993313223764E-05</double>
+            <double>4.7891967341229247E-05</double>
+            <double>6.1664337209776932E-06</double>
+            <double>-1.0206770809872978E-05</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>28</int>
+          </CvCount>
+          <DimensionStride>28</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="ea59110f-7f8d-46b6-bc91-4327bc4c5263" />
+      <LayerKey data="a79cbcfb-387c-4967-9a01-5af0ff414f8c" />
+      <Name>Lower Bout Outside</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+          <double>6</double>
+          <double>7</double>
+          <double>8</double>
+          <double>9</double>
+          <double>10</double>
+          <double>11</double>
+          <double>12</double>
+          <double>13</double>
+          <double>14</double>
+          <double>15</double>
+          <double>16</double>
+          <double>17</double>
+          <double>18</double>
+          <double>19</double>
+          <double>20</double>
+          <double>21</double>
+          <double>22</double>
+          <double>23</double>
+          <double>24</double>
+          <double>25</double>
+          <double>26</double>
+          <double>27</double>
+          <double>28</double>
+          <double>29</double>
+          <double>30</double>
+          <double>31</double>
+          <double>32</double>
+          <double>33</double>
+          <double>34</double>
+          <double>35</double>
+          <double>36</double>
+          <double>37</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>-31.176428441231494</double>
+            <double>-34.147773507938425</double>
+            <double>-37.9656274911305</double>
+            <double>-43.146314771264869</double>
+            <double>-48.572711970865306</double>
+            <double>-54.834880167766883</double>
+            <double>-62.249040058388914</double>
+            <double>-76.512700553364</double>
+            <double>-93.464011245522357</double>
+            <double>-109.83696719143289</double>
+            <double>-125.52452681440389</double>
+            <double>-142.55715884609791</double>
+            <double>-158.53776832113897</double>
+            <double>-168.65239767269915</double>
+            <double>-174.37398984302513</double>
+            <double>-176.23534137738898</double>
+            <double>-176.91277995981204</double>
+            <double>-176.88015908461969</double>
+            <double>-175.69622369620242</double>
+            <double>-174.11189108733296</double>
+            <double>-168.52349746178382</double>
+            <double>-160.63492338845421</double>
+            <double>-149.28475729217107</double>
+            <double>-136.5363725767678</double>
+            <double>-122.7817888261703</double>
+            <double>-109.39465346579711</double>
+            <double>-95.805774301969109</double>
+            <double>-82.4012546243125</double>
+            <double>-69.78617681717563</double>
+            <double>-58.275311983199458</double>
+            <double>-51.947784190807276</double>
+            <double>-45.848955816570935</double>
+            <double>-40.157115171699608</double>
+            <double>-34.971422226604034</double>
+            <double>-31.669808156027717</double>
+            <double>-76.171721972152667</double>
+            <double>-73.021709815540348</double>
+            <double>-69.780317556133852</double>
+            <double>-67.4680537658421</double>
+            <double>-66.842889244379975</double>
+            <double>-67.28485948496315</double>
+            <double>-70.4111473677953</double>
+            <double>-77.410227531019089</double>
+            <double>-82.196235822100334</double>
+            <double>-83.163117361343623</double>
+            <double>-80.703755676188962</double>
+            <double>-73.079347538803333</double>
+            <double>-59.357981993465643</double>
+            <double>-41.809726424642349</double>
+            <double>-20.634171496254186</double>
+            <double>0.31982890883146703</double>
+            <double>19.317528388451109</double>
+            <double>37.324648512237374</double>
+            <double>52.482727848387832</double>
+            <double>64.13028746015604</double>
+            <double>80.653229681370135</double>
+            <double>94.042510542003342</double>
+            <double>105.72021677170523</double>
+            <double>113.36377222725756</double>
+            <double>117.83634935325721</double>
+            <double>119.43999666532086</double>
+            <double>119.16777636402378</double>
+            <double>116.02710490879639</double>
+            <double>110.4484408301924</double>
+            <double>104.82830825322981</double>
+            <double>103.51432233595598</double>
+            <double>103.80464910912409</double>
+            <double>105.68988922739057</double>
+            <double>109.23433994928134</double>
+            <double>114.33925399179013</double>
+            <double>1.5595475701957184E-05</double>
+            <double>3.2528894877259518E-05</double>
+            <double>1.6540462041803039E-05</double>
+            <double>1.6451153868501933E-05</double>
+            <double>1.5465047908946872E-06</double>
+            <double>5.7826291595119983E-06</double>
+            <double>-4.2299131450818095E-06</double>
+            <double>1.445556050327923E-05</double>
+            <double>4.4913600731888437E-06</double>
+            <double>1.392392087495864E-05</double>
+            <double>2.8076479878791361E-06</double>
+            <double>3.7352691606429289E-07</double>
+            <double>1.1498088412054131E-05</double>
+            <double>-8.3496245082415044E-06</double>
+            <double>4.9666510903989547E-08</double>
+            <double>5.077601755942851E-06</double>
+            <double>2.942708093200963E-06</double>
+            <double>1.5119813312480801E-05</double>
+            <double>1.5057697027032191E-06</double>
+            <double>-5.661600539497158E-06</double>
+            <double>2.1834124481756589E-06</double>
+            <double>1.0625946814002418E-05</double>
+            <double>2.1324464341887506E-05</double>
+            <double>8.73949414881281E-06</double>
+            <double>5.0605449928298185E-06</double>
+            <double>1.2149513253234545E-05</double>
+            <double>-8.4122996213409351E-07</double>
+            <double>2.5619119554676217E-06</double>
+            <double>2.4011180954630618E-06</double>
+            <double>1.4680534832223202E-07</double>
+            <double>-3.897274439168541E-06</double>
+            <double>-4.3081695508817575E-06</double>
+            <double>2.7213211239995871E-06</double>
+            <double>6.6685812782907306E-06</double>
+            <double>4.5505688603952876E-06</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>35</int>
+          </CvCount>
+          <DimensionStride>35</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="dbb42103-a154-4121-aee0-4cfa390ecb43" />
+      <LayerKey data="4581b45e-0425-4e21-940b-8908e2e70b63" />
+      <Name>C-Bout Trebble Inside</Name>
+      <IsVisible>true</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+          <double>6</double>
+          <double>7</double>
+          <double>8</double>
+          <double>9</double>
+          <double>10</double>
+          <double>11</double>
+          <double>12</double>
+          <double>13</double>
+          <double>14</double>
+          <double>15</double>
+          <double>16</double>
+          <double>17</double>
+          <double>18</double>
+          <double>19</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>46.327818559587705</double>
+            <double>49.101551302613238</double>
+            <double>50.904476690867824</double>
+            <double>51.043160619651928</double>
+            <double>49.378922561754123</double>
+            <double>44.87160521461383</double>
+            <double>35.85697899848298</double>
+            <double>20.324079351403956</double>
+            <double>3.6816887081214547</double>
+            <double>-12.683328840072221</double>
+            <double>-24.610375031752017</double>
+            <double>-31.475361329622814</double>
+            <double>-35.913331486772222</double>
+            <double>-38.4790333554184</double>
+            <double>-38.617721138801272</double>
+            <double>-37.3001982536408</double>
+            <double>-34.734495216664151</double>
+            <double>102.59806487347052</double>
+            <double>97.3970581216238</double>
+            <double>90.531728932766228</double>
+            <double>84.151827124574211</double>
+            <double>78.049312952153315</double>
+            <double>73.195040145468639</double>
+            <double>69.797049824778227</double>
+            <double>68.271421337407574</double>
+            <double>69.0342371770902</double>
+            <double>71.808109574237292</double>
+            <double>76.176956077122313</double>
+            <double>81.655350877580915</double>
+            <double>88.243293299318282</double>
+            <double>95.663396812019</double>
+            <double>103.3608865843172</double>
+            <double>109.32470753331721</double>
+            <double>115.49656830142294</double>
+            <double>3.8799131090172523E-06</double>
+            <double>-7.3903879638237413E-07</double>
+            <double>2.0998325140908491E-06</double>
+            <double>2.7618634419468435E-06</double>
+            <double>2.1848644990996036E-06</double>
+            <double>6.6318797564690612E-07</double>
+            <double>6.583987655517376E-06</double>
+            <double>-5.5726917480569682E-07</double>
+            <double>6.80147820730781E-07</double>
+            <double>2.2208127177236747E-06</double>
+            <double>1.2581610064898996E-06</double>
+            <double>9.2966245262005032E-06</double>
+            <double>-1.6111049916389675E-06</double>
+            <double>-2.2786894362525345E-06</double>
+            <double>5.1173301187645848E-06</double>
+            <double>-2.9940440953168945E-06</double>
+            <double>-2.7287729551517259E-06</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>17</int>
+          </CvCount>
+          <DimensionStride>17</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="1ce51f17-0174-49b1-9d16-4428396ea0cc" />
+      <LayerKey data="3ff2a0b2-d5fd-4343-8367-58d9dc4df761" />
+      <Name>Lower Bout</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+          <double>6</double>
+          <double>7</double>
+          <double>8</double>
+          <double>9</double>
+          <double>10</double>
+          <double>11</double>
+          <double>12</double>
+          <double>13</double>
+          <double>14</double>
+          <double>15</double>
+          <double>16</double>
+          <double>17</double>
+          <double>18</double>
+          <double>19</double>
+          <double>20</double>
+          <double>21</double>
+          <double>22</double>
+          <double>23</double>
+          <double>24</double>
+          <double>25</double>
+          <double>26</double>
+          <double>27</double>
+          <double>28</double>
+          <double>29</double>
+          <double>30</double>
+          <double>31</double>
+          <double>32</double>
+          <double>33</double>
+          <double>34</double>
+          <double>35</double>
+          <double>36</double>
+          <double>37</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>-33.193686431533209</double>
+            <double>-36.0596407944593</double>
+            <double>-39.458056117671944</double>
+            <double>-43.887234483457313</double>
+            <double>-48.634313808101687</double>
+            <double>-54.181047375841672</double>
+            <double>-61.098574871386717</double>
+            <double>-75.517018108005743</double>
+            <double>-93.000124110680872</double>
+            <double>-109.97151942706188</double>
+            <double>-126.31969743932334</double>
+            <double>-144.0579514023336</double>
+            <double>-160.70374875946246</double>
+            <double>-171.23530975078813</double>
+            <double>-177.11465978951927</double>
+            <double>-179.00407124718234</double>
+            <double>-179.68597793862372</double>
+            <double>-179.65307163920733</double>
+            <double>-178.45472949783672</double>
+            <double>-176.82390204579286</double>
+            <double>-171.0584599590764</double>
+            <double>-162.85533339426547</double>
+            <double>-151.02111661364512</double>
+            <double>-137.69280777919255</double>
+            <double>-123.38116188568229</double>
+            <double>-109.53246632660473</double>
+            <double>-95.457874871235987</double>
+            <double>-81.516525206306653</double>
+            <double>-68.616637818660834</double>
+            <double>-57.371056219918813</double>
+            <double>-51.728320228300774</double>
+            <double>-46.360264665564962</double>
+            <double>-41.399638177486793</double>
+            <double>-36.99693062058212</double>
+            <double>-33.998352901427651</double>
+            <double>-78.074562113634656</double>
+            <double>-75.036277807760143</double>
+            <double>-72.1509927310114</double>
+            <double>-70.174145219828773</double>
+            <double>-69.627243571244591</double>
+            <double>-70.018719988405948</double>
+            <double>-72.935595630086553</double>
+            <double>-80.010626620731614</double>
+            <double>-84.946781222709575</double>
+            <double>-85.9490027446399</double>
+            <double>-83.386074947599312</double>
+            <double>-75.44580549265369</double>
+            <double>-61.15329238872571</double>
+            <double>-42.881686243718875</double>
+            <double>-21.122271035123212</double>
+            <double>0.14761147676674963</double>
+            <double>19.270612045775771</double>
+            <double>37.435289814999393</double>
+            <double>52.777820689959093</double>
+            <double>64.7671970733329</double>
+            <double>81.813610204120764</double>
+            <double>95.73678117147108</double>
+            <double>107.91250669393261</double>
+            <double>115.90376754612316</double>
+            <double>120.55748453381028</double>
+            <double>122.21642222369432</double>
+            <double>121.93447185233389</double>
+            <double>118.66802143166187</double>
+            <double>112.96340831014918</double>
+            <double>107.47279918550453</double>
+            <double>106.30101837771494</double>
+            <double>106.55655766396535</double>
+            <double>108.19960648605192</double>
+            <double>111.20888222674219</double>
+            <double>115.84524528397667</double>
+            <double>1.5595475701957184E-05</double>
+            <double>3.2528894877259518E-05</double>
+            <double>1.6540462041803039E-05</double>
+            <double>1.6451153868501933E-05</double>
+            <double>1.5465047908946872E-06</double>
+            <double>5.7826291595119983E-06</double>
+            <double>-4.2299131450818095E-06</double>
+            <double>1.445556050327923E-05</double>
+            <double>4.4913600731888437E-06</double>
+            <double>1.392392087495864E-05</double>
+            <double>2.8076479878791361E-06</double>
+            <double>3.7352691606429289E-07</double>
+            <double>1.1498088412054131E-05</double>
+            <double>-8.3496245082415044E-06</double>
+            <double>4.9666510903989547E-08</double>
+            <double>5.077601755942851E-06</double>
+            <double>2.942708093200963E-06</double>
+            <double>1.5119813312480801E-05</double>
+            <double>1.5057697027032191E-06</double>
+            <double>-5.661600539497158E-06</double>
+            <double>2.1834124481756589E-06</double>
+            <double>1.0625946814002418E-05</double>
+            <double>2.1324464341887506E-05</double>
+            <double>8.73949414881281E-06</double>
+            <double>5.0605449928298185E-06</double>
+            <double>1.2149513253234545E-05</double>
+            <double>-8.4122996213409351E-07</double>
+            <double>2.5619119554676217E-06</double>
+            <double>2.4011180954630618E-06</double>
+            <double>1.4680534832223202E-07</double>
+            <double>-3.897274439168541E-06</double>
+            <double>-4.3081695508817575E-06</double>
+            <double>2.7213211239995871E-06</double>
+            <double>6.6685812782907306E-06</double>
+            <double>4.5505688603952876E-06</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>35</int>
+          </CvCount>
+          <DimensionStride>35</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="3ff2a0b2-d5fd-4343-8367-58d9dc4df761" />
+      <LayerKey data="e314f67e-0da1-424a-a862-d7bfd9e14b59" />
+      <Name>Belly Outline</Name>
+      <IsVisible>false</IsVisible>
+      <Objects data="cde250f6-b731-41b2-880a-10bc99fc7e9c" />
+      <Objects data="1ce51f17-0174-49b1-9d16-4428396ea0cc" />
+      <Objects data="401ac6aa-21fb-4f27-b8aa-dcecc297f974" />
+      <Objects data="588d4b85-e888-4453-8078-ebbf2b59fa83" />
+      <Objects data="5d6061da-4946-4bae-bb7f-67cc003fc6aa" />
+      <Objects data="cad94898-bc2d-4d29-b92a-6ab83d3f8838" />
+      <Objects data="927f8748-d07c-4501-a32e-6d0b162256c8" />
+      <Objects data="796c036b-9010-4d58-a74a-25504609dcd1" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="4581b45e-0425-4e21-940b-8908e2e70b63" />
+      <LayerKey data="23b6cb97-ee02-4ef5-a193-82aa4618aca2" />
+      <Name>Inside Curves (source)</Name>
+      <IsVisible>false</IsVisible>
+      <Objects data="b0f69dd0-661b-4a95-bb40-db6ef65bb27e" />
+      <Objects data="bed44589-1b31-4538-817d-c02f9d36a28c" />
+      <Objects data="dbb42103-a154-4121-aee0-4cfa390ecb43" />
+      <Objects data="ff2de052-cc2e-4803-a37e-d37673f35350" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="a79cbcfb-387c-4967-9a01-5af0ff414f8c" />
+      <LayerKey data="23b6cb97-ee02-4ef5-a193-82aa4618aca2" />
+      <Name>Outside Curves (offset)</Name>
+      <IsVisible>false</IsVisible>
+      <Objects data="c5c135e3-a8d5-4ac8-be06-43f28cf0a9ad" />
+      <Objects data="d11db907-60cd-484c-b3a5-2575513ae656" />
+      <Objects data="ea59110f-7f8d-46b6-bc91-4327bc4c5263" />
+      <Objects data="9987325d-89c6-4121-a592-c5aa093d63ec" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="c87084f5-0311-401b-9293-def79e1b7518" />
+      <LayerKey data="38ccee7c-59a3-4e1e-8469-d971c667ff78" />
+      <Name>Upper Bout Bass</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>69.88550458592772</double>
+            <double>50.494131086801985</double>
+            <double>34.859200834136828</double>
+            <double>-61.8182604386252</double>
+            <double>-59.279993981974258</double>
+            <double>-51.665201231586707</double>
+            <double>1.408285574200363E-05</double>
+            <double>1.6840273389107097E-06</double>
+            <double>1.0985144285768911E-05</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>3</int>
+          </CvCount>
+          <DimensionStride>3</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="a5cac170-dd35-448f-b7a2-ec69ffe0a690" />
+      <LayerKey data="38ccee7c-59a3-4e1e-8469-d971c667ff78" />
+      <Name>Lower Bout Bass</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>-19.355426171915724</double>
+            <double>-35.39645788144071</double>
+            <double>-53.163428824152561</double>
+            <double>-60.599892858381111</double>
+            <double>-71.159075729840424</double>
+            <double>-78.976930786458468</double>
+            <double>5.3096702430366349E-06</double>
+            <double>5.3408498956741823E-07</double>
+            <double>6.5649819021018629E-06</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>3</int>
+          </CvCount>
+          <DimensionStride>3</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="8d0fc127-1b7e-4cca-91ad-1ce8bedd81e4" />
+      <LayerKey data="38ccee7c-59a3-4e1e-8469-d971c667ff78" />
+      <Name>Upper Bout Trebble</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>60.0375161185508</double>
+            <double>49.275810959864657</double>
+            <double>37.904952392118474</double>
+            <double>98.8031388790581</double>
+            <double>94.843446082638934</double>
+            <double>89.563854891154392</double>
+            <double>7.7727344205413829E-06</double>
+            <double>-1.83443690104923E-06</double>
+            <double>-5.3392015217923472E-06</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>3</int>
+          </CvCount>
+          <DimensionStride>3</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="b6400763-d5cb-4eeb-9d62-17c8c564337f" />
+      <LayerKey data="38ccee7c-59a3-4e1e-8469-d971c667ff78" />
+      <Name>Lower Bout Trebble</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>-25.6500220007797</double>
+            <double>-37.528512637819858</double>
+            <double>-49.000895767698694</double>
+            <double>101.95058726992791</double>
+            <double>107.53476992605407</double>
+            <double>110.98681057782449</double>
+            <double>6.0991504113872E-06</double>
+            <double>1.0340038826939235E-05</double>
+            <double>9.7781466479318624E-08</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>3</int>
+          </CvCount>
+          <DimensionStride>3</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="5d6061da-4946-4bae-bb7f-67cc003fc6aa" />
+      <LayerKey data="3ff2a0b2-d5fd-4343-8367-58d9dc4df761" />
+      <Name>U-Bout Trebble Corner</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>59.527449270381332</double>
+            <double>48.70879199273</double>
+            <double>37.282892133929941</double>
+            <double>100.1894052672446</double>
+            <double>96.208757344116236</double>
+            <double>90.903609989595751</double>
+            <double>7.7727344205413829E-06</double>
+            <double>-1.83443690104923E-06</double>
+            <double>-5.3392015217923472E-06</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>3</int>
+          </CvCount>
+          <DimensionStride>3</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="cad94898-bc2d-4d29-b92a-6ab83d3f8838" />
+      <LayerKey data="3ff2a0b2-d5fd-4343-8367-58d9dc4df761" />
+      <Name>L-Bout Trebble Corner</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>-25.004789115057875</double>
+            <double>-36.984457576765443</double>
+            <double>-48.563899564118977</double>
+            <double>103.32310555303758</double>
+            <double>108.95485279215298</double>
+            <double>112.43910745943794</double>
+            <double>6.0991504113872E-06</double>
+            <double>1.0340038826939235E-05</double>
+            <double>9.7781466479318624E-08</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>3</int>
+          </CvCount>
+          <DimensionStride>3</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="927f8748-d07c-4501-a32e-6d0b162256c8" />
+      <LayerKey data="3ff2a0b2-d5fd-4343-8367-58d9dc4df761" />
+      <Name>L-Bout Base Corner</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>-18.530462823872334</double>
+            <double>-34.67678550349023</double>
+            <double>-52.559135742785521</double>
+            <double>-61.853139760745918</double>
+            <double>-72.481631553729542</double>
+            <double>-80.350256019501927</double>
+            <double>5.3096702430366349E-06</double>
+            <double>5.3408498956741823E-07</double>
+            <double>6.5649819021018629E-06</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>3</int>
+          </CvCount>
+          <DimensionStride>3</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="796c036b-9010-4d58-a74a-25504609dcd1" />
+      <LayerKey data="3ff2a0b2-d5fd-4343-8367-58d9dc4df761" />
+      <Name>U-Bout Base Corner</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>69.695945638010812</double>
+            <double>50.068590178509162</double>
+            <double>34.219692824801861</double>
+            <double>-63.266417447329538</double>
+            <double>-60.69726173497817</double>
+            <double>-52.978259045466686</double>
+            <double>1.408285574200363E-05</double>
+            <double>1.6840273389107097E-06</double>
+            <double>1.0985144285768911E-05</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>3</int>
+          </CvCount>
+          <DimensionStride>3</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="38ccee7c-59a3-4e1e-8469-d971c667ff78" />
+      <LayerKey data="23b6cb97-ee02-4ef5-a193-82aa4618aca2" />
+      <Name>Corner Ends</Name>
+      <IsVisible>false</IsVisible>
+      <Objects data="c87084f5-0311-401b-9293-def79e1b7518" />
+      <Objects data="a5cac170-dd35-448f-b7a2-ec69ffe0a690" />
+      <Objects data="8d0fc127-1b7e-4cca-91ad-1ce8bedd81e4" />
+      <Objects data="b6400763-d5cb-4eeb-9d62-17c8c564337f" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="a99bccd1-e798-479e-849c-e314836930b4" />
+      <LayerKey data="29c383d4-9c83-4042-8b43-f884200815f0" />
+      <Name>U-Bout Trebble Corner Block</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>2</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>44.7662991568734</double>
+            <double>76.1027076345578</double>
+            <double>76.366043149677452</double>
+            <double>77.554903603970942</double>
+            <double>84.665202011764322</double>
+            <double>103.88933360788185</double>
+            <double>-8.7305762690448319E-06</double>
+            <double>3.0415576475206763E-06</double>
+            <double>1.6811875809708E-05</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>3</int>
+          </CvCount>
+          <DimensionStride>3</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="ffa2611f-4b44-4c6e-82f8-58d9b6504bfc" />
+      <LayerKey data="29c383d4-9c83-4042-8b43-f884200815f0" />
+      <Name>U-Bout Bass Corner Block</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>2</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>46.082952282958729</double>
+            <double>79.526007390119673</double>
+            <double>79.526006549806169</double>
+            <double>-40.950043167280114</double>
+            <double>-48.323688330517534</double>
+            <double>-67.5478201243886</double>
+            <double>2.5277743446849854E-05</double>
+            <double>6.1763876715303923E-06</double>
+            <double>1.1029727005507084E-05</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>3</int>
+          </CvCount>
+          <DimensionStride>3</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="cd404edb-ffd6-4c5e-8255-4f4116fe8bcf" />
+      <LayerKey data="29c383d4-9c83-4042-8b43-f884200815f0" />
+      <Name>L-Bout Bass Corner Block</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>2</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>-31.073079659133594</double>
+            <double>-58.986182257325979</double>
+            <double>-63.989477960833483</double>
+            <double>-54.907291435494166</double>
+            <double>-54.907290215373685</double>
+            <double>-75.97483779707342</double>
+            <double>9.1026034283459012E-06</double>
+            <double>9.1026034283459012E-06</double>
+            <double>1.8442550242525613E-05</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>3</int>
+          </CvCount>
+          <DimensionStride>3</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="e49e98ee-b7c9-41b0-8363-7039b062adf9" />
+      <LayerKey data="29c383d4-9c83-4042-8b43-f884200815f0" />
+      <Name>L-Bout Trebble Corner Block</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>2</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>-29.229754974634275</double>
+            <double>-57.406190364141608</double>
+            <double>-65.56945508521693</double>
+            <double>92.565534547113089</double>
+            <double>92.5655357787442</double>
+            <double>114.42311589374654</double>
+            <double>-4.8586349521428929E-07</double>
+            <double>-4.8586349521428929E-07</double>
+            <double>-6.4618021724527352E-06</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>3</int>
+          </CvCount>
+          <DimensionStride>3</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="83751b55-d04c-452e-9bf5-43ee117ebb30" />
+      <LayerKey data="29c383d4-9c83-4042-8b43-f884200815f0" />
+      <Name>Bottom Block</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>2</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>-180.64517409713113</double>
+            <double>-161.68533366589287</double>
+            <double>-161.94866306291891</double>
+            <double>-179.59185272202097</double>
+            <double>44.636873946180721</double>
+            <double>44.636873117419768</double>
+            <double>-6.9786174976181883</double>
+            <double>-6.978616726409868</double>
+            <double>-1.2723155151661558E-05</double>
+            <double>-1.2723155151661558E-05</double>
+            <double>2.1349871474285465E-05</double>
+            <double>2.1349871474285465E-05</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>4</int>
+          </CvCount>
+          <DimensionStride>4</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="7e18e3f6-7588-4827-97e9-e6b174730e7c" />
+      <LayerKey data="29c383d4-9c83-4042-8b43-f884200815f0" />
+      <Name>Top Block</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>2</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>176.69521074169415</double>
+            <double>155.3653808506061</double>
+            <double>155.62872049239149</double>
+            <double>177.22186246790213</double>
+            <double>47.53364622403604</double>
+            <double>47.796991080236246</double>
+            <double>-10.928796156295974</double>
+            <double>-10.928797100162194</double>
+            <double>-6.5564383930905024E-06</double>
+            <double>7.7278355092857964E-07</double>
+            <double>4.4799480463098007E-06</double>
+            <double>4.4799480463098007E-06</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>4</int>
+          </CvCount>
+          <DimensionStride>4</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="26626d10-c7e9-4810-8db8-e1e02b296cfb" />
+      <Name>Rib Mould</Name>
+      <IsVisible>true</IsVisible>
+      <Objects data="29c383d4-9c83-4042-8b43-f884200815f0" />
+      <Objects data="90582774-c0e8-4317-8809-240e08c23ca0" />
+      <Objects data="48fc894e-fcd3-4b59-a06d-433f6bc169be" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurveComposite" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="0a9d2c7b-20b2-4aed-b099-0ac52728733a" />
+      <LayerKey data="90582774-c0e8-4317-8809-240e08c23ca0" />
+      <Name>Mould outline</Name>
+      <IsVisible>true</IsVisible>
+      <ReferencePlaneKey data="d8f3242d-ce5b-4b82-81ad-a5586327fe11" />
+      <Components>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>79.956917468663647</Data>
+            <Data>-56.379624405818063</Data>
+            <Data>-1.1257486335125577E-05</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="ffa2611f-4b44-4c6e-82f8-58d9b6504bfc" />
+          <Curve2Key data="bed44589-1b31-4538-817d-c02f9d36a28c" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>168.29255405344003</Data>
+            <Data>-11.371693589809572</Data>
+            <Data>-2.5836574195636786E-06</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="7e18e3f6-7588-4827-97e9-e6b174730e7c" />
+          <Curve2Key data="bed44589-1b31-4538-817d-c02f9d36a28c" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>167.5743916923594</Data>
+            <Data>48.4792829433752</Data>
+            <Data>1.4692233776258945E-05</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="7e18e3f6-7588-4827-97e9-e6b174730e7c" />
+          <Curve2Key data="bed44589-1b31-4538-817d-c02f9d36a28c" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>76.844827830921062</Data>
+            <Data>93.247823705622139</Data>
+            <Data>-5.25158694131278E-06</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="a99bccd1-e798-479e-849c-e314836930b4" />
+          <Curve2Key data="bed44589-1b31-4538-817d-c02f9d36a28c" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>49.314751949159174</Data>
+            <Data>78.883586474232132</Data>
+            <Data>6.2068912143331545E-06</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="a99bccd1-e798-479e-849c-e314836930b4" />
+          <Curve2Key data="dbb42103-a154-4121-aee0-4cfa390ecb43" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>-37.345143223413032</Data>
+            <Data>93.00842137439075</Data>
+            <Data>3.2873833220037341E-06</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="dbb42103-a154-4121-aee0-4cfa390ecb43" />
+          <Curve2Key data="e49e98ee-b7c9-41b0-8363-7039b062adf9" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>-61.763128583094286</Data>
+            <Data>105.93623182390489</Data>
+            <Data>5.9605240494420286E-06</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="e49e98ee-b7c9-41b0-8363-7039b062adf9" />
+          <Curve2Key data="b0f69dd0-661b-4a95-bb40-db6ef65bb27e" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>-174.99553530480208</Data>
+            <Data>44.648836660578681</Data>
+            <Data>2.8706687658086594E-06</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="83751b55-d04c-452e-9bf5-43ee117ebb30" />
+          <Curve2Key data="b0f69dd0-661b-4a95-bb40-db6ef65bb27e" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>-174.03797053265953</Data>
+            <Data>-6.3441965460202443</Data>
+            <Data>3.6361895467962313E-06</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="b0f69dd0-661b-4a95-bb40-db6ef65bb27e" />
+          <Curve2Key data="83751b55-d04c-452e-9bf5-43ee117ebb30" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>-62.481308059083709</Data>
+            <Data>-69.068027680783771</Data>
+            <Data>-3.9184958495752653E-06</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="cd404edb-ffd6-4c5e-8255-4f4116fe8bcf" />
+          <Curve2Key data="b0f69dd0-661b-4a95-bb40-db6ef65bb27e" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>-36.38758267900058</Data>
+            <Data>-54.7037942005309</Data>
+            <Data>3.2104054810133675E-06</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="ff2de052-cc2e-4803-a37e-d37673f35350" />
+          <Curve2Key data="cd404edb-ffd6-4c5e-8255-4f4116fe8bcf" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>50.751097166175235</Data>
+            <Data>-42.015388508345374</Data>
+            <Data>-4.1285850329586538E-06</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="ffa2611f-4b44-4c6e-82f8-58d9b6504bfc" />
+          <Curve2Key data="ff2de052-cc2e-4803-a37e-d37673f35350" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>79.717529153378251</Data>
+            <Data>-56.140221072885495</Data>
+            <Data>1.7414580383956491E-05</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="ffa2611f-4b44-4c6e-82f8-58d9b6504bfc" />
+          <Curve2Key data="bed44589-1b31-4538-817d-c02f9d36a28c" />
+        </NurbsCurveCompositeJoin>
+      </Components>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="29c383d4-9c83-4042-8b43-f884200815f0" />
+      <LayerKey data="26626d10-c7e9-4810-8db8-e1e02b296cfb" />
+      <Name>Block Inset Curves</Name>
+      <IsVisible>false</IsVisible>
+      <Objects data="83751b55-d04c-452e-9bf5-43ee117ebb30" />
+      <Objects data="cd404edb-ffd6-4c5e-8255-4f4116fe8bcf" />
+      <Objects data="e49e98ee-b7c9-41b0-8363-7039b062adf9" />
+      <Objects data="7e18e3f6-7588-4827-97e9-e6b174730e7c" />
+      <Objects data="ffa2611f-4b44-4c6e-82f8-58d9b6504bfc" />
+      <Objects data="a99bccd1-e798-479e-849c-e314836930b4" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="20eb463a-0f63-425f-923a-c4b2ec07bf72" />
+      <LayerKey data="90582774-c0e8-4317-8809-240e08c23ca0" />
+      <Name>Top clamp hole</Name>
+      <IsVisible>true</IsVisible>
+      <Disc>
+        <Centre>
+          <Data>125.3456334905802</Data>
+          <Data>18.829114851938847</Data>
+          <Data>-5.0034588809921843E-06</Data>
+        </Centre>
+        <Normal>
+          <Data>0</Data>
+          <Data>0</Data>
+          <Data>1</Data>
+        </Normal>
+        <Radius>15</Radius>
+      </Disc>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="a337aea7-020c-4fb2-ae3a-7d06e337a3f7" />
+      <LayerKey data="90582774-c0e8-4317-8809-240e08c23ca0" />
+      <Name>Bottom clamp hole</Name>
+      <IsVisible>true</IsVisible>
+      <Disc>
+        <Centre>
+          <Data>-130.08559569625598</Data>
+          <Data>19.35581386488002</Data>
+          <Data>9.65498497862427E-06</Data>
+        </Centre>
+        <Normal>
+          <Data>0</Data>
+          <Data>0</Data>
+          <Data>1</Data>
+        </Normal>
+        <Radius>15</Radius>
+      </Disc>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="a695e456-9a46-4fbe-9609-c987f255e2ed" />
+      <LayerKey data="90582774-c0e8-4317-8809-240e08c23ca0" />
+      <Name>C-Bout Bass clamp hole</Name>
+      <IsVisible>true</IsVisible>
+      <Disc>
+        <Centre>
+          <Data>9.7432527364221428</Data>
+          <Data>-6.1885918608815622</Data>
+          <Data>6.1001986182418477E-06</Data>
+        </Centre>
+        <Normal>
+          <Data>0</Data>
+          <Data>0</Data>
+          <Data>1</Data>
+        </Normal>
+        <Radius>15</Radius>
+      </Disc>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="98e51700-8d31-44ec-bd29-bf9a7a5ab255" />
+      <LayerKey data="90582774-c0e8-4317-8809-240e08c23ca0" />
+      <Name>C-Bout Treb clamp hole</Name>
+      <IsVisible>true</IsVisible>
+      <Disc>
+        <Centre>
+          <Data>10.006585762296819</Data>
+          <Data>42.266765376272417</Data>
+          <Data>1.4392229417126146E-05</Data>
+        </Centre>
+        <Normal>
+          <Data>0</Data>
+          <Data>0</Data>
+          <Data>1</Data>
+        </Normal>
+        <Radius>15</Radius>
+      </Disc>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="d8b87fe5-8451-45cd-a25f-e320db730602" />
+      <LayerKey data="90582774-c0e8-4317-8809-240e08c23ca0" />
+      <Name>L-Bout Treb clamp hole</Name>
+      <IsVisible>true</IsVisible>
+      <Disc>
+        <Centre>
+          <Data>-49.76958770044785</Data>
+          <Data>65.177723815207187</Data>
+          <Data>4.8586343837087043E-07</Data>
+        </Centre>
+        <Normal>
+          <Data>0</Data>
+          <Data>0</Data>
+          <Data>1</Data>
+        </Normal>
+        <Radius>15</Radius>
+      </Disc>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="abe6d4b4-e6c1-47b0-a4fe-2f4c65f27792" />
+      <LayerKey data="90582774-c0e8-4317-8809-240e08c23ca0" />
+      <Name>L-Bout Bass clamp hole</Name>
+      <IsVisible>true</IsVisible>
+      <Disc>
+        <Centre>
+          <Data>-49.769591694815652</Data>
+          <Data>-26.202759183051736</Data>
+          <Data>2.6153328491318462E-05</Data>
+        </Centre>
+        <Normal>
+          <Data>0</Data>
+          <Data>0</Data>
+          <Data>1</Data>
+        </Normal>
+        <Radius>15</Radius>
+      </Disc>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="bb2791c8-2157-45f0-9bb1-44d25846581e" />
+      <LayerKey data="90582774-c0e8-4317-8809-240e08c23ca0" />
+      <Name>U-Bout Bass clamp hole</Name>
+      <IsVisible>true</IsVisible>
+      <Disc>
+        <Centre>
+          <Data>64.779462842376333</Data>
+          <Data>-17.249056200721348</Data>
+          <Data>1.4735385718722682E-05</Data>
+        </Centre>
+        <Normal>
+          <Data>0</Data>
+          <Data>0</Data>
+          <Data>1</Data>
+        </Normal>
+        <Radius>15</Radius>
+      </Disc>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="e0b290b2-58bc-44a1-9a08-3324e18293e4" />
+      <LayerKey data="90582774-c0e8-4317-8809-240e08c23ca0" />
+      <Name>U-Bout Treb clamp hole</Name>
+      <IsVisible>true</IsVisible>
+      <Disc>
+        <Centre>
+          <Data>65.306127835100185</Data>
+          <Data>55.433978837885263</Data>
+          <Data>8.5397979603385465E-06</Data>
+        </Centre>
+        <Normal>
+          <Data>0</Data>
+          <Data>0</Data>
+          <Data>1</Data>
+        </Normal>
+        <Radius>15</Radius>
+      </Disc>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="90582774-c0e8-4317-8809-240e08c23ca0" />
+      <LayerKey data="26626d10-c7e9-4810-8db8-e1e02b296cfb" />
+      <Name>Mould Outlines</Name>
+      <IsVisible>true</IsVisible>
+      <Objects data="a337aea7-020c-4fb2-ae3a-7d06e337a3f7" />
+      <Objects data="a695e456-9a46-4fbe-9609-c987f255e2ed" />
+      <Objects data="98e51700-8d31-44ec-bd29-bf9a7a5ab255" />
+      <Objects data="abe6d4b4-e6c1-47b0-a4fe-2f4c65f27792" />
+      <Objects data="d8b87fe5-8451-45cd-a25f-e320db730602" />
+      <Objects data="0a9d2c7b-20b2-4aed-b099-0ac52728733a" />
+      <Objects data="20eb463a-0f63-425f-923a-c4b2ec07bf72" />
+      <Objects data="bb2791c8-2157-45f0-9bb1-44d25846581e" />
+      <Objects data="e0b290b2-58bc-44a1-9a08-3324e18293e4" />
+      <Objects data="286f7fc3-6daf-4e47-8981-eac266517ed1" />
+      <Objects data="2ffe21b5-946f-40d5-b620-fd4674484aff" />
+      <Objects data="a3357466-4c41-436f-aaf0-1340fdc49e98" />
+      <Objects data="8e68beee-24a5-448b-8a5c-77da49901cf3" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="286f7fc3-6daf-4e47-8981-eac266517ed1" />
+      <LayerKey data="90582774-c0e8-4317-8809-240e08c23ca0" />
+      <Name>L-Bout Locator Hole (dia 8mm)</Name>
+      <IsVisible>false</IsVisible>
+      <Disc>
+        <Centre>
+          <Data>-139.82884925138833</Data>
+          <Data>49.903755746821361</Data>
+          <Data>2.2159243826536112E-05</Data>
+        </Centre>
+        <Normal>
+          <Data>0</Data>
+          <Data>0</Data>
+          <Data>1</Data>
+        </Normal>
+        <Radius>4</Radius>
+      </Disc>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="2ffe21b5-946f-40d5-b620-fd4674484aff" />
+      <LayerKey data="90582774-c0e8-4317-8809-240e08c23ca0" />
+      <Name>U-Bout Locator Hole (dia 8mm)</Name>
+      <IsVisible>false</IsVisible>
+      <Disc>
+        <Centre>
+          <Data>130.08559611065724</Data>
+          <Data>-9.8754181605409457</Data>
+          <Data>1.5183154715714409E-05</Data>
+        </Centre>
+        <Normal>
+          <Data>0</Data>
+          <Data>0</Data>
+          <Data>1</Data>
+        </Normal>
+        <Radius>4</Radius>
+      </Disc>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="MouldEdgeSpecification" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="2fe47a8d-1d54-4a36-9f88-254cad27108d" />
+      <LayerKey data="48fc894e-fcd3-4b59-a06d-433f6bc169be" />
+      <Name>MouldEdgeSpecification1</Name>
+      <IsVisible>true</IsVisible>
+      <ReferencePlaneKey data="d8f3242d-ce5b-4b82-81ad-a5586327fe11" />
+      <BoundaryPolygonKey>
+        <UniqueKey data="0a9d2c7b-20b2-4aed-b099-0ac52728733a" />
+        <UniqueKey data="20eb463a-0f63-425f-923a-c4b2ec07bf72" />
+        <UniqueKey data="a337aea7-020c-4fb2-ae3a-7d06e337a3f7" />
+        <UniqueKey data="a695e456-9a46-4fbe-9609-c987f255e2ed" />
+        <UniqueKey data="98e51700-8d31-44ec-bd29-bf9a7a5ab255" />
+        <UniqueKey data="d8b87fe5-8451-45cd-a25f-e320db730602" />
+        <UniqueKey data="abe6d4b4-e6c1-47b0-a4fe-2f4c65f27792" />
+        <UniqueKey data="bb2791c8-2157-45f0-9bb1-44d25846581e" />
+        <UniqueKey data="e0b290b2-58bc-44a1-9a08-3324e18293e4" />
+        <UniqueKey data="a3357466-4c41-436f-aaf0-1340fdc49e98" />
+        <UniqueKey data="8e68beee-24a5-448b-8a5c-77da49901cf3" />
+      </BoundaryPolygonKey>
+      <TopHeight>20</TopHeight>
+      <BottomHeight>0</BottomHeight>
+      <MaximumCutDepth>5</MaximumCutDepth>
+      <CutHeights>
+        <double>8.5</double>
+        <double>7.5</double>
+        <double>5</double>
+        <double>2.5</double>
+        <double>-1</double>
+      </CutHeights>
+      <SafeHeight>50</SafeHeight>
+      <SpindleState>OnClockwise</SpindleState>
+      <SpindleSpeed>22000</SpindleSpeed>
+      <CuttingHorizontalFeedRate>1000</CuttingHorizontalFeedRate>
+      <CuttingVerticalFeedRate>500</CuttingVerticalFeedRate>
+      <FreeHorizontalFeedRate>3000</FreeHorizontalFeedRate>
+      <FreeVerticalFeedRate>1500</FreeVerticalFeedRate>
+      <Tool d3p1:type="EndMill">
+        <Diameter>5</Diameter>
+      </Tool>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="48fc894e-fcd3-4b59-a06d-433f6bc169be" />
+      <LayerKey data="26626d10-c7e9-4810-8db8-e1e02b296cfb" />
+      <Name>Toolpaths</Name>
+      <IsVisible>true</IsVisible>
+      <Objects data="2fe47a8d-1d54-4a36-9f88-254cad27108d" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="a3357466-4c41-436f-aaf0-1340fdc49e98" />
+      <LayerKey data="90582774-c0e8-4317-8809-240e08c23ca0" />
+      <Name>U-Bout Locator Hole (dia 6_1mm)</Name>
+      <IsVisible>true</IsVisible>
+      <Disc>
+        <Centre>
+          <Data>130.12777581867769</Data>
+          <Data>-9.9826618426290175</Data>
+          <Data>-7.4030927521562262E-07</Data>
+        </Centre>
+        <Normal>
+          <Data>0</Data>
+          <Data>0</Data>
+          <Data>1</Data>
+        </Normal>
+        <Radius>3.05</Radius>
+      </Disc>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="8e68beee-24a5-448b-8a5c-77da49901cf3" />
+      <LayerKey data="90582774-c0e8-4317-8809-240e08c23ca0" />
+      <Name>L-Bout Locator Hole (dia 6_1mm)</Name>
+      <IsVisible>true</IsVisible>
+      <Disc>
+        <Centre>
+          <Data>-139.8401383283281</Data>
+          <Data>50.093156475388675</Data>
+          <Data>-7.3255141614936292E-06</Data>
+        </Centre>
+        <Normal>
+          <Data>0</Data>
+          <Data>0</Data>
+          <Data>1</Data>
+        </Normal>
+        <Radius>3.05</Radius>
+      </Disc>
+    </GraphicObjectBase>
+  </Objects>
+  <Name>NewModel</Name>
+</GraphicModelStorage>

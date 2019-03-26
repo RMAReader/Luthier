@@ -430,6 +430,18 @@ namespace Luthier.Geometry.Nurbs
             knot = newKnot;
         }
 
+        public void ExtendFrontStraight()
+        {
+            Point3D newCv = 2 * GetCV<Point3D>(0) - GetCV<Point3D>(1);
+            ExtendFront(newCv.Data);
+        }
+
+        public void ExtendBackStraight()
+        {
+            Point3D newCv = 2 * GetCV<Point3D>(NumberOfPoints - 1) - GetCV<Point3D>(NumberOfPoints - 2);
+            ExtendBack(newCv.Data);
+        }
+
 
         public NurbsCurveNearestPointResult NearestSquaredDistance(PointCloud cloud, int numberOfFootPoints)
         {

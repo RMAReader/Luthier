@@ -66,6 +66,8 @@
     <Compile Include="CustomSettings\GraphicNurbsCurveAppearance.cs" />
     <Compile Include="CustomSettings\GraphicPlaneGridAppearence.cs" />
     <Compile Include="Extensions\ArrayExtensions.cs" />
+    <Compile Include="GraphicObjects\Events\ExportToolPathsToGCodeEventArgs.cs" />
+    <Compile Include="GraphicObjects\Events\GraphicNurbsCurveEditEventArgs.cs" />
     <Compile Include="GraphicObjects\GraphicDisc.cs" />
     <Compile Include="GraphicObjects\GraphicNurbsCurveComposite.cs" />
     <Compile Include="GraphicObjects\GraphicPointCloud.cs" />

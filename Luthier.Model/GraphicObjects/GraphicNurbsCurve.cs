@@ -54,7 +54,7 @@ namespace Luthier.Model.GraphicObjects
         public void GetVertexAndIndexListsForCurve(ref List<StaticColouredVertex> vertices, ref List<int> indices, SharpDX.Vector4 color, double from, double to)
         {
             int numberOfLineSegments = 1000;
-            if (Curve.NumberOfPoints > 2)
+            if (Curve.NumberOfPoints >= Curve._order)
             {
                 var points = Curve.ToLines(numberOfLineSegments, from, to);
                 int startIndex = vertices.Count;

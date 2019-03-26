@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Luthier.Geometry;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,26 +13,47 @@ namespace Luthier.Model.UIForms
 {
     public partial class DiscDialog : Form
     {
-        public double Radius { get; set; }
+        public Disc Disc { get; set; }
 
-        public DiscDialog(double radius)
+
+        public DiscDialog(Disc disc)
         {
             InitializeComponent();
 
-            Radius = radius;
-            radiusTextBox.Text = $"{Radius:F3}";
+            Disc = new Disc
+            {
+                Radius = disc.Radius,
+                Centre = disc.Centre,
+                Normal = disc.Normal
+            };
+
+            UpdateTextBoxes();
         }
 
         private void confirmValueButton_Click(object sender, EventArgs e)
         {
-            if (Double.TryParse(radiusTextBox.Text, out double r))
+            if (Double.TryParse(radiusTextBox.Text, out double r)
+                && Double.TryParse(xCoordTextBox.Text, out double x)
+                && Double.TryParse(yCoordTextBox.Text, out double y)
+                && Double.TryParse(zCoordTextBox.Text, out double z))
             {
-                Radius = r;
+                Disc.Radius = r;
+                Disc.Centre.X = x;
+                Disc.Centre.Y = y;
+                Disc.Centre.Z = z;
             }
             else
             {
-                radiusTextBox.Text = $"{Radius:F3}";
+                UpdateTextBoxes();
             }
+        }
+
+        private void UpdateTextBoxes()
+        {
+            radiusTextBox.Text = $"{Disc.Radius:F3}";
+            xCoordTextBox.Text = $"{Disc.Centre.X:F3}";
+            yCoordTextBox.Text = $"{Disc.Centre.Y:F3}";
+            zCoordTextBox.Text = $"{Disc.Centre.Z:F3}";
         }
     }
 }

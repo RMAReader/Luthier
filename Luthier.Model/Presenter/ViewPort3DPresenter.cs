@@ -12,6 +12,7 @@ using Luthier.Model.GraphicObjects;
 using System.Linq;
 using Luthier.Model.ToolPathSpecification;
 using System.IO;
+using Luthier.Model.GraphicObjects.Events;
 
 namespace Luthier.Model.Presenter
 {
@@ -81,7 +82,7 @@ namespace Luthier.Model.Presenter
             form.DoCompositeCurveToolStripMenuItem_Click = DoCompositeCurveToolStripMenuItem_Click;
             form.DoMouldOutlineToolStripMenuItem_Click = DoMouldOutlineToolStripMenuItem_Click;
             form.DoRecalculateAllToolStripMenuItem_Click = DoRecalculateAllToolStripMenuItem_Click;
-            form.DoExportGcodeToolStripMenuItem_Click = DoExportGcodeToolStripMenuItem_Click;
+            form.DoExportGcodeToolStripMenuItem_Click = DoExportAllGcodeToolStripMenuItem_Click;
 
             _camera.ViewWidth = form.ClientSize.Width;
             _camera.ViewHeight = form.ClientSize.Height;
@@ -414,7 +415,7 @@ namespace Luthier.Model.Presenter
             }
         }
 
-        private void DoExportGcodeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DoExportAllGcodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (FolderBrowserDialog chooseFolderDialog = new FolderBrowserDialog())
             {
@@ -426,12 +427,43 @@ namespace Luthier.Model.Presenter
                     {
                         var path = $"{chooseFolderDialog.SelectedPath}\\{toolPath.Name}_{toolPath.Key}.txt";
 
-                        File.WriteAllText(path, toolPath.ToolPath.ToGCode());
+                        if(path != null)
+                            File.WriteAllText(path, toolPath.ToolPath.ToGCode());
                     }
                 }
             }
         }
 
+        public void DoExportChosenGcodeToolStripMenuItem_Click(object sender, ExportToolPathsToGCodeEventArgs e)
+        {
+            using (FolderBrowserDialog chooseFolderDialog = new FolderBrowserDialog())
+            {
+                chooseFolderDialog.ShowNewFolderButton = true;
+
+                if (chooseFolderDialog.ShowDialog() == DialogResult.OK)
+                {
+                    foreach (ToolPathSpecificationBase toolPath in e.ToolPaths)
+                    {
+                        var path = $"{chooseFolderDialog.SelectedPath}\\{toolPath.Name}_{toolPath.Key}.txt";
+
+                        if (path != null)
+                            File.WriteAllText(path, toolPath.ToolPath.ToGCode());
+                    }
+                }
+            }
+        }
+
+        public void DoExtendFrontToolStripMenuItem_Click(object sender, GraphicNurbsCurveEditEventArgs e)
+        {
+            e.Curve.Curve.ExtendFrontStraight();
+            model.Model.HasChanged = true;
+        }
+
+        public void DoExtendBackToolStripMenuItem_Click(object sender, GraphicNurbsCurveEditEventArgs e)
+        {
+            e.Curve.Curve.ExtendBackStraight();
+            model.Model.HasChanged = true;
+        }
 
 
         public void ShowRenderForm()

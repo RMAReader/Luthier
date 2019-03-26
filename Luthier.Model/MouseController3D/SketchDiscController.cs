@@ -39,13 +39,13 @@ namespace Luthier.Model.MouseController3D
 
                     if (_disc != null)
                     {
-                        var dialog = new DiscDialog(_disc.Disc.Radius);
+                        var dialog = new DiscDialog(_disc.Disc);
                         dialog.StartPosition = FormStartPosition.Manual;
                         dialog.Location = new System.Drawing.Point(e.X, e.Y);
                         dialog.ShowDialog();
                         if (dialog.DialogResult == DialogResult.OK)
                         {
-                            _disc.Disc.Radius = dialog.Radius;
+                            _disc.Disc = dialog.Disc.DeepCopy();
                             _disc = null;
                         }
                     }

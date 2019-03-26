@@ -34,13 +34,16 @@
             this.newLayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemNewLayerSeparater = new System.Windows.Forms.ToolStripSeparator();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemEditSeparater = new System.Windows.Forms.ToolStripSeparator();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.insertKnotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dragControlPointsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.parallelToPlaneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.normalToPlaneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.extendFrontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.extendBackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemEditSeparater = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToGcodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,9 +77,10 @@
             this.editToolStripMenuItem,
             this.toolStripMenuItemEditSeparater,
             this.deleteToolStripMenuItem,
-            this.renameToolStripMenuItem});
+            this.renameToolStripMenuItem,
+            this.exportToGcodeToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 126);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 148);
             // 
             // newLayerToolStripMenuItem
             // 
@@ -94,11 +98,57 @@
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.insertKnotToolStripMenuItem,
-            this.dragControlPointsToolStripMenuItem});
+            this.dragControlPointsToolStripMenuItem,
+            this.extendFrontToolStripMenuItem,
+            this.extendBackToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // insertKnotToolStripMenuItem
+            // 
+            this.insertKnotToolStripMenuItem.Name = "insertKnotToolStripMenuItem";
+            this.insertKnotToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.insertKnotToolStripMenuItem.Text = "Insert Knot";
+            this.insertKnotToolStripMenuItem.Click += new System.EventHandler(this.insertKnotToolStripMenuItem_Click);
+            // 
+            // dragControlPointsToolStripMenuItem
+            // 
+            this.dragControlPointsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.parallelToPlaneToolStripMenuItem,
+            this.normalToPlaneToolStripMenuItem});
+            this.dragControlPointsToolStripMenuItem.Name = "dragControlPointsToolStripMenuItem";
+            this.dragControlPointsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.dragControlPointsToolStripMenuItem.Text = "Drag control points";
+            // 
+            // parallelToPlaneToolStripMenuItem
+            // 
+            this.parallelToPlaneToolStripMenuItem.Name = "parallelToPlaneToolStripMenuItem";
+            this.parallelToPlaneToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.parallelToPlaneToolStripMenuItem.Text = "Parallel to plane";
+            this.parallelToPlaneToolStripMenuItem.Click += new System.EventHandler(this.parallelToPlaneToolStripMenuItem_Click);
+            // 
+            // normalToPlaneToolStripMenuItem
+            // 
+            this.normalToPlaneToolStripMenuItem.Name = "normalToPlaneToolStripMenuItem";
+            this.normalToPlaneToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.normalToPlaneToolStripMenuItem.Text = "Normal to plane";
+            this.normalToPlaneToolStripMenuItem.Click += new System.EventHandler(this.normalToPlaneToolStripMenuItem_Click);
+            // 
+            // extendFrontToolStripMenuItem
+            // 
+            this.extendFrontToolStripMenuItem.Name = "extendFrontToolStripMenuItem";
+            this.extendFrontToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.extendFrontToolStripMenuItem.Text = "Extend front";
+            this.extendFrontToolStripMenuItem.Click += new System.EventHandler(this.extendFrontToolStripMenuItem_Click);
+            // 
+            // extendBackToolStripMenuItem
+            // 
+            this.extendBackToolStripMenuItem.Name = "extendBackToolStripMenuItem";
+            this.extendBackToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.extendBackToolStripMenuItem.Text = "Extend back";
+            this.extendBackToolStripMenuItem.Click += new System.EventHandler(this.extendBackToolStripMenuItem_Click);
             // 
             // toolStripMenuItemEditSeparater
             // 
@@ -119,35 +169,12 @@
             this.renameToolStripMenuItem.Text = "Rename";
             this.renameToolStripMenuItem.Click += new System.EventHandler(this.renameToolStripMenuItem_Click);
             // 
-            // insertKnotToolStripMenuItem
+            // exportToGcodeToolStripMenuItem
             // 
-            this.insertKnotToolStripMenuItem.Name = "insertKnotToolStripMenuItem";
-            this.insertKnotToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.insertKnotToolStripMenuItem.Text = "Insert Knot";
-            this.insertKnotToolStripMenuItem.Click += new System.EventHandler(this.insertKnotToolStripMenuItem_Click);
-            // 
-            // dragControlPointsToolStripMenuItem
-            // 
-            this.dragControlPointsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.parallelToPlaneToolStripMenuItem,
-            this.normalToPlaneToolStripMenuItem});
-            this.dragControlPointsToolStripMenuItem.Name = "dragControlPointsToolStripMenuItem";
-            this.dragControlPointsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.dragControlPointsToolStripMenuItem.Text = "Drag control points";
-            // 
-            // parallelToPlaneToolStripMenuItem
-            // 
-            this.parallelToPlaneToolStripMenuItem.Name = "parallelToPlaneToolStripMenuItem";
-            this.parallelToPlaneToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.parallelToPlaneToolStripMenuItem.Text = "Parallel to plane";
-            this.parallelToPlaneToolStripMenuItem.Click += new System.EventHandler(this.parallelToPlaneToolStripMenuItem_Click);
-            // 
-            // normalToPlaneToolStripMenuItem
-            // 
-            this.normalToPlaneToolStripMenuItem.Name = "normalToPlaneToolStripMenuItem";
-            this.normalToPlaneToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.normalToPlaneToolStripMenuItem.Text = "Normal to plane";
-            this.normalToPlaneToolStripMenuItem.Click += new System.EventHandler(this.normalToPlaneToolStripMenuItem_Click);
+            this.exportToGcodeToolStripMenuItem.Name = "exportToGcodeToolStripMenuItem";
+            this.exportToGcodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportToGcodeToolStripMenuItem.Text = "Export to gcode";
+            this.exportToGcodeToolStripMenuItem.Click += new System.EventHandler(this.exportToGcodeToolStripMenuItem_Click);
             // 
             // ObjectExplorerForm
             // 
@@ -177,5 +204,8 @@
         private System.Windows.Forms.ToolStripMenuItem dragControlPointsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem parallelToPlaneToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem normalToPlaneToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem extendFrontToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem extendBackToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportToGcodeToolStripMenuItem;
     }
 }
