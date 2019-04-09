@@ -59,6 +59,7 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.recalculateAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportGcodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.adjCurvatureCurveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -153,6 +154,7 @@
             this.surfaceToolStripMenuItem,
             this.insertImageToolStripMenuItem,
             this.offsetCurveToolStripMenuItem,
+            this.adjCurvatureCurveToolStripMenuItem,
             this.compositeCurveToolStripMenuItem});
             this.constructToolStripMenuItem.Name = "constructToolStripMenuItem";
             this.constructToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
@@ -161,35 +163,35 @@
             // planeToolStripMenuItem
             // 
             this.planeToolStripMenuItem.Name = "planeToolStripMenuItem";
-            this.planeToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.planeToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.planeToolStripMenuItem.Text = "Plane";
             this.planeToolStripMenuItem.Click += new System.EventHandler(this.planeToolStripMenuItem_Click);
             // 
             // surfaceToolStripMenuItem
             // 
             this.surfaceToolStripMenuItem.Name = "surfaceToolStripMenuItem";
-            this.surfaceToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.surfaceToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.surfaceToolStripMenuItem.Text = "Surface";
             this.surfaceToolStripMenuItem.Click += new System.EventHandler(this.surfaceToolStripMenuItem_Click);
             // 
             // insertImageToolStripMenuItem
             // 
             this.insertImageToolStripMenuItem.Name = "insertImageToolStripMenuItem";
-            this.insertImageToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.insertImageToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.insertImageToolStripMenuItem.Text = "Insert Image";
             this.insertImageToolStripMenuItem.Click += new System.EventHandler(this.insertImageToolStripMenuItem_Click);
             // 
             // offsetCurveToolStripMenuItem
             // 
             this.offsetCurveToolStripMenuItem.Name = "offsetCurveToolStripMenuItem";
-            this.offsetCurveToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.offsetCurveToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.offsetCurveToolStripMenuItem.Text = "Offset Curve";
             this.offsetCurveToolStripMenuItem.Click += new System.EventHandler(this.offsetCurveToolStripMenuItem_Click);
             // 
             // compositeCurveToolStripMenuItem
             // 
             this.compositeCurveToolStripMenuItem.Name = "compositeCurveToolStripMenuItem";
-            this.compositeCurveToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.compositeCurveToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.compositeCurveToolStripMenuItem.Text = "Composite Curve";
             this.compositeCurveToolStripMenuItem.Click += new System.EventHandler(this.compositeCurveToolStripMenuItem_Click);
             // 
@@ -285,28 +287,35 @@
             // newMouldOutlineToolStripMenuItem
             // 
             this.newMouldOutlineToolStripMenuItem.Name = "newMouldOutlineToolStripMenuItem";
-            this.newMouldOutlineToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newMouldOutlineToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.newMouldOutlineToolStripMenuItem.Text = "New mould outline";
             this.newMouldOutlineToolStripMenuItem.Click += new System.EventHandler(this.newMouldOutlineToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(173, 6);
             // 
             // recalculateAllToolStripMenuItem
             // 
             this.recalculateAllToolStripMenuItem.Name = "recalculateAllToolStripMenuItem";
-            this.recalculateAllToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.recalculateAllToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.recalculateAllToolStripMenuItem.Text = "Recalculate all";
             this.recalculateAllToolStripMenuItem.Click += new System.EventHandler(this.recalculateAllToolStripMenuItem_Click);
             // 
             // exportGcodeToolStripMenuItem
             // 
             this.exportGcodeToolStripMenuItem.Name = "exportGcodeToolStripMenuItem";
-            this.exportGcodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportGcodeToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.exportGcodeToolStripMenuItem.Text = "Export gcode";
             this.exportGcodeToolStripMenuItem.Click += new System.EventHandler(this.exportGcodeToolStripMenuItem_Click);
+            // 
+            // adjCurvatureCurveToolStripMenuItem
+            // 
+            this.adjCurvatureCurveToolStripMenuItem.Name = "adjCurvatureCurveToolStripMenuItem";
+            this.adjCurvatureCurveToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.adjCurvatureCurveToolStripMenuItem.Text = "Adj. Curvature Curve";
+            this.adjCurvatureCurveToolStripMenuItem.Click += new System.EventHandler(this.adjCurvatureCurveToolStripMenuItem_Click);
             // 
             // RenderForm3d
             // 
@@ -358,5 +367,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem recalculateAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportGcodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem adjCurvatureCurveToolStripMenuItem;
     }
 }

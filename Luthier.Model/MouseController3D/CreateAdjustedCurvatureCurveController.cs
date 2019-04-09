@@ -9,9 +9,10 @@ using Luthier.Geometry.Nurbs;
 using Luthier.Model.GraphicObjects;
 using Luthier.Model.Presenter;
 
+
 namespace Luthier.Model.MouseController3D
 {
-    public class CreateOffsetCurveController : IMouseController3D
+    public class CreateAdjustedCurvatureCurveController : IMouseController3D
     {
         protected IApplicationDocumentModel _model;
         protected Camera _camera;
@@ -23,7 +24,7 @@ namespace Luthier.Model.MouseController3D
         protected double[] startBiNormal;
         protected GraphicNurbsCurve startCurve;
         protected GraphicNurbsCurve offsetCurve;
-        protected double offsetDistance;
+        protected double curvaturePercentage;
 
         public GraphicPlane ReferencePlane { get; set; }
 
@@ -31,7 +32,7 @@ namespace Luthier.Model.MouseController3D
 
         public int Y { get; private set; }
 
-        public double? OffsetDistance => offsetCurve != null ? (double?)offsetDistance : null;
+        public double? OffsetDistance => offsetCurve != null ? (double?)curvaturePercentage : null;
 
         public void Bind(IApplicationDocumentModel model)
         {
@@ -46,17 +47,17 @@ namespace Luthier.Model.MouseController3D
 
         public void Close()
         {
-           
+
         }
 
         public void MouseClick(object sender, MouseEventArgs e)
         {
-       
+
         }
 
         public void MouseDoubleClick(object sender, MouseEventArgs e)
         {
-          
+
         }
 
         public void MouseDown(object sender, MouseEventArgs e)
@@ -84,17 +85,17 @@ namespace Luthier.Model.MouseController3D
                         }
                     }
 
-                    if(nearestCurve != null)
+                    if (nearestCurve != null)
                     {
                         startCurve = nearestCurve;
                         offsetCurve = new GraphicNurbsCurve(nearestCurve.Curve.DeepCopy());
                         startCv = nearestCurve.Curve.GetCV(nearestCvIx);
                         startBiNormal = GetBiNormalThroughCv(nearestCurve.Curve, nearestCvIx);
-                        offsetDistance = 0;
+                        curvaturePercentage = 0;
 
                         UpdateCurve();
                         _model.Model.Add(offsetCurve);
-                        _model.Model.HasChanged = true;                        
+                        _model.Model.HasChanged = true;
                     }
 
                     break;
@@ -121,7 +122,7 @@ namespace Luthier.Model.MouseController3D
                 var intersectPoint = dragPlane.GetPointOfIntersectionWorld(from, to);
 
                 //var offsetDistance = startCv.Subtract(intersectPoint).L2Norm();
-                offsetDistance = startBiNormal.DotProduct(startCv.Subtract(intersectPoint));
+                curvaturePercentage = startBiNormal.DotProduct(startCv.Subtract(intersectPoint));
 
                 UpdateCurve();
                 _model.Model.HasChanged = true;
@@ -131,40 +132,40 @@ namespace Luthier.Model.MouseController3D
 
         public void MouseUp(object sender, MouseEventArgs e)
         {
-           
+
         }
 
         public void MouseWheel(object sender, MouseEventArgs e)
         {
-           
+
         }
 
 
         private double[] GetBiNormalThroughCv(NurbsCurve curve, int i)
         {
             double[] result = null;
-            
-                if (i == 0)
-                {
-                    result = curve.GetCV(i + 1).Subtract(curve.GetCV(i)).VectorProduct(ReferencePlane._normal).Normalise();
 
-                }
-                else if (i == curve.NumberOfPoints - 1)
-                {
-                    result = curve.GetCV(i).Subtract(curve.GetCV(i - 1)).VectorProduct(ReferencePlane._normal).Normalise();
-                }
-                else
-                {
-                    var d0 = curve.GetCV(i + 1).Subtract(curve.GetCV(i)).VectorProduct(ReferencePlane._normal).Normalise();
-                    var d1 = curve.GetCV(i).Subtract(curve.GetCV(i - 1)).VectorProduct(ReferencePlane._normal).Normalise();
-                    result= d1.Add(d0).Normalise();
-                }
+            if (i == 0)
+            {
+                result = curve.GetCV(i + 1).Subtract(curve.GetCV(i)).VectorProduct(ReferencePlane._normal).Normalise();
+
+            }
+            else if (i == curve.NumberOfPoints - 1)
+            {
+                result = curve.GetCV(i).Subtract(curve.GetCV(i - 1)).VectorProduct(ReferencePlane._normal).Normalise();
+            }
+            else
+            {
+                var d0 = curve.GetCV(i + 1).Subtract(curve.GetCV(i)).VectorProduct(ReferencePlane._normal).Normalise();
+                var d1 = curve.GetCV(i).Subtract(curve.GetCV(i - 1)).VectorProduct(ReferencePlane._normal).Normalise();
+                result = d1.Add(d0).Normalise();
+            }
             return result;
         }
 
         private void UpdateCurve()
         {
-            offsetCurve.Curve = NurbsCurveBuilder.GetOffsetCurveInPlane(startCurve.Curve, ReferencePlane._unitU, ReferencePlane._unitV, ReferencePlane._normal, offsetDistance);
+            offsetCurve.Curve = NurbsCurveBuilder.GetAdjustedCurvatureCurveInPlane(startCurve.Curve, ReferencePlane._unitU, ReferencePlane._unitV, ReferencePlane._normal, curvaturePercentage / 100);
         }
     }
 }

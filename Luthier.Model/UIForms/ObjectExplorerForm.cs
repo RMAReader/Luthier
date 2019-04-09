@@ -325,6 +325,8 @@ namespace Luthier.Model.UIForms
                 this.deleteToolStripMenuItem.Visible = false;
                 this.renameToolStripMenuItem.Visible = true;
                 this.exportToGcodeToolStripMenuItem.Visible = false;
+                this.reverseToolStripMenuItem.Visible = false;
+                this.recalculateToolpathToolStripMenuItem.Visible = false;
             }
             else if (node.Tag is GraphicLayer)
             {
@@ -337,6 +339,8 @@ namespace Luthier.Model.UIForms
                 this.deleteToolStripMenuItem.Visible = true;
                 this.renameToolStripMenuItem.Visible = true;
                 this.exportToGcodeToolStripMenuItem.Visible = false;
+                this.reverseToolStripMenuItem.Visible = false;
+                this.recalculateToolpathToolStripMenuItem.Visible = false;
             }
             else if (node.Tag is GraphicNurbsSurface)
             {
@@ -350,19 +354,38 @@ namespace Luthier.Model.UIForms
                 this.deleteToolStripMenuItem.Visible = true;
                 this.renameToolStripMenuItem.Visible = true;
                 this.exportToGcodeToolStripMenuItem.Visible = false;
+                this.reverseToolStripMenuItem.Visible = false;
+                this.recalculateToolpathToolStripMenuItem.Visible = false;
+            }
+            else if (node.Tag is GraphicNurbsCurve)
+            {
+                this.newLayerToolStripMenuItem.Visible = false;
+                this.toolStripMenuItemNewLayerSeparater.Visible = false;
+
+                this.editToolStripMenuItem.Visible = true;
+                this.toolStripMenuItemEditSeparater.Visible = true;
+                this.insertKnotToolStripMenuItem.Visible = true;
+
+                this.deleteToolStripMenuItem.Visible = true;
+                this.renameToolStripMenuItem.Visible = true;
+                this.exportToGcodeToolStripMenuItem.Visible = false;
+                this.reverseToolStripMenuItem.Visible = true;
+                this.recalculateToolpathToolStripMenuItem.Visible = false;
             }
             else if (node.Tag is ToolPathSpecificationBase)
             {
                 this.newLayerToolStripMenuItem.Visible = false;
                 this.toolStripMenuItemNewLayerSeparater.Visible = false;
 
-                this.editToolStripMenuItem.Visible = false;
+                this.editToolStripMenuItem.Visible = true;
                 this.toolStripMenuItemEditSeparater.Visible = false;
                 this.insertKnotToolStripMenuItem.Visible = false;
 
                 this.deleteToolStripMenuItem.Visible = true;
                 this.renameToolStripMenuItem.Visible = true;
                 this.exportToGcodeToolStripMenuItem.Visible = true;
+                this.reverseToolStripMenuItem.Visible = false;
+                this.recalculateToolpathToolStripMenuItem.Visible = true;
             }
             else if (node.Tag is GraphicObjectBase)
             {
@@ -376,6 +399,7 @@ namespace Luthier.Model.UIForms
                 this.deleteToolStripMenuItem.Visible = true;
                 this.renameToolStripMenuItem.Visible = true;
                 this.exportToGcodeToolStripMenuItem.Visible = false;
+                this.recalculateToolpathToolStripMenuItem.Visible = false;
             }
         }
 
@@ -384,6 +408,13 @@ namespace Luthier.Model.UIForms
             if(mySelectedNode.Tag is GraphicImage3d)
             {
                 _presenter.SetMouseController(new EditImageController3d(mySelectedNode.Tag as GraphicImage3d));
+            }
+
+            var toolpath = mySelectedNode.Tag as MouldEdgeSpecification;
+            if (toolpath != null)
+            {
+                var form = new NewEdges2DToolPathForm(toolpath);
+                form.Show();
             }
         }
 
@@ -410,6 +441,7 @@ namespace Luthier.Model.UIForms
                 curve.DrawControlNet = true;
             }
             _presenter.DoDragParallelToPlaneToolStripMenuItem_Click(sender, e);
+            _model.Model.HasChanged = true;
         }
 
         private void normalToPlaneToolStripMenuItem_Click(object sender, EventArgs e)
@@ -425,6 +457,7 @@ namespace Luthier.Model.UIForms
                 curve.DrawControlNet = true;
             }
             _presenter.DoDragNormalToPlaneToolStripMenuItem_Click(sender, e);
+            _model.Model.HasChanged = true;
         }
 
         private void extendFrontToolStripMenuItem_Click(object sender, EventArgs e)
@@ -449,6 +482,17 @@ namespace Luthier.Model.UIForms
             }
         }
 
+        private void reverseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var curve = mySelectedNode.Tag as GraphicNurbsCurve;
+            if (curve != null)
+            {
+                var args = new GraphicNurbsCurveEditEventArgs { Curve = curve };
+
+                _presenter.DoReverseToolStripMenuItem_Click(sender, args);
+            }
+        }
+
         private void exportToGcodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var path = mySelectedNode.Tag as ToolPathSpecificationBase;
@@ -457,6 +501,17 @@ namespace Luthier.Model.UIForms
                 var args = new ExportToolPathsToGCodeEventArgs { ToolPaths = new List<ToolPathSpecificationBase> { path } };
 
                 _presenter.DoExportChosenGcodeToolStripMenuItem_Click(sender, args);
+            }
+        }
+
+        private void recalculateToolpathToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var path = mySelectedNode.Tag as ToolPathSpecificationBase;
+            if (path != null)
+            {
+                var args = new ExportToolPathsToGCodeEventArgs { ToolPaths = new List<ToolPathSpecificationBase> { path } };
+
+                _presenter.DoRecalculateToolpathToolStripMenuItem_Click(sender, args);
             }
         }
     }

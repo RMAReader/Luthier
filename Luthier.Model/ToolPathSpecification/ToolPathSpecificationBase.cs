@@ -14,29 +14,33 @@ namespace Luthier.Model.ToolPathSpecification
         GraphicObjectBase,
         IDrawableLines
     {
+
         public UniqueKey ReferencePlaneKey { get; set; }
 
-        private GraphicPlane _referencePlane;
-        [XmlIgnore] public GraphicPlane ReferencePlane
-        {
-            get
-            {
-                if (_referencePlane == null)
-                {
-                    //_referencePlane = Model[ReferencePlaneKey] as GraphicPlane;
+        public bool IsCutFromUnderneath { get; set; }
 
-                    //hardcode reference plane to map x => -x, y => y, z => z, which is required for coords to align properly with cnc machine
-                    //_referencePlane = GraphicPlane.CreateLeftHandedXY(new double[] { 0, 0, 0 });
-                    _referencePlane = new GraphicPlane
+        public GraphicPlane GetReferencePlane()
+        {
+                    if (IsCutFromUnderneath)
                     {
-                        _origin = new double[] { 0,0,0},
-                        _normal = new double[] { 0,0,1},
-                        _unitU = new double[] { 0, -1, 0 },
-                        _unitV = new double[] { -1, 0, 0 },
-                    };
-                }
-                return _referencePlane;
-            }
+                        return new GraphicPlane
+                        {
+                            _origin = new double[] { 0, 0, 0 },
+                            _normal = new double[] { 0, 0, -1 },
+                            _unitU = new double[] { 0, 1, 0 },
+                            _unitV = new double[] { -1, 0, 0 },
+                        };
+                    }
+                    else
+                    {
+                        return new GraphicPlane
+                        {
+                            _origin = new double[] { 0, 0, 0 },
+                            _normal = new double[] { 0, 0, 1 },
+                            _unitU = new double[] { 0, -1, 0 },
+                            _unitV = new double[] { -1, 0, 0 },
+                        };
+                    }
         }
 
 
@@ -61,6 +65,7 @@ namespace Luthier.Model.ToolPathSpecification
             if(IsVisible && ToolPath != null)
             {
                 var pathColour = new SharpDX.Vector4(1, 0, 0, 1);
+                var referencePlane = GetReferencePlane();
 
                 double? x = 0;
                 double? y = 0;
@@ -79,7 +84,7 @@ namespace Luthier.Model.ToolPathSpecification
 
                         if( x.HasValue && y.HasValue && z.HasValue )
                         {
-                            var p = ReferencePlane.MapPlaneToWorldCoordinates(new Geometry.Point3D(x.Value, y.Value, z.Value));
+                            var p = referencePlane.MapPlaneToWorldCoordinates(new Geometry.Point3D(x.Value, y.Value, z.Value));
 
                             vertices.Add(new StaticColouredVertex
                             {

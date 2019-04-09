@@ -13,6 +13,7 @@ using System.Linq;
 using Luthier.Model.ToolPathSpecification;
 using System.IO;
 using Luthier.Model.GraphicObjects.Events;
+using System.Collections.Generic;
 
 namespace Luthier.Model.Presenter
 {
@@ -78,11 +79,13 @@ namespace Luthier.Model.Presenter
             form.DoSurfaceDrawingStyleToolStripMenuItem_Click = DoSurfaceDrawingStyleToolStripMenuItem_Click;
             form.DoCreateJoiningSurfaceToolStripMenuItem_Click = DoCreateJoiningSurfaceToolStripMenuItem_Click;
             form.DoCreateOffsetCurveToolStripMenuItem_Click = DoCreateOffsetCurveToolStripMenuItem_Click;
+            form.DoCreateAdjCurvatureCurveToolStripMenuItem_Click = DoCreateAdjCurvatureCurveToolStripMenuItem_Click;
             form.DoDiscToolStripMenuItem_Click = DoDiscToolStripMenuItem_Click;
             form.DoCompositeCurveToolStripMenuItem_Click = DoCompositeCurveToolStripMenuItem_Click;
             form.DoMouldOutlineToolStripMenuItem_Click = DoMouldOutlineToolStripMenuItem_Click;
             form.DoRecalculateAllToolStripMenuItem_Click = DoRecalculateAllToolStripMenuItem_Click;
             form.DoExportGcodeToolStripMenuItem_Click = DoExportAllGcodeToolStripMenuItem_Click;
+            
 
             _camera.ViewWidth = form.ClientSize.Width;
             _camera.ViewHeight = form.ClientSize.Height;
@@ -376,6 +379,20 @@ namespace Luthier.Model.Presenter
             }
         }
 
+        private void DoCreateAdjCurvatureCurveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_selectPlaneController.Plane != null)
+            {
+                var controller = new CreateAdjustedCurvatureCurveController();
+                controller.ReferencePlane = _selectPlaneController.Plane;
+                SetMouseController(controller);
+            }
+            else
+            {
+                MessageBox.Show("Must set reference plane before creating adjusted curvature curve.");
+            }
+        }
+
         private void DoCompositeCurveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (_selectPlaneController.Plane != null)
@@ -394,9 +411,33 @@ namespace Luthier.Model.Presenter
         {
             if (_selectPlaneController.Plane != null)
             {
-                var controller = new SelectToolPathBoundaryCurvesController();
-                controller.ReferencePlane = _selectPlaneController.Plane;
-                SetMouseController(controller);
+                var mouldOutline = new MouldEdgeSpecification
+                {
+                    ReferencePlaneKey = _selectPlaneController.Plane.Key,
+                    BoundaryPolygonKey = new List<UniqueKey>(),
+                    SafeHeight = 20,
+                    TopHeight = 20,
+                    BottomHeight = 0,
+                    MaximumCutDepth = 5,
+                    CutHeights = new List<double> { -4, -8, -12, -16, -20, },
+                    SpindleState = CncOperation.EnumSpindleState.OnClockwise,
+                    SpindleSpeed = 22000,
+                    CuttingHorizontalFeedRate = 500,
+                    CuttingVerticalFeedRate = 500,
+                    FreeHorizontalFeedRate = 3000,
+                    FreeVerticalFeedRate = 1500,
+                    Tool = new CncTool.EndMill { Diameter = 5.40 },
+                    IsInsideCut = true,
+                    IsCutFromUnderneath = true,
+                };
+
+                var form = new NewEdges2DToolPathForm(mouldOutline);
+                model.Model.Add(mouldOutline);
+                form.Show();
+
+                //var controller = new SelectToolPathBoundaryCurvesController();
+                //controller.ReferencePlane = _selectPlaneController.Plane;
+                //SetMouseController(controller);
             }
             else
             {
@@ -411,6 +452,17 @@ namespace Luthier.Model.Presenter
                 toolPath.Calculate();
 
                 if(toolPath.IsVisible)
+                    model.Model.HasChanged = true;
+            }
+        }
+
+        public void DoRecalculateToolpathToolStripMenuItem_Click(object sender, ExportToolPathsToGCodeEventArgs e)
+        {
+            foreach (ToolPathSpecificationBase toolPath in e.ToolPaths)
+            {
+                toolPath.Calculate();
+
+                if (toolPath.IsVisible)
                     model.Model.HasChanged = true;
             }
         }
@@ -455,16 +507,24 @@ namespace Luthier.Model.Presenter
 
         public void DoExtendFrontToolStripMenuItem_Click(object sender, GraphicNurbsCurveEditEventArgs e)
         {
-            e.Curve.Curve.ExtendFrontStraight();
+            //e.Curve.Curve.ExtendFrontStraight();
+            e.Curve.Curve.ExtendFrontConstantCurvature();
             model.Model.HasChanged = true;
         }
 
         public void DoExtendBackToolStripMenuItem_Click(object sender, GraphicNurbsCurveEditEventArgs e)
         {
-            e.Curve.Curve.ExtendBackStraight();
+            //e.Curve.Curve.ExtendBackStraight();
+            e.Curve.Curve.ExtendBackConstantCurvature();
             model.Model.HasChanged = true;
         }
 
+
+        public void DoReverseToolStripMenuItem_Click(object sender, GraphicNurbsCurveEditEventArgs e)
+        {
+            e.Curve.Curve = e.Curve.Curve.Reverse();
+            model.Model.HasChanged = true;
+        }
 
         public void ShowRenderForm()
         {

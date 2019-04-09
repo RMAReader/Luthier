@@ -33,6 +33,7 @@ namespace Luthier.Model.UIForms
         public EventHandler DoMouldOutlineToolStripMenuItem_Click;
         public EventHandler DoRecalculateAllToolStripMenuItem_Click;
         public EventHandler DoExportGcodeToolStripMenuItem_Click;
+        public EventHandler DoCreateAdjCurvatureCurveToolStripMenuItem_Click;
 
         private void curveDegree2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -124,6 +125,11 @@ namespace Luthier.Model.UIForms
             DoCreateOffsetCurveToolStripMenuItem_Click(sender, e);
         }
 
+        private void adjCurvatureCurveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DoCreateAdjCurvatureCurveToolStripMenuItem_Click(sender, e);
+        }
+
         private void curveDegree1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DoCurveDegree1ToolStripItem_Click(sender, e);
@@ -153,5 +159,7 @@ namespace Luthier.Model.UIForms
         {
             DoExportGcodeToolStripMenuItem_Click(sender, e);
         }
+
+      
     }
 }

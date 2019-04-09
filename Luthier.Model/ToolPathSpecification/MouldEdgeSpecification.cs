@@ -26,6 +26,8 @@ namespace Luthier.Model.ToolPathSpecification
         public int FreeHorizontalFeedRate { get; set; }
         public int FreeVerticalFeedRate { get; set; }
         public BaseTool Tool { get; set; }
+        public bool IsInsideCut { get; set; }
+        public int NumberOfCopies { get; set; }
 
         public override void Calculate()
         {
@@ -35,7 +37,7 @@ namespace Luthier.Model.ToolPathSpecification
 
             var cutHeights = (CutHeights != null) ? CutHeights : GetCutHeights();
 
-            var translations = GetTranslations(boundary, 4);//new List<Point2D> { new Point2D(0, 0) };//
+            var translations = (NumberOfCopies < 2) ? new List<Point2D> { new Point2D(0, 0) } : GetTranslations(boundary, NumberOfCopies);
 
             path.SetAbsolutePositioning();
             path.SetSpindleState(SpindleState);
@@ -113,15 +115,16 @@ namespace Luthier.Model.ToolPathSpecification
 
         private List<Polygon2D> GetOffsetBoundaries()
         {
-            
+
             //1. get polygons
+            var referencePlane = GetReferencePlane();
             var polygonList = new List<Polygon2D>();
             foreach (var key in BoundaryPolygonKey)
             {
                 var curve = Model[key] as IPolygon2D;
                 if (curve != null)
                 {
-                    var poly2D = curve.ToPolygon2D(ReferencePlane);
+                    var poly2D = curve.ToPolygon2D(referencePlane);
                     poly2D.RemoveRedundantPoints(maxDistance: 0.005, minAngle: Math.PI * 0.95);
                     polygonList.Add(poly2D);
                 }
@@ -141,7 +144,7 @@ namespace Luthier.Model.ToolPathSpecification
                 }
             }
 
-            List<Polygon2D> boundary = GetOffsetPolygons(polygonList, Tool.Diameter * 0.5);
+            List<Polygon2D> boundary = GetOffsetPolygons(polygonList, Tool.Diameter * 0.5, IsInsideCut);
 
             //clean up final polygons
             foreach (var polygon in boundary)
@@ -164,9 +167,10 @@ namespace Luthier.Model.ToolPathSpecification
         }
     
  
-        private List<Polygon2D> GetOffsetPolygons(List<Polygon2D> polygons, double offset)
+        private List<Polygon2D> GetOffsetPolygons(List<Polygon2D> polygons, double offset, bool isInsideCut)
         {
-            return ClipperWrapper.OffsetPolygons(polygons, Tool.Diameter * 0.5);
+            int sign = isInsideCut ? -1 : 1;
+            return ClipperWrapper.OffsetPolygons(polygons, offset * sign);
         }
 
 

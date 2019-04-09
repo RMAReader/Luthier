@@ -442,6 +442,30 @@ namespace Luthier.Geometry.Nurbs
             ExtendBack(newCv.Data);
         }
 
+        public void ExtendFrontConstantCurvature()
+        {
+            var p0 = new Point2D(GetCV(2));
+            var p1 = new Point2D(GetCV(1));
+            var p2 = new Point2D(GetCV(0));
+
+            var r2 = Luthier.Geometry.Algorithm.GetNextPoint(p0, p1, p2, p1, p2, 1.0);
+
+            Point3D newCv = new Point3D(r2.X, r2.Y, GetCV(0)[2]);
+            ExtendFront(newCv.Data);
+        }
+
+        public void ExtendBackConstantCurvature()
+        {
+            var p0 = new Point2D(GetCV(NumberOfPoints - 3));
+            var p1 = new Point2D(GetCV(NumberOfPoints - 2));
+            var p2 = new Point2D(GetCV(NumberOfPoints - 1));
+
+            var r2 = Luthier.Geometry.Algorithm.GetNextPoint(p0, p1, p2, p1, p2, 1.0);
+
+            Point3D newCv = new Point3D(r2.X, r2.Y, GetCV(NumberOfPoints - 1)[2]);
+            ExtendBack(newCv.Data);
+        }
+
 
         public NurbsCurveNearestPointResult NearestSquaredDistance(PointCloud cloud, int numberOfFootPoints)
         {
@@ -682,6 +706,28 @@ namespace Luthier.Geometry.Nurbs
         {
             var result = DeepCopy();
             result.ControlPoints = ControlPoints.Apply(function);
+            return result;
+        }
+
+        public NurbsCurve Reverse()
+        {
+            var result = DeepCopy();
+
+            //result.knot = knot.Reverse().ToArray();
+
+            for(int i = 1; i < knot.Length; i++)
+            {
+                int j = knot.Length - 1 - i;
+
+                result.knot[i] = result.knot[i - 1] + knot[j + 1] - knot[j];
+            }
+            result.knot = Knot.Normalise(result.knot, result._order - 1);
+
+            for (int i = 0; i < NumberOfPoints; i++)
+            {
+                result.SetCV(i, GetCV(NumberOfPoints - 1 - i));
+            }
+
             return result;
         }
     }

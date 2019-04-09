@@ -116,6 +116,50 @@ namespace Luthier.Geometry
             return (n1[0] * t2[0] + n1[1] * t2[1] > 0);
         }
 
+        public static List<Point2D> AdjustedCurvaturePath(List<double[]> path, double curvaturePercentage)
+        {
+            if (path.Count < 3) return path.Select(x => new Point2D(x)).ToList();
+
+            var result = new List<Point2D>(path.Count);
+
+            result.Add(new Point2D(path[0]));
+            result.Add(new Point2D(path[1]));
+
+            for (int i = 2; i < path.Count; i++)
+            {
+                var p0 = new Point2D(path[i - 2]);
+                var p1 = new Point2D(path[i - 1]);
+                var p2 = new Point2D(path[i]);
+
+                var r0 = result[i - 2];
+                var r1 = result[i - 1];
+
+                var r2 = GetNextPoint(p0, p1, p2, r0, r1, curvaturePercentage);
+
+                result.Add(r2);
+            }
+
+            return result;
+        }
+
+        public static Point2D GetNextPoint(Point2D p0, Point2D p1, Point2D p2, Point2D r0, Point2D r1, double curvaturePercentage)
+        {
+            var pt = p1 - p0;
+            var pn = new Point2D(-pt.Y, pt.X);
+
+            var a = (p1 - p0).L2Norm();
+            var b = (p2 - p1).L2Norm();
+            var c = (p2 - p0).L2Norm();
+
+            var sign = Math.Sign(pn.Dot(p2 - p1));
+            double theta = (Math.PI - Math.Acos((a * a + b * b - c * c) / (2 * a * b))) * curvaturePercentage;
+
+            var rt = (r1 - r0).ToNormalised();
+            var rn = new Point2D(-rt.Y, rt.X);
+
+            return r1 + b * (rt * Math.Cos(theta) + rn * Math.Sin(theta) * sign);
+        }
+
         //public static List<List<Point2D>> SplitPathRemoveOverLaps(List<Point2D> polygon)
         //{
         //    for (int i = 0; i < polygon.Count; i++)

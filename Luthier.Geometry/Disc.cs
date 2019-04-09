@@ -24,11 +24,11 @@ namespace Luthier.Geometry
 
             //create orthonormal basis
             Point3D u, v;
-            if(Normal.X <= Normal.Y && Normal.X <= Normal.Z)
+            if(Math.Abs(Normal.X) <= Math.Abs(Normal.Y) && Math.Abs(Normal.X) <= Math.Abs(Normal.Z))
             {
                 u = new Point3D(0, -Normal.Z, Normal.Y).Normalise();
             }
-            else if (Normal.Y <= Normal.X && Normal.Y <= Normal.Z)
+            else if (Math.Abs(Normal.Y) <= Math.Abs(Normal.X) && Math.Abs(Normal.Y) <= Math.Abs(Normal.Z))
             {
                 u = new Point3D(-Normal.Z, 0, Normal.X).Normalise();
             }

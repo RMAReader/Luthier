@@ -40,10 +40,12 @@
             this.normalToPlaneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.extendFrontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.extendBackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reverseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemEditSeparater = new System.Windows.Forms.ToolStripSeparator();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToGcodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recalculateToolpathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,21 +80,22 @@
             this.toolStripMenuItemEditSeparater,
             this.deleteToolStripMenuItem,
             this.renameToolStripMenuItem,
-            this.exportToGcodeToolStripMenuItem});
+            this.exportToGcodeToolStripMenuItem,
+            this.recalculateToolpathToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 148);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(183, 170);
             // 
             // newLayerToolStripMenuItem
             // 
             this.newLayerToolStripMenuItem.Name = "newLayerToolStripMenuItem";
-            this.newLayerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newLayerToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.newLayerToolStripMenuItem.Text = "New Layer...";
             this.newLayerToolStripMenuItem.Click += new System.EventHandler(this.newLayerToolStripMenuItem_Click);
             // 
             // toolStripMenuItemNewLayerSeparater
             // 
             this.toolStripMenuItemNewLayerSeparater.Name = "toolStripMenuItemNewLayerSeparater";
-            this.toolStripMenuItemNewLayerSeparater.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItemNewLayerSeparater.Size = new System.Drawing.Size(179, 6);
             // 
             // editToolStripMenuItem
             // 
@@ -100,9 +103,10 @@
             this.insertKnotToolStripMenuItem,
             this.dragControlPointsToolStripMenuItem,
             this.extendFrontToolStripMenuItem,
-            this.extendBackToolStripMenuItem});
+            this.extendBackToolStripMenuItem,
+            this.reverseToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
@@ -150,31 +154,45 @@
             this.extendBackToolStripMenuItem.Text = "Extend back";
             this.extendBackToolStripMenuItem.Click += new System.EventHandler(this.extendBackToolStripMenuItem_Click);
             // 
+            // reverseToolStripMenuItem
+            // 
+            this.reverseToolStripMenuItem.Name = "reverseToolStripMenuItem";
+            this.reverseToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.reverseToolStripMenuItem.Text = "Reverse";
+            this.reverseToolStripMenuItem.Click += new System.EventHandler(this.reverseToolStripMenuItem_Click);
+            // 
             // toolStripMenuItemEditSeparater
             // 
             this.toolStripMenuItemEditSeparater.Name = "toolStripMenuItemEditSeparater";
-            this.toolStripMenuItemEditSeparater.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItemEditSeparater.Size = new System.Drawing.Size(179, 6);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // renameToolStripMenuItem
             // 
             this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
-            this.renameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.renameToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.renameToolStripMenuItem.Text = "Rename";
             this.renameToolStripMenuItem.Click += new System.EventHandler(this.renameToolStripMenuItem_Click);
             // 
             // exportToGcodeToolStripMenuItem
             // 
             this.exportToGcodeToolStripMenuItem.Name = "exportToGcodeToolStripMenuItem";
-            this.exportToGcodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportToGcodeToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.exportToGcodeToolStripMenuItem.Text = "Export to gcode";
             this.exportToGcodeToolStripMenuItem.Click += new System.EventHandler(this.exportToGcodeToolStripMenuItem_Click);
+            // 
+            // recalculateToolpathToolStripMenuItem
+            // 
+            this.recalculateToolpathToolStripMenuItem.Name = "recalculateToolpathToolStripMenuItem";
+            this.recalculateToolpathToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.recalculateToolpathToolStripMenuItem.Text = "Recalculate toolpath";
+            this.recalculateToolpathToolStripMenuItem.Click += new System.EventHandler(this.recalculateToolpathToolStripMenuItem_Click);
             // 
             // ObjectExplorerForm
             // 
@@ -207,5 +225,7 @@
         private System.Windows.Forms.ToolStripMenuItem extendFrontToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem extendBackToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportToGcodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reverseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem recalculateToolpathToolStripMenuItem;
     }
 }

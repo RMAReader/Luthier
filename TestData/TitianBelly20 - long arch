@@ -659,7 +659,7 @@
           </CvStride>
         </controlPoints>
       </Surface>
-      <DrawControlNet>true</DrawControlNet>
+      <DrawControlNet>false</DrawControlNet>
       <DrawKnotSpans>false</DrawKnotSpans>
       <DrawSurface>true</DrawSurface>
       <SurfaceDrawingStyle>PhongShadedColour</SurfaceDrawingStyle>
@@ -866,7 +866,7 @@
           </CvStride>
         </controlPoints>
       </Surface>
-      <DrawControlNet>true</DrawControlNet>
+      <DrawControlNet>false</DrawControlNet>
       <DrawKnotSpans>false</DrawKnotSpans>
       <DrawSurface>true</DrawSurface>
       <SurfaceDrawingStyle>PhongShadedColour</SurfaceDrawingStyle>
@@ -1022,7 +1022,7 @@
           </CvStride>
         </controlPoints>
       </Surface>
-      <DrawControlNet>true</DrawControlNet>
+      <DrawControlNet>false</DrawControlNet>
       <DrawKnotSpans>false</DrawKnotSpans>
       <DrawSurface>true</DrawSurface>
       <SurfaceDrawingStyle>PhongShadedColour</SurfaceDrawingStyle>
@@ -1127,7 +1127,7 @@
           </CvStride>
         </controlPoints>
       </Surface>
-      <DrawControlNet>true</DrawControlNet>
+      <DrawControlNet>false</DrawControlNet>
       <DrawKnotSpans>false</DrawKnotSpans>
       <DrawSurface>true</DrawSurface>
       <SurfaceDrawingStyle>PhongShadedColour</SurfaceDrawingStyle>
@@ -1419,6 +1419,9 @@
         <_isRational>false</_isRational>
         <_dimension>3</_dimension>
         <knot>
+          <double>-3</double>
+          <double>-2</double>
+          <double>-1</double>
           <double>0</double>
           <double>1</double>
           <double>2</double>
@@ -1439,9 +1442,15 @@
           <double>17</double>
           <double>18</double>
           <double>19</double>
+          <double>20</double>
+          <double>21</double>
+          <double>22</double>
         </knot>
         <ControlPoints>
           <Data>
+            <double>31.455206936402853</double>
+            <double>36.801727759879391</double>
+            <double>41.508157133236509</double>
             <double>45.319875025923956</double>
             <double>48.030665717000673</double>
             <double>49.765354525660008</double>
@@ -1459,6 +1468,12 @@
             <double>-37.4731492986485</double>
             <double>-36.206579150451837</double>
             <double>-33.679684805981218</double>
+            <double>-30.124483910006585</double>
+            <double>-25.651502405952311</double>
+            <double>-20.399798680424652</double>
+            <double>111.84633728071745</double>
+            <double>109.70161510251543</double>
+            <double>106.37977213645861</double>
             <double>102.06052164081632</double>
             <double>96.977537087749923</double>
             <double>90.372044819873665</double>
@@ -1476,6 +1491,12 @@
             <double>103.24638644052428</double>
             <double>108.97956775241718</double>
             <double>115.0580732711868</double>
+            <double>120.59828725253188</double>
+            <double>125.42797262884974</double>
+            <double>129.39698161713753</double>
+            <double>3.8799131090172523E-06</double>
+            <double>3.8799131090172523E-06</double>
+            <double>3.8799131090172523E-06</double>
             <double>3.8799131090172523E-06</double>
             <double>-7.3903879638237413E-07</double>
             <double>2.0998325140908491E-06</double>
@@ -1493,12 +1514,15 @@
             <double>5.1173301187645848E-06</double>
             <double>-2.9940440953168945E-06</double>
             <double>-2.7287729551517259E-06</double>
+            <double>-2.7287729551517259E-06</double>
+            <double>-2.7287729551517259E-06</double>
+            <double>-2.7287729551517259E-06</double>
           </Data>
           <Dimension>3</Dimension>
           <CvCount>
-            <int>17</int>
+            <int>23</int>
           </CvCount>
-          <DimensionStride>17</DimensionStride>
+          <DimensionStride>23</DimensionStride>
           <CvStride>
             <int>1</int>
           </CvStride>
@@ -2032,6 +2056,10 @@
         <_isRational>false</_isRational>
         <_dimension>3</_dimension>
         <knot>
+          <double>-4</double>
+          <double>-3</double>
+          <double>-2</double>
+          <double>-1</double>
           <double>0</double>
           <double>1</double>
           <double>2</double>
@@ -2052,9 +2080,16 @@
           <double>17</double>
           <double>18</double>
           <double>19</double>
+          <double>20</double>
+          <double>21</double>
+          <double>22</double>
         </knot>
         <ControlPoints>
           <Data>
+            <double>28.393752449084836</double>
+            <double>34.289065062163388</double>
+            <double>39.908619185662673</double>
+            <double>44.844855094412416</double>
             <double>48.739770906745022</double>
             <double>51.310886770496147</double>
             <double>52.227395392965768</double>
@@ -2072,6 +2107,13 @@
             <double>-36.569081206457646</double>
             <double>-35.162561666616057</double>
             <double>-32.618248645316889</double>
+            <double>-29.125149507675282</double>
+            <double>-24.791570990559464</double>
+            <double>-19.751879663498858</double>
+            <double>-71.128070750582637</double>
+            <double>-70.895811813404165</double>
+            <double>-69.098795822132928</double>
+            <double>-65.867351861147071</double>
             <double>-61.435841302131806</double>
             <double>-56.125660680440141</double>
             <double>-51.111575709455131</double>
@@ -2089,6 +2131,13 @@
             <double>-65.612645548769436</double>
             <double>-71.170553726209761</double>
             <double>-76.804669159251247</double>
+            <double>-81.905163633103385</double>
+            <double>-86.3138916468485</double>
+            <double>-89.894156552011083</double>
+            <double>3.2123567308417478E-06</double>
+            <double>3.2123567308417478E-06</double>
+            <double>3.2123567308417478E-06</double>
+            <double>3.2123567308417478E-06</double>
             <double>3.2123567308417478E-06</double>
             <double>3.16035267786674E-05</double>
             <double>-1.3244748089391578E-06</double>
@@ -2106,12 +2155,15 @@
             <double>-9.3030905645719031E-08</double>
             <double>3.10110624468507E-06</double>
             <double>1.8361323554927367E-06</double>
+            <double>1.8361323554927367E-06</double>
+            <double>1.8361323554927367E-06</double>
+            <double>1.8361323554927367E-06</double>
           </Data>
           <Dimension>3</Dimension>
           <CvCount>
-            <int>17</int>
+            <int>24</int>
           </CvCount>
-          <DimensionStride>17</DimensionStride>
+          <DimensionStride>24</DimensionStride>
           <CvStride>
             <int>1</int>
           </CvStride>
@@ -3332,12 +3384,14 @@
       <Objects data="48fc894e-fcd3-4b59-a06d-433f6bc169be" />
       <Objects data="3a14632c-6a97-4270-8843-20da893cdb95" />
       <Objects data="d12f9297-5ef8-460a-bb0c-d54650467b62" />
+      <Objects data="e0d887ae-4085-4466-b0ca-8d1b5b9a569d" />
+      <Objects data="b606bd6c-b8fd-4f6e-904b-99f580b4c04d" />
     </GraphicObjectBase>
     <GraphicObjectBase d3p1:type="GraphicNurbsCurveComposite" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
       <Key data="0a9d2c7b-20b2-4aed-b099-0ac52728733a" />
       <LayerKey data="90582774-c0e8-4317-8809-240e08c23ca0" />
       <Name>Mould outline</Name>
-      <IsVisible>true</IsVisible>
+      <IsVisible>false</IsVisible>
       <ReferencePlaneKey data="d8f3242d-ce5b-4b82-81ad-a5586327fe11" />
       <Components>
         <NurbsCurveCompositeJoin>
@@ -3488,7 +3542,7 @@
       <Key data="20eb463a-0f63-425f-923a-c4b2ec07bf72" />
       <LayerKey data="90582774-c0e8-4317-8809-240e08c23ca0" />
       <Name>Top clamp hole</Name>
-      <IsVisible>true</IsVisible>
+      <IsVisible>false</IsVisible>
       <Disc>
         <Centre>
           <Data>125.3456334905802</Data>
@@ -3507,7 +3561,7 @@
       <Key data="a337aea7-020c-4fb2-ae3a-7d06e337a3f7" />
       <LayerKey data="90582774-c0e8-4317-8809-240e08c23ca0" />
       <Name>Bottom clamp hole</Name>
-      <IsVisible>true</IsVisible>
+      <IsVisible>false</IsVisible>
       <Disc>
         <Centre>
           <Data>-130.08559569625598</Data>
@@ -3526,7 +3580,7 @@
       <Key data="a695e456-9a46-4fbe-9609-c987f255e2ed" />
       <LayerKey data="90582774-c0e8-4317-8809-240e08c23ca0" />
       <Name>C-Bout Bass clamp hole</Name>
-      <IsVisible>true</IsVisible>
+      <IsVisible>false</IsVisible>
       <Disc>
         <Centre>
           <Data>9.7432527364221428</Data>
@@ -3545,7 +3599,7 @@
       <Key data="98e51700-8d31-44ec-bd29-bf9a7a5ab255" />
       <LayerKey data="90582774-c0e8-4317-8809-240e08c23ca0" />
       <Name>C-Bout Treb clamp hole</Name>
-      <IsVisible>true</IsVisible>
+      <IsVisible>false</IsVisible>
       <Disc>
         <Centre>
           <Data>10.006585762296819</Data>
@@ -3564,7 +3618,7 @@
       <Key data="d8b87fe5-8451-45cd-a25f-e320db730602" />
       <LayerKey data="90582774-c0e8-4317-8809-240e08c23ca0" />
       <Name>L-Bout Treb clamp hole</Name>
-      <IsVisible>true</IsVisible>
+      <IsVisible>false</IsVisible>
       <Disc>
         <Centre>
           <Data>-49.76958770044785</Data>
@@ -3583,7 +3637,7 @@
       <Key data="abe6d4b4-e6c1-47b0-a4fe-2f4c65f27792" />
       <LayerKey data="90582774-c0e8-4317-8809-240e08c23ca0" />
       <Name>L-Bout Bass clamp hole</Name>
-      <IsVisible>true</IsVisible>
+      <IsVisible>false</IsVisible>
       <Disc>
         <Centre>
           <Data>-49.769591694815652</Data>
@@ -3602,7 +3656,7 @@
       <Key data="bb2791c8-2157-45f0-9bb1-44d25846581e" />
       <LayerKey data="90582774-c0e8-4317-8809-240e08c23ca0" />
       <Name>U-Bout Bass clamp hole</Name>
-      <IsVisible>true</IsVisible>
+      <IsVisible>false</IsVisible>
       <Disc>
         <Centre>
           <Data>64.779462842376333</Data>
@@ -3621,7 +3675,7 @@
       <Key data="e0b290b2-58bc-44a1-9a08-3324e18293e4" />
       <LayerKey data="90582774-c0e8-4317-8809-240e08c23ca0" />
       <Name>U-Bout Treb clamp hole</Name>
-      <IsVisible>true</IsVisible>
+      <IsVisible>false</IsVisible>
       <Disc>
         <Centre>
           <Data>65.306127835100185</Data>
@@ -3657,7 +3711,7 @@
       <Key data="bad28416-bd65-42cd-915d-98aba3f7c76c" />
       <LayerKey data="90582774-c0e8-4317-8809-240e08c23ca0" />
       <Name>L-Bout Locator Hole (dia 5_84mm)</Name>
-      <IsVisible>true</IsVisible>
+      <IsVisible>false</IsVisible>
       <Disc>
         <Centre>
           <Data>-140</Data>
@@ -3676,7 +3730,7 @@
       <Key data="eb74908e-0610-4107-86be-1cef44ca0b0b" />
       <LayerKey data="90582774-c0e8-4317-8809-240e08c23ca0" />
       <Name>U-Bout Locator Hole (dia 5_84mm)</Name>
-      <IsVisible>true</IsVisible>
+      <IsVisible>false</IsVisible>
       <Disc>
         <Centre>
           <Data>130</Data>
@@ -4262,6 +4316,7 @@
       <Name>C-Bout Former Trebble ToolPath</Name>
       <IsVisible>false</IsVisible>
       <ReferencePlaneKey data="d8f3242d-ce5b-4b82-81ad-a5586327fe11" />
+      <IsCutFromUnderneath>false</IsCutFromUnderneath>
       <BoundaryPolygonKey>
         <UniqueKey data="5b4b8c37-04a4-4b06-a8fb-5c6f0ffd4cf6" />
         <UniqueKey data="0a1c532c-4546-43d6-8cfe-a5b30fae4c77" />
@@ -4287,6 +4342,8 @@
       <Tool d3p1:type="EndMill">
         <Diameter>5</Diameter>
       </Tool>
+      <IsInsideCut>false</IsInsideCut>
+      <NumberOfCopies>0</NumberOfCopies>
     </GraphicObjectBase>
     <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
       <Key data="f830c1ac-78ca-465d-9f62-c4d6726d04c3" />
@@ -4598,6 +4655,7 @@
       <Name>Mould Toolpath</Name>
       <IsVisible>false</IsVisible>
       <ReferencePlaneKey data="d8f3242d-ce5b-4b82-81ad-a5586327fe11" />
+      <IsCutFromUnderneath>false</IsCutFromUnderneath>
       <BoundaryPolygonKey>
         <UniqueKey data="0a9d2c7b-20b2-4aed-b099-0ac52728733a" />
         <UniqueKey data="20eb463a-0f63-425f-923a-c4b2ec07bf72" />
@@ -4631,6 +4689,8 @@
       <Tool d3p1:type="EndMill">
         <Diameter>5</Diameter>
       </Tool>
+      <IsInsideCut>false</IsInsideCut>
+      <NumberOfCopies>0</NumberOfCopies>
     </GraphicObjectBase>
     <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
       <Key data="aa61e326-b0a1-4238-82df-1f510fd70370" />
@@ -4816,6 +4876,7 @@
       <Name>C-Bout Former Bass Toolpath</Name>
       <IsVisible>false</IsVisible>
       <ReferencePlaneKey data="d8f3242d-ce5b-4b82-81ad-a5586327fe11" />
+      <IsCutFromUnderneath>false</IsCutFromUnderneath>
       <BoundaryPolygonKey>
         <UniqueKey data="7a059ae1-bfd5-4fec-9780-1606d7551a8d" />
         <UniqueKey data="1026e0f2-e496-4bec-912a-5173b6dbd226" />
@@ -4841,6 +4902,1478 @@
       <Tool d3p1:type="EndMill">
         <Diameter>5</Diameter>
       </Tool>
+      <IsInsideCut>false</IsInsideCut>
+      <NumberOfCopies>0</NumberOfCopies>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="ce3c862c-1727-425f-be58-9efed4cbbe71" />
+      <LayerKey data="e0d887ae-4085-4466-b0ca-8d1b5b9a569d" />
+      <Name>Upper Treb retake curve</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+          <double>6</double>
+          <double>7</double>
+          <double>8</double>
+          <double>9</double>
+          <double>10</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>63.309948115468849</double>
+            <double>40.255330605754665</double>
+            <double>31.589410275199011</double>
+            <double>18.143739506297496</double>
+            <double>9.6562065548602813</double>
+            <double>12.506764337265395</double>
+            <double>44.781734704971313</double>
+            <double>58.518142237794109</double>
+            <double>81.025503227940192</double>
+            <double>72.359150519724139</double>
+            <double>73.01321443522626</double>
+            <double>82.82939046796443</double>
+            <double>103.50518561160111</double>
+            <double>119.99627632169525</double>
+            <double>105.92413182000132</double>
+            <double>87.719690850369446</double>
+            <double>5.2753931356619432E-05</double>
+            <double>3.2062739052207689E-05</double>
+            <double>-1.8739742415618821E-06</double>
+            <double>2.3706168690296181E-06</double>
+            <double>5.2879469478739338E-06</double>
+            <double>1.939259411187777E-05</double>
+            <double>2.3195312337520591E-08</double>
+            <double>-4.26577631174041E-06</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>8</int>
+          </CvCount>
+          <DimensionStride>8</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="cb1e6e0f-de3f-49c2-bbf7-c6090d29260e" />
+      <LayerKey data="e0d887ae-4085-4466-b0ca-8d1b5b9a569d" />
+      <Name>Upper Bass retake curve</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+          <double>6</double>
+          <double>7</double>
+          <double>8</double>
+          <double>9</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>61.792676451605075</double>
+            <double>42.212328565485677</double>
+            <double>24.018538421574931</double>
+            <double>9.6550197066701458</double>
+            <double>15.009872401526041</double>
+            <double>23.300363170735636</double>
+            <double>69.503015493616658</double>
+            <double>-40.001632696700483</double>
+            <double>-36.331922318467207</double>
+            <double>-39.683576557945173</double>
+            <double>-58.357081266486432</double>
+            <double>-79.398317181874731</double>
+            <double>-81.100457485835733</double>
+            <double>-59.314695860030866</double>
+            <double>3.7632636917805939E-05</double>
+            <double>1.0690767652477007E-05</double>
+            <double>1.8979149331244116E-05</double>
+            <double>-2.0013131290852471E-05</double>
+            <double>1.6241047148923826E-05</double>
+            <double>4.9451741006123484E-05</double>
+            <double>-4.332044625243725E-06</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>7</int>
+          </CvCount>
+          <DimensionStride>7</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="e0d887ae-4085-4466-b0ca-8d1b5b9a569d" />
+      <LayerKey data="26626d10-c7e9-4810-8db8-e1e02b296cfb" />
+      <Name>C-Bout Block Trimming</Name>
+      <IsVisible>false</IsVisible>
+      <Objects data="cb1e6e0f-de3f-49c2-bbf7-c6090d29260e" />
+      <Objects data="ce3c862c-1727-425f-be58-9efed4cbbe71" />
+      <Objects data="877c8153-d0dc-424d-a231-afac26086840" />
+      <Objects data="0a00a4ca-b511-4c86-9ab5-be08353982af" />
+      <Objects data="8451561d-47a2-4817-9575-4e9c8c9b054e" />
+      <Objects data="21628ff4-c95c-4baf-8f94-6fdf8cf68fa0" />
+      <Objects data="7dd71bb2-bfb7-4174-ab41-f8e8a3989ed0" />
+      <Objects data="1581da4d-9a0e-4f68-8b8a-00c7e0347602" />
+      <Objects data="96373224-4eda-407f-897a-1ca8bfdad94b" />
+      <Objects data="bce0c4aa-8f8a-4b49-a2e6-0ca655fad03b" />
+      <Objects data="fc3779bf-d2ad-4d7c-8b69-6bdc72f408aa" />
+      <Objects data="d1e09bef-7213-4d06-a9f9-6ce7b6811302" />
+      <Objects data="2641f5f3-48eb-44a5-a0e9-a49762b55e1b" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="0a00a4ca-b511-4c86-9ab5-be08353982af" />
+      <LayerKey data="e0d887ae-4085-4466-b0ca-8d1b5b9a569d" />
+      <Name>Lower Treb retake curve1</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+          <double>6</double>
+          <double>7</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>-26.988021082979014</double>
+            <double>-12.617774851522498</double>
+            <double>2.4534612035302827</double>
+            <double>9.51584000805249</double>
+            <double>-74.363730515603891</double>
+            <double>78.339289099239053</double>
+            <double>83.596957740786465</double>
+            <double>99.720485649571572</double>
+            <double>154.93478084878771</double>
+            <double>88.220211927943566</double>
+            <double>5.2507106317989383E-05</double>
+            <double>3.2489035334037908E-05</double>
+            <double>5.06639087802796E-05</double>
+            <double>5.53140235410865E-05</double>
+            <double>1.4765730071530925E-05</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>5</int>
+          </CvCount>
+          <DimensionStride>5</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="877c8153-d0dc-424d-a231-afac26086840" />
+      <LayerKey data="e0d887ae-4085-4466-b0ca-8d1b5b9a569d" />
+      <Name>Lower Bass retake curve1</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+          <double>6</double>
+          <double>7</double>
+          <double>8</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>-30.142469878240355</double>
+            <double>-2.1029651846967168</double>
+            <double>4.5564170958369274</double>
+            <double>8.2186674927266949</double>
+            <double>-24.338641366088837</double>
+            <double>-49.235405654627584</double>
+            <double>-31.370765751195464</double>
+            <double>-49.2468446376017</double>
+            <double>-63.617813780497926</double>
+            <double>-94.746473766044289</double>
+            <double>-87.564358269680213</double>
+            <double>-67.933236967512187</double>
+            <double>3.2909716821905022E-05</double>
+            <double>-3.353189129029488E-06</double>
+            <double>-3.3338006346639304E-06</double>
+            <double>1.6723101452953415E-05</double>
+            <double>2.0241281163180247E-05</double>
+            <double>2.4946956528992814E-05</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>6</int>
+          </CvCount>
+          <DimensionStride>6</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurveComposite" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="21628ff4-c95c-4baf-8f94-6fdf8cf68fa0" />
+      <LayerKey data="e0d887ae-4085-4466-b0ca-8d1b5b9a569d" />
+      <Name>Upper Trebble</Name>
+      <IsVisible>false</IsVisible>
+      <ReferencePlaneKey data="d8f3242d-ce5b-4b82-81ad-a5586327fe11" />
+      <Components>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>45.786838240688894</Data>
+            <Data>103.02035613425277</Data>
+            <Data>7.85370032474475E-06</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="ce3c862c-1727-425f-be58-9efed4cbbe71" />
+          <Curve2Key data="dbb42103-a154-4121-aee0-4cfa390ecb43" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>46.121870622504048</Data>
+            <Data>74.541016943681285</Data>
+            <Data>8.3525468284051385E-06</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="dbb42103-a154-4121-aee0-4cfa390ecb43" />
+          <Curve2Key data="ce3c862c-1727-425f-be58-9efed4cbbe71" />
+        </NurbsCurveCompositeJoin>
+      </Components>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurveComposite" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="8451561d-47a2-4817-9575-4e9c8c9b054e" />
+      <LayerKey data="e0d887ae-4085-4466-b0ca-8d1b5b9a569d" />
+      <Name>Upper Bass</Name>
+      <IsVisible>false</IsVisible>
+      <ReferencePlaneKey data="d8f3242d-ce5b-4b82-81ad-a5586327fe11" />
+      <Components>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>45.542511191084486</Data>
+            <Data>-37.133813272165042</Data>
+            <Data>-3.7669067864953831E-06</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="ff2de052-cc2e-4803-a37e-d37673f35350" />
+          <Curve2Key data="cb1e6e0f-de3f-49c2-bbf7-c6090d29260e" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>40.125789437577623</Data>
+            <Data>-72.822241099197868</Data>
+            <Data>2.2466474547400139E-06</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="cb1e6e0f-de3f-49c2-bbf7-c6090d29260e" />
+          <Curve2Key data="ff2de052-cc2e-4803-a37e-d37673f35350" />
+        </NurbsCurveCompositeJoin>
+      </Components>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurveComposite" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="bce0c4aa-8f8a-4b49-a2e6-0ca655fad03b" />
+      <LayerKey data="e0d887ae-4085-4466-b0ca-8d1b5b9a569d" />
+      <Name>Lower Trebble</Name>
+      <IsVisible>false</IsVisible>
+      <ReferencePlaneKey data="d8f3242d-ce5b-4b82-81ad-a5586327fe11" />
+      <Components>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>-35.049378702215357</Data>
+            <Data>87.102073214030341</Data>
+            <Data>3.1577130869209213E-05</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="1581da4d-9a0e-4f68-8b8a-00c7e0347602" />
+          <Curve2Key data="dbb42103-a154-4121-aee0-4cfa390ecb43" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>-28.039502049753821</Data>
+            <Data>124.95730525454354</Data>
+            <Data>1.4236607967177406E-05</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="0a00a4ca-b511-4c86-9ab5-be08353982af" />
+          <Curve2Key data="dbb42103-a154-4121-aee0-4cfa390ecb43" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>-15.071230599352022</Data>
+            <Data>83.5969578480304</Data>
+            <Data>3.2489035334037908E-05</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="0a00a4ca-b511-4c86-9ab5-be08353982af" />
+          <Curve2Key data="1581da4d-9a0e-4f68-8b8a-00c7e0347602" />
+        </NurbsCurveCompositeJoin>
+      </Components>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurveComposite" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="96373224-4eda-407f-897a-1ca8bfdad94b" />
+      <LayerKey data="e0d887ae-4085-4466-b0ca-8d1b5b9a569d" />
+      <Name>Lower Bass</Name>
+      <IsVisible>false</IsVisible>
+      <ReferencePlaneKey data="d8f3242d-ce5b-4b82-81ad-a5586327fe11" />
+      <Components>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>-29.791978600638835</Data>
+            <Data>-82.194912446605073</Data>
+            <Data>2.7641461770144815E-05</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="ff2de052-cc2e-4803-a37e-d37673f35350" />
+          <Curve2Key data="877c8153-d0dc-424d-a231-afac26086840" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>-32.94642362107998</Data>
+            <Data>-48.195310646704904</Data>
+            <Data>7.5314991931918485E-06</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="ff2de052-cc2e-4803-a37e-d37673f35350" />
+          <Curve2Key data="7dd71bb2-bfb7-4174-ab41-f8e8a3989ed0" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>-11.916792115349207</Data>
+            <Data>-42.587128759709628</Data>
+            <Data>-8.8317848963015422E-06</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="7dd71bb2-bfb7-4174-ab41-f8e8a3989ed0" />
+          <Curve2Key data="877c8153-d0dc-424d-a231-afac26086840" />
+        </NurbsCurveCompositeJoin>
+      </Components>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="1581da4d-9a0e-4f68-8b8a-00c7e0347602" />
+      <LayerKey data="e0d887ae-4085-4466-b0ca-8d1b5b9a569d" />
+      <Name>Lower Treb retake curve2</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+          <double>6</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>-6.3088855220852311</double>
+            <double>-13.669255395071826</double>
+            <double>-34.348391872359812</double>
+            <double>-43.811723105343304</double>
+            <double>85.349517553266011</double>
+            <double>82.545425144061539</double>
+            <double>83.246447809766252</double>
+            <double>100.77201537577233</double>
+            <double>1.3435983703402599E-05</double>
+            <double>2.1604347125503409E-05</double>
+            <double>2.8860806025932106E-05</double>
+            <double>2.4248168870144582E-05</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>4</int>
+          </CvCount>
+          <DimensionStride>4</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="7dd71bb2-bfb7-4174-ab41-f8e8a3989ed0" />
+      <LayerKey data="e0d887ae-4085-4466-b0ca-8d1b5b9a569d" />
+      <Name>Lower Bass retake curve2</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>19.978145980858393</double>
+            <double>-28.390002642727445</double>
+            <double>-49.770125281503823</double>
+            <double>-52.050938706219604</double>
+            <double>-37.329459514923293</double>
+            <double>-74.83417170698219</double>
+            <double>4.20624879211573E-05</double>
+            <double>4.5644771489605773E-05</double>
+            <double>2.9445882262280065E-05</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>3</int>
+          </CvCount>
+          <DimensionStride>3</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="MouldEdgeSpecification" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="fc3779bf-d2ad-4d7c-8b69-6bdc72f408aa" />
+      <LayerKey data="e0d887ae-4085-4466-b0ca-8d1b5b9a569d" />
+      <Name>Trimming Toolpath</Name>
+      <IsVisible>false</IsVisible>
+      <ReferencePlaneKey data="d8f3242d-ce5b-4b82-81ad-a5586327fe11" />
+      <IsCutFromUnderneath>false</IsCutFromUnderneath>
+      <BoundaryPolygonKey>
+        <UniqueKey data="21628ff4-c95c-4baf-8f94-6fdf8cf68fa0" />
+        <UniqueKey data="8451561d-47a2-4817-9575-4e9c8c9b054e" />
+        <UniqueKey data="bce0c4aa-8f8a-4b49-a2e6-0ca655fad03b" />
+        <UniqueKey data="96373224-4eda-407f-897a-1ca8bfdad94b" />
+      </BoundaryPolygonKey>
+      <TopHeight>20</TopHeight>
+      <BottomHeight>0</BottomHeight>
+      <MaximumCutDepth>5</MaximumCutDepth>
+      <CutHeights>
+        <double>13</double>
+        <double>9.5</double>
+        <double>6</double>
+        <double>2.5</double>
+        <double>-1</double>
+      </CutHeights>
+      <SafeHeight>50</SafeHeight>
+      <SpindleState>OnClockwise</SpindleState>
+      <SpindleSpeed>22000</SpindleSpeed>
+      <CuttingHorizontalFeedRate>500</CuttingHorizontalFeedRate>
+      <CuttingVerticalFeedRate>500</CuttingVerticalFeedRate>
+      <FreeHorizontalFeedRate>3000</FreeHorizontalFeedRate>
+      <FreeVerticalFeedRate>1500</FreeVerticalFeedRate>
+      <Tool d3p1:type="EndMill">
+        <Diameter>5.4</Diameter>
+      </Tool>
+      <IsInsideCut>true</IsInsideCut>
+      <NumberOfCopies>0</NumberOfCopies>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="MouldEdgeSpecification" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="d1e09bef-7213-4d06-a9f9-6ce7b6811302" />
+      <LayerKey data="e0d887ae-4085-4466-b0ca-8d1b5b9a569d" />
+      <Name>Trimming Toolpath 5mm</Name>
+      <IsVisible>false</IsVisible>
+      <ReferencePlaneKey data="d8f3242d-ce5b-4b82-81ad-a5586327fe11" />
+      <IsCutFromUnderneath>false</IsCutFromUnderneath>
+      <BoundaryPolygonKey>
+        <UniqueKey data="21628ff4-c95c-4baf-8f94-6fdf8cf68fa0" />
+        <UniqueKey data="8451561d-47a2-4817-9575-4e9c8c9b054e" />
+      </BoundaryPolygonKey>
+      <TopHeight>20</TopHeight>
+      <BottomHeight>0</BottomHeight>
+      <MaximumCutDepth>5</MaximumCutDepth>
+      <CutHeights>
+        <double>9</double>
+        <double>6</double>
+        <double>3</double>
+      </CutHeights>
+      <SafeHeight>50</SafeHeight>
+      <SpindleState>OnClockwise</SpindleState>
+      <SpindleSpeed>22000</SpindleSpeed>
+      <CuttingHorizontalFeedRate>1000</CuttingHorizontalFeedRate>
+      <CuttingVerticalFeedRate>500</CuttingVerticalFeedRate>
+      <FreeHorizontalFeedRate>3000</FreeHorizontalFeedRate>
+      <FreeVerticalFeedRate>1500</FreeVerticalFeedRate>
+      <Tool d3p1:type="EndMill">
+        <Diameter>5</Diameter>
+      </Tool>
+      <IsInsideCut>true</IsInsideCut>
+      <NumberOfCopies>0</NumberOfCopies>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="MouldEdgeSpecification" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="0e14ff25-6f94-4f5b-92af-aa93d3dec79f" />
+      <LayerKey data="2641f5f3-48eb-44a5-a0e9-a49762b55e1b" />
+      <Name>Locator holes path</Name>
+      <IsVisible>false</IsVisible>
+      <ReferencePlaneKey data="d8f3242d-ce5b-4b82-81ad-a5586327fe11" />
+      <IsCutFromUnderneath>true</IsCutFromUnderneath>
+      <BoundaryPolygonKey>
+        <UniqueKey data="bad28416-bd65-42cd-915d-98aba3f7c76c" />
+        <UniqueKey data="eb74908e-0610-4107-86be-1cef44ca0b0b" />
+      </BoundaryPolygonKey>
+      <TopHeight>20</TopHeight>
+      <BottomHeight>0</BottomHeight>
+      <MaximumCutDepth>5</MaximumCutDepth>
+      <CutHeights>
+        <double>-5</double>
+        <double>-10</double>
+      </CutHeights>
+      <SafeHeight>50</SafeHeight>
+      <SpindleState>OnClockwise</SpindleState>
+      <SpindleSpeed>22000</SpindleSpeed>
+      <CuttingHorizontalFeedRate>500</CuttingHorizontalFeedRate>
+      <CuttingVerticalFeedRate>500</CuttingVerticalFeedRate>
+      <FreeHorizontalFeedRate>3000</FreeHorizontalFeedRate>
+      <FreeVerticalFeedRate>1500</FreeVerticalFeedRate>
+      <Tool d3p1:type="EndMill">
+        <Diameter>5</Diameter>
+      </Tool>
+      <IsInsideCut>true</IsInsideCut>
+      <NumberOfCopies>0</NumberOfCopies>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="2641f5f3-48eb-44a5-a0e9-a49762b55e1b" />
+      <LayerKey data="e0d887ae-4085-4466-b0ca-8d1b5b9a569d" />
+      <Name>Underside Toolpaths</Name>
+      <IsVisible>false</IsVisible>
+      <Objects data="0e14ff25-6f94-4f5b-92af-aa93d3dec79f" />
+      <Objects data="4b303e08-20ea-4583-8554-07bd7ff13a45" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="MouldEdgeSpecification" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="4b303e08-20ea-4583-8554-07bd7ff13a45" />
+      <LayerKey data="2641f5f3-48eb-44a5-a0e9-a49762b55e1b" />
+      <Name>Trimming Toolpath 5_4mm Uside</Name>
+      <IsVisible>false</IsVisible>
+      <ReferencePlaneKey data="d8f3242d-ce5b-4b82-81ad-a5586327fe11" />
+      <IsCutFromUnderneath>true</IsCutFromUnderneath>
+      <BoundaryPolygonKey>
+        <UniqueKey data="21628ff4-c95c-4baf-8f94-6fdf8cf68fa0" />
+        <UniqueKey data="8451561d-47a2-4817-9575-4e9c8c9b054e" />
+        <UniqueKey data="bce0c4aa-8f8a-4b49-a2e6-0ca655fad03b" />
+        <UniqueKey data="96373224-4eda-407f-897a-1ca8bfdad94b" />
+      </BoundaryPolygonKey>
+      <TopHeight>20</TopHeight>
+      <BottomHeight>0</BottomHeight>
+      <MaximumCutDepth>5</MaximumCutDepth>
+      <CutHeights>
+        <double>-4</double>
+        <double>-8</double>
+        <double>-12</double>
+        <double>-16</double>
+        <double>-20</double>
+      </CutHeights>
+      <SafeHeight>20</SafeHeight>
+      <SpindleState>OnClockwise</SpindleState>
+      <SpindleSpeed>22000</SpindleSpeed>
+      <CuttingHorizontalFeedRate>500</CuttingHorizontalFeedRate>
+      <CuttingVerticalFeedRate>500</CuttingVerticalFeedRate>
+      <FreeHorizontalFeedRate>3000</FreeHorizontalFeedRate>
+      <FreeVerticalFeedRate>1500</FreeVerticalFeedRate>
+      <Tool d3p1:type="EndMill">
+        <Diameter>5.4</Diameter>
+      </Tool>
+      <IsInsideCut>true</IsInsideCut>
+      <NumberOfCopies>0</NumberOfCopies>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="e561bbe2-8301-4f85-b65d-50b5ff951a50" />
+      <LayerKey data="b606bd6c-b8fd-4f6e-904b-99f580b4c04d" />
+      <Name>Trebble Primary Edge</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>-3</double>
+          <double>-2</double>
+          <double>-1</double>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+          <double>6</double>
+          <double>7</double>
+          <double>8</double>
+          <double>9</double>
+          <double>10</double>
+          <double>11</double>
+          <double>12</double>
+          <double>13</double>
+          <double>14</double>
+          <double>15</double>
+          <double>16</double>
+          <double>17</double>
+          <double>18</double>
+          <double>19</double>
+          <double>20</double>
+          <double>21</double>
+          <double>22</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>31.455206936402853</double>
+            <double>36.801727759879391</double>
+            <double>41.463203129442277</double>
+            <double>45.157757678617024</double>
+            <double>47.661984903036249</double>
+            <double>49.040138664758011</double>
+            <double>48.764112043906948</double>
+            <double>46.748564139507231</double>
+            <double>42.145762539595594</double>
+            <double>33.158568481044853</double>
+            <double>17.807390449411947</double>
+            <double>1.65252867451888</double>
+            <double>-13.851222823330653</double>
+            <double>-24.559587433456166</double>
+            <double>-29.983951437938909</double>
+            <double>-32.794774554420428</double>
+            <double>-33.5680155027903</double>
+            <double>-31.885012972894906</double>
+            <double>-29.179013041277724</double>
+            <double>-25.11348663854616</double>
+            <double>-20.157600474443129</double>
+            <double>-14.483602280614601</double>
+            <double>-8.2886986283756023</double>
+            <double>111.84633728071745</double>
+            <double>109.70161510251543</double>
+            <double>106.31697841351935</double>
+            <double>101.89709325429722</double>
+            <double>96.709226241158063</double>
+            <double>90.020252809239452</double>
+            <double>83.945627864369712</double>
+            <double>78.423010072533557</double>
+            <double>74.45863240293609</double>
+            <double>72.425513907386517</double>
+            <double>73.273560228857818</double>
+            <double>76.668909950417842</double>
+            <double>82.0883882015661</double>
+            <double>88.363075853781538</double>
+            <double>94.805596502790024</double>
+            <double>101.88693608046165</double>
+            <double>109.36759219563736</double>
+            <double>116.5554714054431</double>
+            <double>121.76614624325718</double>
+            <double>126.94349299990029</double>
+            <double>131.27623078313647</double>
+            <double>134.61377012616464</double>
+            <double>136.84011087036939</double>
+            <double>3.8799131090172523E-06</double>
+            <double>3.8799131090172523E-06</double>
+            <double>3.8799131090172523E-06</double>
+            <double>3.8799131090172523E-06</double>
+            <double>-7.3903879638237413E-07</double>
+            <double>2.0998325140908491E-06</double>
+            <double>2.7618634419468435E-06</double>
+            <double>2.1848644990996036E-06</double>
+            <double>6.6318797564690612E-07</double>
+            <double>6.583987655517376E-06</double>
+            <double>-5.5726917480569682E-07</double>
+            <double>6.80147820730781E-07</double>
+            <double>2.2208127177236747E-06</double>
+            <double>1.2581610064898996E-06</double>
+            <double>9.2966245262005032E-06</double>
+            <double>-1.6111049916389675E-06</double>
+            <double>-2.2786894362525345E-06</double>
+            <double>5.1173301187645848E-06</double>
+            <double>-2.9940440953168945E-06</double>
+            <double>-2.7287729551517259E-06</double>
+            <double>-2.7287729551517259E-06</double>
+            <double>-2.7287729551517259E-06</double>
+            <double>-2.7287729551517259E-06</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>23</int>
+          </CvCount>
+          <DimensionStride>23</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="691269be-5790-48b8-b78d-a8c747637d57" />
+      <LayerKey data="b606bd6c-b8fd-4f6e-904b-99f580b4c04d" />
+      <Name>Bass Primary Edge</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>-4</double>
+          <double>-3</double>
+          <double>-2</double>
+          <double>-1</double>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+          <double>6</double>
+          <double>7</double>
+          <double>8</double>
+          <double>9</double>
+          <double>10</double>
+          <double>11</double>
+          <double>12</double>
+          <double>13</double>
+          <double>14</double>
+          <double>15</double>
+          <double>16</double>
+          <double>17</double>
+          <double>18</double>
+          <double>19</double>
+          <double>20</double>
+          <double>21</double>
+          <double>22</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>28.393752449084836</double>
+            <double>34.289065062163388</double>
+            <double>39.881574107968248</double>
+            <double>44.720604385707922</double>
+            <double>48.4162001663537</double>
+            <double>50.67054997443983</double>
+            <double>51.216074002968533</double>
+            <double>49.771965430764268</double>
+            <double>44.7868350895762</double>
+            <double>37.028733034982693</double>
+            <double>24.524931763403956</double>
+            <double>5.33560654074698</double>
+            <double>-10.872191181087249</double>
+            <double>-20.581787959445236</double>
+            <double>-26.833707454526667</double>
+            <double>-30.815858977525505</double>
+            <double>-32.928504598788486</double>
+            <double>-32.895739529586045</double>
+            <double>-31.363162127919537</double>
+            <double>-28.535049113535674</double>
+            <double>-24.544062745491992</double>
+            <double>-19.749170940794716</double>
+            <double>-14.315631074068637</double>
+            <double>-8.4307117156732883</double>
+            <double>-71.128070750582637</double>
+            <double>-70.895811813404165</double>
+            <double>-69.016317840970856</double>
+            <double>-65.641048815998019</double>
+            <double>-61.042002518569006</double>
+            <double>-55.589795445960306</double>
+            <double>-50.521912289689169</double>
+            <double>-44.057966844172462</double>
+            <double>-39.274912438970652</double>
+            <double>-36.930583276956831</double>
+            <double>-37.0214541809836</double>
+            <double>-40.720181409254522</double>
+            <double>-46.520718834327255</double>
+            <double>-51.7555656237908</double>
+            <double>-56.747208209410196</double>
+            <double>-61.819862143674548</double>
+            <double>-68.042407095079142</double>
+            <double>-74.0983393258039</double>
+            <double>-79.7598697061489</double>
+            <double>-84.746894601082445</double>
+            <double>-89.467997573193756</double>
+            <double>-93.370022437855141</double>
+            <double>-96.318484745548261</double>
+            <double>-98.211764864382332</double>
+            <double>3.2123567308417478E-06</double>
+            <double>3.2123567308417478E-06</double>
+            <double>3.2123567308417478E-06</double>
+            <double>3.2123567308417478E-06</double>
+            <double>3.2123567308417478E-06</double>
+            <double>3.16035267786674E-05</double>
+            <double>-1.3244748089391578E-06</double>
+            <double>-3.7254155103028097E-06</double>
+            <double>7.2436607325698787E-06</double>
+            <double>5.4907755000499492E-06</double>
+            <double>3.6201123521095724E-07</double>
+            <double>2.2362446330248531E-06</double>
+            <double>1.0329875692605128E-05</double>
+            <double>3.6914714911517876E-06</double>
+            <double>1.5610965292012224E-05</double>
+            <double>2.4747925806423154E-06</double>
+            <double>1.4274354569465686E-06</double>
+            <double>1.9092788640762137E-05</double>
+            <double>-9.3030905645719031E-08</double>
+            <double>3.10110624468507E-06</double>
+            <double>1.8361323554927367E-06</double>
+            <double>1.8361323554927367E-06</double>
+            <double>1.8361323554927367E-06</double>
+            <double>1.8361323554927367E-06</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>24</int>
+          </CvCount>
+          <DimensionStride>24</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicLayer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="b606bd6c-b8fd-4f6e-904b-99f580b4c04d" />
+      <LayerKey data="26626d10-c7e9-4810-8db8-e1e02b296cfb" />
+      <Name>C-Bout Internal Formers (Tight)</Name>
+      <IsVisible>true</IsVisible>
+      <Objects data="691269be-5790-48b8-b78d-a8c747637d57" />
+      <Objects data="e561bbe2-8301-4f85-b65d-50b5ff951a50" />
+      <Objects data="00364317-cf9c-409b-9afc-b5b4dddcbf7b" />
+      <Objects data="310ec016-96a6-4ce0-8dd6-afacd2f578c9" />
+      <Objects data="1e7b9fb2-a5d8-4f95-83c6-242dbcc3a175" />
+      <Objects data="6cd2ad7b-a86d-4161-b26d-714814c5991c" />
+      <Objects data="98aa7aec-8324-4b7c-8bd8-ee31a858ef9a" />
+      <Objects data="e6c7b86f-650f-4de9-a5e6-a17fb4ff4f0b" />
+      <Objects data="0982bfcc-5700-4f93-915a-1ca40fb1dbf4" />
+      <Objects data="1c5da1bf-8723-4e95-9a82-f2e8de04848c" />
+      <Objects data="efab695a-739f-451e-9aaf-2b2704a25013" />
+      <Objects data="4016db83-4bc0-4acc-b7f1-0201ff8029c0" />
+      <Objects data="63c50058-d807-4808-9ae9-9de0415dcdd3" />
+      <Objects data="966dfde9-9313-4436-855d-fec48db27a22" />
+      <Objects data="7815d23b-e037-4217-bfad-b904bec2fa24" />
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="e6c7b86f-650f-4de9-a5e6-a17fb4ff4f0b" />
+      <LayerKey data="b606bd6c-b8fd-4f6e-904b-99f580b4c04d" />
+      <Name>Trebble Edge1</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>-3</double>
+          <double>-2</double>
+          <double>-1</double>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+          <double>6</double>
+          <double>7</double>
+          <double>8</double>
+          <double>9</double>
+          <double>10</double>
+          <double>11</double>
+          <double>12</double>
+          <double>13</double>
+          <double>14</double>
+          <double>15</double>
+          <double>16</double>
+          <double>17</double>
+          <double>18</double>
+          <double>19</double>
+          <double>20</double>
+          <double>21</double>
+          <double>22</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>26.598932602556051</double>
+            <double>30.445602680520707</double>
+            <double>32.491725921452705</double>
+            <double>34.113425775820147</double>
+            <double>35.212639462095488</double>
+            <double>35.935814467666681</double>
+            <double>35.824624396711371</double>
+            <double>35.660666830924022</double>
+            <double>36.096694499431258</double>
+            <double>32.058190889907351</double>
+            <double>19.518424298144115</double>
+            <double>5.1606560320312651</double>
+            <double>-8.35044565572346</double>
+            <double>-16.027783554292117</double>
+            <double>-18.641735237836098</double>
+            <double>-20.00559333521538</double>
+            <double>-20.367967558585281</double>
+            <double>-19.556837972362803</double>
+            <double>-18.165934746052262</double>
+            <double>-15.608821378895421</double>
+            <double>-12.491694222170922</double>
+            <double>-8.922892746201077</double>
+            <double>-3.8772219973431641</double>
+            <double>99.740260272555432</double>
+            <double>98.197193500569611</double>
+            <double>96.71153000512669</double>
+            <double>94.77145116107971</double>
+            <double>92.494271850906927</double>
+            <double>88.984287309813368</double>
+            <double>86.5372842759595</double>
+            <double>86.0880392007386</double>
+            <double>86.4635883776551</double>
+            <double>85.549982158697944</double>
+            <double>86.242717459424711</double>
+            <double>89.260362869448173</double>
+            <double>93.983292139566828</double>
+            <double>98.481915325079513</double>
+            <double>101.58650743630685</double>
+            <double>105.02249110481648</double>
+            <double>108.52825079815516</double>
+            <double>111.9924770162995</double>
+            <double>114.67080097281175</double>
+            <double>117.92722124570017</double>
+            <double>120.6524038184795</double>
+            <double>122.75163172208752</double>
+            <double>124.5649581272471</double>
+            <double>3.8799131090172523E-06</double>
+            <double>3.8799131090172523E-06</double>
+            <double>3.8799131090172523E-06</double>
+            <double>3.8799131090172523E-06</double>
+            <double>-7.3903879638237413E-07</double>
+            <double>2.0998325140908491E-06</double>
+            <double>2.7618634419468435E-06</double>
+            <double>2.1848644990996036E-06</double>
+            <double>6.6318797564690612E-07</double>
+            <double>6.583987655517376E-06</double>
+            <double>-5.5726917480569682E-07</double>
+            <double>6.80147820730781E-07</double>
+            <double>2.2208127177236747E-06</double>
+            <double>1.2581610064898996E-06</double>
+            <double>9.2966245262005032E-06</double>
+            <double>-1.6111049916389675E-06</double>
+            <double>-2.2786894362525345E-06</double>
+            <double>5.1173301187645848E-06</double>
+            <double>-2.9940440953168945E-06</double>
+            <double>-2.7287729551517259E-06</double>
+            <double>-2.7287729551517259E-06</double>
+            <double>-2.7287729551517259E-06</double>
+            <double>-2.7287729551517259E-06</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>23</int>
+          </CvCount>
+          <DimensionStride>23</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="98aa7aec-8324-4b7c-8bd8-ee31a858ef9a" />
+      <LayerKey data="b606bd6c-b8fd-4f6e-904b-99f580b4c04d" />
+      <Name>Bass Edge1</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>3</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>-4</double>
+          <double>-3</double>
+          <double>-2</double>
+          <double>-1</double>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+          <double>4</double>
+          <double>5</double>
+          <double>6</double>
+          <double>7</double>
+          <double>8</double>
+          <double>9</double>
+          <double>10</double>
+          <double>11</double>
+          <double>12</double>
+          <double>13</double>
+          <double>14</double>
+          <double>15</double>
+          <double>16</double>
+          <double>17</double>
+          <double>18</double>
+          <double>19</double>
+          <double>20</double>
+          <double>21</double>
+          <double>22</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>27.878314653519826</double>
+            <double>31.897645763037637</double>
+            <double>33.93090554862475</double>
+            <double>35.690224234456387</double>
+            <double>37.033826224731058</double>
+            <double>37.85343666610639</double>
+            <double>37.9668284185774</double>
+            <double>37.855404764190254</double>
+            <double>37.990306901221317</double>
+            <double>35.140256531454064</double>
+            <double>25.822407584941416</double>
+            <double>8.8008955487858547</double>
+            <double>-5.5291595533523568</double>
+            <double>-13.332176599545818</double>
+            <double>-17.4747315413739</double>
+            <double>-19.136443594008245</double>
+            <double>-19.823552151596033</double>
+            <double>-19.811905127391327</double>
+            <double>-19.157301481971189</double>
+            <double>-17.747855227095279</double>
+            <double>-15.332921619752881</double>
+            <double>-12.431547298995753</double>
+            <double>-9.1437289952156124</double>
+            <double>-4.4207959913176289</double>
+            <double>-58.044970593636492</double>
+            <double>-57.886620115394848</double>
+            <double>-57.203295425152518</double>
+            <double>-55.976154133505723</double>
+            <double>-54.3040860488541</double>
+            <double>-52.321835632693393</double>
+            <double>-51.268433541574225</double>
+            <double>-50.769692354684629</double>
+            <double>-50.899126134071793</double>
+            <double>-50.037903099360918</double>
+            <double>-50.105620215057492</double>
+            <double>-53.386503169718914</double>
+            <double>-58.515023549223024</double>
+            <double>-62.721954039214289</double>
+            <double>-66.029442831602807</double>
+            <double>-68.146210647374488</double>
+            <double>-70.170006708130174</double>
+            <double>-72.3227135691321</double>
+            <double>-74.74090035800215</double>
+            <double>-77.226283199984621</double>
+            <double>-80.0830081245211</double>
+            <double>-82.4441113990921</double>
+            <double>-84.228216895879456</double>
+            <double>-85.747665951049427</double>
+            <double>3.2123567308417478E-06</double>
+            <double>3.2123567308417478E-06</double>
+            <double>3.2123567308417478E-06</double>
+            <double>3.2123567308417478E-06</double>
+            <double>3.2123567308417478E-06</double>
+            <double>3.16035267786674E-05</double>
+            <double>-1.3244748089391578E-06</double>
+            <double>-3.7254155103028097E-06</double>
+            <double>7.2436607325698787E-06</double>
+            <double>5.4907755000499492E-06</double>
+            <double>3.6201123521095724E-07</double>
+            <double>2.2362446330248531E-06</double>
+            <double>1.0329875692605128E-05</double>
+            <double>3.6914714911517876E-06</double>
+            <double>1.5610965292012224E-05</double>
+            <double>2.4747925806423154E-06</double>
+            <double>1.4274354569465686E-06</double>
+            <double>1.9092788640762137E-05</double>
+            <double>-9.3030905645719031E-08</double>
+            <double>3.10110624468507E-06</double>
+            <double>1.8361323554927367E-06</double>
+            <double>1.8361323554927367E-06</double>
+            <double>1.8361323554927367E-06</double>
+            <double>1.8361323554927367E-06</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>24</int>
+          </CvCount>
+          <DimensionStride>24</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="6cd2ad7b-a86d-4161-b26d-714814c5991c" />
+      <LayerKey data="b606bd6c-b8fd-4f6e-904b-99f580b4c04d" />
+      <Name>Bass Edge2</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>2</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>30.665909030696319</double>
+            <double>32.050822084818591</double>
+            <double>-57.081020873121219</double>
+            <double>-71.524394719973273</double>
+            <double>1.3498356764785058E-05</double>
+            <double>-2.7968626454821788E-06</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>2</int>
+          </CvCount>
+          <DimensionStride>2</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="1e7b9fb2-a5d8-4f95-83c6-242dbcc3a175" />
+      <LayerKey data="b606bd6c-b8fd-4f6e-904b-99f580b4c04d" />
+      <Name>Bass Edge3</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>2</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>-7.5180982381614019</double>
+            <double>-12.859903508480381</double>
+            <double>-83.791373506650018</double>
+            <double>-97.443330302425736</double>
+            <double>9.5880055255292973E-06</double>
+            <double>1.0505050227038737E-05</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>2</int>
+          </CvCount>
+          <DimensionStride>2</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="310ec016-96a6-4ce0-8dd6-afacd2f578c9" />
+      <LayerKey data="b606bd6c-b8fd-4f6e-904b-99f580b4c04d" />
+      <Name>Trebble Edge2</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>2</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>36.007720927720129</double>
+            <double>29.281005398874612</double>
+            <double>111.29315544772874</double>
+            <double>97.839050356998428</double>
+            <double>1.0616061388191156E-05</double>
+            <double>1.5590505284990286E-05</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>2</int>
+          </CvCount>
+          <DimensionStride>2</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurve" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="00364317-cf9c-409b-9afc-b5b4dddcbf7b" />
+      <LayerKey data="b606bd6c-b8fd-4f6e-904b-99f580b4c04d" />
+      <Name>Trebble Edge3</Name>
+      <IsVisible>false</IsVisible>
+      <Curve>
+        <_order>2</_order>
+        <_isRational>false</_isRational>
+        <_dimension>3</_dimension>
+        <knot>
+          <double>0</double>
+          <double>1</double>
+          <double>2</double>
+          <double>3</double>
+        </knot>
+        <ControlPoints>
+          <Data>
+            <double>-12.8598945207372</double>
+            <double>-7.3202461468154878</double>
+            <double>136.6185300570815</double>
+            <double>122.37300745966192</double>
+            <double>2.2072368466297121E-05</double>
+            <double>9.8139245494621719E-06</double>
+          </Data>
+          <Dimension>3</Dimension>
+          <CvCount>
+            <int>2</int>
+          </CvCount>
+          <DimensionStride>2</DimensionStride>
+          <CvStride>
+            <int>1</int>
+          </CvStride>
+        </ControlPoints>
+      </Curve>
+      <DrawControlNet>false</DrawControlNet>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurveComposite" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="0982bfcc-5700-4f93-915a-1ca40fb1dbf4" />
+      <LayerKey data="b606bd6c-b8fd-4f6e-904b-99f580b4c04d" />
+      <Name>Trebble Outline Curve</Name>
+      <IsVisible>false</IsVisible>
+      <ReferencePlaneKey data="d8f3242d-ce5b-4b82-81ad-a5586327fe11" />
+      <Components>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>35.606948887691246</Data>
+            <Data>110.35713832172523</Data>
+            <Data>3.73097357169172E-05</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="310ec016-96a6-4ce0-8dd6-afacd2f578c9" />
+          <Curve2Key data="e561bbe2-8301-4f85-b65d-50b5ff951a50" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>29.823800015795985</Data>
+            <Data>98.790263335613091</Data>
+            <Data>2.9118208544787194E-05</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="310ec016-96a6-4ce0-8dd6-afacd2f578c9" />
+          <Curve2Key data="e6c7b86f-650f-4de9-a5e6-a17fb4ff4f0b" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>-7.1883465463761906</Data>
+            <Data>123.08070322924542</Data>
+            <Data>2.7688725197094755E-05</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="e6c7b86f-650f-4de9-a5e6-a17fb4ff4f0b" />
+          <Curve2Key data="00364317-cf9c-409b-9afc-b5b4dddcbf7b" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>-12.585950407816613</Data>
+            <Data>135.41870254946016</Data>
+            <Data>-8.3848743770431611E-07</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="00364317-cf9c-409b-9afc-b5b4dddcbf7b" />
+          <Curve2Key data="e561bbe2-8301-4f85-b65d-50b5ff951a50" />
+        </NurbsCurveCompositeJoin>
+      </Components>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicNurbsCurveComposite" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="1c5da1bf-8723-4e95-9a82-f2e8de04848c" />
+      <LayerKey data="b606bd6c-b8fd-4f6e-904b-99f580b4c04d" />
+      <Name>Bass Outline Curve</Name>
+      <IsVisible>true</IsVisible>
+      <ReferencePlaneKey data="d8f3242d-ce5b-4b82-81ad-a5586327fe11" />
+      <Components>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>33.29367796248939</Data>
+            <Data>-69.3149782400979</Data>
+            <Data>2.195748083977378E-05</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="6cd2ad7b-a86d-4161-b26d-714814c5991c" />
+          <Curve2Key data="691269be-5790-48b8-b78d-a8c747637d57" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>31.751507259078195</Data>
+            <Data>-58.519230452986456</Data>
+            <Data>2.9576614394954959E-05</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="98aa7aec-8324-4b7c-8bd8-ee31a858ef9a" />
+          <Curve2Key data="6cd2ad7b-a86d-4161-b26d-714814c5991c" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>-9.1160757276741453</Data>
+            <Data>-85.5086029974801</Data>
+            <Data>1.0470354368408152E-05</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="1e7b9fb2-a5d8-4f95-83c6-242dbcc3a175" />
+          <Curve2Key data="98aa7aec-8324-4b7c-8bd8-ee31a858ef9a" />
+        </NurbsCurveCompositeJoin>
+        <NurbsCurveCompositeJoin>
+          <Centre>
+            <Data>-13.357051041110303</Data>
+            <Data>-95.147670454875438</Data>
+            <Data>2.222026722620285E-05</Data>
+          </Centre>
+          <Radius>20</Radius>
+          <Curve1Key data="1e7b9fb2-a5d8-4f95-83c6-242dbcc3a175" />
+          <Curve2Key data="691269be-5790-48b8-b78d-a8c747637d57" />
+        </NurbsCurveCompositeJoin>
+      </Components>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="4016db83-4bc0-4acc-b7f1-0201ff8029c0" />
+      <LayerKey data="b606bd6c-b8fd-4f6e-904b-99f580b4c04d" />
+      <Name>Treb Locator Hole1 6_0mm</Name>
+      <IsVisible>false</IsVisible>
+      <Disc>
+        <Centre>
+          <Data>32.812</Data>
+          <Data>79.362</Data>
+          <Data>0</Data>
+        </Centre>
+        <Normal>
+          <Data>0</Data>
+          <Data>0</Data>
+          <Data>1</Data>
+        </Normal>
+        <Radius>3</Radius>
+      </Disc>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="efab695a-739f-451e-9aaf-2b2704a25013" />
+      <LayerKey data="b606bd6c-b8fd-4f6e-904b-99f580b4c04d" />
+      <Name>Treb Locator Hole2 6_0mm</Name>
+      <IsVisible>false</IsVisible>
+      <Disc>
+        <Centre>
+          <Data>-25.838</Data>
+          <Data>114.688</Data>
+          <Data>0</Data>
+        </Centre>
+        <Normal>
+          <Data>0</Data>
+          <Data>0</Data>
+          <Data>1</Data>
+        </Normal>
+        <Radius>3</Radius>
+      </Disc>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="966dfde9-9313-4436-855d-fec48db27a22" />
+      <LayerKey data="b606bd6c-b8fd-4f6e-904b-99f580b4c04d" />
+      <Name>Bass Locator Hole1 6_0mm</Name>
+      <IsVisible>true</IsVisible>
+      <Disc>
+        <Centre>
+          <Data>34.172</Data>
+          <Data>-43.782</Data>
+          <Data>0</Data>
+        </Centre>
+        <Normal>
+          <Data>0</Data>
+          <Data>0</Data>
+          <Data>1</Data>
+        </Normal>
+        <Radius>3</Radius>
+      </Disc>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="GraphicDisc" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="63c50058-d807-4808-9ae9-9de0415dcdd3" />
+      <LayerKey data="b606bd6c-b8fd-4f6e-904b-99f580b4c04d" />
+      <Name>Bass Locator Hole2 6_0mm</Name>
+      <IsVisible>true</IsVisible>
+      <Disc>
+        <Centre>
+          <Data>-24.394</Data>
+          <Data>-78.715</Data>
+          <Data>0</Data>
+        </Centre>
+        <Normal>
+          <Data>0</Data>
+          <Data>0</Data>
+          <Data>1</Data>
+        </Normal>
+        <Radius>3</Radius>
+      </Disc>
+    </GraphicObjectBase>
+    <GraphicObjectBase d3p1:type="MouldEdgeSpecification" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <Key data="7815d23b-e037-4217-bfad-b904bec2fa24" />
+      <LayerKey data="b606bd6c-b8fd-4f6e-904b-99f580b4c04d" />
+      <Name>C-Bout Former Bass Toolpath</Name>
+      <IsVisible>true</IsVisible>
+      <ReferencePlaneKey data="d8f3242d-ce5b-4b82-81ad-a5586327fe11" />
+      <IsCutFromUnderneath>false</IsCutFromUnderneath>
+      <BoundaryPolygonKey>
+        <UniqueKey data="1c5da1bf-8723-4e95-9a82-f2e8de04848c" />
+        <UniqueKey data="966dfde9-9313-4436-855d-fec48db27a22" />
+        <UniqueKey data="63c50058-d807-4808-9ae9-9de0415dcdd3" />
+      </BoundaryPolygonKey>
+      <TopHeight>20</TopHeight>
+      <BottomHeight>0</BottomHeight>
+      <MaximumCutDepth>5</MaximumCutDepth>
+      <CutHeights>
+        <double>8.5</double>
+        <double>7.5</double>
+        <double>5</double>
+        <double>2.5</double>
+        <double>-1</double>
+      </CutHeights>
+      <SafeHeight>20</SafeHeight>
+      <SpindleState>OnClockwise</SpindleState>
+      <SpindleSpeed>22000</SpindleSpeed>
+      <CuttingHorizontalFeedRate>500</CuttingHorizontalFeedRate>
+      <CuttingVerticalFeedRate>500</CuttingVerticalFeedRate>
+      <FreeHorizontalFeedRate>3000</FreeHorizontalFeedRate>
+      <FreeVerticalFeedRate>1500</FreeVerticalFeedRate>
+      <Tool d3p1:type="EndMill">
+        <Diameter>5</Diameter>
+      </Tool>
+      <IsInsideCut>false</IsInsideCut>
+      <NumberOfCopies>4</NumberOfCopies>
     </GraphicObjectBase>
   </Objects>
   <Name>NewModel</Name>

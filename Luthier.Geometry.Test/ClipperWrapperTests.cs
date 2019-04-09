@@ -33,7 +33,8 @@ namespace Luthier.Geometry.Test
             };
 
             var actual = ClipperWrapper.OffsetPolygon(polygon, -1);
-            
+            var actual2 = ClipperWrapper.OffsetPolygon(polygon, 1);
+
         }
 
 
@@ -51,6 +52,27 @@ namespace Luthier.Geometry.Test
             });
 
             var actual = ClipperWrapper.OffsetPolygon(polygon, -1);
+
+        }
+
+
+        [TestMethod]
+        public void Test2_offsetLine()
+        {
+            var line = new List<Point2D>
+            {
+                new Point2D(0, 0),
+                new Point2D(10, 0),
+                new Point2D(10, 0.1),
+                new Point2D(20, 0.1),
+                new Point2D(20, 10),
+                new Point2D(0, 10)
+            };
+
+            var left = ClipperWrapper.OffsetLine(line, 1);
+            var right = ClipperWrapper.OffsetLine(line, -1);
+
+
 
         }
     }

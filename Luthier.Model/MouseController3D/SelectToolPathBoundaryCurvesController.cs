@@ -52,18 +52,20 @@ namespace Luthier.Model.MouseController3D
             {
                 ReferencePlaneKey = ReferencePlane.Key,
                 BoundaryPolygonKey = new List<UniqueKey>(),
-                SafeHeight = 50,
+                SafeHeight = 20,
                 TopHeight = 20,
                 BottomHeight = 0,
                 MaximumCutDepth = 5,
-                CutHeights = new List<double> { 8.5, 7.5, 5.0, 2.5, -1.0},
+                CutHeights = new List<double> { -4, -8, -12, -16, -20,  },
                 SpindleState = CncOperation.EnumSpindleState.OnClockwise,
                 SpindleSpeed = 22000,
-                CuttingHorizontalFeedRate = 1000,
+                CuttingHorizontalFeedRate = 500,
                 CuttingVerticalFeedRate = 500,
                 FreeHorizontalFeedRate = 3000,
                 FreeVerticalFeedRate = 1500,
-                Tool = new CncTool.EndMill { Diameter = 5.00 }
+                Tool = new CncTool.EndMill { Diameter = 5.40 },
+                IsInsideCut = true,
+                IsCutFromUnderneath = true,
             };
 
             foreach (var obj in _model.Model.VisibleObjects().Where(x => x is IPolygon2D))
