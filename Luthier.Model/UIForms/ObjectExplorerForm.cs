@@ -288,17 +288,27 @@ namespace Luthier.Model.UIForms
             {
                 if (mySelectedNode.Tag is GraphicLayer)
                 {
+                    //1. create new layer
                     GraphicLayer parentLayer = mySelectedNode.Tag as GraphicLayer;
 
                     GraphicLayer childLayer = new GraphicLayer();
                     parentLayer.AddToLayer(childLayer);
 
                     _model.Model.Add(childLayer, raiseChangeEvent: true);
+
+                    //2. set renaming event
+                    mySelectedNode = FindAssociatedNode(childLayer);
+                    renameToolStripMenuItem_Click(sender, e);
                 }
                 else if(mySelectedNode.Tag is GraphicModel)
                 {
+                    //1. create new layer
                     GraphicLayer childLayer = new GraphicLayer();
                     _model.Model.Add(childLayer, raiseChangeEvent: true);
+
+                    //2. set renaming event
+                    mySelectedNode = FindAssociatedNode(childLayer);
+                    renameToolStripMenuItem_Click(sender, e);
                 }
                 else
                 {
@@ -311,6 +321,35 @@ namespace Luthier.Model.UIForms
             }
         }
 
+        private TreeNode FindAssociatedNode(GraphicObjectBase obj)
+        {
+            foreach (TreeNode node in modelTreeView.Nodes)
+            {
+                var n = FindAssociatedNodeRecursive(node, obj);
+                if (n != null)
+                    return n;
+            }
+            return null;
+        }
+        private TreeNode FindAssociatedNodeRecursive(TreeNode treeNode, GraphicObjectBase obj)
+        {
+            foreach (TreeNode tn in treeNode.Nodes)
+            {
+                var graphicObj = tn.Tag as GraphicObjectBase;
+                // if the text properties match, color the item  
+                if (graphicObj != null && graphicObj.Key == obj.Key)
+                {
+                    return tn;
+                }
+                else
+                {
+                    var n = FindAssociatedNodeRecursive(tn, obj);
+                    if (n != null)
+                        return n;
+                }
+            }
+            return null;
+        }
 
         private void SetContextMenuItems(TreeNode node)
         {
